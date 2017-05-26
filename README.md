@@ -1,2 +1,2 @@
 # styled-material-components
-PLACEHOLDER
+Coming Soon

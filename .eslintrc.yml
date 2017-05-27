@@ -1,0 +1,7 @@
+extends: concierge-auctions-react
+rules:
+  react/require-default-props: "off"
+  jsx-a11y/img-has-alt: "off"
+  no-underscore-dangle:
+    - error
+    - allowAfterThis: true

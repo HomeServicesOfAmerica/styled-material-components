@@ -1,0 +1,44 @@
+{
+  "name": "styled-material-components",
+  "version": "0.0.1",
+  "description": "coming soon",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "yarn lint",
+    "clear": "rm -r dist/*",
+    "build": "yarn clear && babel --out-dir dist src",
+    "lint": "eslint src/**",
+    "dev": "next dev -p 8080",
+    "export": "next build && next export -o docs",
+    "prepublish": "yarn test && yarn build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ConciergeAuctions/styled-material-components.git"
+  },
+  "author": "Brad Decker <bhdecker84@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ConciergeAuctions/styled-material-components/issues"
+  },
+  "homepage": "https://github.com/ConciergeAuctions/styled-material-components#readme",
+  "dependencies": {
+    "color": "^1.0.3",
+    "lodash.merge": "^4.6.0",
+    "react": "^15.5.4",
+    "styled-components": "^2.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-eslint": "^7.2.3",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-env": "^1.5.1",
+    "babel-preset-react": "^6.24.1",
+    "eslint": "^3.19.0",
+    "eslint-config-concierge-auctions-react": "^0.0.6",
+    "next": "beta",
+    "react-dom": "^15.5.4"
+  }
+}

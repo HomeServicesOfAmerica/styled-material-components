@@ -1,5 +1,7 @@
 # Styled Material Components
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/ConciergeAuctions/styled-material-components.svg?token=f0e8d14d79ce36e29d965a7f1612404dfb4f9f4f1f52bfe9a1d417982a1a4434&ts=1496342080819)](https://greenkeeper.io/)
+
 [Styled Components](https://www.styled-components.com) inspired library that implements Material Design for stress free React Application scaffolding.
 
 ## Inspiration and goals

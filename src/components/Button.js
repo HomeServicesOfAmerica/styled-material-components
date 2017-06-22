@@ -18,14 +18,14 @@ const raised = css`
   ${props => props.accent && `
     color: white;
     background-color: ${props.theme.accent};
-    &::before {
+    &:before {
       color: black;
     }
   `}
   ${props => props.primary && `
     color: white;
     background-color: ${props.theme.primary};
-    &::before {
+    &:before {
       color: black;
     }
   `}

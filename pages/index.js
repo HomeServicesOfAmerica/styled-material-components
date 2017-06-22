@@ -1,35 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
-import Button from '../src/components/Button';
-import withRipple from '../src/decorators/withRipple';
+import Link from 'next/link';
 import MaterialThemeProvider from '../src/theme/ThemeProvider';
 
-const RippleButton = withRipple(Button);
-
-const ButtonsPage = ({ className }) => (
+const HomePage = ({ className }) => (
   <MaterialThemeProvider theme={{ primary: '#03A9F4' }}>
     <div className={className}>
-      <h1>Flat Buttons</h1>
-      <Button>Flat</Button>
-      <Button primary>Flat Primary</Button>
-      <Button accent>Flat Accent</Button>
-      <RippleButton>JS Ripple</RippleButton>
-      <h1>Raised Buttons</h1>
-      <Button raised>Raised</Button>
-      <Button raised accent>Accent</Button>
-      <Button raised disabled>Test</Button>
-      <RippleButton raised primary>JS Ripple</RippleButton>
+      <h1>Placeholder</h1>
+      <Link href="/buttons"><a>Buttons Page</a></Link>
+      <br/>
+      <Link href="/cards"><a>Cards Page</a></Link>
     </div>
   </MaterialThemeProvider>
 );
 
-const StyledButtonsPage = styled(ButtonsPage)`
-  & h1 {
-    font-family: sans-serif;
-  }
+const StyledHomePage = styled(HomePage)`
   & button {
     margin: 16px;
   }
 `;
 
-export default StyledButtonsPage;
+export default StyledHomePage;

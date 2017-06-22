@@ -21,6 +21,14 @@ const defaultTheme = {
       ambient: black.alpha(0.12).toString(),
     },
   },
+
+  textColors: {
+    primary: black.alpha(0.87).toString(),
+    secondary: black.alpha(0.54).toString(),
+    hint: black.alpha(0.38).toString(),
+    disabled: black.alpha(0.38).toString(),
+    icon: black.alpha(0.38).toString(),
+  },
 };
 
 export default defaultTheme;

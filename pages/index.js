@@ -23,7 +23,7 @@ const ButtonsPage = ({ className }) => (
   </MaterialThemeProvider>
 );
 
-const StyledButtonsPage = styled(ButtonsPage)`
+const StyledButtonsPage = styled(ButtonsPage) `
   & h1 {
     font-family: sans-serif;
   }

@@ -1,4 +1,5 @@
 import styled, { keyframes, css } from 'styled-components';
+
 const blueColor = '#3376a5';
 
 const inputHighlighter = keyframes`
@@ -17,12 +18,11 @@ export const Highligter = styled.span`
 `;
 
 export const Label = styled.label`
-    color:${(props) => props.error ? 'rgb(221,44,0)' : '#999'};
-    font-size: 18px;
+    color:${props => (props.error ? 'rgb(221,44,0)' : '#999')};
+    font-size: 16px;
     font-weight:normal;
     position:absolute;
     pointer-events:none;
-    left:5px;
     top:10px;
     transition:0.2s ease all; 
     -moz-transition:0.2s ease all; 
@@ -38,9 +38,9 @@ export const Bar = styled.span`
         content:'';
         height:2px; 
         width:0;
-        bottom:1px; 
+        bottom:0; 
         position:absolute;
-        background:${(props) => props.error ? 'rgb(221,44,0)' : blueColor}; 
+        background:${props => (props.error ? 'rgb(221,44,0)' : blueColor)}; 
         transition:0.2s ease all; 
         -moz-transition:0.2s ease all; 
         -webkit-transition:0.2s ease all; 
@@ -51,9 +51,9 @@ export const Bar = styled.span`
         content:'';
         height:2px; 
         width:0;
-        bottom:1px; 
+        bottom:0; 
         position:absolute;
-        background:${(props) => props.error ? 'rgb(221,44,0)' : blueColor};  
+        background:${props => (props.error ? 'rgb(221,44,0)' : blueColor)};  
         transition:0.2s ease all; 
         -moz-transition:0.2s ease all; 
         -webkit-transition:0.2s ease all; 
@@ -63,13 +63,13 @@ export const Bar = styled.span`
 
 export const InputComponent = styled.input`
     font-size:18px;
-    padding:5px;
+    padding:8px 0px;
     display:block;
     width:100%;
     border:none;
-    border-bottom:1px solid ${(props) => props.error ? 'rgb(221,44,0)' : '#757575'};
+    border-bottom:1px solid ${props => (props.error ? 'rgb(221,44,0)' : 'rgba(0,0,0,.42)')};
     box-sizing: border-box;
-    ${(props) => props.blocked ? 'pointer-events:none;' : ''};
+    ${props => (props.blocked ? 'pointer-events:none;' : '')};
 
     &:focus{
       outline:none;
@@ -101,7 +101,7 @@ const activeBar = css`
         &:focus ~ ${Label}, &:valid ~ ${Label}{
             top:-15px;
             font-size:12px;
-            color:${(props) => props.error ? 'rgb(221,44,0)' : blueColor}; 
+            color:${props => (props.error ? 'rgb(221,44,0)' : blueColor)}; 
         }
     }
     
@@ -118,8 +118,7 @@ export const ErrorLabel = styled.div`
     color: rgb(221,44,0);
     font-size: 12px;
     line-height: 14px;
-    padding-top: 5px;
-    padding-left: 5px;
+    padding:8px 0 0;
     position:absolute;
 `;
 

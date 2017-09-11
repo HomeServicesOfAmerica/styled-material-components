@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-const PrimarySection = props => (
-  <section className={`${props.className} primary`}>{props.children}</section>
+const PrimaryComponent = props => (
+  <section className={`${props.className} card-primary`}>{props.children}</section>
 );
 
-const Primary = styled(PrimarySection)`
+const Primary = styled(PrimaryComponent)`
   padding: 16px;
 
   &:last-child {

@@ -2,6 +2,10 @@ import styled, { css } from 'styled-components';
 import elevation, { elevationTransition } from '../mixins/elevation';
 import ripple from '../mixins/ripple';
 
+const ButtonComponent = props => (
+  <button className={`${props.className} smc-button`}>{props.children}</button>
+);
+
 const primary = css`
   color: ${props => props.theme.primary};
 `;
@@ -36,10 +40,10 @@ const raised = css`
   }
 `;
 
-const Button = styled.button`
+const Button = styled(ButtonComponent)`
   display: inline-block;
   position: relative;
-  min-width: 64px;
+  min-width: 88px;
   height: 36px;
   padding: 0 16px;
   border: none;

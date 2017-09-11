@@ -11,6 +11,8 @@ import Media from '../src/components/Card/Media';
 import Actions from '../src/components/Card/Actions';
 import Avatar from '../src/components/Card/Avatar';
 import MaterialThemeProvider from '../src/theme/ThemeProvider';
+import HorizontalBlock from '../src/components/Card/HorizontalBlock';
+import MediaItem from '../src/components/Card/MediaItem';
 
 const DemoCard = Card.extend`
   max-width: 21.875rem;
@@ -48,24 +50,102 @@ const CardsPage = ({ className }) => (
         </Primary>
         <Media wide src="https://s3.amazonaws.com/media.conciergeauctions.com/images/16-9.jpg" />
         <SupportingText>
-          <p>Donec sed odio dui. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+          Donec sed odio dui. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
         </SupportingText>
         <Actions>
-          <Button>Action 1</Button>
-          <Button>Action 2</Button>
+          <Button compact>Action 1</Button>
+          <Button compact>Action 2</Button>
         </Actions>
       </DemoCard>
       <DemoCard>
         <Primary>
           <Avatar></Avatar>
           <TitleWithAvatar>Title</TitleWithAvatar>
-          <SubtitleWithAvatar>Subtitle</SubtitleWithAvatar>
+          <SubtitleWithAvatar>Subhead</SubtitleWithAvatar>
         </Primary>
         <Media wide src="https://s3.amazonaws.com/media.conciergeauctions.com/images/16-9.jpg" />
-        <Actions>
-          <Button>Action 1</Button>
-          <Button>Action 2</Button>
+        <Actions vertical>
+          <Button compact>Action 1</Button>
+          <Button compact>Action 2</Button>
         </Actions>
+      </DemoCard>
+      <DemoCard>
+        <Media wide src="https://s3.amazonaws.com/media.conciergeauctions.com/images/16-9.jpg" />
+        <Primary>
+          <Title large>Title goes here</Title>
+          <Subtitle>Subtitle here</Subtitle>
+        </Primary>
+        <Actions>
+          <Button compact>Action 1</Button>
+          <Button compact>Action 2</Button>
+        </Actions>
+      </DemoCard>
+      <DemoCard>
+        <Primary>
+          <Title large>Title goes here</Title>
+          <Subtitle>Subtitle here</Subtitle>
+        </Primary>
+        <SupportingText>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit sit amet non magna.</SupportingText>
+        <Actions>
+          <Button compact>Action 1</Button>
+          <Button compact>Action 2</Button>
+        </Actions>
+      </DemoCard>
+      <DemoCard>
+        <Media wide src="https://s3.amazonaws.com/media.conciergeauctions.com/images/1-1.jpg">
+          <Title large>Title</Title>
+        </Media>
+        <Actions>
+          <Button compact>Action 1</Button>
+        </Actions>
+      </DemoCard>
+      <DemoCard>
+        <HorizontalBlock>
+          <Primary>
+            <Title large>Title here</Title>
+            <Subtitle>Subtitle here</Subtitle>
+          </Primary>
+          <MediaItem src="https://s3.amazonaws.com/media.conciergeauctions.com/images/1-1.jpg"/>
+        </HorizontalBlock>
+        <Actions>
+          <Button compact>Action 1</Button>
+          <Button compact>Action 2</Button>
+        </Actions>
+      </DemoCard>
+      <DemoCard>
+        <HorizontalBlock>
+          <Primary>
+            <Title large>Title here</Title>
+            <Subtitle>Subtitle here</Subtitle>
+          </Primary>
+          <MediaItem scale={1.5} src="https://s3.amazonaws.com/media.conciergeauctions.com/images/1-1.jpg"/>
+        </HorizontalBlock>
+        <Actions>
+          <Button compact>Action 1</Button>
+          <Button compact>Action 2</Button>
+        </Actions>
+      </DemoCard>
+      <DemoCard>
+        <HorizontalBlock>
+          <Primary>
+            <Title large>Title here</Title>
+            <Subtitle>Subtitle here</Subtitle>
+          </Primary>
+          <MediaItem scale={2} src="https://s3.amazonaws.com/media.conciergeauctions.com/images/1-1.jpg"/>
+        </HorizontalBlock>
+        <Actions>
+          <Button compact>Action 1</Button>
+          <Button compact>Action 2</Button>
+        </Actions>
+      </DemoCard>
+      <DemoCard>
+        <HorizontalBlock>
+          <MediaItem scale={3} src="https://s3.amazonaws.com/media.conciergeauctions.com/images/1-1.jpg"/>
+          <Actions vertical>
+            <Button compact>A1</Button>
+            <Button compact>A2</Button>
+          </Actions>
+        </HorizontalBlock>
       </DemoCard>
     </div>
   </MaterialThemeProvider>

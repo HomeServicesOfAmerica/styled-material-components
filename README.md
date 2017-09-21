@@ -34,13 +34,13 @@ Example Implementation:
 
 ```js
 // Flat button with primary text color
-<Button primary>I'm a Button</Button>
+<Button primary>I’m a Button</Button>
 
 // Flat button with accent text color
-<Button accent>I'm a Button</Button>
+<Button accent>I’m a Button</Button>
 
 // Raised button with primary background color
-<Button raised primary>I'm a Button</Button>
+<Button raised primary>I’m a Button</Button>
 ```
 
 ### withRipple

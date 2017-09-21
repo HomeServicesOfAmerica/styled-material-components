@@ -36,7 +36,7 @@ Example Implementation:
 // Flat button with primary text color
 <Button primary>I'm a Button</Button>
 
-// Flat button wtih accent text color
+// Flat button with accent text color
 <Button accent>I'm a Button</Button>
 
 // Raised button with primary background color

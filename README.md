@@ -6,7 +6,24 @@
 1. [Styled Components](https://www.styled-components.com) is a great way to couple components with styles.
 2. [Material Components](https://github.com/material-components/material-components-web) is the best implementation of material design spec (it is google afterall)
 3. We want a native react implementation of the above, and Styled Components gives us that power.
-4. Sass Mixins can be mostly written as styled component mixins. See src/mixins/ for examples of this. 
+4. Sass Mixins can be mostly written as styled component mixins. See src/mixins/ for examples of this.
+
+## Material design target version
+Because Google does not version material design, this library will be updated incrementally
+to try to reflect the latest design specifications. This may mean that components
+do not get updated at the same time.
+
+Material design publishes its monthly (changelog)[https://material.io/guidelines/material-design/whats-new.html#]. To
+simplify being able to tell at a glance if a component has been updated to reflect
+a changing spec, please put the following at the top of any files you work in.
+
+```js
+// @createdAt DD/MM/YYYY
+// @updatedAt DD/MM/YYYY
+```
+
+Pull requests without this in new files, or without the updated date update in
+edited files, will not be approved.
 
 ## Contributing
 1. Fork this repo
@@ -16,8 +33,9 @@
 5. Make changes to components in src/
 6. Add the components to pages in /pages
 7. Pages are mapped to routes for our documentation
-8. Open a PR
-9. Profit :D
+8. Update the updatedAt comment in the component
+9. Open a PR
+10. Profit :D
 
 ## How to use
 The components in this library are Styled Components and have full access to the Style Components v2 api. That means you can call .extend on any of the exported components to modify the styling of everything within the component.
@@ -30,7 +48,7 @@ Similar to the Styled Components ThemeProvider (its a thin wrapper around it) ex
 ### Button
 This component is for creating a material design button. It has props that match the documentation from [Material Components](https://github.com/material-components/material-components-web)
 
-Example Implementation: 
+Example Implementation:
 
 ```js
 // Flat button with primary text color

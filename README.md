@@ -6,7 +6,7 @@
 1. [Styled Components](https://www.styled-components.com) is a great way to couple components with styles.
 2. [Material Components](https://github.com/material-components/material-components-web) is the best implementation of material design spec (it is google afterall)
 3. We want a native react implementation of the above, and Styled Components gives us that power.
-4. Sass Mixins can be mostly written as styled component mixins. See src/mixins/ for examples of this. 
+4. Sass Mixins can be mostly written as styled component mixins. See src/mixins/ for examples of this.
 
 ## Contributing
 1. Fork this repo
@@ -14,10 +14,13 @@
 3. Run yarn install
 4. Run yarn dev
 5. Make changes to components in src/
-6. Add the components to pages in /pages
-7. Pages are mapped to routes for our documentation
-8. Open a PR
-9. Profit :D
+6. Add the components to pages in /pages (Pages are mapped to routes for our documentation)
+7. Install [now](https://zeit.co/now#whats-now) if you do not already have it installed.
+8. Run `yarn now-build` to get a shareable link to the updated docs copied to your
+clipboard.
+9. Open a PR, making sure to include the link to the updated docs so others can
+see your wonderful changes.
+10. Profit :D
 
 ## How to use
 The components in this library are Styled Components and have full access to the Style Components v2 api. That means you can call .extend on any of the exported components to modify the styling of everything within the component.
@@ -30,7 +33,7 @@ Similar to the Styled Components ThemeProvider (its a thin wrapper around it) ex
 ### Button
 This component is for creating a material design button. It has props that match the documentation from [Material Components](https://github.com/material-components/material-components-web)
 
-Example Implementation: 
+Example Implementation:
 
 ```js
 // Flat button with primary text color

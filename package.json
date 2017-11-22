@@ -10,7 +10,8 @@
     "lint": "eslint src/**",
     "dev": "next dev -p 8080",
     "export": "next build && next export -o docs",
-    "prepublish": "yarn test && yarn build"
+    "prepublish": "yarn test && yarn build",
+    "now-build": "yarn export && cd docs && now"
   },
   "repository": {
     "type": "git",

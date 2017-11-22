@@ -1,6 +1,7 @@
-import Color from 'color';
+import { black } from './colors';
+import { makeMaterialSliderTheme } from './makeMaterialSliderTheme';
 
-const black = Color('#000');
+const sliderTheme = makeMaterialSliderTheme();
 
 const defaultTheme = {
   primary: '#3f51b5',
@@ -28,6 +29,7 @@ const defaultTheme = {
     disabled: black.alpha(0.38).toString(),
     icon: black.alpha(0.38).toString(),
   },
+  slider: sliderTheme,
 };
 
 export default defaultTheme;

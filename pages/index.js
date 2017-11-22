@@ -14,10 +14,12 @@ const HomePage = ({ className }) => (
       <Link href="/text-fields"><a>TextFields Page</a></Link>
       <br/>
       <Link href="/tabs"><a>Tabs Page</a></Link>
-      <br/>
+      <br/><<<<<<< 43362972f98f44de31158db093b6a4c45c3bcf91
       <Link href="/dialog"><a>Dialog Page</a></Link>
       <br/>
       <Link href="/lists"><a>Lists Page</a></Link>
+      <br />
+      <Link href="/sliders"><a>Sliders Page</a></Link>
     </div>
   </MaterialThemeProvider>
 );

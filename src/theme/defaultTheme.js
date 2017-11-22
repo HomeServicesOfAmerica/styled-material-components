@@ -29,6 +29,7 @@ const defaultTheme = {
     disabled: black.alpha(0.38).toString(),
     icon: black.alpha(0.38).toString(),
   },
+  backgroundColor: '#fff',
 };
 
 export default defaultTheme;

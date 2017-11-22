@@ -34,7 +34,7 @@ const SubtitleWithAvatar = Subtitle.extend`
 const CardsPage = ({ className }) => (
   <MaterialThemeProvider theme={{ primary: '#03A9F4' }}>
     <div className={className}>
-      <h1>Card</h1>
+      <h1>Cards</h1>
       <DemoCard>
         <Media wide src="https://s3.amazonaws.com/media.conciergeauctions.com/images/16-9.jpg" />
         <SupportingText>

@@ -6,7 +6,6 @@ class TextFieldComponent extends PureComponent {
   state = {
     text: this.props.defaultValue || '',
     focus: false,
-    floating: false,
   }
 
   onChange = (e) => {
@@ -33,16 +32,23 @@ class TextFieldComponent extends PureComponent {
         underlineColor={this.props.underlineColor} >
         <FloatingLabel
           className={'smc-text-field-floating-label'}
-          style={this.props.floatingLabelStyle}
+          style={this.state.focus
+            ? this.props.floatingLabelFocusStyle
+            : this.props.floatingLabelStyle}
           floating={this.state.focus || this.props.hintText || this.state.text.length}>
           {this.props.floatingLabelText}
         </FloatingLabel>
         <HintText
           className={'smc-text-field-hint-text'}
-          style={this.props.hintTextColorStyle}
+          style={this.props.hintTextStyle}
           display={!this.props.defaultValue && !this.state.text.length && !this.props.value} >
           {this.props.hintText}
         </HintText>
+        {this.props.helperText && <HelperText
+          className={'smc-text-field-helper-text'}
+          style={this.props.helperTextStyle} >
+          {this.props.helperText}
+        </HelperText>}
         <UnderlineFocus
           className={'smc-text-field-underline-focus'}
           focus={this.state.focus}
@@ -93,6 +99,16 @@ const HintText = styled.div`
   bottom: 0px;
   width: 100%;
 `;
+
+const HelperText = styled.div`
+  position: absolute;
+  color: ${hintTextColor};
+  transition: all 200ms;
+  bottom: -2em;
+  font-size: 0.75em;
+  width: 100%;
+`;
+
 
 const UnderlineFocus = styled.div`
   position: absolute;

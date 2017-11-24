@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import MaterialThemeProvider from '../src/theme/ThemeProvider';
 import TextField from '../src/components/TextField';
 
+const validateLength = str => str.length > 7;
+
 class TextFieldPage extends PureComponent {
   state = {
     controlledInputValue: '',
@@ -74,6 +76,22 @@ class TextFieldPage extends PureComponent {
           floatingLabelFocusStyle={{ color: 'pink' }}
           floatingLabelText={'Styled Floating Label Focus'}
           style={{ marginBottom: '30px' }} />
+        <h2>Error Examples</h2>
+        <TextField
+          hintText={'Pass in an error'}
+          errorText={'This error was passed in'}
+          error
+          style={{marginBottom: '30px'}} />
+        <TextField
+          hintText={'minimum length 8'}
+          validator={validateLength}
+          errorText={'That word is too short'}
+          style={{marginBottom: '30px'}} />
+        <TextField
+          floatingLabelText={'A word that is at least 8 chars long'}
+          validator={validateLength}
+          errorText={'That word is too short'}
+          style={{marginBottom: '30px'}} />
       </div>
     </MaterialThemeProvider>);
   }

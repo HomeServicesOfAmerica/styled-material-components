@@ -6,11 +6,17 @@ class TextFieldComponent extends PureComponent {
   state = {
     text: this.props.defaultValue || '',
     focus: false,
+    error: this.props.error || false,
   }
 
   onChange = (e) => {
     this.props.onChange && this.props.onChange(e);
-    this.setState({ text: e.target.value });
+    const text = e.target.value;
+    this.setState({
+      text,
+      error: this.props.error ||
+        this.props.validator && !this.props.validator(text),
+    });
   }
 
   onFocus = (e) => {
@@ -32,9 +38,15 @@ class TextFieldComponent extends PureComponent {
         underlineColor={this.props.underlineColor} >
         <FloatingLabel
           className={'smc-text-field-floating-label'}
-          style={this.state.focus
-            ? this.props.floatingLabelFocusStyle
-            : this.props.floatingLabelStyle}
+          error={this.state.error}
+          style={
+            this.state.error
+              ? this.state.focus
+                ? this.props.floatingLabelFocusErrorStyle
+                : this.props.floatingLabelErrorStyle
+              : this.state.focus
+                ? this.props.floatingLabelFocusStyle
+                : this.props.floatingLabelStyle}
           floating={this.state.focus || this.props.hintText || this.state.text.length}>
           {this.props.floatingLabelText}
         </FloatingLabel>
@@ -49,10 +61,17 @@ class TextFieldComponent extends PureComponent {
           style={this.props.helperTextStyle} >
           {this.props.helperText}
         </HelperText>}
+        <ErrorText
+          display={this.props.errorText && this.state.error}
+          className={'smc-text-field-error-text'}
+          style={this.props.errorTextStyle} >
+          {this.props.errorText}
+        </ErrorText>
         <UnderlineFocus
           className={'smc-text-field-underline-focus'}
           focus={this.state.focus}
           underlineColor={this.props.underlineColor}
+          error={this.state.error}
           underlineFocusColor={this.props.underlineFocusColor} />
         <Input
           autoFocus={this.props.autoFocus}
@@ -70,6 +89,13 @@ class TextFieldComponent extends PureComponent {
 const primaryTextColor = css`${props => props.theme.textColors.primary}`;
 const hintTextColor = css`${props => props.theme.textColors.hint}`;
 const primary = css`${props => props.theme.primary}`;
+const error = css`${props => props.theme.textColors.error || '#d50000'}`
+const placeBelow = css`
+  position: absolute;
+  bottom: -2em;
+  font-size: 0.75em;
+  width: 100%;
+`;
 
 const Container = styled.div`
   font-size: 16px;
@@ -87,7 +113,12 @@ const FloatingLabel = styled.div`
   transition: all 200ms;
   bottom: ${props => props.floating ? '1.5em' : '0em'};
   font-size: ${props => props.floating ? '0.75em' : '1em'};
-  color: ${props => props.floating ? primary : hintTextColor};
+  color: ${(props) => {
+    if (props.floating) {
+      return props.error ? error : primary;
+    }
+    return hintTextColor;
+  }};
   width: 100%;
 `;
 
@@ -100,13 +131,17 @@ const HintText = styled.div`
   width: 100%;
 `;
 
-const HelperText = styled.div`
-  position: absolute;
-  color: ${hintTextColor};
+const ErrorText = styled.div`
+  
+  opacity: ${props => +props.display};
+  color: ${error};
   transition: all 200ms;
-  bottom: -2em;
-  font-size: 0.75em;
-  width: 100%;
+  ${placeBelow}
+`;
+
+const HelperText = styled.div`
+  color: ${hintTextColor};
+  ${placeBelow}
 `;
 
 

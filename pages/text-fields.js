@@ -18,8 +18,7 @@ class TextFieldPage extends PureComponent {
       <div
         className={this.props.className}>
         <h1>Text Fields</h1>
-        <h3>Simple Examples</h3>
-        <h6>Examples demonstrating basic features</h6>
+        <h2>Simple Examples</h2>
         <TextField
           hintText={'Hint Text'}
           style={{ marginBottom: '50px', width: '400px' }} />
@@ -46,8 +45,15 @@ class TextFieldPage extends PureComponent {
         <TextField
           style={{ marginBottom: '20px' }}
           floatingLabelText={'floating label'} />
-        <h3>Styled Examples</h3>
-        <h6>Examples demonstrating custom styles</h6>
+        <TextField
+          style={{ marginBottom: '40px' }}
+          helperText={'helper text'} />
+        <TextField
+          hintText={'Controlled Input (check your console)'}
+          style={{ marginBottom: '20px' }}
+          value={this.state.controlledInputValue}
+          onChange={this.handleChange} />
+        <h2>Styled Examples</h2>
         <TextField
           hintText={'Custom Underline Color'}
           underlineColor={'pink'}
@@ -57,14 +63,17 @@ class TextFieldPage extends PureComponent {
           underlineFocusColor={'pink'}
           style={{ marginBottom: '20px' }} />
         <TextField
-          hintText={'Custom Hint Text Styles'}
-          hintStyle={{ color: 'pink', fontSize: '10px' }}
+          hintText={'Styled Hint Text'}
+          hintTextStyle={{ color: 'pink', fontSize: '10px' }}
           style={{ marginBottom: '30px' }} />
         <TextField
-          hintText={'Controlled Input (check your console)'}
-          style={{ marginBottom: '20px' }}
-          value={this.state.controlledInputValue}
-          onChange={this.handleChange} />
+          floatingLabelStyle={{ color: 'pink' }}
+          floatingLabelText={'Styled Floating Label'}
+          style={{ marginBottom: '30px' }} />
+        <TextField
+          floatingLabelFocusStyle={{ color: 'pink' }}
+          floatingLabelText={'Styled Floating Label Focus'}
+          style={{ marginBottom: '30px' }} />
       </div>
     </MaterialThemeProvider>);
   }

@@ -10,10 +10,7 @@ class TextFieldPage extends PureComponent {
     controlledInputValue: '',
   };
 
-  handleChange = (e) => {
-    console.log(`controlled value changing from ${this.state.controlledInputValue} to ${e.target.value}`);
-    this.setState({ controlledInputValue: e.target.value });
-  }
+  handleChange = e => this.setState({ controlledInputValue: e.target.value })
 
   render() {
     return (<MaterialThemeProvider theme={{ primary: '#03A9F4' }}>
@@ -22,76 +19,58 @@ class TextFieldPage extends PureComponent {
         <h1>Text Fields</h1>
         <h2>Simple Examples</h2>
         <TextField
-          hintText={'Hint Text'}
-          style={{ marginBottom: '50px', width: '400px' }} />
-        <TextField
-          hintText={'Hint Text can be as long as you want. It will wrap'}
-          style={{ marginBottom: '20px' }} />
-        <TextField
-          style={{ marginBottom: '20px' }} />
-        <TextField
-          defaultValue={'Default Value'}
-          style={{ marginBottom: '20px' }} />
-        <TextField
-          hintText={'Full Width'}
-          fullWidth
-          style={{ marginBottom: '20px' }} />
-        <TextField
           hintText={'autofocus'}
-          style={{ marginBottom: '20px' }}
+          containerStyle={{ marginBottom: '20px' }}
           autoFocus />
         <TextField
+          hintText={'Hint Text'}
+          containerStyle={{ marginBottom: '20px' }} />
+        <TextField
+          defaultValue={'Default Value'}
+          containerStyle={{ marginBottom: '20px' }} />
+        <TextField
+          containerStyle={{ marginBottom: '20px' }}
+          floatingLabelText={'floating label'} />
+        <TextField
           hintText={'with hint text'}
-          style={{ marginBottom: '20px' }}
+          containerStyle={{ marginBottom: '20px' }}
           floatingLabelText={'floating label'} />
         <TextField
-          style={{ marginBottom: '20px' }}
-          floatingLabelText={'floating label'} />
+          containerStyle={{ marginBottom: '20px' }}
+          helperText={'persistent helper text'}
+          helperTextPersistent />
         <TextField
-          style={{ marginBottom: '40px' }}
-          helperText={'helper text'} />
+          containerStyle={{ marginBottom: '20px' }}
+          helperText={'default helper text'} />
         <TextField
-          hintText={'Controlled Input (check your console)'}
-          style={{ marginBottom: '20px' }}
+          hintText={'disabled'}
+          containerStyle={{ marginBottom: '20px' }}
+          disabled />
+        <TextField
+          hintText={'Controlled Input'}
+          containerStyle={{ marginBottom: '20px' }}
           value={this.state.controlledInputValue}
           onChange={this.handleChange} />
-        <h2>Styled Examples</h2>
         <TextField
-          hintText={'Custom Underline Color'}
-          underlineColor={'pink'}
-          style={{ marginBottom: '20px' }} />
-        <TextField
-          hintText={'Custom Underline Focus Color'}
-          underlineFocusColor={'pink'}
-          style={{ marginBottom: '20px' }} />
-        <TextField
-          hintText={'Styled Hint Text'}
-          hintTextStyle={{ color: 'pink', fontSize: '10px' }}
-          style={{ marginBottom: '30px' }} />
-        <TextField
-          floatingLabelStyle={{ color: 'pink' }}
-          floatingLabelText={'Styled Floating Label'}
-          style={{ marginBottom: '30px' }} />
-        <TextField
-          floatingLabelFocusStyle={{ color: 'pink' }}
-          floatingLabelText={'Styled Floating Label Focus'}
-          style={{ marginBottom: '30px' }} />
+          hintText={'Full Width'}
+          containerStyle={{ marginBottom: '20px' }}
+          fullWidth />
         <h2>Error Examples</h2>
         <TextField
-          hintText={'Pass in an error'}
+          hintText={'Controlled error'}
           errorText={'This error was passed in'}
           error
-          style={{marginBottom: '30px'}} />
+          containerStyle={{ marginBottom: '20px' }} />
         <TextField
-          hintText={'minimum length 8'}
+          hintText={'with validation'}
+          helperText={'helper text and validation'}
           validator={validateLength}
-          errorText={'That word is too short'}
-          style={{marginBottom: '30px'}} />
+          errorText={'This should be at least 8 chars'}
+          containerStyle={{ marginBottom: '30px' }} />
         <TextField
-          floatingLabelText={'A word that is at least 8 chars long'}
-          validator={validateLength}
-          errorText={'That word is too short'}
-          style={{marginBottom: '30px'}} />
+          floatingLabelText={'A required field'}
+          required
+          containerStyle={{ marginBottom: '20px' }} />
       </div>
     </MaterialThemeProvider>);
   }

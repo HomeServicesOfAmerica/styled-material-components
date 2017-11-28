@@ -1,18 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
-import typography from '../src/mixins/typography';
 import Button from '../src/components/Button';
-import Card from '../src/components/Card/Card';
-import Primary from '../src/components/Card/Primary';
-import Title from '../src/components/Card/Title';
-import Subtitle from '../src/components/Card/Subtitle';
-import SupportingText from '../src/components/Card/SupportingText';
-import Media from '../src/components/Card/Media';
-import Actions from '../src/components/Card/Actions';
-import Avatar from '../src/components/Card/Avatar';
+import {
+  Card,
+  Primary,
+  Title,
+  Subtitle,
+  SupportingText,
+  Media,
+  Actions,
+  Avatar,
+  HorizontalBlock,
+  MediaItem,
+} from '../src/components/Card';
 import MaterialThemeProvider from '../src/theme/ThemeProvider';
-import HorizontalBlock from '../src/components/Card/HorizontalBlock';
-import MediaItem from '../src/components/Card/MediaItem';
 
 const DemoCard = Card.extend`
   max-width: 21.875rem;

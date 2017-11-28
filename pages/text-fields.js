@@ -71,6 +71,12 @@ class TextFieldPage extends PureComponent {
           floatingLabelText={'A required field'}
           required
           containerStyle={{ marginBottom: '20px' }} />
+        <TextField
+          prefix={'$'}
+          containerStyle={{ marginBottom: '20px' }} />
+        <TextField
+          suffix={'lb'}
+          containerStyle={{ marginBottom: '20px' }} />
       </div>
     </MaterialThemeProvider>);
   }

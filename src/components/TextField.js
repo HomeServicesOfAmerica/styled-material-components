@@ -39,9 +39,13 @@ class TextFieldComponent extends PureComponent {
         className={'smc-text-field-container'}
         fullWidth={this.props.fullWidth}
         disabled={this.props.disabled} >
+        <Suffix>{this.props.suffix}</Suffix>
+        <Prefix>{this.props.prefix}</Prefix>
         <FloatingLabel
           className={'smc-text-field-floating-label'}
           error={this.state.error}
+          hasPrefix={!!this.props.prefix}
+          focus={this.state.focus}
           floatingLabelStyle={this.state.error
             ? this.props.floatingLabelErrorStyle
             : this.props.floatingLabelStyle}
@@ -55,6 +59,7 @@ class TextFieldComponent extends PureComponent {
         <HintText
           className={'smc-text-field-hint-text'}
           hintTextStyle={this.props.hintTextStyle}
+          hasPrefix={this.props.prefix}
           error={this.props.error || this.state.error}
           display={!this.props.defaultValue
             && !this.state.text.length && !this.props.value} >
@@ -80,6 +85,8 @@ class TextFieldComponent extends PureComponent {
           focus={this.state.focus}
           error={this.state.error} />
         <Input
+          hasPrefix={!!this.props.prefix}
+          hasSuffix={!!this.props.suffix}
           inputStyle={this.props.inputStyle}
           disabled={this.props.disabled}
           autoFocus={this.props.autoFocus}
@@ -95,9 +102,14 @@ class TextFieldComponent extends PureComponent {
 }
 
 const primaryTextColor = css`${props => props.theme.textColors.primary}`;
+const secondaryTextColor = css`${props => props.theme.textColors.secondary}`;
 const hintTextColor = css`${props => props.theme.textColors.hint}`;
 const primary = css`${props => props.theme.primary}`;
 const error = css`${props => props.theme.textColors.error || '#d50000'}`;
+
+const fadeInOut = css`
+  transition: all 200ms;
+  opacity: ${props => +props.display}`;
 
 const placeBelow = css`
   position: absolute;
@@ -131,6 +143,20 @@ const RequiredStar = styled.span`
 `;
 */
 
+const Suffix = styled.div`
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: ${hintTextColor};
+`;
+
+const Prefix = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: ${hintTextColor};
+`;
+
 const FloatingLabel = styled.div`
   position: absolute;
   transition: all 200ms;
@@ -138,34 +164,33 @@ const FloatingLabel = styled.div`
   font-size: ${props => props.floating ? '0.75em' : '1em'};
   color: ${(props) => {
     if (props.error) return error;
-    return props.floating ? primary : hintTextColor;
+    return props.focus && props.floating ? primary : secondaryTextColor;
   }};
   width: 100%;
+  left: ${props => props.hasPrefix ? '1em' : '0em'}
   ${props => props.floatingLabelStyle};
 `;
 
 const HintText = styled.div`
   position: absolute;
-  opacity: ${props => +props.display};
   color: ${props => props.error ? error : hintTextColor};
-  transition: all 200ms;
+  ${fadeInOut};
   bottom: 0px;
   width: 100%;
+  left: ${props => props.hasPrefix ? '1em' : '0em'}
   ${props => props.hintTextStyle};
 `;
 
 const ErrorText = styled.div`
   color: ${error};
-  opacity: ${props => +props.display};
-  transition: all 200ms;
+  ${fadeInOut};
   ${placeBelow};
   ${props => props.errorTextStyle};
 `;
 
 const HelperText = styled.div`
-  color: ${hintTextColor};
-  opacity: ${props => +props.display};
-  transition: all 200ms;
+  color: ${secondaryTextColor};
+  ${fadeInOut};
   ${placeBelow};
   ${props => props.helperTextStyle};
 `;
@@ -183,7 +208,7 @@ const UnderlineFocus = styled.div`
 
 const Input = styled.input`
   position: relative;
-  width: 100%;
+  width: calc(100% - ${props => +(props.hasSuffix || false) + +(props.hasPrefix || false)}em);
   border: none;
   outline: none;
   color: ${primaryTextColor};
@@ -196,6 +221,7 @@ const Input = styled.input`
   font-size: inherit;
   line-height: inherit;
   font-family: inherit;
+  padding-left: ${props => props.hasPrefix ? '1em' : '0'}
   ${props => props.inputStyle};
 `;
 

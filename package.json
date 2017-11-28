@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "yarn lint",
-    "clear": "rm -r dist/*",
+    "clear": "rm -rf dist/*",
     "build": "yarn clear && babel --out-dir dist src",
     "lint": "eslint src/**",
     "dev": "next dev -p 8080",

@@ -86,7 +86,7 @@ class TextFieldComponent extends PureComponent {
           {this.props.errorText}
         </ErrorText>
         <UnderlineFocus
-          disabled={this.props.disabled}
+          disabled={this.props.focusDisabled}
           className={'smc-text-field-underline-focus'}
           underlineFocusStyle={this.props.underlineFocusStyle}
           focus={this.state.focus}
@@ -224,7 +224,7 @@ const UnderlineFocus = styled.div`
   border-top-color: ${props => (props.error ? error : primary)};
   width: 0%;
   transition: width 200ms;
-  ${props => props.focus && 'width: 100%'};
+  ${props => props.focus && !props.disabled && 'width: 100%'};
   ${props => props.underlineFocusStyle};
 `;
 

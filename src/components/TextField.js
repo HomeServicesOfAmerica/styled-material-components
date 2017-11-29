@@ -8,7 +8,7 @@ class TextFieldComponent extends PureComponent {
     focus: false,
     error: this.props.error || false,
     hasBeenFocused: false,
-  }
+  };
 
   onChange = (e) => {
     this.props.onChange && this.props.onChange(e);
@@ -19,17 +19,17 @@ class TextFieldComponent extends PureComponent {
       text,
       error: this.props.error || isInvalid || isEmptyButRequired,
     });
-  }
+  };
 
   onFocus = (e) => {
     this.props.onFocus && this.props.onFocus(e);
     this.setState({ focus: true, hasBeenFocused: true });
-  }
+  };
 
   onBlur = (e) => {
     this.props.onBlur && this.props.onBlur(e);
     this.setState({ focus: false });
-  }
+  };
 
   render() {
     return (
@@ -38,7 +38,8 @@ class TextFieldComponent extends PureComponent {
         error={this.state.error}
         className={'smc-text-field-container'}
         fullWidth={this.props.fullWidth}
-        disabled={this.props.disabled} >
+        disabled={this.props.disabled}
+      >
         <Suffix>{this.props.suffix}</Suffix>
         <Prefix>{this.props.prefix}</Prefix>
         <FloatingLabel
@@ -46,10 +47,11 @@ class TextFieldComponent extends PureComponent {
           error={this.state.error}
           hasPrefix={!!this.props.prefix}
           focus={this.state.focus}
-          floatingLabelStyle={this.state.error
-            ? this.props.floatingLabelErrorStyle
-            : this.props.floatingLabelStyle}
-          floating={this.state.focus || this.props.hintText || this.state.text.length}>
+          floatingLabelStyle={
+            this.state.error ? this.props.floatingLabelErrorStyle : this.props.floatingLabelStyle
+          }
+          floating={this.state.focus || this.props.hintText || this.state.text.length}
+        >
           {`${this.props.floatingLabelText || ''}${this.props.required ? '*' : ''}`}
           {/* <RequiredStar
             hasBeenFocused={this.state.hasBeenFocused}
@@ -61,21 +63,26 @@ class TextFieldComponent extends PureComponent {
           hintTextStyle={this.props.hintTextStyle}
           hasPrefix={this.props.prefix}
           error={this.props.error || this.state.error}
-          display={!this.props.defaultValue
-            && !this.state.text.length && !this.props.value} >
+          display={!this.props.defaultValue && !this.state.text.length && !this.props.value}
+        >
           {this.props.hintText}
         </HintText>
-        {this.props.helperText && <HelperText
-          className={'smc-text-field-helper-text'}
-          helperTextStyle={this.props.helperTextStyle}
-          display={!this.state.error
-            && (this.props.helperTextPersistent ? true : this.state.focus)}>
-          {this.props.helperText}
-        </HelperText>}
+        {this.props.helperText && (
+          <HelperText
+            className={'smc-text-field-helper-text'}
+            helperTextStyle={this.props.helperTextStyle}
+            display={
+              !this.state.error && (this.props.helperTextPersistent ? true : this.state.focus)
+            }
+          >
+            {this.props.helperText}
+          </HelperText>
+        )}
         <ErrorText
           display={this.state.error}
           className={'smc-text-field-error-text'}
-          errorTextStyle={this.props.errorTextStyle} >
+          errorTextStyle={this.props.errorTextStyle}
+        >
           {this.props.errorText}
         </ErrorText>
         <UnderlineFocus
@@ -83,7 +90,8 @@ class TextFieldComponent extends PureComponent {
           className={'smc-text-field-underline-focus'}
           underlineFocusStyle={this.props.underlineFocusStyle}
           focus={this.state.focus}
-          error={this.state.error} />
+          error={this.state.error}
+        />
         <Input
           hasPrefix={!!this.props.prefix}
           hasSuffix={!!this.props.suffix}
@@ -95,21 +103,33 @@ class TextFieldComponent extends PureComponent {
           onChange={this.onChange}
           onFocus={this.onFocus}
           onBlur={this.onBlur}
-          className={'smc-text-field-input'} />
+          className={'smc-text-field-input'}
+        />
       </Container>
     );
   }
 }
 
-const primaryTextColor = css`${props => props.theme.textColors.primary}`;
-const secondaryTextColor = css`${props => props.theme.textColors.secondary}`;
-const hintTextColor = css`${props => props.theme.textColors.hint}`;
-const primary = css`${props => props.theme.primary}`;
-const error = css`${props => props.theme.textColors.error || '#d50000'}`;
+const primaryTextColor = css`
+  ${props => props.theme.textColors.primary};
+`;
+const secondaryTextColor = css`
+  ${props => props.theme.textColors.secondary};
+`;
+const hintTextColor = css`
+  ${props => props.theme.textColors.hint};
+`;
+const primary = css`
+  ${props => props.theme.primary};
+`;
+const error = css`
+  ${props => props.theme.textColors.error || '#d50000'};
+`;
 
 const fadeInOut = css`
-  transition: all 200ms;
-  opacity: ${props => +props.display}`;
+  transition: opacity 200ms;
+  opacity: ${props => +props.display};
+`;
 
 const placeBelow = css`
   position: absolute;
@@ -119,14 +139,14 @@ const placeBelow = css`
 `;
 
 const Container = styled.div`
-  width: ${props => props.fullWidth ? '100%' : '167px'};
+  width: ${props => (props.fullWidth ? '100%' : '167px')};
   font-size: 1em;
   line-height: 1.5em;
   position: relative;
   background-color: transparent;
   font-family: lato, sans-serif;
-  border-bottom: 0.5px ${props => props.disabled ? 'dotted' : 'solid'};
-  border-bottom-color: ${props => props.error ? error : hintTextColor};
+  border-bottom: 0.5px ${props => (props.disabled ? 'dotted' : 'solid')};
+  border-bottom-color: ${props => (props.error ? error : hintTextColor)};
   ${props => props.containerStyle};
 `;
 
@@ -148,6 +168,7 @@ const Suffix = styled.div`
   bottom: 0;
   right: 0;
   color: ${hintTextColor};
+  ${props => props.suffixStyle};
 `;
 
 const Prefix = styled.div`
@@ -155,29 +176,30 @@ const Prefix = styled.div`
   bottom: 0;
   left: 0;
   color: ${hintTextColor};
+  ${props => props.prefixStyle};
 `;
 
 const FloatingLabel = styled.div`
   position: absolute;
   transition: all 200ms;
-  bottom: ${props => props.floating ? '1.5em' : '0em'};
-  font-size: ${props => props.floating ? '0.75em' : '1em'};
+  bottom: ${props => (props.floating ? '1.5em' : '0em')};
+  font-size: ${props => (props.floating ? '0.75em' : '1em')};
   color: ${(props) => {
     if (props.error) return error;
     return props.focus && props.floating ? primary : secondaryTextColor;
   }};
   width: 100%;
-  left: ${props => props.hasPrefix ? '1em' : '0em'}
+  left: ${props => (props.hasPrefix ? '1em' : '0em')};
   ${props => props.floatingLabelStyle};
 `;
 
 const HintText = styled.div`
   position: absolute;
-  color: ${props => props.error ? error : hintTextColor};
-  ${fadeInOut};
+  color: ${props => (props.error ? error : hintTextColor)};
+  opacity: ${props => +props.display};
   bottom: 0px;
   width: 100%;
-  left: ${props => props.hasPrefix ? '1em' : '0em'}
+  left: ${props => (props.hasPrefix ? '1em' : '0em')};
   ${props => props.hintTextStyle};
 `;
 
@@ -199,7 +221,7 @@ const UnderlineFocus = styled.div`
   position: absolute;
   bottom: 0px;
   border-top: 1.5px solid;
-  border-top-color: ${props => props.error ? error : primary};
+  border-top-color: ${props => (props.error ? error : primary)};
   width: 0%;
   transition: width 200ms;
   ${props => props.focus && 'width: 100%'};
@@ -221,7 +243,7 @@ const Input = styled.input`
   font-size: inherit;
   line-height: inherit;
   font-family: inherit;
-  padding-left: ${props => props.hasPrefix ? '1em' : '0'}
+  padding-left: ${props => (props.hasPrefix ? '1em' : '0')};
   ${props => props.inputStyle};
 `;
 

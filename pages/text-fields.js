@@ -10,75 +10,69 @@ class TextFieldPage extends PureComponent {
     controlledInputValue: '',
   };
 
-  handleChange = e => this.setState({ controlledInputValue: e.target.value })
+  handleChange = e => this.setState({ controlledInputValue: e.target.value });
 
   render() {
-    return (<MaterialThemeProvider theme={{ primary: '#03A9F4' }}>
-      <div
-        className={this.props.className}>
-        <h1>Text Fields</h1>
-        <h2>Simple Examples</h2>
-        <TextField
-          hintText={'autofocus'}
-          containerStyle={{ marginBottom: '20px' }}
-          autoFocus />
-        <TextField
-          hintText={'Hint Text'}
-          containerStyle={{ marginBottom: '20px' }} />
-        <TextField
-          defaultValue={'Default Value'}
-          containerStyle={{ marginBottom: '20px' }} />
-        <TextField
-          containerStyle={{ marginBottom: '20px' }}
-          floatingLabelText={'floating label'} />
-        <TextField
-          hintText={'with hint text'}
-          containerStyle={{ marginBottom: '20px' }}
-          floatingLabelText={'floating label'} />
-        <TextField
-          containerStyle={{ marginBottom: '20px' }}
-          helperText={'persistent helper text'}
-          helperTextPersistent />
-        <TextField
-          containerStyle={{ marginBottom: '20px' }}
-          helperText={'default helper text'} />
-        <TextField
-          hintText={'disabled'}
-          containerStyle={{ marginBottom: '20px' }}
-          disabled />
-        <TextField
-          hintText={'Controlled Input'}
-          containerStyle={{ marginBottom: '20px' }}
-          value={this.state.controlledInputValue}
-          onChange={this.handleChange} />
-        <TextField
-          hintText={'Full Width'}
-          containerStyle={{ marginBottom: '20px' }}
-          fullWidth />
-        <h2>Error Examples</h2>
-        <TextField
-          hintText={'Controlled error'}
-          errorText={'This error was passed in'}
-          error
-          containerStyle={{ marginBottom: '20px' }} />
-        <TextField
-          hintText={'with validation'}
-          helperText={'helper text and validation'}
-          validator={validateLength}
-          errorText={'This should be at least 8 chars'}
-          containerStyle={{ marginBottom: '30px' }} />
-        <TextField
-          floatingLabelText={'A required field'}
-          required
-          containerStyle={{ marginBottom: '20px' }} />
-        <TextField
-          prefix={'$'}
-          containerStyle={{ marginBottom: '20px' }} />
-        <TextField
-          suffix={'lb'}
-          containerStyle={{ marginBottom: '20px' }} />
-      </div>
-    </MaterialThemeProvider>);
+    return (
+      <MaterialThemeProvider theme={{ primary: '#03A9F4' }}>
+        <div className={this.props.className}>
+          <h1>Text Fields</h1>
+          <h2>Simple Examples</h2>
+          <TextField hintText={'autofocus'} containerStyle={{ marginBottom: '20px' }} autoFocus />
+          <TextField hintText={'Hint Text'} containerStyle={{ marginBottom: '20px' }} />
+          <TextField defaultValue={'Default Value'} containerStyle={{ marginBottom: '20px' }} />
+          <TextField
+            containerStyle={{ marginBottom: '20px' }}
+            floatingLabelText={'floating label'}
+          />
+          <TextField
+            hintText={'with hint text'}
+            containerStyle={{ marginBottom: '20px' }}
+            floatingLabelText={'floating label'}
+          />
+          <TextField
+            containerStyle={{ marginBottom: '20px' }}
+            helperText={'persistent helper text'}
+            helperTextPersistent
+          />
+          <TextField containerStyle={{ marginBottom: '20px' }} helperText={'default helper text'} />
+          <TextField hintText={'disabled'} containerStyle={{ marginBottom: '20px' }} disabled />
+          <TextField
+            hintText={'Controlled Input'}
+            containerStyle={{ marginBottom: '20px' }}
+            value={this.state.controlledInputValue}
+            onChange={this.handleChange}
+          />
+          <TextField
+            hintText={'Focus disabled'}
+            containerStyle={{ marginBottom: '20px' }}
+            focusDisabled
+          />
+          <TextField hintText={'Full Width'} containerStyle={{ marginBottom: '20px' }} fullWidth />
+          <h2>Error Examples</h2>
+          <TextField
+            hintText={'Controlled error'}
+            errorText={'This error was passed in'}
+            error
+            containerStyle={{ marginBottom: '20px' }}
+          />
+          <TextField
+            hintText={'with validation'}
+            helperText={'helper text and validation'}
+            validator={validateLength}
+            errorText={'This should be at least 8 chars'}
+            containerStyle={{ marginBottom: '30px' }}
+          />
+          <TextField
+            floatingLabelText={'A required field'}
+            required
+            containerStyle={{ marginBottom: '20px' }}
+          />
+          <TextField prefix={'$'} containerStyle={{ marginBottom: '20px' }} />
+          <TextField suffix={'lb'} containerStyle={{ marginBottom: '20px' }} />
+        </div>
+      </MaterialThemeProvider>
+    );
   }
 }
 

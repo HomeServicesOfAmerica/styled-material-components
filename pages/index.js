@@ -12,6 +12,8 @@ const HomePage = ({ className }) => (
       <Link href="/cards"><a>Cards Page</a></Link>
       <br/>
       <Link href="/text-fields"><a>TextFields Page</a></Link>
+      <br/>
+      <Link href="/tabs"><a>Tabs Page</a></Link>
     </div>
   </MaterialThemeProvider>
 );

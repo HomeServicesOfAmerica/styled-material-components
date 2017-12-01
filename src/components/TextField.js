@@ -55,7 +55,7 @@ class TextFieldComponent extends PureComponent {
           {`${this.props.floatingLabelText || ''}${this.props.required ? '*' : ''}`}
           {/* <RequiredStar
             hasBeenFocused={this.state.hasBeenFocused}
-            display={this.props.required}
+            show={this.props.required}
             requiredStarStyle={this.props.requiredStarStyle} /> */}
         </FloatingLabel>
         <HintText
@@ -63,7 +63,7 @@ class TextFieldComponent extends PureComponent {
           hintTextStyle={this.props.hintTextStyle}
           hasPrefix={this.props.prefix}
           error={this.props.error || this.state.error}
-          display={!this.props.defaultValue && !this.state.text.length && !this.props.value}
+          show={!this.props.defaultValue && !this.state.text.length && !this.props.value}
         >
           {this.props.hintText}
         </HintText>
@@ -71,15 +71,13 @@ class TextFieldComponent extends PureComponent {
           <HelperText
             className={'smc-text-field-helper-text'}
             helperTextStyle={this.props.helperTextStyle}
-            display={
-              !this.state.error && (this.props.helperTextPersistent ? true : this.state.focus)
-            }
+            show={!this.state.error && (this.props.helperTextPersistent ? true : this.state.focus)}
           >
             {this.props.helperText}
           </HelperText>
         )}
         <ErrorText
-          display={this.state.error}
+          show={this.state.error}
           className={'smc-text-field-error-text'}
           errorTextStyle={this.props.errorTextStyle}
         >
@@ -99,7 +97,6 @@ class TextFieldComponent extends PureComponent {
           disabled={this.props.disabled}
           autoFocus={this.props.autoFocus}
           value={this.props.value || this.state.text}
-          autoComplete={false}
           onChange={this.onChange}
           onFocus={this.onFocus}
           onBlur={this.onBlur}
@@ -128,7 +125,7 @@ const error = css`
 
 const fadeInOut = css`
   transition: opacity 200ms;
-  opacity: ${props => +props.display};
+  opacity: ${props => +props.show};
 `;
 
 const placeBelow = css`
@@ -157,7 +154,7 @@ const RequiredStar = styled.span`
   ::after{
     color: ${props => props.hasBeenFocused ? error : hintTextColor};
     content: '*';
-    display: ${props => props.display ? 'inline-block' : 'none'}
+    show: ${props => props.show ? 'inline-block' : 'none'}
   }
   ${props => props.requiredStarStyle};
 `;
@@ -196,7 +193,7 @@ const FloatingLabel = styled.div`
 const HintText = styled.div`
   position: absolute;
   color: ${props => (props.error ? error : hintTextColor)};
-  opacity: ${props => +props.display};
+  opacity: ${props => +props.show};
   bottom: 0px;
   width: 100%;
   left: ${props => (props.hasPrefix ? '1em' : '0em')};

@@ -1,7 +1,7 @@
-import React from "react";
-import styled, { css } from "styled-components";
-import elevation, { elevationTransition } from "../mixins/elevation";
-import ripple from "../mixins/ripple";
+import React from 'react';
+import styled, { css } from 'styled-components';
+import elevation, { elevationTransition } from '../mixins/elevation';
+import ripple from '../mixins/ripple';
 
 const ButtonComponent = props => (
   <button className={`${props.className} smc-button`}>{props.children}</button>
@@ -20,26 +20,23 @@ const raised = css`
   &:active {
     ${elevation(8)};
   }
-  ${props =>
-    props.accent &&
-    `
+  ${props => props.accent && `
     color: white;
     background-color: ${props.theme.accent};
     &:before {
       color: black;
     }
-  `} ${props =>
-      props.primary &&
-      `
+  `}
+  ${props => props.primary && `
     color: white;
     background-color: ${props.theme.primary};
     &:before {
       color: black;
     }
-  `} fieldset:disabled &,
-    &:disabled {
+  `}
+  fieldset:disabled &, &:disabled {
     ${elevation(0)};
-    background-color: rgba(0, 0, 0, 0.12);
+    background-color: rgba(0, 0, 0, .12);
     pointer-events: none;
   }
 `;
@@ -65,7 +62,9 @@ const Button = styled(ButtonComponent)`
   user-select: none;
   box-sizing: border-box;
   -webkit-appearance: none;
-  ${elevationTransition} &:active {
+  ${elevationTransition}
+
+  &:active {
     outline: none;
   }
 
@@ -78,22 +77,23 @@ const Button = styled(ButtonComponent)`
     border: 0;
   }
 
-  fieldset:disabled &,
-  &:disabled {
-    color: rgba(0, 0, 0, 0.26);
+  fieldset:disabled &, &:disabled {
+    color: rgba(0, 0, 0, .26);
     cursor: default;
     pointer-events: none;
   }
 
-  ${ripple()} ${props => props.accent && accent} ${props =>
-      props.primary && primary} ${props => props.raised && raised} ${props =>
-      props.compact && `padding: 0 8px;`} ${props =>
-      props.dense &&
-      `
+  ${ripple()}
+
+  ${props => props.accent && accent}
+  ${props => props.primary && primary}
+  ${props => props.raised && raised}
+  ${props => props.compact && `padding: 0 8px;`}
+  ${props => props.dense && `
     height: 32px;
     font-size: .8125rem;
     line-height: 32px;
-  `};
+  `}
 `;
 
 export default Button;

@@ -70,6 +70,18 @@ class TextFieldPage extends PureComponent {
           />
           <TextField prefix={'$'} containerStyle={{ marginBottom: '20px' }} />
           <TextField suffix={'lb'} containerStyle={{ marginBottom: '20px' }} />
+          <TextField
+            containerStyle={{ marginBottom: '20px' }}
+            floatingLabelText={
+              <div>
+                React component
+                <img
+                  style={{ height: '18px' }}
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Ei-sc-github.svg/768px-Ei-sc-github.svg.png"
+                />
+              </div>
+            }
+          />
         </div>
       </MaterialThemeProvider>
     );

@@ -52,7 +52,7 @@ class TextFieldComponent extends PureComponent {
           }
           floating={this.state.focus || this.props.hintText || this.state.text.length}
         >
-          {`${this.props.floatingLabelText || ''}${this.props.required ? '*' : ''}`}
+          {this.props.floatingLabelText || ''}{this.props.required ? '*' : ''}
           {/* <RequiredStar
             hasBeenFocused={this.state.hasBeenFocused}
             show={this.props.required}
@@ -180,7 +180,9 @@ const FloatingLabel = styled.div`
   position: absolute;
   transition: all 200ms;
   bottom: ${props => (props.floating ? '1.5em' : '0em')};
-  font-size: ${props => (props.floating ? '0.75em' : '1em')};
+  font-size: 1em;
+  transform: ${props => `scale(${props.floating ? 0.75 : 1})`};
+  transform-origin: 0 50%;
   color: ${(props) => {
     if (props.error) return error;
     return props.focus && props.floating ? primary : secondaryTextColor;

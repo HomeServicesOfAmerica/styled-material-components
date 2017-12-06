@@ -10,7 +10,7 @@ const ButtonsPage = ({ className }) => (
   <MaterialThemeProvider theme={{ primary: '#03A9F4' }}>
     <div className={className}>
       <h1>Flat Buttons</h1>
-      <Button>Flat</Button>
+      <Button onClick={() => alert('On Click Fired')}>Flat</Button>
       <Button primary>Flat Primary</Button>
       <Button accent>Flat Accent</Button>
       <RippleButton>JS Ripple</RippleButton>

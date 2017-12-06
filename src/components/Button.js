@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import styled, { css } from 'styled-components';
 import elevation, { elevationTransition } from '../mixins/elevation';
 import ripple from '../mixins/ripple';
 
-const ButtonComponent = props => (
-  <button className={`${props.className} smc-button`}>{props.children}</button>
-);
+class ButtonComponent extends PureComponent {
+  onClick = (e) => {
+    this.props.onClick && this.props.onClick(e);
+  }
+  
+  render() {
+    return (
+      <button
+        className={`${this.props.className} smc-button`}
+        onClick={this.onClick}
+      >
+        {this.props.children}
+      </button>
+    );
+  }
+}
 
 const primary = css`
   color: ${props => props.theme.primary};

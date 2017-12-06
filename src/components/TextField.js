@@ -33,15 +33,18 @@ class TextFieldComponent extends PureComponent {
 
   render() {
     return (
-      <Container
-        containerStyle={this.props.containerStyle}
+      <div
         error={this.state.error}
-        className={'smc-text-field-container'}
+        className={`${this.props.className} smc-text-field-container`}
         fullWidth={this.props.fullWidth}
         disabled={this.props.disabled}
       >
-        <Suffix>{this.props.suffix}</Suffix>
-        <Prefix>{this.props.prefix}</Prefix>
+        <Suffix>
+          {this.props.suffix}
+        </Suffix>
+        <Prefix>
+          {this.props.prefix}
+        </Prefix>
         <FloatingLabel
           className={'smc-text-field-floating-label'}
           error={this.state.error}
@@ -102,7 +105,7 @@ class TextFieldComponent extends PureComponent {
           onBlur={this.onBlur}
           className={'smc-text-field-input'}
         />
-      </Container>
+      </div>
     );
   }
 }
@@ -135,17 +138,6 @@ const placeBelow = css`
   width: 100%;
 `;
 
-const Container = styled.div`
-  width: ${props => (props.fullWidth ? '100%' : '167px')};
-  font-size: 1em;
-  line-height: 1.5em;
-  position: relative;
-  background-color: transparent;
-  font-family: lato, sans-serif;
-  border-bottom: 0.5px ${props => (props.disabled ? 'dotted' : 'solid')};
-  border-bottom-color: ${props => (props.error ? error : hintTextColor)};
-  ${props => props.containerStyle};
-`;
 
 /*
 This is the code for the red asterisk for required fields
@@ -160,20 +152,30 @@ const RequiredStar = styled.span`
 `;
 */
 
-const Suffix = styled.div`
+const SuffixComponent = props => (
+  <div className={`${props.className} smc-textfield-suffix`}>
+    {props.children}
+  </div>
+);
+
+const Suffix = styled(SuffixComponent)`
   position: absolute;
   bottom: 0;
   right: 0;
   color: ${hintTextColor};
-  ${props => props.suffixStyle};
 `;
 
-const Prefix = styled.div`
+const PrefixComponent = props => (
+  <div className={`${props.className} smc-textfield-prefix`}>
+    {props.children}
+  </div>
+);
+
+const Prefix = styled(PrefixComponent)`
   position: absolute;
   bottom: 0;
   left: 0;
   color: ${hintTextColor};
-  ${props => props.prefixStyle};
 `;
 
 const FloatingLabel = styled.div`
@@ -246,4 +248,15 @@ const Input = styled.input`
   ${props => props.inputStyle};
 `;
 
-export default TextFieldComponent;
+const TextField = styled(TextFieldComponent)`
+  width: ${props => (props.fullWidth ? '100%' : '167px')};
+  font-size: 1em;
+  line-height: 1.5em;
+  position: relative;
+  background-color: transparent;
+  font-family: lato, sans-serif;
+  border-bottom: 0.5px ${props => (props.disabled ? 'dotted' : 'solid')};
+  border-bottom-color: ${props => (props.error ? error : hintTextColor)};
+`;
+
+export default TextField;

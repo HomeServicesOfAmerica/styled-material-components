@@ -5,6 +5,19 @@ import TextField from '../src/components/TextField';
 
 const validateLength = str => str.length > 7;
 
+const TextFieldWithBottomMargin = TextField.extend`
+  margin-bottom: 20px;
+`;
+
+const TextFieldWithStyledPrefixAndSuffix = TextFieldWithBottomMargin.extend`
+  > .smc-textfield-suffix {
+    color: purple;
+  }
+  > .smc-textfield-prefix {
+    color: maroon;
+  }
+`;
+
 class TextFieldPage extends PureComponent {
   state = {
     controlledInputValue: '',
@@ -18,60 +31,55 @@ class TextFieldPage extends PureComponent {
         <div className={this.props.className}>
           <h1>Text Fields</h1>
           <h2>Simple Examples</h2>
-          <TextField hintText={'autofocus'} containerStyle={{ marginBottom: '20px' }} autoFocus />
-          <TextField hintText={'Hint Text'} containerStyle={{ marginBottom: '20px' }} />
-          <TextField defaultValue={'Default Value'} containerStyle={{ marginBottom: '20px' }} />
-          <TextField
-            containerStyle={{ marginBottom: '20px' }}
+          <TextFieldWithBottomMargin hintText={'autofocus'} autoFocus />
+          <TextFieldWithBottomMargin hintText={'Hint Text'} />
+          <TextFieldWithBottomMargin defaultValue={'Default Value'} />
+          <TextFieldWithBottomMargin
             floatingLabelText={'floating label'}
           />
-          <TextField
+          <TextFieldWithBottomMargin
             hintText={'with hint text'}
-            containerStyle={{ marginBottom: '20px' }}
             floatingLabelText={'floating label'}
           />
-          <TextField
-            containerStyle={{ marginBottom: '20px' }}
+          <TextFieldWithBottomMargin
             helperText={'persistent helper text'}
             helperTextPersistent
           />
-          <TextField containerStyle={{ marginBottom: '20px' }} helperText={'default helper text'} />
-          <TextField hintText={'disabled'} containerStyle={{ marginBottom: '20px' }} disabled />
-          <TextField
+          <TextFieldWithBottomMargin helperText={'default helper text'} />
+          <TextFieldWithBottomMargin hintText={'disabled'} disabled />
+          <TextFieldWithBottomMargin
             hintText={'Controlled Input'}
-            containerStyle={{ marginBottom: '20px' }}
             value={this.state.controlledInputValue}
             onChange={this.handleChange}
           />
-          <TextField
+          <TextFieldWithBottomMargin
             hintText={'Focus disabled'}
-            containerStyle={{ marginBottom: '20px' }}
             focusDisabled
           />
-          <TextField hintText={'Full Width'} containerStyle={{ marginBottom: '20px' }} fullWidth />
+          <TextFieldWithBottomMargin hintText={'Full Width'} fullWidth />
           <h2>Error Examples</h2>
-          <TextField
+          <TextFieldWithBottomMargin
             hintText={'Controlled error'}
             errorText={'This error was passed in'}
             error
-            containerStyle={{ marginBottom: '20px' }}
           />
-          <TextField
+          <TextFieldWithBottomMargin
             hintText={'with validation'}
             helperText={'helper text and validation'}
             validator={validateLength}
             errorText={'This should be at least 8 chars'}
-            containerStyle={{ marginBottom: '30px' }}
           />
-          <TextField
+          <TextFieldWithBottomMargin
             floatingLabelText={'A required field'}
             required
-            containerStyle={{ marginBottom: '20px' }}
           />
-          <TextField prefix={'$'} containerStyle={{ marginBottom: '20px' }} />
-          <TextField suffix={'lb'} containerStyle={{ marginBottom: '20px' }} />
-          <TextField
-            containerStyle={{ marginBottom: '20px' }}
+          <TextFieldWithBottomMargin prefix={'$'} />
+          <TextFieldWithBottomMargin suffix={'lb'} />
+          <TextFieldWithStyledPrefixAndSuffix
+            prefix="$"
+            suffix="/mo."
+          />
+          <TextFieldWithBottomMargin
             floatingLabelText={
               <div>
                 React component

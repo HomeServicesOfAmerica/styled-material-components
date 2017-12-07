@@ -7,7 +7,7 @@ const InkBarContainer = styled.div`
   left: ${props => props.selectedIndex * props.tabWidth}px;
   width: ${props => props.tabWidth}px;
   height: 2px;
-  background-color: ${props => props.inkbarColor};
+  background-color: ${props => props.inkbarColor || props.theme.accent};
 `;
 
 const InkBar = ({ numTabs, selectedIndex, tabWidth, inkbarColor }) => (

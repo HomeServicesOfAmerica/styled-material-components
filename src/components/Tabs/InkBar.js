@@ -7,15 +7,16 @@ const InkBarContainer = styled.div`
   left: ${props => props.selectedIndex * props.tabWidth}px;
   width: ${props => props.tabWidth}px;
   height: 2px;
-  background-color: #000;
+  background-color: ${props => props.inkbarColor};
 `;
 
-const InkBar = ({ numTabs, selectedIndex, tabWidth }) => (
+const InkBar = ({ numTabs, selectedIndex, tabWidth, inkbarColor }) => (
   <InkBarContainer
     className='smc-tab-bar-scroller'
     numTabs={numTabs}
     selectedIndex={selectedIndex}
-    tabWidth={tabWidth} />
+    tabWidth={tabWidth}
+    inkbarColor={inkbarColor} />
 );
 
 export default InkBar;

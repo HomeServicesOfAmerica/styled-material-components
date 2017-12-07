@@ -1,6 +1,6 @@
 {
   "name": "styled-material-components",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "coming soon",
   "main": "dist/index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "clear": "rm -rf dist/*",
     "build": "yarn clear && babel --out-dir dist src",
     "lint": "eslint src/**",
-    "dev": "next dev -p 8080",
+    "dev": "next dev -p 8081",
     "export": "next build && next export -o docs",
     "prepublish": "yarn test && yarn build",
     "now-build": "yarn export && cd docs && now"

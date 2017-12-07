@@ -41,6 +41,7 @@ const TabsPage = ({ className }) => (
         <li>activeFontColor - hexa or rgb string</li>
         <li>passiveFontColor - hexa or rgb string</li>
         <li>showInkbar - default is true, boolean</li>
+        <li>inkbarColor - default is accent theme color, or prop passed as a hexa or rgb string</li>
       </ul>
       <Tabs
         width='130'

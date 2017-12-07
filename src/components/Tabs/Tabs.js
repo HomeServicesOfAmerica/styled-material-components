@@ -15,11 +15,14 @@ const Content = styled.div`
   text-transform: none;
 `;
 
+const TabNavigationContainer = styled.div`
+  background-color: transparent;
+`;
+
 class TabsComponent extends PureComponent {
   static defaultProps = {
     width: undefined,
     showInkbar: true,
-    inkbarColor: '#000',
   }
 
   constructor(props) {
@@ -79,8 +82,10 @@ class TabsComponent extends PureComponent {
 
     return (
       // eslint-disable-next-line
-      <TabsContainer innerRef={node => this.tabs = node} className={'smc-tab-bar'}>
-        {tabNavigation}
+      <TabsContainer innerRef={node => this.tabs = node} className='smc-tab-bar'>
+        <TabNavigationContainer className='smc-tab-navigation-container'>
+          {tabNavigation}
+        </TabNavigationContainer>
         {this.props.showInkbar ?
           <InkBar
             numTabs={this.state.numTabs}

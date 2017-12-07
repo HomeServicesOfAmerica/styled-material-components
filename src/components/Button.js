@@ -4,15 +4,19 @@ import elevation, { elevationTransition } from '../mixins/elevation';
 import ripple from '../mixins/ripple';
 
 class ButtonComponent extends PureComponent {
-  onClick = (e) => {
+  handleOnClick = (e) => {
     this.props.onClick && this.props.onClick(e);
   }
+
+  acceptableProps = {
+    onClick: this.handleOnClick,
+  };
   
   render() {
     return (
       <button
         className={`${this.props.className} smc-button`}
-        onClick={this.onClick}
+        {...this.acceptableProps}
       >
         {this.props.children}
       </button>

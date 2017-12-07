@@ -4,3 +4,4 @@ export * from './components/Card';
 export * from './components/Tabs';
 export { default as withRipple } from './decorators/withRipple';
 export { default as ThemeProvider } from './theme/ThemeProvider';
+export { default as defaultTheme } from './theme/defaultTheme';

@@ -19,6 +19,7 @@ class TabsComponent extends PureComponent {
   static defaultProps = {
     width: undefined,
     showInkbar: true,
+    inkbarColor: '#000',
   }
 
   constructor(props) {
@@ -84,7 +85,8 @@ class TabsComponent extends PureComponent {
           <InkBar
             numTabs={this.state.numTabs}
             selectedIndex={this.state.selectedIndex}
-            tabWidth={this.state.tabWidth} /> :
+            tabWidth={this.state.tabWidth}
+            inkbarColor={this.props.inkbarColor} /> :
           null
         }
         {tabContent[this.state.selectedIndex]}

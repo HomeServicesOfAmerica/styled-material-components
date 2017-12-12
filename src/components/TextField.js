@@ -33,18 +33,9 @@ class TextFieldComponent extends PureComponent {
 
   render() {
     return (
-      <div
-        error={this.state.error}
-        className={`${this.props.className} smc-text-field-container`}
-        fullWidth={this.props.fullWidth}
-        disabled={this.props.disabled}
-      >
-        <Suffix>
-          {this.props.suffix}
-        </Suffix>
-        <Prefix>
-          {this.props.prefix}
-        </Prefix>
+      <div className={`${this.props.className} smc-text-field-container`}>
+        <Suffix>{this.props.suffix}</Suffix>
+        <Prefix>{this.props.prefix}</Prefix>
         <FloatingLabel
           className={'smc-text-field-floating-label'}
           error={this.state.error}
@@ -55,7 +46,8 @@ class TextFieldComponent extends PureComponent {
           }
           floating={this.state.focus || this.props.hintText || this.state.text.length}
         >
-          {this.props.floatingLabelText || ''}{this.props.required ? '*' : ''}
+          {this.props.floatingLabelText || ''}
+          {this.props.required ? '*' : ''}
           {/* <RequiredStar
             hasBeenFocused={this.state.hasBeenFocused}
             show={this.props.required}
@@ -138,7 +130,6 @@ const placeBelow = css`
   width: 100%;
 `;
 
-
 /*
 This is the code for the red asterisk for required fields
 Leaving this in in case there is further deliberation on this subject.
@@ -153,9 +144,7 @@ const RequiredStar = styled.span`
 */
 
 const SuffixComponent = props => (
-  <div className={`${props.className} smc-textfield-suffix`}>
-    {props.children}
-  </div>
+  <div className={`${props.className} smc-textfield-suffix`}>{props.children}</div>
 );
 
 const Suffix = styled(SuffixComponent)`
@@ -166,9 +155,7 @@ const Suffix = styled(SuffixComponent)`
 `;
 
 const PrefixComponent = props => (
-  <div className={`${props.className} smc-textfield-prefix`}>
-    {props.children}
-  </div>
+  <div className={`${props.className} smc-textfield-prefix`}>{props.children}</div>
 );
 
 const Prefix = styled(PrefixComponent)`

@@ -9,10 +9,10 @@ import {
   SupportingText,
   Media,
   Actions,
-  Avatar,
   HorizontalBlock,
   MediaItem,
 } from '../src/components/Card';
+import { Avatar } from '../src/components/Avatar';
 import MaterialThemeProvider from '../src/theme/ThemeProvider';
 
 const DemoCard = Card.extend`
@@ -42,10 +42,10 @@ const CardsPage = ({ className }) => (
           Donec sed odio dui. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
         </SupportingText>
       </DemoCard>
-      <br/>
+      <br />
       <DemoCard>
         <Primary>
-          <Avatar></Avatar>
+          <Avatar src="https://i.pinimg.com/736x/a1/79/b0/a179b0e974b49846fb7283fdf178fd55--headshot-actor-acting-headshots.jpg" />
           <TitleWithAvatar>Title</TitleWithAvatar>
           <SubtitleWithAvatar>Subhead</SubtitleWithAvatar>
         </Primary>
@@ -60,7 +60,7 @@ const CardsPage = ({ className }) => (
       </DemoCard>
       <DemoCard>
         <Primary>
-          <Avatar></Avatar>
+          <Avatar />
           <TitleWithAvatar>Title</TitleWithAvatar>
           <SubtitleWithAvatar>Subhead</SubtitleWithAvatar>
         </Primary>
@@ -106,7 +106,7 @@ const CardsPage = ({ className }) => (
             <Title large>Title here</Title>
             <Subtitle>Subtitle here</Subtitle>
           </Primary>
-          <MediaItem src="https://s3.amazonaws.com/media.conciergeauctions.com/images/1-1.jpg"/>
+          <MediaItem src="https://s3.amazonaws.com/media.conciergeauctions.com/images/1-1.jpg" />
         </HorizontalBlock>
         <Actions>
           <Button compact>Action 1</Button>
@@ -119,7 +119,7 @@ const CardsPage = ({ className }) => (
             <Title large>Title here</Title>
             <Subtitle>Subtitle here</Subtitle>
           </Primary>
-          <MediaItem scale={1.5} src="https://s3.amazonaws.com/media.conciergeauctions.com/images/1-1.jpg"/>
+          <MediaItem scale={1.5} src="https://s3.amazonaws.com/media.conciergeauctions.com/images/1-1.jpg" />
         </HorizontalBlock>
         <Actions>
           <Button compact>Action 1</Button>
@@ -132,7 +132,7 @@ const CardsPage = ({ className }) => (
             <Title large>Title here</Title>
             <Subtitle>Subtitle here</Subtitle>
           </Primary>
-          <MediaItem scale={2} src="https://s3.amazonaws.com/media.conciergeauctions.com/images/1-1.jpg"/>
+          <MediaItem scale={2} src="https://s3.amazonaws.com/media.conciergeauctions.com/images/1-1.jpg" />
         </HorizontalBlock>
         <Actions>
           <Button compact>Action 1</Button>
@@ -141,7 +141,7 @@ const CardsPage = ({ className }) => (
       </DemoCard>
       <DemoCard>
         <HorizontalBlock>
-          <MediaItem scale={3} src="https://s3.amazonaws.com/media.conciergeauctions.com/images/1-1.jpg"/>
+          <MediaItem scale={3} src="https://s3.amazonaws.com/media.conciergeauctions.com/images/1-1.jpg" />
           <Actions vertical>
             <Button compact>A1</Button>
             <Button compact>A2</Button>

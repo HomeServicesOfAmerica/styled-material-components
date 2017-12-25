@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Button from '../src/components/Button';
-import withRipple from '../src/decorators/withRipple';
+import withRipple from '../src/enhancers/withRipple';
 import MaterialThemeProvider from '../src/theme/ThemeProvider';
 
 const RippleButton = withRipple(Button);

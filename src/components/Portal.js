@@ -25,6 +25,11 @@ const Overlay = styled(BaseOverlay)`
   will-change: opacity;
   pointer-events: ${props => (props.showOverlay ? 'inherit' : 'none')};
   contain: strict;
+
+  & > .smc-portal-content {
+    height: 100%;
+    width: 100%;
+  }
 `;
 
 export class Portal extends Component {

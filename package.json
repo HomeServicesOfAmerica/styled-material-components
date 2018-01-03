@@ -40,7 +40,8 @@
     "babel-preset-react": "^6.24.1",
     "eslint": "^4.10.0",
     "eslint-config-concierge-auctions-react": "^0.0.6",
-    "next": "4.1.4",
+    "next": "^4.1.4",
+    "now": "^9.0.1",
     "react-dom": "^16.0.0"
   }
 }

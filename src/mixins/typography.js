@@ -114,8 +114,10 @@ const typographyStyles = {
   `,
 };
 
-const typography = style => css`
-  font-family: Roboto, sans-serif;
+const DEFAULT_FONT_FAMILY = 'Roboto, sans-serif';
+
+const typography = style => props => css`
+  font-family: ${({ theme: { fontFamilyOverride } }) => fontFamilyOverride || DEFAULT_FONT_FAMILY};
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   ${typographyStyles[style]}

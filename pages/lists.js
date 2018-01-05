@@ -39,7 +39,7 @@ const ListsPage = ({ className }) => (
       <h1>List with more text</h1>
       <div className="list">
         <List>
-          <ListItem leftAvatar="http://www.wasiofaces.com/wp-content/uploads/San-Diego-Headshots-Photography-041.jpg">
+          <ListItem leftAvatar="http://www.wasiofaces.com/wp-content/uploads/San-Diego-Headshots-Photography-041.jpg" avatarSize={60}>
             <ListItemText primary="Primary Title" secondary={
               <div>
                 <p>(214) 520-8300</p>
@@ -48,7 +48,7 @@ const ListsPage = ({ className }) => (
               </div>
             } />
           </ListItem>
-          <ListItem leftAvatar="http://www.wasiofaces.com/wp-content/uploads/San-Diego-Headshots-Photography-041.jpg">
+          <ListItem leftAvatar="http://www.wasiofaces.com/wp-content/uploads/San-Diego-Headshots-Photography-041.jpg" avatarSize={60}>
             <ListItemText primary="Primary Title" secondary={
               <div>
                 <p>(214) 520-8300</p>
@@ -57,7 +57,7 @@ const ListsPage = ({ className }) => (
               </div>
             } />
           </ListItem>
-          <ListItem leftAvatar="http://www.wasiofaces.com/wp-content/uploads/San-Diego-Headshots-Photography-041.jpg">
+          <ListItem leftAvatar="http://www.wasiofaces.com/wp-content/uploads/San-Diego-Headshots-Photography-041.jpg" avatarSize={60}>
             <ListItemText primary="Primary Title" secondary={
               <div>
                 <p>(214) 520-8300</p>
@@ -77,8 +77,6 @@ const StyledListsPage = styled(ListsPage)`
 
   > .list {
     width: 300px;
-    padding 10px 0 10px 16px;
-    padding-left: 16px;
     border: 1px solid gray;
   }
 `;

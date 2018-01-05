@@ -18,11 +18,12 @@ const ListItemTextComponent = ({ className, primary, secondary }) => (
 
 const ListItemText = styled(ListItemTextComponent)`
   > .smc-list-text-primary {
-    margin-bottom: 0px;
+    margin: 0px;
   }
 
   > .smc-list-text-secondary {
     margin-top: 2px;
+    margin-bottom: 0px;
     p {
       margin: 0
     }

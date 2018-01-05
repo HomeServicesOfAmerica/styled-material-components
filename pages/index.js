@@ -8,20 +8,22 @@ const HomePage = ({ className }) => (
     <div className={className}>
       <h1>Placeholder</h1>
       <Link href="/buttons"><a>Buttons Page</a></Link>
-      <br/>
+      <br />
       <Link href="/cards"><a>Cards Page</a></Link>
-      <br/>
+      <br />
       <Link href="/text-fields"><a>TextFields Page</a></Link>
-      <br/>
+      <br />
       <Link href="/tabs"><a>Tabs Page</a></Link>
-      <br/>
+      <br />
       <Link href="/dialog"><a>Dialog Page</a></Link>
-      <br/>
+      <br />
       <Link href="/lists"><a>Lists Page</a></Link>
       <br />
       <Link href="/sliders"><a>Sliders Page</a></Link>
       <br />
       <Link href="/tables"><a>Tables Page</a></Link>
+      <br />
+      <Link href="/snackbar"><a>Snackbar Page</a></Link>
     </div>
   </MaterialThemeProvider>
 );

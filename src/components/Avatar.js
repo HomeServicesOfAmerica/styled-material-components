@@ -10,15 +10,20 @@ const AvatarComponent = props => (
 );
 
 export const Avatar = styled(AvatarComponent)`
-  position: absolute;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: ${props => props.size || 40}px;
+  height: ${props => props.size || 40}px;
   background: #bdbdbd;
-  height: 2.5rem;
-  width: 2.5rem;
   border-radius: 50%;
   overflow: hidden;
 
   & .smc-avatar-img {
+    max-width: 100%;
     width: 100%;
-    display: block;
+    height: 100%;
+    object-fit: cover;
   }
 `;

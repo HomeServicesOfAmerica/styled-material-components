@@ -24,14 +24,6 @@ const DemoCard = Card.extend`
   }
 `;
 
-const TitleWithAvatar = Title.extend`
-  margin-left: 56px;
-`;
-
-const SubtitleWithAvatar = Subtitle.extend`
-  margin-left: 56px;
-`;
-
 const CardsPage = ({ className }) => (
   <MaterialThemeProvider theme={{ primary: '#03A9F4' }}>
     <div className={className}>
@@ -44,11 +36,11 @@ const CardsPage = ({ className }) => (
       </DemoCard>
       <br />
       <DemoCard>
-        <Primary>
-          <Avatar src="https://i.pinimg.com/736x/a1/79/b0/a179b0e974b49846fb7283fdf178fd55--headshot-actor-acting-headshots.jpg" />
-          <TitleWithAvatar>Title</TitleWithAvatar>
-          <SubtitleWithAvatar>Subhead</SubtitleWithAvatar>
-        </Primary>
+        <Primary
+          avatar="https://i.pinimg.com/736x/a1/79/b0/a179b0e974b49846fb7283fdf178fd55--headshot-actor-acting-headshots.jpg"
+          title="Title"
+          subheader="Subhead"
+        />
         <Media wide src="https://s3.amazonaws.com/media.conciergeauctions.com/images/16-9.jpg" />
         <SupportingText>
           Donec sed odio dui. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
@@ -59,11 +51,11 @@ const CardsPage = ({ className }) => (
         </Actions>
       </DemoCard>
       <DemoCard>
-        <Primary>
-          <Avatar />
-          <TitleWithAvatar>Title</TitleWithAvatar>
-          <SubtitleWithAvatar>Subhead</SubtitleWithAvatar>
-        </Primary>
+        <Primary
+          avatar="https://i.pinimg.com/736x/a1/79/b0/a179b0e974b49846fb7283fdf178fd55--headshot-actor-acting-headshots.jpg"
+          title="Title"
+          subheader="Subhead"
+        />
         <Media wide src="https://s3.amazonaws.com/media.conciergeauctions.com/images/16-9.jpg" />
         <Actions vertical>
           <Button compact>Action 1</Button>
@@ -72,21 +64,26 @@ const CardsPage = ({ className }) => (
       </DemoCard>
       <DemoCard>
         <Media wide src="https://s3.amazonaws.com/media.conciergeauctions.com/images/16-9.jpg" />
-        <Primary>
-          <Title large>Title goes here</Title>
-          <Subtitle>Subtitle here</Subtitle>
-        </Primary>
+        <Primary
+          title="Title"
+          subheader="Subhead"
+        />
         <Actions>
           <Button compact>Action 1</Button>
           <Button compact>Action 2</Button>
         </Actions>
       </DemoCard>
       <DemoCard>
-        <Primary>
-          <Title large>Title goes here</Title>
-          <Subtitle>Subtitle here</Subtitle>
-        </Primary>
-        <SupportingText>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit sit amet non magna.</SupportingText>
+        <Primary
+          title="Title"
+          subheader="Subhead"
+        />
+        <SupportingText>
+          Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+          Integer posuere erat a ante venenatis dapibus posuere velit aliquet.
+          Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget
+          risus varius blandit sit amet non magna.
+        </SupportingText>
         <Actions>
           <Button compact>Action 1</Button>
           <Button compact>Action 2</Button>
@@ -102,10 +99,11 @@ const CardsPage = ({ className }) => (
       </DemoCard>
       <DemoCard>
         <HorizontalBlock>
-          <Primary>
-            <Title large>Title here</Title>
-            <Subtitle>Subtitle here</Subtitle>
-          </Primary>
+          <Primary
+            title="Title"
+            subheader="Subhead"
+            large
+          />
           <MediaItem src="https://s3.amazonaws.com/media.conciergeauctions.com/images/1-1.jpg" />
         </HorizontalBlock>
         <Actions>
@@ -115,10 +113,11 @@ const CardsPage = ({ className }) => (
       </DemoCard>
       <DemoCard>
         <HorizontalBlock>
-          <Primary>
-            <Title large>Title here</Title>
-            <Subtitle>Subtitle here</Subtitle>
-          </Primary>
+          <Primary
+            title="Title"
+            subheader="Subhead"
+            large
+          />
           <MediaItem scale={1.5} src="https://s3.amazonaws.com/media.conciergeauctions.com/images/1-1.jpg" />
         </HorizontalBlock>
         <Actions>
@@ -128,10 +127,11 @@ const CardsPage = ({ className }) => (
       </DemoCard>
       <DemoCard>
         <HorizontalBlock>
-          <Primary>
-            <Title large>Title here</Title>
-            <Subtitle>Subtitle here</Subtitle>
-          </Primary>
+          <Primary
+            title="Title"
+            subheader="Subhead"
+            large
+          />
           <MediaItem scale={2} src="https://s3.amazonaws.com/media.conciergeauctions.com/images/1-1.jpg" />
         </HorizontalBlock>
         <Actions>

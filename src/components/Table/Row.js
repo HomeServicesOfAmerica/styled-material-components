@@ -8,7 +8,7 @@ const RowComponent = ({ className, children }) => (
 );
 
 const Row = styled(RowComponent)`
-  height: ${({ header }) => header ? 54 : 48}px;
+  height: ${({ header }) => (header ? 54 : 48)}px;
 `;
 
 export default Row;

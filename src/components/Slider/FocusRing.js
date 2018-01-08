@@ -9,7 +9,10 @@ const FocusRingComponent = props => (
 
 const getFocusSize = props => (props.navigatingWithKeys ? props.theme.slider.sizes.focusHalo : 0);
 
-const getFocusColor = ({ atMin, theme: { slider: { colors }}}) => atMin ? colors.track : colors.focusHalo;
+const getFocusColor = ({
+  atMin,
+  theme: { slider: { colors } },
+}) => (atMin ? colors.track : colors.focusHalo);
 
 const FocusRing = styled(FocusRingComponent)`
   height: ${getFocusSize}px;

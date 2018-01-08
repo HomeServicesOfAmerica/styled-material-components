@@ -45,7 +45,9 @@ export const makeMaterialSliderColorTheme = (overrides = {}, isLight = true) => 
 
   const focusHaloOpacity = focusHaloOpacityOverride || DEFAULT_FOCUS_HALO_OPACITY;
 
-  let focusTrackOpacity = isLight ? DEFAULT_LIGHT_FOCUSED_TRACK_OPACITY : DEFAULT_DARK_FOCUSED_TRACK_OPACITY;
+  let focusTrackOpacity = isLight
+    ? DEFAULT_LIGHT_FOCUSED_TRACK_OPACITY
+    : DEFAULT_DARK_FOCUSED_TRACK_OPACITY;
   if (focusTrackOpacityOverride) focusTrackOpacity = focusTrackOpacityOverride;
 
   let disabledColor = isLight ? DEFAULT_LIGHT_COLOR : DEFAULT_DARK_COLOR;
@@ -66,7 +68,7 @@ export const makeMaterialSliderColorTheme = (overrides = {}, isLight = true) => 
     disabled: disabledColor.alpha(disabledOpacity).toString(),
     pageColor: pageColor.toString(),
   };
-}
+};
 
 export const makeMaterialSliderTransitions = (overrides = {}) => {
   const main = overrides.main || '50ms';

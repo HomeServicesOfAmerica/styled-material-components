@@ -5,7 +5,7 @@ const SliderDisabledWrapperComponent = props => (
   <div className={`${props.className} smc-slider-disabled-wrapper`}>
     {props.children}
   </div>
-)
+);
 
 const getSliderDisabledWrapperSize = (props) => {
   const { disabled, theme: { slider: { sizes } } } = props;

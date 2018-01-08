@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const TracklineComponent = (props) => (
+const TracklineComponent = props => (
   <div className={`${props.className} smc-slider-track-line`}>
     {props.children}
   </div>
@@ -12,7 +12,7 @@ const getTracklineBackground = (props) => {
   if (props.disabled || props.atMin) return props.theme.slider.colors.disabled;
   // if (props.focused) return props.theme.slider.colors.focusTrack;
   return props.theme.slider.colors.track;
-}
+};
 
 const Trackline = styled(TracklineComponent)`
   width: 100%;

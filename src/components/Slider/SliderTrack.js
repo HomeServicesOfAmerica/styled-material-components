@@ -111,40 +111,37 @@ class SliderTrackComponent extends PureComponent {
         onClick={this.handleClick}
         ref={this.setTrack}
         className={`${this.props.className} smc-slider-track-wrapper`}
+      >
+        <Trackline
+          disabled={disabled}
+          focused={focused}
+          atMin={atMin}
         >
-          <Trackline
-            disabled={disabled}
-            focused={focused}
-            atMin={atMin}
-          >
-            {haveMeasuredWidth && (
-              [
-                <ValueTrack width={pixelsFromMin} key="slider-track-value-track">
-                  <TrackValue disabled={disabled} width={width} />
-                </ValueTrack>,
-                <SliderThumb
-                  increment={this.props.increment}
-                  decrement={this.props.decrement}
-                  handleMouseMove={this.handleClick}
-                  disabled={this.props.disabled}
-                  atMin={atMin}
-                  key="slider-track-slider-thumb"
-                />
-              ]
-            )}
-          </Trackline>
+          {haveMeasuredWidth && (
+            [
+              <ValueTrack width={pixelsFromMin} key="slider-track-value-track">
+                <TrackValue disabled={disabled} width={width} />
+              </ValueTrack>,
+              <SliderThumb
+                increment={this.props.increment}
+                decrement={this.props.decrement}
+                handleMouseMove={this.handleClick}
+                disabled={this.props.disabled}
+                atMin={atMin}
+                key="slider-track-slider-thumb"
+              />,
+            ]
+          )}
+        </Trackline>
       </div>
     );
   }
 }
-
-
 
 const SliderTrack = styled(SliderTrackComponent)`
   height: ${props => props.theme.slider.sizes.clickableHeight}px;
   cursor: ${props => (props.disabled ? 'auto' : 'pointer')};
   width: 100%;
 `;
-
 
 export default SliderTrack;

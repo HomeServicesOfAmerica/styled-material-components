@@ -1,38 +1,16 @@
 import React, { Component } from 'react';
 import { createPortal } from 'react-dom';
-import styled from 'styled-components';
+import { Overlay } from './Overlay';
+import { Shift } from './Shift';
 
 let smcPortal;
 
-// This prevents clicks on the contents of the portal from dismissing the portal
-const stopPropagation = e => e.stopPropagation();
-
-const BaseOverlay = props => (
-  <div className={`${props.className} smc-overlay`} onClick={props.onClick}>
-    <div className="smc-portal-content" onClick={stopPropagation}>{props.children}</div>
-  </div>
-);
-
-const Overlay = styled(BaseOverlay)`
-  background: rgba(0, 0, 0, .6);
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 0;
-  opacity: ${props => (props.showOverlay ? 1 : 0)};
-  transition: opacity 0.3s 0ms cubic-bezier(0, 0, .2, 1);
-  will-change: opacity;
-  pointer-events: ${props => (props.showOverlay ? 'inherit' : 'none')};
-  contain: strict;
-
-  & > .smc-portal-content {
-    height: 100%;
-    width: 100%;
-  }
-`;
-
 export class Portal extends Component {
+  defaultProps = {
+    shift: false,
+    direction: 'left',
+  };
+
   state = {
     portalMounted: false,
   };
@@ -64,10 +42,15 @@ export class Portal extends Component {
 
   render() {
     if (!this.state.portalMounted) return null;
+    const PortalContainer = this.props.shift ? Shift : Overlay;
+
     return createPortal(
-      <Overlay showOverlay={this.props.showOverlay} onClick={this.props.onRequestClose}>
+      <PortalContainer
+        direction={this.props.attachment}
+        open={this.props.open}
+        onClick={this.props.onRequestClose}>
         {this.props.renderContents()}
-      </Overlay>,
+      </PortalContainer>,
       this.el,
     );
   }

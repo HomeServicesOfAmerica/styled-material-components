@@ -1,7 +1,17 @@
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider, injectGlobal } from 'styled-components';
 import merge from 'lodash.merge';
 import defaultTheme from './defaultTheme';
+
+injectGlobal`
+  body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+  }
+`;
 
 const MaterialThemeProvider = ({ children, theme = {} }) => (
   <ThemeProvider theme={merge(defaultTheme, theme)}>

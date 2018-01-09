@@ -24,6 +24,8 @@ const HomePage = ({ className }) => (
       <Link href="/tables"><a>Tables Page</a></Link>
       <br />
       <Link href="/snackbar"><a>Snackbar Page</a></Link>
+      <br />
+      <Link href="/drawer"><a>Drawers Page</a></Link>
     </div>
   </MaterialThemeProvider>
 );

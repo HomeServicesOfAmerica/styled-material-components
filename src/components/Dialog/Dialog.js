@@ -24,11 +24,11 @@ class DialogComponent extends Component {
 
   openModal = () => this.setState({ open: true });
 
-  stopPropogation = e => e.stopPropagation();
+  stopPropagation = e => e.stopPropagation();
 
   renderContents = () => (
     <div className={`${this.props.className} smc-dialog`} onClick={this.closeModal}>
-      <div className='smc-dialog-surface' onClick={this.stopPropogation}>
+      <div className='smc-dialog-surface' onClick={this.stopPropagation}>
         {this.props.children}
       </div>
     </div>
@@ -37,7 +37,8 @@ class DialogComponent extends Component {
   render() {
     return (
       <Portal
-        showOverlay={this.state.open}
+        open={this.state.open}
+        mode="overlay"
         renderContents={this.renderContents}
       />
     );
@@ -50,6 +51,11 @@ export default styled(DialogComponent)`
   display: flex;
   align-items: center;
   justify-content: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
 
   > .smc-dialog-surface {
     display: flex;

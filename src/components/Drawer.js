@@ -95,7 +95,7 @@ export const Drawer = ({
 }) => (
   <Portal
     open={open}
-    mode={temporary ? 'overlay' : 'shift'}
+    shift={!temporary}
     attachment={attachment}
     onRequestClose={handleRequestClose}
     renderContents={() => (

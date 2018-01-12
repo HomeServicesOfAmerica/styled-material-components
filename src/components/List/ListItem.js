@@ -1,15 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Avatar } from '../Avatar';
+import Divider from '../Divider';
 
-const ListItemComponent = ({ className, children, leftAvatar, avatarSize }) => (
+const ListItemComponent = ({ className, children, leftAvatar, avatarSize, withDivider }) => (
   <li className={className}>
     {leftAvatar && (
       <div className="smc-list-avatar">
         <Avatar src={leftAvatar} size={avatarSize} />
       </div>
     )}
-    <div className="smc-list-content">{children}</div>
+    <div className="smc-list-content">
+      {children}
+      {Boolean(withDivider) && <Divider />}
+    </div>
   </li>
 );
 
@@ -24,6 +28,10 @@ const ListItem = styled(ListItemComponent)`
     box-sizing: border-box;
     padding-right: 16px;
     min-width: 72px;
+  }
+
+  > .smc-list-content {
+    width: 100%;
   }
 `;
 

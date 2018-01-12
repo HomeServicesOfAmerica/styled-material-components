@@ -68,6 +68,43 @@ const ListsPage = ({ className }) => (
           </ListItem>
         </List>
       </div>
+      <h1>List with Avatar and dividers</h1>
+      <div className="list">
+        <List>
+          <ListItem
+            withDivider
+            leftAvatar="http://www.wasiofaces.com/wp-content/uploads/San-Diego-Headshots-Photography-041.jpg"
+            >
+            <ListItemText primary="Primary Title" secondary="This is the secondary line" />
+          </ListItem>
+          <ListItem
+            withDivider
+            leftAvatar="http://www.wasiofaces.com/wp-content/uploads/San-Diego-Headshots-Photography-041.jpg"
+            >
+            <ListItemText primary="Primary Title" secondary="This is the secondary line" />
+          </ListItem>
+          <ListItem
+            withDivider
+            leftAvatar="http://www.wasiofaces.com/wp-content/uploads/San-Diego-Headshots-Photography-041.jpg"
+            >
+            <ListItemText primary="Primary Title" secondary="This is the secondary line" />
+          </ListItem>
+        </List>
+      </div>
+      <h1>List without Avatar, with dividers</h1>
+      <div className="list">
+        <List>
+          <ListItem withDivider>
+            <ListItemText primary="Primary Title" secondary="This is the secondary line" />
+          </ListItem>
+          <ListItem withDivider>
+            <ListItemText primary="Primary Title" secondary="This is the secondary line" />
+          </ListItem>
+          <ListItem withDivider>
+            <ListItemText primary="Primary Title" secondary="This is the secondary line" />
+          </ListItem>
+        </List>
+      </div>
     </div>
   </MaterialThemeProvider>
 );

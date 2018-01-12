@@ -26,6 +26,8 @@ const HomePage = ({ className }) => (
       <Link href="/snackbar"><a>Snackbar Page</a></Link>
       <br />
       <Link href="/drawer"><a>Drawers Page</a></Link>
+      <br />
+      <Link href="/divider"><a>Divider Page</a></Link>
     </div>
   </MaterialThemeProvider>
 );

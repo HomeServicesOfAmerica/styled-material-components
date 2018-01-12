@@ -17,6 +17,7 @@ const ListItemTextComponent = ({ className, primary, secondary }) => (
 );
 
 const ListItemText = styled(ListItemTextComponent)`
+
   > .smc-list-text-primary {
     margin: 0px;
   }

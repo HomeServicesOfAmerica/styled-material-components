@@ -12,7 +12,7 @@ export default class MyDocument extends Document {
           <title>My page</title>
           {styleTags}
         </Head>
-        <body>
+        <body style={{ overflow: 'visible' }}>
           <div className='root'>
             {main}
           </div>

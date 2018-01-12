@@ -86,18 +86,37 @@ class TextFieldComponent extends PureComponent {
           focus={this.state.focus}
           error={hasError}
         />
-        <Input
-          hasPrefix={!!this.props.prefix}
-          hasSuffix={!!this.props.suffix}
-          inputStyle={this.props.inputStyle}
-          disabled={this.props.disabled}
-          autoFocus={this.props.autoFocus}
-          value={this.props.value || this.state.text}
-          onChange={this.onChange}
-          onFocus={this.onFocus}
-          onBlur={this.onBlur}
-          className={'smc-text-field-input'}
-        />
+        {this.props.textarea
+          ? (
+            <Area
+              rows={this.props.rows || 1}
+              hasPrefix={!!this.props.prefix}
+              hasSuffix={!!this.props.suffix}
+              inputStyle={this.props.inputStyle}
+              disabled={this.props.disabled}
+              autoFocus={this.props.autoFocus}
+              value={this.props.value || this.state.text}
+              onChange={this.onChange}
+              onFocus={this.onFocus}
+              onBlur={this.onBlur}
+              className={'smc-text-field-area'}
+            />
+          )
+          : (
+            <Input
+              hasPrefix={!!this.props.prefix}
+              hasSuffix={!!this.props.suffix}
+              inputStyle={this.props.inputStyle}
+              disabled={this.props.disabled}
+              autoFocus={this.props.autoFocus}
+              value={this.props.value || this.state.text}
+              onChange={this.onChange}
+              onFocus={this.onFocus}
+              onBlur={this.onBlur}
+              className={'smc-text-field-input'}
+            />
+          )
+        }
       </div>
     );
   }
@@ -169,7 +188,7 @@ const Prefix = styled(PrefixComponent)`
 const FloatingLabel = styled.div`
   position: absolute;
   transition: all 200ms;
-  bottom: ${props => (props.floating ? '1.5em' : '0em')};
+  top: ${props => (props.floating ? '-1.5em' : '0em')};
   font-size: 1em;
   transform: ${props => `scale(${props.floating ? 0.75 : 1})`};
   transform-origin: 0 50%;
@@ -186,7 +205,6 @@ const HintText = styled.div`
   position: absolute;
   color: ${props => (props.error ? error : hintTextColor)};
   opacity: ${props => +props.show};
-  bottom: 0px;
   width: 100%;
   left: ${props => (props.hasPrefix ? '1em' : '0em')};
   ${props => props.hintTextStyle};
@@ -217,12 +235,13 @@ const UnderlineFocus = styled.div`
   ${props => props.underlineFocusStyle};
 `;
 
-const Input = styled.input`
+/*
+ * Styles that will be shared between textfield and text area
+ */
+const inputStyles = `
   position: relative;
-  width: calc(100% - ${props => +(props.hasSuffix || false) + +(props.hasPrefix || false)}em);
   border: none;
   outline: none;
-  color: ${primaryTextColor};
   cursor: inherit;
   background-color: inherit;
   font-style: inherit;
@@ -232,8 +251,25 @@ const Input = styled.input`
   font-size: inherit;
   line-height: inherit;
   font-family: inherit;
+`;
+
+/*
+ * Since these styles depend on props, they can't live in the template literal
+ * above
+ */
+const Input = styled.input`${inputStyles}`.extend`
+  width: calc(100% - ${({ hasSuffix }) => hasSuffix ? 1 : 0}em);
+  color: ${primaryTextColor};
   padding-left: ${props => (props.hasPrefix ? '1em' : '0')};
   ${props => props.inputStyle};
+`;
+
+const Area = styled.textarea`${inputStyles}`.extend`
+  width: calc(100% - ${({ hasSuffix }) => hasSuffix ? 1 : 0}em);
+  color: ${primaryTextColor};
+  padding-left: ${props => (props.hasPrefix ? '1em' : '0')};
+  ${props => props.inputStyle};
+  resize: none;
 `;
 
 const TextField = styled(TextFieldComponent)`

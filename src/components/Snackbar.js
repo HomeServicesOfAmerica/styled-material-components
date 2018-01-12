@@ -67,7 +67,9 @@ class SnackbarComponent extends PureComponent {
         className={`${this.props.className} smc-snackbar-container`}
         open={this.props.open}
         animation={animation}>
-        <Message>{this.props.message || this.props.children}</Message>
+        <Message className="smc-snackbar-message">
+          {this.props.message || this.props.children}
+        </Message>
       </SnackbarWrapper>
     );
   }

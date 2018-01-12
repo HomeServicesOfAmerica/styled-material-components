@@ -100,6 +100,11 @@ class TextFieldPage extends PureComponent {
             floatingLabelText="Text area with two rows"
             rows={2}
           />
+          <TextFieldWithBottomMargin
+            textarea
+            multiline
+            floatingLabelText="Multiline text area"
+          />
         </div>
       </MaterialThemeProvider>
     );

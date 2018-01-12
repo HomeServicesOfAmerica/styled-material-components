@@ -8,16 +8,21 @@ class TextFieldComponent extends PureComponent {
     focus: false,
     error: this.props.error || false,
     hasBeenFocused: false,
+    height: '100%',
   };
+  
+  textArea = null;
 
   onChange = (e) => {
     this.props.onChange && this.props.onChange(e);
     const text = e.target.value;
     const isInvalid = this.props.validator && !this.props.validator(text);
     const isEmptyButRequired = this.props.required ? !e.target.value : false;
+    const newHeight = this.textArea.scrollHeight;
     this.setState({
       text,
       error: this.props.error || isInvalid || isEmptyButRequired,
+      height: !this.props.multiline || this.textArea.value === '' ? '100%' : newHeight,
     });
   };
 
@@ -96,10 +101,12 @@ class TextFieldComponent extends PureComponent {
               disabled={this.props.disabled}
               autoFocus={this.props.autoFocus}
               value={this.props.value || this.state.text}
+              height={this.state.height}
               onChange={this.onChange}
               onFocus={this.onFocus}
               onBlur={this.onBlur}
               className={'smc-text-field-area'}
+              innerRef={(Area) => {this.textArea = Area;}}
             />
           )
           : (
@@ -266,6 +273,7 @@ const Input = styled.input`${inputStyles}`.extend`
 
 const Area = styled.textarea`${inputStyles}`.extend`
   width: calc(100% - ${({ hasSuffix }) => hasSuffix ? 1 : 0}em);
+  height:  ${props => props.height - 4}px;
   color: ${primaryTextColor};
   padding-left: ${props => (props.hasPrefix ? '1em' : '0')};
   ${props => props.inputStyle};

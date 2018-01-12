@@ -90,6 +90,16 @@ class TextFieldPage extends PureComponent {
               </div>
             }
           />
+          <h2>Text areas</h2>
+          <TextFieldWithBottomMargin
+            textarea
+            floatingLabelText="Text area with 1 row"
+          />
+          <TextFieldWithBottomMargin
+            textarea
+            floatingLabelText="Text area with two rows"
+            rows={2}
+          />
         </div>
       </MaterialThemeProvider>
     );

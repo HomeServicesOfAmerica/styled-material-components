@@ -13,11 +13,12 @@ const ButtonsPage = ({ className }) => (
       <Button onClick={() => alert('On Click Fired')}>Flat</Button>
       <Button primary>Flat Primary</Button>
       <Button accent>Flat Accent</Button>
+      <Button disabled primary onClick={() => alert('This should not fire')}>Disabled</Button>
       <RippleButton>JS Ripple</RippleButton>
       <h1>Raised Buttons</h1>
       <Button raised>Raised</Button>
       <Button raised accent>Accent</Button>
-      <Button raised disabled>Test</Button>
+      <Button raised primary disabled onClick={() => alert('This should not fire')}>Disabled</Button>
       <RippleButton raised primary>JS Ripple</RippleButton>
     </div>
   </MaterialThemeProvider>

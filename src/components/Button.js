@@ -11,7 +11,7 @@ class ButtonComponent extends PureComponent {
   acceptableProps = {
     onClick: this.handleOnClick,
   };
-  
+
   render() {
     return (
       <button
@@ -51,11 +51,11 @@ const raised = css`
       color: black;
     }
   `}
-  fieldset:disabled &, &:disabled {
+  ${props => props.disabled && `
     ${elevation(0)};
     background-color: rgba(0, 0, 0, .12);
     pointer-events: none;
-  }
+  `}
 `;
 
 const Button = styled(ButtonComponent)`
@@ -94,18 +94,17 @@ const Button = styled(ButtonComponent)`
     border: 0;
   }
 
-  fieldset:disabled &, &:disabled {
-    color: rgba(0, 0, 0, .26);
-    cursor: default;
-    pointer-events: none;
-  }
-
   ${ripple()}
 
   ${props => props.accent && accent}
   ${props => props.primary && primary}
   ${props => props.raised && raised}
   ${props => props.compact && `padding: 0 8px;`}
+  ${props => props.disabled && `
+    color: rgba(0, 0, 0, .26);
+    cursor: default;
+    pointer-events: none;
+  `}
   ${props => props.dense && `
     height: 32px;
     font-size: .8125rem;

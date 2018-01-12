@@ -32,17 +32,18 @@ class TextFieldComponent extends PureComponent {
   };
 
   render() {
+    const hasError = Boolean(this.state.error || this.props.error || this.props.errorText);
     return (
       <div className={`${this.props.className} smc-text-field-container`}>
         <Suffix>{this.props.suffix}</Suffix>
         <Prefix>{this.props.prefix}</Prefix>
         <FloatingLabel
           className={'smc-text-field-floating-label'}
-          error={this.state.error}
+          error={hasError}
           hasPrefix={!!this.props.prefix}
           focus={this.state.focus}
           floatingLabelStyle={
-            this.state.error ? this.props.floatingLabelErrorStyle : this.props.floatingLabelStyle
+            hasError ? this.props.floatingLabelErrorStyle : this.props.floatingLabelStyle
           }
           floating={this.state.focus || this.props.hintText || this.state.text.length}
         >
@@ -57,7 +58,7 @@ class TextFieldComponent extends PureComponent {
           className={'smc-text-field-hint-text'}
           hintTextStyle={this.props.hintTextStyle}
           hasPrefix={this.props.prefix}
-          error={this.props.error || this.state.error}
+          error={hasError}
           show={!this.props.defaultValue && !this.state.text.length && !this.props.value}
         >
           {this.props.hintText}
@@ -72,7 +73,7 @@ class TextFieldComponent extends PureComponent {
           </HelperText>
         )}
         <ErrorText
-          show={this.state.error}
+          show={hasError}
           className={'smc-text-field-error-text'}
           errorTextStyle={this.props.errorTextStyle}
         >
@@ -83,7 +84,7 @@ class TextFieldComponent extends PureComponent {
           className={'smc-text-field-underline-focus'}
           underlineFocusStyle={this.props.underlineFocusStyle}
           focus={this.state.focus}
-          error={this.state.error}
+          error={hasError}
         />
         <Input
           hasPrefix={!!this.props.prefix}

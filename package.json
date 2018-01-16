@@ -11,7 +11,8 @@
     "dev": "next dev -p 8081",
     "export": "next build && next export -o docs",
     "prepublish": "yarn test && yarn build",
-    "now-build": "yarn export && cd docs && now"
+    "now-build": "yarn export && cd docs && now",
+    "prepush": "yarn lint"
   },
   "repository": {
     "type": "git",
@@ -41,6 +42,7 @@
     "babel-preset-react": "^6.24.1",
     "eslint": "^4.10.0",
     "eslint-config-concierge-auctions-react": "^0.0.6",
+    "husky": "^0.14.3",
     "next": "^4.1.4",
     "now": "^9.0.1",
     "react-dom": "^16.0.0"

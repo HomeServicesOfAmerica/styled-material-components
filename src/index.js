@@ -10,6 +10,7 @@ export { default as Snackbar } from './components/Snackbar';
 export * from './components/Table';
 export * from './components/Tabs';
 export { default as TextField } from './components/TextField';
+export { default as Appbar } from './components/Appbar';
 
 export { default as withRipple } from './mixins/ripple';
 

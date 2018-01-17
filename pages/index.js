@@ -7,6 +7,8 @@ const HomePage = ({ className }) => (
   <MaterialThemeProvider theme={{ primary: '#03A9F4' }}>
     <div className={className}>
       <h1>Placeholder</h1>
+      <Link href="/appbar"><a>Appbars Page</a></Link>
+      <br />
       <Link href="/buttons"><a>Buttons Page</a></Link>
       <br />
       <Link href="/cards"><a>Cards Page</a></Link>

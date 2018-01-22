@@ -1,6 +1,6 @@
 {
   "name": "styled-material-components",
-  "version": "0.0.26",
+  "version": "0.0.27",
   "description": "coming soon",
   "main": "dist/index.js",
   "scripts": {
@@ -28,6 +28,7 @@
     "classnames": "^2.2.5",
     "color": "^2.0.0",
     "eslint-config-concierge-auctions-base": "^0.0.6",
+    "husky": "^0.14.3",
     "lodash.merge": "^4.6.0",
     "react": "^16.0.0",
     "styled-components": "^2.2.3"
@@ -43,7 +44,6 @@
     "babel-preset-react": "^6.24.1",
     "eslint": "^4.10.0",
     "eslint-config-concierge-auctions-react": "^0.0.7",
-    "husky": "^0.14.3",
     "next": "^4.1.4",
     "now": "^9.0.1",
     "react-dom": "^16.0.0"

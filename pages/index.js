@@ -30,6 +30,8 @@ const HomePage = ({ className }) => (
       <Link href="/drawer"><a>Drawers Page</a></Link>
       <br />
       <Link href="/divider"><a>Divider Page</a></Link>
+      <br />
+      <Link href="/chips"><a>Chip Page</a></Link>
     </div>
   </MaterialThemeProvider>
 );

@@ -11,6 +11,7 @@ injectGlobal`
     overflow: hidden;
     display: flex;
     flex-direction: row;
+    font-family: Roboto,sans-serif;
   }
 `;
 /* eslint-enable */

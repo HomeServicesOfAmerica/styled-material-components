@@ -112,3 +112,4 @@ Drawer.defaultProps = {
   handleRequestClose: () => {},
 };
 
+export default Drawer;

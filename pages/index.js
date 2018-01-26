@@ -20,6 +20,9 @@ const HomePage = ({ className }) => (
         <Link href="/cards"><a>Cards Page</a></Link>
       </ListItem>
       <ListItem>
+        <Link href="/checkboxes"><a>Checkboxes Page</a></Link>
+      </ListItem>
+      <ListItem>
         <Link href="/chips"><a>Chips Page</a></Link>
       </ListItem>
       <ListItem>

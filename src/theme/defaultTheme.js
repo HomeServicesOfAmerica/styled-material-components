@@ -30,6 +30,7 @@ const defaultTheme = {
     icon: black.alpha(0.38).toString(),
   },
   slider: sliderTheme,
+  disabledCheckbox: black.alpha(0.26).toString(),
 };
 
 export default defaultTheme;

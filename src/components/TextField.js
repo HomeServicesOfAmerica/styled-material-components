@@ -18,7 +18,8 @@ class TextFieldComponent extends PureComponent {
     const text = e.target.value;
     const isInvalid = this.props.validator && !this.props.validator(text);
     const isEmptyButRequired = this.props.required ? !e.target.value : false;
-    const newHeight = this.textArea.scrollHeight;
+    const newHeight = this.props.textarea ? this.textArea.scrollHeight : '';
+    
     this.setState({
       text,
       error: this.props.error || isInvalid || isEmptyButRequired,
@@ -106,7 +107,7 @@ class TextFieldComponent extends PureComponent {
               onFocus={this.onFocus}
               onBlur={this.onBlur}
               className={'smc-text-field-area'}
-              innerRef={(Area) => {this.textArea = Area;}}
+              innerRef={(ref) => {this.textArea = ref;}}
             />
           )
           : (

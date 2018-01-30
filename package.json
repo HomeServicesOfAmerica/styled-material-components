@@ -18,8 +18,7 @@
     "type": "git",
     "url": "git+https://github.com/ConciergeAuctions/styled-material-components.git"
   },
-  "author": "Brad Decker <bhdecker84@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/ConciergeAuctions/styled-material-components/issues"
   },

@@ -10,7 +10,6 @@ jobs:
           keys:
             - styled-material-components-{{ .Branch }}-{{ checksum "yarn.lock" }}
             - styled-material-components-{{ checksum "yarn.lock" }}
-      - run: npm i -g yarn@latest 
       - run: yarn install
       - save_cache:
           key: styled-material-components-{{ .Branch }}-{{ checksum "yarn.lock" }}

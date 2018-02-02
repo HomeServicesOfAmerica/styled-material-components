@@ -12,7 +12,8 @@
     "export": "next build && next export -o docs",
     "prepublish": "yarn test && yarn build",
     "now-build": "yarn export && cd docs && now",
-    "prepush": "yarn lint"
+    "prepush": "yarn lint",
+    "postcommit": "bash ./scripts/update-authors.sh"
   },
   "repository": {
     "type": "git",
@@ -38,11 +39,11 @@
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-export-extensions": "^6.22.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "husky": "^0.14.3",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "eslint": "^4.10.0",
     "eslint-config-concierge-auctions-react": "^0.0.7",
+    "husky": "^0.14.3",
     "next": "^4.1.4",
     "now": "^9.0.1",
     "react-dom": "^16.0.0"

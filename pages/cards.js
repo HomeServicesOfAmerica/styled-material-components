@@ -5,14 +5,12 @@ import {
   Card,
   Primary,
   Title,
-  Subtitle,
   SupportingText,
   Media,
   Actions,
   HorizontalBlock,
   MediaItem,
 } from '../src/components/Card';
-import { Avatar } from '../src/components/Avatar';
 import MaterialThemeProvider from '../src/theme/ThemeProvider';
 
 const DemoCard = Card.extend`
@@ -28,7 +26,8 @@ const CardsPage = ({ className }) => (
   <MaterialThemeProvider theme={{ primary: '#03A9F4' }}>
     <div className={className}>
       <h1>Card</h1>
-      <DemoCard>
+      <h5>This card will elevate more on hover</h5>
+      <DemoCard hover>
         <Media wide src="https://s3.amazonaws.com/media.conciergeauctions.com/images/16-9.jpg" />
         <SupportingText>
           Donec sed odio dui. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.

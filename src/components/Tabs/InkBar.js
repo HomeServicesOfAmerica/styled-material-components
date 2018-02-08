@@ -15,7 +15,7 @@ const InkBar = ({ numTabs, selectedIndex, tabWidth, inkbarColor }) => (
     className='smc-tab-bar-scroller'
     numTabs={numTabs}
     selectedIndex={selectedIndex}
-    tabWidth={tabWidth}
+    tabWidth={tabWidth || 0}
     inkbarColor={inkbarColor} />
 );
 

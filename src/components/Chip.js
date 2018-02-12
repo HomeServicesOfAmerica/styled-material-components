@@ -35,12 +35,11 @@ const Avatar = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  ${typography('body')} 
+  ${typography('body')}
   font-size: 16px;
 `;
 
 const Label = styled.span`
-  font-family: 'Roboto';
   margin: 0 12px;
 `;
 

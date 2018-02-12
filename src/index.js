@@ -4,7 +4,7 @@ export { default as Button } from './components/Button';
 export * from './components/Card';
 export { default as Chip } from './components/Chip';
 export * from './components/Dialog';
-export { default as Divider } from './components/Divider';
+export { Divider } from './components/Divider';
 export { default as Drawer } from './components/Drawer';
 export * from './components/GridList';
 export * from './components/List';

@@ -46,7 +46,7 @@ Discussions about Styled Material Components take place on this repository's [Is
 
 We also have an active [#smc Slack Channel](https://merlin-labs.slack.com/messages/C8SU9KJTG/details/), and would love for you to join the discussion there. If you are having trouble accessing the channel please reach out to @ashwoodall to request access. 
 
-Any one is welcome to join these conversations. 
+Anyone is welcome to join these conversations. 
 
 Wherever possible, do not take these conversations to private channels, including contacting the maintainers directly. Keeping communication public means everybody can benefit and learn from the conversation. Please read more about conversation guidelines at our [Code of Conduct](https://github.com/ConciergeAuctions/styled-material-components/blob/master/CODE_OF_CONDUCT.md)
 

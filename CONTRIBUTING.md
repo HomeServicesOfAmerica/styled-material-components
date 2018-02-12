@@ -48,7 +48,7 @@ We also have an active [#smc Slack Channel](https://merlin-labs.slack.com/messag
 
 Any one is welcome to join these conversations. 
 
-Wherever possible, do not take these conversations to private channels, including contacting the maintainers directly. Keeping communication public means everybody can benefit and learn from the conversation. Please read more about conversation guidelines at our [Code Code Conduct](https://github.com/ConciergeAuctions/styled-material-components/blob/master/CODE_OF_CONDUCT.md)
+Wherever possible, do not take these conversations to private channels, including contacting the maintainers directly. Keeping communication public means everybody can benefit and learn from the conversation. Please read more about conversation guidelines at our [Code of Conduct](https://github.com/ConciergeAuctions/styled-material-components/blob/master/CODE_OF_CONDUCT.md)
 
 Follow us on [Twitter](https://twitter.com/merlinOSA) to learn more about our open source initiatives and get involved with our community <3
 

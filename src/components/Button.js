@@ -1,28 +1,6 @@
-import React, { PureComponent } from 'react';
 import styled, { css } from 'styled-components';
 import elevation, { elevationTransition } from '../mixins/elevation';
 import ripple from '../mixins/ripple';
-
-class ButtonComponent extends PureComponent {
-  handleOnClick = (e) => {
-    this.props.onClick && this.props.onClick(e);
-  }
-
-  acceptableProps = {
-    onClick: this.handleOnClick,
-  };
-
-  render() {
-    return (
-      <button
-        className={`${this.props.className} smc-button`}
-        {...this.acceptableProps}
-      >
-        {this.props.children}
-      </button>
-    );
-  }
-}
 
 const primary = css`
   color: ${props => props.theme.primary};
@@ -58,7 +36,9 @@ const raised = css`
   `}
 `;
 
-const Button = styled(ButtonComponent)`
+const Button = styled.button.attrs({
+  'data-smc': 'Button',
+})`
   color: black;
   display: inline-block;
   position: relative;
@@ -69,9 +49,9 @@ const Button = styled(ButtonComponent)`
   border-radius: 2px;
   outline: none;
   background: transparent;
-  font-size: 14px; // Override font to specifically be px as spec defined pt
+  font-size: 14px;
   font-weight: 500;
-  line-height: 36px; // Override line-height so text aligns centered
+  line-height: 36px;
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;

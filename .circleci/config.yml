@@ -1,0 +1,18 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/styled-material-components
+    docker:
+      - image: node:carbon
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - styled-material-components-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - styled-material-components-{{ checksum "yarn.lock" }}
+      - run: yarn install
+      - save_cache:
+          key: styled-material-components-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - "~/.yarn-cache"
+      - run: yarn run lint

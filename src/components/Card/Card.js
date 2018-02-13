@@ -1,7 +1,12 @@
+import React from 'react';
 import styled from 'styled-components';
 import elevation from '../../mixins/elevation';
 
-const Card = styled.div`
+const CardComponent = ({ hover, className, children }) => (
+  <div hover={hover} className={`${className} smc-card`}>{children}</div>
+);
+
+const Card = styled(CardComponent)`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -11,8 +16,12 @@ const Card = styled.div`
   overflow: hidden;
   ${elevation(2)};
   &:hover {
-    ${elevation(8)};
+    ${props => props.hover && elevation(8)};
   }
 `;
+
+Card.defaultProps = {
+  hover: false,
+};
 
 export default Card;

@@ -1,6 +1,7 @@
-import Color from 'color';
+import { black } from './colors';
+import { makeMaterialSliderTheme } from './makeMaterialSliderTheme';
 
-const black = Color('#000');
+const sliderTheme = makeMaterialSliderTheme();
 
 const defaultTheme = {
   primary: '#3f51b5',
@@ -21,7 +22,6 @@ const defaultTheme = {
       ambient: black.alpha(0.12).toString(),
     },
   },
-
   textColors: {
     primary: black.alpha(0.87).toString(),
     secondary: black.alpha(0.54).toString(),
@@ -29,6 +29,8 @@ const defaultTheme = {
     disabled: black.alpha(0.38).toString(),
     icon: black.alpha(0.38).toString(),
   },
+  slider: sliderTheme,
+  disabledCheckbox: black.alpha(0.26).toString(),
 };
 
 export default defaultTheme;

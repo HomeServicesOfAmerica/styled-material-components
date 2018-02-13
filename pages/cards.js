@@ -1,15 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
-import typography from '../src/mixins/typography';
 import Button from '../src/components/Button';
-import Card from '../src/components/Card/Card';
-import Primary from '../src/components/Card/Primary';
-import Title from '../src/components/Card/Title';
-import Subtitle from '../src/components/Card/Subtitle';
-import SupportingText from '../src/components/Card/SupportingText';
-import Media from '../src/components/Card/Media';
-import Actions from '../src/components/Card/Actions';
-import Avatar from '../src/components/Card/Avatar';
+import {
+  Card,
+  Primary,
+  Title,
+  SupportingText,
+  Media,
+  Actions,
+  HorizontalBlock,
+  MediaItem,
+} from '../src/components/Card';
 import MaterialThemeProvider from '../src/theme/ThemeProvider';
 
 const DemoCard = Card.extend`
@@ -21,51 +22,130 @@ const DemoCard = Card.extend`
   }
 `;
 
-const TitleWithAvatar = Title.extend`
-  margin-left: 56px;
-`;
-
-const SubtitleWithAvatar = Subtitle.extend`
-  margin-left: 56px;
-`;
-
 const CardsPage = ({ className }) => (
   <MaterialThemeProvider theme={{ primary: '#03A9F4' }}>
     <div className={className}>
       <h1>Card</h1>
-      <DemoCard>
+      <h5>This card will elevate more on hover</h5>
+      <DemoCard hover>
         <Media wide src="https://s3.amazonaws.com/media.conciergeauctions.com/images/16-9.jpg" />
         <SupportingText>
           Donec sed odio dui. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
         </SupportingText>
       </DemoCard>
-      <br/>
+      <br />
       <DemoCard>
-        <Primary>
-          <Avatar></Avatar>
-          <TitleWithAvatar>Title</TitleWithAvatar>
-          <SubtitleWithAvatar>Subhead</SubtitleWithAvatar>
-        </Primary>
+        <Primary
+          avatar="https://i.pinimg.com/736x/a1/79/b0/a179b0e974b49846fb7283fdf178fd55--headshot-actor-acting-headshots.jpg"
+          title="Title"
+          subheader="Subhead"
+        />
         <Media wide src="https://s3.amazonaws.com/media.conciergeauctions.com/images/16-9.jpg" />
         <SupportingText>
-          <p>Donec sed odio dui. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+          Donec sed odio dui. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
         </SupportingText>
         <Actions>
-          <Button>Action 1</Button>
-          <Button>Action 2</Button>
+          <Button compact>Action 1</Button>
+          <Button compact>Action 2</Button>
         </Actions>
       </DemoCard>
       <DemoCard>
-        <Primary>
-          <Avatar></Avatar>
-          <TitleWithAvatar>Title</TitleWithAvatar>
-          <SubtitleWithAvatar>Subtitle</SubtitleWithAvatar>
-        </Primary>
+        <Primary
+          avatar="https://i.pinimg.com/736x/a1/79/b0/a179b0e974b49846fb7283fdf178fd55--headshot-actor-acting-headshots.jpg"
+          title="Title"
+          subheader="Subhead"
+        />
         <Media wide src="https://s3.amazonaws.com/media.conciergeauctions.com/images/16-9.jpg" />
-        <Actions>
-          <Button>Action 1</Button>
-          <Button>Action 2</Button>
+        <Actions vertical>
+          <Button compact>Action 1</Button>
+          <Button compact>Action 2</Button>
         </Actions>
+      </DemoCard>
+      <DemoCard>
+        <Media wide src="https://s3.amazonaws.com/media.conciergeauctions.com/images/16-9.jpg" />
+        <Primary
+          title="Title"
+          subheader="Subhead"
+        />
+        <Actions>
+          <Button compact>Action 1</Button>
+          <Button compact>Action 2</Button>
+        </Actions>
+      </DemoCard>
+      <DemoCard>
+        <Primary
+          title="Title"
+          subheader="Subhead"
+        />
+        <SupportingText>
+          Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+          Integer posuere erat a ante venenatis dapibus posuere velit aliquet.
+          Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget
+          risus varius blandit sit amet non magna.
+        </SupportingText>
+        <Actions>
+          <Button compact>Action 1</Button>
+          <Button compact>Action 2</Button>
+        </Actions>
+      </DemoCard>
+      <DemoCard>
+        <Media wide src="https://s3.amazonaws.com/media.conciergeauctions.com/images/1-1.jpg">
+          <Title large>Title</Title>
+        </Media>
+        <Actions>
+          <Button compact>Action 1</Button>
+        </Actions>
+      </DemoCard>
+      <DemoCard>
+        <HorizontalBlock>
+          <Primary
+            title="Title"
+            subheader="Subhead"
+            large
+          />
+          <MediaItem src="https://s3.amazonaws.com/media.conciergeauctions.com/images/1-1.jpg" />
+        </HorizontalBlock>
+        <Actions>
+          <Button compact>Action 1</Button>
+          <Button compact>Action 2</Button>
+        </Actions>
+      </DemoCard>
+      <DemoCard>
+        <HorizontalBlock>
+          <Primary
+            title="Title"
+            subheader="Subhead"
+            large
+          />
+          <MediaItem scale={1.5} src="https://s3.amazonaws.com/media.conciergeauctions.com/images/1-1.jpg" />
+        </HorizontalBlock>
+        <Actions>
+          <Button compact>Action 1</Button>
+          <Button compact>Action 2</Button>
+        </Actions>
+      </DemoCard>
+      <DemoCard>
+        <HorizontalBlock>
+          <Primary
+            title="Title"
+            subheader="Subhead"
+            large
+          />
+          <MediaItem scale={2} src="https://s3.amazonaws.com/media.conciergeauctions.com/images/1-1.jpg" />
+        </HorizontalBlock>
+        <Actions>
+          <Button compact>Action 1</Button>
+          <Button compact>Action 2</Button>
+        </Actions>
+      </DemoCard>
+      <DemoCard>
+        <HorizontalBlock>
+          <MediaItem scale={3} src="https://s3.amazonaws.com/media.conciergeauctions.com/images/1-1.jpg" />
+          <Actions vertical>
+            <Button compact>A1</Button>
+            <Button compact>A2</Button>
+          </Actions>
+        </HorizontalBlock>
       </DemoCard>
     </div>
   </MaterialThemeProvider>

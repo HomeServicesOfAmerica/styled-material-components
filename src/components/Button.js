@@ -33,6 +33,7 @@ const accent = css`
 `;
 
 const raised = css`
+  color: black;
   ${elevation(2)};
   &:active {
     ${elevation(8)};
@@ -58,7 +59,9 @@ const raised = css`
   `}
 `;
 
+
 const Button = styled(ButtonComponent)`
+  color: black;
   display: inline-block;
   position: relative;
   min-width: 88px;

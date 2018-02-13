@@ -59,6 +59,7 @@ const raised = css`
 `;
 
 const Button = styled(ButtonComponent)`
+  color: black;
   display: inline-block;
   position: relative;
   min-width: 88px;

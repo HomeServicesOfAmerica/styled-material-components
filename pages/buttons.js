@@ -17,7 +17,7 @@ const ButtonsPage = ({ className }) => (
       <h1>Raised Buttons</h1>
       <Button raised>Raised</Button>
       <Button raised accent>Accent</Button>
-      <Button raised disabled>Test</Button>
+      <Button raised disabled>Disabled</Button>
       <RippleButton raised primary>JS Ripple</RippleButton>
     </div>
   </MaterialThemeProvider>

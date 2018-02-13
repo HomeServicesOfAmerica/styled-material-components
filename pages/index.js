@@ -8,7 +8,7 @@ const HomePage = ({ className }) => (
     <div className={className}>
       <h1>Placeholder</h1>
       <Link href="/buttons"><a>Buttons Page</a></Link>
-      <br/>
+      <br />
       <Link href="/cards"><a>Cards Page</a></Link>
     </div>
   </MaterialThemeProvider>

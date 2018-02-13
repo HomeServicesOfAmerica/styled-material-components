@@ -1,4 +1,4 @@
-export default from './Card';
+export { default as Card } from './Card';
 export { default as Actions } from './Actions';
 export { default as HorizontalBlock } from './HorizontalBlock';
 export { default as Media } from './Media';

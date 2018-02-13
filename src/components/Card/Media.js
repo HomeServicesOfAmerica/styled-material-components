@@ -1,11 +1,16 @@
+import React from 'react';
 import styled, { css } from 'styled-components';
 
-const Media = styled.section`
+const MediaComponent = props => (
+  <section className={`${props.className} card-media`}>{props.children}</section>
+);
+
+const Media = styled(MediaComponent)`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 16px;
   box-sizing: border-box;
+  padding: 16px;
 
   ${props => props.wide && css`
     background-image: url("${props.src}");

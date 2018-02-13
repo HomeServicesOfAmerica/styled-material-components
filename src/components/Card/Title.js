@@ -1,8 +1,9 @@
+import React from 'react';
 import styled, { css } from 'styled-components';
 import typography from '../../mixins/typography';
 
 const TitleComponent = props => (
-  <h1 className={`${props.className} card-title${props.large ? '--large' : ''}`}>{props.children}</h1>
+  <h1 className={`${props.className} card-title`}>{props.children}</h1>
 );
 
 const Title = styled(TitleComponent)`

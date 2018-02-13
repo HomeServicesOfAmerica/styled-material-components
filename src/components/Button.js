@@ -1,6 +1,28 @@
+import React, { PureComponent } from 'react';
 import styled, { css } from 'styled-components';
 import elevation, { elevationTransition } from '../mixins/elevation';
 import ripple from '../mixins/ripple';
+
+class ButtonComponent extends PureComponent {
+  handleOnClick = (e) => {
+    this.props.onClick && this.props.onClick(e);
+  }
+
+  acceptableProps = {
+    onClick: this.handleOnClick,
+  };
+
+  render() {
+    return (
+      <button
+        className={`${this.props.className} smc-button`}
+        {...this.acceptableProps}
+      >
+        {this.props.children}
+      </button>
+    );
+  }
+}
 
 const primary = css`
   color: ${props => props.theme.primary};
@@ -29,17 +51,17 @@ const raised = css`
       color: black;
     }
   `}
-  fieldset:disabled &, &:disabled {
+  ${props => props.disabled && `
     ${elevation(0)};
     background-color: rgba(0, 0, 0, .12);
     pointer-events: none;
-  }
+  `}
 `;
 
-const Button = styled.button`
+const Button = styled(ButtonComponent)`
   display: inline-block;
   position: relative;
-  min-width: 64px;
+  min-width: 88px;
   height: 36px;
   padding: 0 16px;
   border: none;
@@ -72,18 +94,17 @@ const Button = styled.button`
     border: 0;
   }
 
-  fieldset:disabled &, &:disabled {
-    color: rgba(0, 0, 0, .26);
-    cursor: default;
-    pointer-events: none;
-  }
-
   ${ripple()}
 
   ${props => props.accent && accent}
   ${props => props.primary && primary}
   ${props => props.raised && raised}
   ${props => props.compact && `padding: 0 8px;`}
+  ${props => props.disabled && `
+    color: rgba(0, 0, 0, .26);
+    cursor: default;
+    pointer-events: none;
+  `}
   ${props => props.dense && `
     height: 32px;
     font-size: .8125rem;

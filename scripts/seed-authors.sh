@@ -13,7 +13,7 @@ main () {
   # sort by date of contribution again after deduping
   # remove date of contribution
   # output to AUTHORS file
-  git log --format='%ad %an <%ae>' --date="short" --reverse | sed -e 's/\[.*\]//' -e '/.local>$/c\' | rev | sort -k 1,1 -u | rev | sort -n -t"-" -k1 -k2 -k3 | sed -e 's/^[0-9\-]*//' >> $root/AUTHORS
+  git log --format='%ad %an <%ae>' --date="short" --reverse | sed -e 's/\[.*\]//' -e '/.local>$/c\' | rev | sort -k 1,1 -u | rev | sort -n -t"-" -k1 -k2 -k3 | sed -e 's/^[0-9\-]*//' > $root/AUTHORS
 
   exit 0
 }

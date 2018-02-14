@@ -27,11 +27,11 @@ class ChipsPage extends PureComponent {
           <Chip label="Clickable Chip" onClick={() => demo('chip')} />
           <Chip label="With Avatar" avatar="PG" />
           <Chip label="Clickable with Avatar" avatar="AP" onClick={() => demo('chip')} />
-          <Chip label="Deletable Chip" onDelete={() => demo('delete icon')} />
-          <Chip label="Clickable and Deletable Chip" onClick={() => demo('chip')} onDelete={() => demo('delete icon')} />
-          <Chip label="Deletable Chip with Avatar" avatar="BB" onDelete={() => demo('delete icon')} />
-          <Chip label="Uncontrolled Deletable chip" removable avatar="CA" />
-          <Chip label="Controlled Deletable chip" onDelete={this.handleRemove} removed={removed} />
+          <Chip label="Deletable Chip" deletable onDelete={() => demo('delete icon')} />
+          <Chip label="Clickable and Deletable Chip" deletable onClick={() => demo('chip')} onDelete={() => demo('delete icon')} />
+          <Chip label="Deletable Chip with Avatar" deletable avatar="BB" onDelete={() => demo('delete icon')} />
+          <Chip label="Uncontrolled Deletable Chip" deletable avatar="CA" />
+          <Chip label="Controlled Deletable Chip" deletable onDelete={this.handleRemove} removed={removed} />
         </div>
       </MaterialThemeProvider>
     );

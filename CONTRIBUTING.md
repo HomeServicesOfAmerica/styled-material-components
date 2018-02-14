@@ -21,7 +21,7 @@ Additionally, there are also many ways you can directly contribute, such as:
 ## How to contribute
 
 0. Fork this repo
-0. Create a remote upstream to the original project repository with: `remote add upstream https://github.com/ConciergeAuctions/styled-material-components.git`
+0. Create a remote upstream to the original project repository with: `git remote add upstream https://github.com/ConciergeAuctions/styled-material-components.git`
 0. Create a new branch on your fork with a name relevant to what you are working on
 0. Run `yarn install`
 0. Run `yarn run dev`

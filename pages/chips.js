@@ -1,10 +1,28 @@
 import React, { PureComponent } from 'react';
+import styled from 'styled-components';
 import MaterialThemeProvider from '../src/theme/ThemeProvider';
-import Chip from '../src/components/Chip';
+import Chip, { Avatar, Label, DeleteIcon } from '../src/components/Chip';
 
 const demo = (area) => {
   alert(`You clicked on the ${area}`);
 };
+
+const CustomChip = styled(Chip)`
+  ${Avatar} {
+    background-color: skyblue;
+  }
+
+  ${Label} {
+    font-weight: 800;
+  }
+
+  ${DeleteIcon} {
+    :hover {
+      fill: tomato;
+    }
+    fill: violet;
+  }
+`;
 
 class ChipsPage extends PureComponent {
   state = {
@@ -20,7 +38,7 @@ class ChipsPage extends PureComponent {
     const { removed } = this.state;
 
     return (
-      <MaterialThemeProvider theme={{ primary: '#03A9F4' }}>
+      <MaterialThemeProvider>
         <div className={className}>
           <h1>Chips</h1>
           <Chip label="Normal Chip" />
@@ -32,10 +50,12 @@ class ChipsPage extends PureComponent {
           <Chip label="Deletable Chip with Avatar" avatar="BB" onDelete={() => demo('delete icon')} />
           <Chip label="Uncontrolled Deletable chip" removable avatar="CA" />
           <Chip label="Controlled Deletable chip" onDelete={this.handleRemove} removed={removed} />
+          <CustomChip label="Custom Chip" avatar="AB" removable />
         </div>
       </MaterialThemeProvider>
     );
   }
 }
+
 
 export default ChipsPage;

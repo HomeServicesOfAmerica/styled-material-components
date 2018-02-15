@@ -15,8 +15,10 @@ const Card = styled(CardComponent)`
   border-radius: 2px;
   overflow: hidden;
   ${elevation(2)};
+  transition-duration: 0.3s;
   &:hover {
     ${props => props.hover && elevation(8)};
+    transform: ${props => props.hover && `translateY(-7px)`};
   }
 `;
 

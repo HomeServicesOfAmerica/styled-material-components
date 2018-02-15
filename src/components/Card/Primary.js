@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { Avatar } from '../Avatar';
+import Avatar from '../Avatar';
 import typography from '../../mixins/typography';
 
 const Title = styled.h1`

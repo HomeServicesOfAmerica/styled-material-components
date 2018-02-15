@@ -58,6 +58,9 @@ const HomePage = ({ className }) => (
       <ListItem>
         <Link href="/snackbar"><a>Snackbar Page</a></Link>
       </ListItem>
+      <ListItem>
+        <Link href="/switches"><a>Switches Page</a></Link>
+      </ListItem>
     </List>
   </MaterialThemeProvider>
 );

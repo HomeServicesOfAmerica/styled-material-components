@@ -6,15 +6,13 @@ import SwitchThumb from './SwitchThumb';
 class SwitchComponent extends PureComponent {
   state = {
     on: true,
-    off: false,
   };
 
   handleOnClick = () => {
     if (!this.props.disabled) {
-      this.setState({
-        on: !this.state.on,
-        off: !this.state.off,
-      });
+      this.setState(prevState => ({
+        on: !prevState.on,
+      }));
       this.props.onChange && this.props.onChange();
     }
   }
@@ -35,6 +33,11 @@ class SwitchComponent extends PureComponent {
   }
 }
 
-const Switch = styled(SwitchComponent)``;
+const Switch = styled(SwitchComponent)`
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  position: absolute;
+`;
 
 export default Switch;

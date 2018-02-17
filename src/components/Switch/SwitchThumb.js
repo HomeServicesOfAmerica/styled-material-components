@@ -66,9 +66,9 @@ const SwitchThumb = styled(SwitchThumbComponent)`
   ${ripple()}
 
   ${props => props.light && props.on && lightOn}
-  ${props => props.light && props.off && lightOff}
+  ${props => props.light && !props.on && lightOff}
   ${props => props.dark && props.on && darkOn}
-  ${props => props.dark && props.off && darkOff}
+  ${props => props.dark && !props.on && darkOff}
 
   ${props => props.light && props.disabled && lightDisabled}
   ${props => props.dark && props.disabled && darkDisabled}

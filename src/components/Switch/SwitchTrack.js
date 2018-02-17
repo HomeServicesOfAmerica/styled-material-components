@@ -1,6 +1,5 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import elevation from '../../mixins/elevation';
 
 const SwitchTrackComponent = props => (
   <div className={`${props.className} smc-switch`}>
@@ -32,13 +31,6 @@ const darkDisabled = css`
   background-color: rgba(255, 255, 255, .1);
 `;
 
-const raised = css`
-  ${elevation(2)};
-  &:active {
-    ${elevation(8)};
-  }
-`;
-
 const SwitchTrack = styled(SwitchTrackComponent)`
   width: 40px;
   height: 14px;
@@ -49,14 +41,13 @@ const SwitchTrack = styled(SwitchTrackComponent)`
   align-items: center;
 
   ${props => props.light && props.on && lightOn}
-  ${props => props.light && props.off && lightOff}
+  ${props => props.light && !props.on && lightOff}
   ${props => props.dark && props.on && darkOn}
-  ${props => props.dark && props.off && darkOff}
+  ${props => props.dark && !props.on && darkOff}
 
   ${props => props.light && props.disabled && lightDisabled}
   ${props => props.dark && props.disabled && darkDisabled}
 
-  ${props => props.raised && raised}
 `;
 
 export default SwitchTrack;

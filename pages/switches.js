@@ -33,7 +33,6 @@ const Switches = () => (
       </ListItem>
     </List>
   </MaterialThemeProvider>
-
 );
 
 export default Switches;

@@ -7,4 +7,3 @@ export const Avatar = Circular.extend.attrs({
   // This is just here because we have to have some sort of styles applied at this level.
   text-align: left;
 `;
-

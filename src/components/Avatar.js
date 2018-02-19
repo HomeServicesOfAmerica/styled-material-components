@@ -1,4 +1,4 @@
-import Circular from './Circular';
+import { Circular } from './Circular';
 import Image from './Image';
 
 export const Avatar = Circular.extend.attrs({

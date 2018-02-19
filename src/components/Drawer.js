@@ -5,12 +5,7 @@ import elevation from '../mixins/elevation';
 import { Portal } from '../components/Portal';
 
 const drawerSizing = css`
-  width: calc(100% - 56px);
-  max-width: 280px;
-  @media (min-width: 600px) {
-    width: calc(100% - 64px);
-    max-width: 320px;
-  }
+  width: 240px;
 `;
 
 // eslint-disable-next-line no-unused-expressions
@@ -21,7 +16,7 @@ injectGlobal`
         &:after {
           content: "";
           ${drawerSizing}
-          display: inline-flex;
+          display: inline-table;
           box-sizing: border-box;
         }
       }
@@ -29,7 +24,7 @@ injectGlobal`
         &:before {
           content: "";
           ${drawerSizing}
-          display: inline-flex;
+          display: inline-table;
           box-sizing: border-box;
         }
       }

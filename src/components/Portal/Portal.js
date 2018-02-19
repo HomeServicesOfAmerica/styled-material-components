@@ -37,7 +37,7 @@ export class Portal extends Component {
   }
 
   componentWillUnmount() {
-    smcPortal.removeChild(this.el);
+    smcPortal && smcPortal.removeChild(this.el);
   }
 
   render() {

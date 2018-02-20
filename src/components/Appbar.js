@@ -10,7 +10,7 @@ const NavIcon = styled.div`
   margin: 12px;
 `;
 
-const TitleComponent = ({ className, children, drawer }) => (
+const TitleComponent = ({ className, children }) => (
   <h1 className={`${className} smc-appbar-title`}>
     {children}
   </h1>

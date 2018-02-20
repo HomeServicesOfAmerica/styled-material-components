@@ -10,7 +10,7 @@ const NavIcon = styled.div`
   margin: 12px;
 `;
 
-const TitleComponent = ({ className, children }) => (
+const TitleComponent = ({ className, children, drawer }) => (
   <h1 className={`${className} smc-appbar-title`}>
     {children}
   </h1>
@@ -18,7 +18,12 @@ const TitleComponent = ({ className, children }) => (
 
 const Title = styled(TitleComponent)`
   margin: 0 12px;
-   ${typography('title')}
+  ${typography('title')}
+  ${({ drawer }) => drawer !== undefined && `
+    font-size: 17px;
+    position: absolute;
+    right: 3px;
+  `}
 `;
 
 class AppbarComponent extends PureComponent {
@@ -28,7 +33,7 @@ class AppbarComponent extends PureComponent {
         className={`${this.props.className} smc-appbar-container`}
       >
         <NavIcon />
-        <Title>{`${this.props.title}`}</Title>
+        <Title drawer={this.props.drawer} >{`${this.props.title}`}</Title>
       </div>
     );
   }
@@ -45,6 +50,11 @@ const Appbar = styled(AppbarComponent)`
   height: 64px;
   position: sticky;
   color: #fff;
+  ${({ drawer }) => drawer && `
+    align-items: flex-end;
+    padding: 12px;
+    height: 155px;
+  `};
 `;
 
 export default Appbar;

@@ -39,14 +39,14 @@ const PrimaryComponent = ({ avatar, title, subheader, className, large }) => (
         <Subheader className={`card-subtitle`}>{subheader}</Subheader>
       )}
     </div>
-    
+
   </section>
 );
 
 const Primary = styled(PrimaryComponent)`
   padding: 16px;
 
-  .smc-avatar {
+  ${Avatar} {
     position: absolute;
   }
 

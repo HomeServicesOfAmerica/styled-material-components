@@ -1,10 +1,17 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import elevation from '../../mixins/elevation';
 
-const CardComponent = ({ hover, className, children }) => (
-  <div hover={hover} className={`${className} smc-card`}>{children}</div>
+const CardComponent = ({ className, children }) => (
+  <div className={`${className} smc-card`}>{children}</div>
 );
+
+const hoverStyles = css`
+  &:hover {
+    ${elevation(8)};
+    transform: translateY(-7px);
+  }
+`;
 
 const Card = styled(CardComponent)`
   display: flex;
@@ -16,10 +23,7 @@ const Card = styled(CardComponent)`
   overflow: hidden;
   ${elevation(2)};
   transition-duration: 0.3s;
-  &:hover {
-    ${props => props.hover && elevation(8)};
-    transform: ${props => props.hover && `translateY(-7px)`};
-  }
+  ${props => props.hover && hoverStyles}
 `;
 
 Card.defaultProps = {

@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import typography from '../mixins/typography';
 import elevation from '../mixins/elevation';
 
-// placeholder for implementing navicon img
-const NavIcon = styled.div`
+// placeholder for implementing NavIconPlaceholder img
+const NavIconPlaceholder = styled.div`
   height: 24px;
   width: 24px;
   margin: 12px;
@@ -27,7 +27,7 @@ class AppbarComponent extends PureComponent {
       <div
         className={`${this.props.className} smc-appbar-container`}
       >
-        <NavIcon />
+        {this.props.navIcon ? <this.props.navIcon /> : <NavIconPlaceholder />}
         <Title>{`${this.props.title}`}</Title>
       </div>
     );

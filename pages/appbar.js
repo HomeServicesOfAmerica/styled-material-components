@@ -23,6 +23,11 @@ export default class AppbarPage extends Component {
     persistentLeft: false,
   }));
 
+  closeIcon = () => (
+    <a onClick={this.togglePersistentRight} className={`closeIcon`}>
+      x
+    </a>
+  );
 
   render() {
     return (
@@ -36,6 +41,7 @@ export default class AppbarPage extends Component {
               attachment="right"
               open={this.state.persistentRight}
               handleRequestClose={this.togglePersistentRight}>
+              <Appbar navIcon={this.closeIcon} title='I have a close button!' />
               <Appbar title='I am in this drawer!' />
               <p>{'hello!'}</p>
             </Drawer>

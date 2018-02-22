@@ -8,6 +8,7 @@
     "clear": "rm -rf dist/*",
     "build": "yarn clear && babel --out-dir dist src",
     "lint": "eslint src/**",
+    "lint:css": "stylelint {src,pages}/**",
     "dev": "next dev -p 8081",
     "export": "next build && next export -o docs",
     "prepublish": "yarn test && yarn build",
@@ -46,6 +47,10 @@
     "husky": "^0.14.3",
     "next": "^4.1.4",
     "now": "^9.0.1",
-    "react-dom": "^16.0.0"
+    "react-dom": "^16.0.0",
+    "stylelint": "^9.1.1",
+    "stylelint-config-standard": "^18.1.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-processor-styled-components": "^1.2.2"
   }
 }

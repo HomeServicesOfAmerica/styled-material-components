@@ -56,7 +56,7 @@ export default class AppbarPage extends Component {
               attachment='right'
               open={this.state.temporaryRight}
               handleRequestClose={this.toggleTemporaryRight}>
-              <Appbar title='I am a temporary appbar!' />
+              <Appbar title='I am in this drawer!' />
               <p>I am a <b>temporary</b> drawer!</p>
             </Drawer>
             <Button

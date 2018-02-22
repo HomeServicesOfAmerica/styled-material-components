@@ -99,9 +99,9 @@ export const Drawer = ({
     attachment={attachment}
     onRequestClose={handleRequestClose}
     renderContents={() => (
-      <StyledDrawer 
-        attachment={attachment} 
-        open={open} 
+      <StyledDrawer
+        attachment={attachment}
+        open={open}
         temporary={temporary}
       >
         {children}

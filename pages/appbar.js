@@ -64,7 +64,7 @@ export default class AppbarPage extends Component {
               primary
               onClick={this.togglePersistentRight}
             >
-              Launch Appbar Drawer
+              Launch Permanent Drawer
             </Button>
             <Button
               raised

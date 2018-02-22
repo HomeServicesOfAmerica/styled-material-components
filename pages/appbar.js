@@ -16,11 +16,17 @@ const Content = styled.div`
 export default class AppbarPage extends Component {
   state = {
     persistentRight: false,
+    temporaryRight: false,
   };
+
+  toggleTemporaryRight = () => this.setState(prevState => ({
+    persistentRight: !prevState.persistentRight ? true : prevState.persistentRight,
+    temporaryRight: !prevState.temporaryRight,
+  }));
 
   togglePersistentRight = () => this.setState(prevState => ({
     persistentRight: !prevState.persistentRight,
-    persistentLeft: false,
+    temporaryRight: false,
   }));
 
   closeIcon = () => (
@@ -38,12 +44,20 @@ export default class AppbarPage extends Component {
             <h1>Appbars</h1>
             <h2>Appbar in a drawer</h2>
             <Drawer
-              attachment="right"
+              attachment='right'
               open={this.state.persistentRight}
               handleRequestClose={this.togglePersistentRight}>
               <Appbar navIcon={this.closeIcon} title='I have a close button!' />
               <Appbar title='I am in this drawer!' />
-              <p>{'hello!'}</p>
+              <p>I am a <b>persistent</b> drawer!</p>
+            </Drawer>
+            <Drawer
+              temporary
+              attachment='right'
+              open={this.state.temporaryRight}
+              handleRequestClose={this.toggleTemporaryRight}>
+              <Appbar title='I am a temporary appbar!' />
+              <p>I am a <b>temporary</b> drawer!</p>
             </Drawer>
             <Button
               raised
@@ -51,6 +65,13 @@ export default class AppbarPage extends Component {
               onClick={this.togglePersistentRight}
             >
               Launch Appbar Drawer
+            </Button>
+            <Button
+              raised
+              accent
+              onClick={this.toggleTemporaryRight}
+            >
+              Launch Temporary Drawer
             </Button>
           </Content>
         </PageContainer>

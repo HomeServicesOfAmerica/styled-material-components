@@ -1,5 +1,5 @@
 import { Circular } from './Circular';
-import Image from './Image';
+import { Image } from './Image';
 
 export const Avatar = Circular.extend.attrs({
   children: props => (props.src ? <Image src={props.src} /> : props.children),

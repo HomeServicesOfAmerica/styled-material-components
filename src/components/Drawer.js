@@ -5,7 +5,7 @@ import elevation from '../mixins/elevation';
 import { Portal } from '../components/Portal';
 
 const drawerSizing = css`
-  width: 240px;
+  width: 320px;
 `;
 
 // eslint-disable-next-line no-unused-expressions

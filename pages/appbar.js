@@ -36,7 +36,7 @@ export default class AppbarPage extends Component {
               attachment="right"
               open={this.state.persistentRight}
               handleRequestClose={this.togglePersistentRight}>
-              <Appbar title='I am in this drawer!' />
+              <Appbar drawer title='I am in this drawer!' />
               <p>{'hello!'}</p>
             </Drawer>
             <Button

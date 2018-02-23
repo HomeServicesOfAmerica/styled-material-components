@@ -17,28 +17,27 @@ class Checkbox extends PureComponent {
   };
 
   render() {
-    const { primary, disabled, checked: checkedProp, value, id } = this.props;
+    const { primary, disabled, checked: checkedProp, value, id, className } = this.props;
     const { indeterminate } = this.state;
     // determine if checkbox is controlled or uncontrolled
     const checked = checkedProp !== undefined ? checkedProp : this.state.checked;
 
     return (
-      <CheckboxContainer
-        className="smc-checkbox-container"
+      <Wrapper
+        className={className}
         primary={primary}
         disabled={disabled}
         checked={checked}
       >
-        <CheckboxBackground
-          className="smc-checkbox-background"
+        <Box
           primary={primary}
           checked={checked}
           disabled={disabled}
           indeterminate={indeterminate}
         >
-          {indeterminate && <IndeterminateMark className="smc-checkbox-indeterminate-mark" />}
-          {checked && !indeterminate && <CheckMark className="smc-checkbox-check-mark" />}
-        </CheckboxBackground>
+          {indeterminate && <IndeterminateMark />}
+          {checked && !indeterminate && <CheckMark />}
+        </Box>
         <Input
           onChange={this.handleInputChange}
           disabled={disabled}
@@ -46,12 +45,12 @@ class Checkbox extends PureComponent {
           value={value}
           id={id}
         />
-      </CheckboxContainer>
+      </Wrapper>
     );
   }
 }
 
-const CheckboxContainer = styled.div`
+const Wrapper = styled.div`
   display: inline-block;
   position: relative;
   padding: 11px;
@@ -80,7 +79,7 @@ const CheckboxContainer = styled.div`
   }
 `;
 
-const CheckboxBackground = styled.div`
+const Box = styled.div`
   display: inline-flex;
   position: absolute;
   left: 11px;
@@ -119,7 +118,10 @@ const Input = styled.input.attrs({
   margin: 0;
 `;
 
-const CheckMarkSvg = styled.svg`
+const CheckMark = styled.svg.attrs({
+  viewBox: '0 0 24 24',
+  children: <path d="M1.73,12.91 8.1,19.28 22.79,4.59" />,
+})`
   fill: none;
   stroke: ${props => props.theme.white};
   width: 100%;
@@ -127,16 +129,11 @@ const CheckMarkSvg = styled.svg`
   stroke-width: 3.12px;
 `;
 
-const CheckMark = () => (
-  <CheckMarkSvg viewBox="0 0 24 24">
-    <path d="M1.73,12.91 8.1,19.28 22.79,4.59" />,
-  </CheckMarkSvg>
-);
-
 const IndeterminateMark = styled.div`
   height: 2px;
   width: 14px;
   background-color: ${props => props.theme.white};
 `;
 
-export default Checkbox;
+export default styled(Checkbox)``;
+export { Wrapper, Box, CheckMark, IndeterminateMark };

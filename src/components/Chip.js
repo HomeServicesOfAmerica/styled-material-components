@@ -121,5 +121,5 @@ class Chip extends PureComponent {
   }
 }
 
-export default Chip;
+export default styled(Chip)``;
 export { ChipContainer, Label, Avatar, DeleteIcon };

@@ -1,10 +1,20 @@
 import React, { PureComponent } from 'react';
 import MaterialThemeProvider from '../src/theme/ThemeProvider';
-import Checkbox from '../src/components/Checkbox';
+import Checkbox, { Box, CheckMark } from '../src/components/Checkbox';
 import List from '../src/components/List/List';
 import ListItem from '../src/components/List/ListItem';
 import defaultTheme from '../src/theme/defaultTheme';
 
+const StyledCheckbox = Checkbox.extend`
+  ${Box} {
+    background-color: transparent;
+    border-color: skyblue
+  }
+  ${CheckMark} {
+    stroke: hotpink;
+    stroke-width: 5px;
+  }
+`;
 class CheckboxesPage extends PureComponent {
   state = {
     checked: true,
@@ -48,6 +58,10 @@ class CheckboxesPage extends PureComponent {
           <ListItem>
             <Checkbox indeterminate id="checkbox7" />
             <label htmlFor="checkbox7">Indeterminate Checkbox</label>
+          </ListItem>
+          <ListItem>
+            <StyledCheckbox id="checkbox8" />
+            <label htmlFor="checkbox8">Custom Checkbox</label>
           </ListItem>
         </List>
       </MaterialThemeProvider>

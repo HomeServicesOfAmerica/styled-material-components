@@ -44,6 +44,9 @@ const HomePage = ({ className }) => (
         <Link href="/lists"><a>Lists Page</a></Link>
       </ListItem>
       <ListItem>
+        <Link href="/menus"><a>Menus Page</a></Link>
+      </ListItem>
+      <ListItem>
         <Link href="/tabs"><a>Tabs Page</a></Link>
       </ListItem>
       <ListItem>

@@ -8,6 +8,7 @@ export { Divider } from './components/Divider';
 export { default as Drawer } from './components/Drawer';
 export * from './components/GridList';
 export * from './components/List';
+export * from './components/Menu';
 export { Portal } from './components/Portal';
 export * from './components/Slider';
 export { default as Snackbar } from './components/Snackbar';

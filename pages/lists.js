@@ -6,7 +6,7 @@ import ListItemText from '../src/components/List/ListItemText';
 import MaterialThemeProvider from '../src/theme/ThemeProvider';
 
 const ListsPage = ({ className }) => (
-  <MaterialThemeProvider theme={{ primary: "#03A9F4" }}>
+  <MaterialThemeProvider theme={{ primary: '#03A9F4' }}>
     <div className={className}>
       <h1>List with Avatar</h1>
       <div className="list">
@@ -40,31 +40,34 @@ const ListsPage = ({ className }) => (
       <div className="list">
         <List>
           <ListItem leftAvatar="http://www.wasiofaces.com/wp-content/uploads/San-Diego-Headshots-Photography-041.jpg" avatarSize={60}>
-            <ListItemText primary="Primary Title" secondary={
-              <div>
-                <p>(214) 520-8300</p>
-                <p>5015 Tracy Street Suite 102</p>
-                <p>Dallas, Texas 75205</p>
-              </div>
-            } />
+            <ListItemText
+              primary="Primary Title" secondary={
+                <div>
+                  <p>(214) 520-8300</p>
+                  <p>5015 Tracy Street Suite 102</p>
+                  <p>Dallas, Texas 75205</p>
+                </div>
+              } />
           </ListItem>
           <ListItem leftAvatar="http://www.wasiofaces.com/wp-content/uploads/San-Diego-Headshots-Photography-041.jpg" avatarSize={60}>
-            <ListItemText primary="Primary Title" secondary={
-              <div>
-                <p>(214) 520-8300</p>
-                <p>5015 Tracy Street Suite 102</p>
-                <p>Dallas, Texas 75205</p>
-              </div>
-            } />
+            <ListItemText
+              primary="Primary Title" secondary={
+                <div>
+                  <p>(214) 520-8300</p>
+                  <p>5015 Tracy Street Suite 102</p>
+                  <p>Dallas, Texas 75205</p>
+                </div>
+              } />
           </ListItem>
           <ListItem leftAvatar="http://www.wasiofaces.com/wp-content/uploads/San-Diego-Headshots-Photography-041.jpg" avatarSize={60}>
-            <ListItemText primary="Primary Title" secondary={
-              <div>
-                <p>(214) 520-8300</p>
-                <p>5015 Tracy Street Suite 102</p>
-                <p>Dallas, Texas 75205</p>
-              </div>
-            } />
+            <ListItemText
+              primary="Primary Title" secondary={
+                <div>
+                  <p>(214) 520-8300</p>
+                  <p>5015 Tracy Street Suite 102</p>
+                  <p>Dallas, Texas 75205</p>
+                </div>
+              } />
           </ListItem>
         </List>
       </div>
@@ -74,19 +77,19 @@ const ListsPage = ({ className }) => (
           <ListItem
             withDivider
             leftAvatar="http://www.wasiofaces.com/wp-content/uploads/San-Diego-Headshots-Photography-041.jpg"
-            >
+          >
             <ListItemText primary="Primary Title" secondary="This is the secondary line" />
           </ListItem>
           <ListItem
             withDivider
             leftAvatar="http://www.wasiofaces.com/wp-content/uploads/San-Diego-Headshots-Photography-041.jpg"
-            >
+          >
             <ListItemText primary="Primary Title" secondary="This is the secondary line" />
           </ListItem>
           <ListItem
             withDivider
             leftAvatar="http://www.wasiofaces.com/wp-content/uploads/San-Diego-Headshots-Photography-041.jpg"
-            >
+          >
             <ListItemText primary="Primary Title" secondary="This is the secondary line" />
           </ListItem>
         </List>

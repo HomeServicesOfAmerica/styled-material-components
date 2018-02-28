@@ -55,7 +55,7 @@ const withRipple = (ComposedComponent) => {
     reset = () => {
       if (this.clear) clearTimeout(this.clear);
       this.clear = setTimeout(() => {
-        while (this.rippleContainer.firstChild) {
+        while (this.rippleContainer && this.rippleContainer.firstChild) {
           this.rippleContainer.removeChild(this.rippleContainer.firstChild);
         }
       }, 2000);

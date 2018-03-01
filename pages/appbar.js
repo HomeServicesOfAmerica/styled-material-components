@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import MaterialThemeProvider from '../src/theme/ThemeProvider';
 import { Drawer } from '../src/components/Drawer';
 import Button from '../src/components/Button';
-import Appbar from '../src/components/Appbar';
+import { Appbar, Navigation, NavigationItem } from '../src/components/Appbar';
 
 const PageContainer = styled.div`
   width: 100vw;
@@ -17,6 +17,7 @@ export default class AppbarPage extends Component {
   state = {
     persistentRight: false,
     temporaryRight: false,
+    active: 'test1',
   };
 
   toggleTemporaryRight = () => this.setState(prevState => ({
@@ -35,11 +36,16 @@ export default class AppbarPage extends Component {
     </a>
   );
 
+  setNav = active => this.setState({ active });
+
   render() {
     return (
       <MaterialThemeProvider theme={{ primary: '#03A9F4' }}>
         <PageContainer>
-          {!this.state.persistentRight ? <Appbar title='This is a title!' /> : <span />}
+          {!this.state.persistentRight
+            ? <Appbar title='This is a title!' />
+            : <span />
+          }
           <Content>
             <h1>Appbars</h1>
             <h2>Appbar in a drawer</h2>
@@ -73,6 +79,20 @@ export default class AppbarPage extends Component {
             >
               Launch Temporary Drawer
             </Button>
+            <h2>Appbar with navigation</h2>
+            <Appbar title='Navigation'>
+              <Navigation active={this.state.active}>
+                <NavigationItem onClick={() => this.setNav('test1')} navKey="test1">
+                  <p>Test</p>
+                </NavigationItem>
+                <NavigationItem onClick={() => this.setNav('test2')} navKey="test2">
+                  <p>Components</p>
+                </NavigationItem>
+                <NavigationItem onClick={() => this.setNav('test3')} navKey="test3">
+                  <p>Themes</p>
+                </NavigationItem>
+              </Navigation>
+            </Appbar>
           </Content>
         </PageContainer>
       </MaterialThemeProvider>

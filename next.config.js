@@ -2,6 +2,25 @@ module.exports = {
   exportPathMap() {
     return {
       '/': { page: '/' },
+      '/appbar': { page: '/appbar' },
+      '/bottomsheets': { page: '/bottomsheets' },
+      '/buttons': { page: '/buttons' },
+      '/cards': { page: '/cards' },
+      '/checkboxes': { page: '/checkboxes' },
+      '/chips': { page: '/chips' },
+      '/dialog': { page: '/dialog' },
+      '/divider': { page: '/divider' },
+      '/drawer': { page: '/drawer' },
+      '/gridlists': { page: '/gridlists' },
+      '/icons': { page: '/icons' },
+      '/lists': { page: '/lists' },
+      '/menus': { page: '/menus' },
+      '/sliders': { page: '/sliders' },
+      '/snackbar': { page: '/snackbar' },
+      '/switches': { page: '/switches' },
+      '/tables': { page: '/tables' },
+      '/tabs': { page: '/tabs' },
+      '/text-fields': { page: '/text-fields' },
     };
   },
 };

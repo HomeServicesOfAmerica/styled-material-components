@@ -11,6 +11,13 @@ class TextFieldComponent extends PureComponent {
     height: '100%',
   };
   
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.reset) {
+      nextProps.onReset && nextProps.onReset();
+      this.setState({ text: this.props.defaultValue || '' });
+    }
+  }
+
   textArea = null;
 
   onChange = (e) => {

@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import MaterialThemeProvider from '../src/theme/ThemeProvider';
 import TextField from '../src/components/TextField';
+import Button from '../src/components/Button';
 
 const validateLength = str => str.length > 7;
 
@@ -21,6 +22,7 @@ const TextFieldWithStyledPrefixAndSuffix = TextFieldWithBottomMargin.extend`
 class TextFieldPage extends PureComponent {
   state = {
     controlledInputValue: '',
+    shouldReset: false,
   };
 
   handleChange = e => this.setState({ controlledInputValue: e.target.value });
@@ -105,6 +107,13 @@ class TextFieldPage extends PureComponent {
             multiline
             floatingLabelText="Multiline text area"
           />
+          <TextFieldWithBottomMargin
+            rows={2}
+            defaultValue="These changes will return"
+            reset={this.state.shouldReset}
+            onReset={() => this.setState({ shouldReset: false })}
+          />
+          <Button onClick={() => this.setState({ shouldReset: true })}>Reset</Button>
         </div>
       </MaterialThemeProvider>
     );

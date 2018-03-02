@@ -1,6 +1,7 @@
 /* eslint-disable no-confusing-arrow */
 import styled, { css } from 'styled-components';
 import React, { PureComponent } from 'react';
+import DropdownMenu from './DropdownMenu';
 
 class TextFieldComponent extends PureComponent {
   state = {
@@ -45,6 +46,11 @@ class TextFieldComponent extends PureComponent {
   };
 
   render() {
+    const hasValidOptions = this.props.options && (
+      Array.isArray(this.props.options) &&
+      this.props.options.length > 0
+    );
+
     const hasError = Boolean(this.state.error || this.props.error || this.props.errorText);
     return (
       <div className={`${this.props.className} smc-text-field-container`}>
@@ -58,7 +64,12 @@ class TextFieldComponent extends PureComponent {
           floatingLabelStyle={
             hasError ? this.props.floatingLabelErrorStyle : this.props.floatingLabelStyle
           }
-          floating={this.state.focus || this.props.hintText || this.state.text.length}
+          floating={this.state.focus ||
+            this.props.hintText ||
+            this.props.options ||
+            this.props.defaultOption ||
+            this.state.text.length
+          }
         >
           {this.props.floatingLabelText || ''}
           {this.props.required ? '*' : ''}
@@ -67,15 +78,23 @@ class TextFieldComponent extends PureComponent {
             show={this.props.required}
             requiredStarStyle={this.props.requiredStarStyle} /> */}
         </FloatingLabel>
-        <HintText
-          className={'smc-text-field-hint-text'}
-          hintTextStyle={this.props.hintTextStyle}
-          hasPrefix={this.props.prefix}
-          error={hasError}
-          show={!this.props.defaultValue && !this.state.text.length && !this.props.value}
-        >
-          {this.props.hintText}
-        </HintText>
+        {hasValidOptions && (
+          <DropdownMenu
+            defaultOption={this.props.defaultOption}
+            options={this.props.options}
+          />
+        )}
+        {!this.props.options && (
+          <HintText
+            className={'smc-text-field-hint-text'}
+            hintTextStyle={this.props.hintTextStyle}
+            hasPrefix={this.props.prefix}
+            error={hasError}
+            show={!this.props.defaultValue && !this.state.text.length && !this.props.value}
+          >
+            {this.props.hintText}
+          </HintText>
+        )}
         {this.props.helperText && (
           <HelperText
             className={'smc-text-field-helper-text'}
@@ -85,6 +104,15 @@ class TextFieldComponent extends PureComponent {
             {this.props.helperText}
           </HelperText>
         )}
+        {(this.props.options && !hasValidOptions) && (
+          <ErrorText
+            show={!hasError}
+            className={'smc-text-field-error-text'}
+            errorTextStyle={this.props.errorTextStyle}
+          >
+            Must have an array of at least one option passed in
+          </ErrorText>
+        )}
         <ErrorText
           show={hasError}
           className={'smc-text-field-error-text'}
@@ -93,7 +121,7 @@ class TextFieldComponent extends PureComponent {
           {this.props.errorText}
         </ErrorText>
         <UnderlineFocus
-          disabled={this.props.focusDisabled}
+          disabled={this.props.options || this.props.focusDisabled}
           className={'smc-text-field-underline-focus'}
           underlineFocusStyle={this.props.underlineFocusStyle}
           focus={this.state.focus}
@@ -122,7 +150,7 @@ class TextFieldComponent extends PureComponent {
               hasPrefix={!!this.props.prefix}
               hasSuffix={!!this.props.suffix}
               inputStyle={this.props.inputStyle}
-              disabled={this.props.disabled}
+              disabled={this.props.options || this.props.disabled}
               autoFocus={this.props.autoFocus}
               value={this.props.value || this.state.text}
               onChange={this.onChange}
@@ -297,6 +325,9 @@ const TextField = styled(TextFieldComponent)`
   font-family: lato, sans-serif;
   border-bottom: 0.5px ${props => (props.disabled ? 'dotted' : 'solid')};
   border-bottom-color: ${props => (props.error ? error : hintTextColor)};
+  ${props => props.options && `
+    border-bottom-color: #726969;
+  `}
 `;
 
 export default TextField;

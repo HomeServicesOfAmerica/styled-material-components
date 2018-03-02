@@ -6,6 +6,7 @@ import defaultTheme from './defaultTheme';
 /* eslint-disable no-unused-expressions */
 injectGlobal`
   body {
+    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
     overflow: hidden;

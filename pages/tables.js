@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import MaterialThemeProvider from '../src/theme/ThemeProvider';
 import { Table } from '../src/components/Table';
 
@@ -7,16 +7,19 @@ const fields = [
     key: 'date',
     label: 'Date',
     numerical: false,
+    sortable: true,
   },
   {
     key: 'event',
     label: 'Event',
     numerical: false,
+    sortable: true,
   },
   {
     key: 'price',
     label: 'Price',
     numerical: true,
+    sortable: true,
   },
 ];
 
@@ -26,6 +29,24 @@ const data = [
     date: '02/01/17',
     event: 'Price Change',
     price: '$24,500,000',
+  },
+  {
+    key: 'xzvxzcv',
+    date: '02/01/17',
+    event: 'Open House',
+    price: '$5,500,000',
+  },
+  {
+    key: 'ssssdas',
+    date: '02/01/17',
+    event: 'Showing',
+    price: '$14,500,000',
+  },
+  {
+    key: 'efsadf',
+    date: '02/01/17',
+    event: 'Price Change',
+    price: '$774,500,000',
   },
   {
     key: '2398ro829j',
@@ -63,7 +84,7 @@ const StyledTable = Table.extend`
 const incrementCurrentPage = ({ currentPage }) => ({ currentPage: currentPage + 1 });
 const decrementCurrentPage = ({ currentPage }) => ({ currentPage: currentPage - 1 });
 
-class ControlledTable extends Component {
+class ControlledTable extends PureComponent {
   state = {
     currentPage: 1,
   };
@@ -116,6 +137,9 @@ const Tables = () => (
               <li>
                 numerical?: boolean
               </li>
+              <li>
+                sortable?: boolean
+              </li>
             </ul>
           </li>
           <li>
@@ -153,6 +177,41 @@ const Tables = () => (
             handleBackwardsPagination: () => any
             Callback that will be called when the user clicks the 'back' arrow
           </li>
+          <br />
+          <li>
+            hasCheckboxes?: boolean
+            denotes checkboxes on items, if this prop is passed you must also pass the
+            next two methods below, for onCheck and onUncheck
+          </li>
+          <ul>
+            <li>
+              onCheck: () => any
+              Callback that will be called when the user clicks a checkbox on.
+              it is passed the Datum of that row as its first param
+            </li>
+            <li>
+              onUnheck: () => any
+              Callback that will be called when the user clicks a checkbox off.
+              it is passed the Datum of that row as its first param
+            </li>
+          </ul>
+          <br />
+          <li>
+            notes on sorting:
+          </li>
+          <ul>
+            <li>
+              if Uncontrolled, the sort will order all the data regardles of the currentPage
+              this is because it manipulates all the data it was given. Page agnostic.
+            </li>
+            <li>
+              if controlled via a parent, it will manipulate only the data on that page.
+              as that is all it was given.
+            </li>
+            <li>
+              The sorting method is called NaturalSort. Credits to: <a href='https://github.com/bubkoo/natsort' target='none'>https://github.com/bubkoo/natsort</a>
+            </li>
+          </ul>
         </ul>
       </h4>
       <h2>Regular Table</h2>
@@ -176,8 +235,35 @@ const Tables = () => (
       />
       <h2>Controlled table with footer</h2>
       <ControlledTable />
+      <h2>Table checkboxes</h2>
+      <Table
+        hasCheckboxes
+        onCheck={() => {
+          console.log('select');
+        }}
+        onUncheck={() => {
+          console.log('deselect');
+        }}
+        fields={fields}
+        data={data}
+        header={`Check the console for callbacks!`}
+      />
+      <h2>Table checkboxes, with sorting!</h2>
+      <Table
+        hasCheckboxes
+        rowsPerPage={2}
+        onCheck={(e) => {
+          console.log('select', e.key);
+        }}
+        onUncheck={(e) => {
+          console.log('deselect', e.key);
+        }}
+        fields={fields}
+        data={data}
+        header={`Check the console for callbacks!`}
+      />
     </div>
-  </MaterialThemeProvider>
+  </MaterialThemeProvider >
 );
 
 export default Tables;

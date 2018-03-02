@@ -58,6 +58,7 @@ const Wrapper = styled.div`
   vertical-align: middle;
   cursor: ${props => !props.disabled && 'pointer'};
   :hover::before {
+    transition: 0.3s;
     opacity: 0.04;
   }
   ::before {
@@ -79,6 +80,7 @@ const Wrapper = styled.div`
 `;
 
 const Box = styled.div`
+  transition: 0.3s;
   display: inline-flex;
   position: absolute;
   left: 11px;
@@ -106,7 +108,7 @@ const Box = styled.div`
 const Input = styled.input.attrs({
   type: 'checkbox',
   disabled: props => props.disabled,
-})`
+}) `
   position: absolute;
   opacity: 0;
   left: 0;
@@ -120,7 +122,7 @@ const Input = styled.input.attrs({
 const CheckMark = styled.svg.attrs({
   viewBox: '0 0 24 24',
   children: <path d="M1.73,12.91 8.1,19.28 22.79,4.59" />,
-})`
+}) `
   fill: none;
   stroke: ${props => props.theme.white};
   width: 100%;
@@ -129,10 +131,11 @@ const CheckMark = styled.svg.attrs({
 `;
 
 const IndeterminateMark = styled.div`
+  transition: 0.3s;
   height: 2px;
   width: 14px;
   background-color: ${props => props.theme.white};
 `;
 
-export default styled(Checkbox)``;
+export default styled(Checkbox) ``;
 export { Wrapper, Box, CheckMark, IndeterminateMark };

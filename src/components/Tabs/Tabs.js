@@ -2,7 +2,7 @@ import React, { PureComponent, Children, isValidElement, cloneElement } from 're
 import styled from 'styled-components';
 import InkBar from './InkBar';
 
-const TabsContainer = styled.nav`
+export const TabsContainer = styled.nav`
   position: relative;
   margin: 0 auto;
   text-transform: uppercase;
@@ -10,12 +10,12 @@ const TabsContainer = styled.nav`
   color: ${props => props.theme.textColors.primary};
 `;
 
-const Content = styled.div`
+export const Content = styled.div`
   font-family: lato, sans-serif;
   text-transform: none;
 `;
 
-const TabNavigationContainer = styled.div`
+export const TabNavigationContainer = styled.div`
   background-color: transparent;
 `;
 
@@ -54,7 +54,7 @@ class TabsComponent extends PureComponent {
     const tabWidth =
       this.props.width ||
       parseInt(this.tabs.getBoundingClientRect().width / this.state.numTabs, 10);
-    this.setState({ tabWidth }); // eslint-disable-line 
+    this.setState({ tabWidth }); // eslint-disable-line
   }
 
   updateSelectedIndex = selectedIndex => this.setState({ selectedIndex });

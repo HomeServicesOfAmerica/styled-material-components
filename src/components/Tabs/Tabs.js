@@ -57,9 +57,19 @@ class TabsComponent extends PureComponent {
     this.setState({ tabWidth }); // eslint-disable-line
   }
 
-  updateSelectedIndex = selectedIndex => this.setState({ selectedIndex });
+  updateSelectedIndex = (selectedIndex) => {
+    this.setState({ selectedIndex });
+    if (this.props.onChange) {
+      this.props.onChange({ selectedIndex, label: this.state.tabs[selectedIndex].props.label });
+    }
+  }
 
-  getSelected = index => this.state.selectedIndex === index;
+  getSelectedIndex = () => {
+    if (typeof this.props.selectedIndex === 'number') return this.props.selectedIndex;
+    return this.state.selectedIndex;
+  }
+
+  getSelected = index => this.getSelectedIndex() === index;
 
   render() {
     const tabContent = [];
@@ -89,7 +99,7 @@ class TabsComponent extends PureComponent {
         {this.props.showInkbar ?
           <InkBar
             numTabs={this.state.numTabs}
-            selectedIndex={this.state.selectedIndex}
+            selectedIndex={this.getSelectedIndex()}
             tabWidth={this.state.tabWidth}
             inkbarColor={this.props.inkbarColor} /> :
           null

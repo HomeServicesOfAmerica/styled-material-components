@@ -26,10 +26,10 @@ const incrementCurrentPage = ({ currentPage }) => ({ currentPage: currentPage + 
 const decrementCurrentPage = ({ currentPage }) => ({ currentPage: currentPage - 1 });
 
 class Table extends Component {
-  rowsPerPage = this.props.rowsPerPage || 10;
   state = {
     currentPage: this.props.currentPage || 1,
   }
+  rowsPerPage = this.props.rowsPerPage || 10;
 
   handleBackwardsPagination = () => {
     if (this.props.handleBackwardsPagination) {
@@ -55,7 +55,9 @@ class Table extends Component {
       ? this.props.data
       : this.props.data.slice((currentPage - 1) * this.rowsPerPage, currentPage * this.rowsPerPage);
     let extraRows = 0;
-    if (!showAllData || fakingPagination) extraRows = Math.max(0, this.rowsPerPage - rowsToShow.length);
+    if (!showAllData || fakingPagination) {
+      extraRows = Math.max(0, this.rowsPerPage - rowsToShow.length);
+    }
     return (
       <div className={`smc-table-wrapper ${this.props.className}`}>
         {this.props.header && <Header>{this.props.header}</Header>}
@@ -79,38 +81,41 @@ class Table extends Component {
             {
               (
                 (fakingPagination || (totalDataPoints <= this.rowsPerPage))
-                ? this.props.data
-                : this.props.data.slice((currentPage - 1) * this.rowsPerPage, currentPage * this.rowsPerPage)
-               )
-               .map(datum => (
-                <Row key={`row_${datum.key}`}>
-                  {this.props.fields.map(({ key, numerical }, i) => (
-                    <Datum
-                      key={`{${datum.key}_${key}}`}
-                      column={key}
-                      numerical={numerical}
-                      first={i === 0}
-                      last={i === this.props.fields.length - 1}
-                    >
-                      {datum[key]}
-                    </Datum>
-                  ))}
-                </Row>
-              ))
-          }
-          {Array(extraRows).fill('').map((val, i) => (
-            <Row key={`faux-data-${i}`}>
-              {this.props.fields.map(({ key, numerical }, i) => (
-                <Datum
-                  key={`faux-data_${key}}`}
-                  column={key}
-                  numerical={numerical}
-                  first={i === 0}
-                  last={i === this.props.fields.length - 1}
-                />
-              ))}
-            </Row>
-          ))}
+                  ? this.props.data
+                  : this.props.data.slice(
+                    (currentPage - 1) * this.rowsPerPage, currentPage * this.rowsPerPage
+                  )
+              )
+                .map(datum => (
+                  <Row key={`row_${datum.key}`}>
+                    {this.props.fields.map(({ key, numerical }, i) => (
+                      <Datum
+                        key={`{${datum.key}_${key}}`}
+                        column={key}
+                        numerical={numerical}
+                        first={i === 0}
+                        last={i === this.props.fields.length - 1}
+                      >
+                        {datum[key]}
+                      </Datum>
+                    ))}
+                  </Row>
+                ))
+            }
+            {Array(extraRows).fill('').map((val, j) => (
+              // eslint-disable-next-line react/no-array-index-key
+              <Row key={`faux-data-${j}`}>
+                {this.props.fields.map(({ key, numerical }, i) => (
+                  <Datum
+                    key={`faux-data_${key}}`}
+                    column={key}
+                    numerical={numerical}
+                    first={i === 0}
+                    last={i === this.props.fields.length - 1}
+                  />
+                ))}
+              </Row>
+            ))}
           </tbody>
         </table>
         {showFooter && (

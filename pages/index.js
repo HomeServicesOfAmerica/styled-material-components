@@ -41,6 +41,9 @@ const HomePage = ({ className }) => (
         <Link href="/gridlists"><a>Grid Lists Page</a></Link>
       </ListItem>
       <ListItem>
+        <Link href="/icons"><a>Icons Page</a></Link>
+      </ListItem>
+      <ListItem>
         <Link href="/lists"><a>Lists Page</a></Link>
       </ListItem>
       <ListItem>

@@ -15,8 +15,7 @@ export * from './components/Table';
 export * from './components/Tabs';
 export { default as TextField } from './components/TextField';
 
-export * from './icons/KeyboardArrowLeftIcon';
-export * from './icons/KeyboardArrowRightIcon';
+export * from './icons/icons';
 
 export { default as withRipple } from './mixins/ripple';
 

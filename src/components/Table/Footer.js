@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Button from '../Button';
 import { Icon } from '../../icons/icons';
@@ -45,18 +45,18 @@ const FooterComponent = ({
       <PaginationButton
         onClick={handleBackwardsPagination}
         disabled={onFirstPage}
-        >
+      >
         <FooterIcon icon="keyboard_arrow_left" />
       </PaginationButton>
       <PaginationButton
         onClick={handleForwardPagination}
         disabled={onLastPage}
-        >
+      >
         <FooterIcon icon="keyboard_arrow_right" />
       </PaginationButton>
     </div>
   );
-}
+};
 
 const Footer = styled(FooterComponent)`
   height: 48px;

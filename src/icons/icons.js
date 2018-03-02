@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { ArrowDropDownPath } from './ArrowDropDownPath';
+import { UpwardArrowPath } from './UpwardArrowPath';
 import { KeyboardArrowLeftPath } from './KeyboardArrowLeftPath';
 import { KeyboardArrowRightPath } from './KeyboardArrowRightPath';
 import { StarBorderPath } from './StarBorderPath';
@@ -15,6 +16,7 @@ const DEFAULT_SIZE = 24;
 
 const iconPaths = {
   arrow_drop_down: ArrowDropDownPath,
+  upward_arrow: UpwardArrowPath,
   keyboard_arrow_left: KeyboardArrowLeftPath,
   keyboard_arrow_right: KeyboardArrowRightPath,
   star_border: StarBorderPath,
@@ -45,34 +47,38 @@ export const Icon = styled.svg.attrs({
   viewBox: `0 0 ${DEFAULT_SIZE} ${DEFAULT_SIZE}`,
   xmlns: 'http://www.w3.org/2000/svg',
   children: getChildren,
-})``;
+}) ``;
 
 export const ArrowDropDown = Icon.extend.attrs({
   children: ArrowDropDownPath,
-})``;
+}) ``;
+
+export const UpwardArrow = Icon.extend.attrs({
+  children: UpwardArrowPath,
+}) ``;
 
 export const KeyboardArrowLeftIcon = Icon.extend.attrs({
   children: KeyboardArrowLeftPath,
-})``;
+}) ``;
 
 export const KeyboardArrowRightIcon = Icon.extend.attrs({
   children: KeyboardArrowRightPath,
-})``;
+}) ``;
 export const StarBorderIcon = Icon.extend.attrs({
   children: StarBorderPath,
-})``;
+}) ``;
 export const StarHalfIcon = Icon.extend.attrs({
   children: StarHalfPath,
-})``;
+}) ``;
 export const StarIcon = Icon.extend.attrs({
   children: StarPath,
-})``;
+}) ``;
 export const KeyboardArrowUpIcon = Icon.extend.attrs({
   children: KeyboardArrowUpPath,
-})``;
+}) ``;
 export const KeyboardArrowDownIcon = Icon.extend.attrs({
   children: KeyboardArrowDownPath,
-})``;
+}) ``;
 export const PinDropPathIcon = Icon.extend.attrs({
   children: PinDropPath,
-})``;
+}) ``;

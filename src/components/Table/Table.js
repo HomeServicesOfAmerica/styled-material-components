@@ -1,10 +1,14 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import Row from './Row';
 import Datum from './Datum';
 import Title from './Title';
 import Header from './Header';
 import Footer from './Footer';
+import naturalSort from './naturalSort';
+import elevation from '../../mixins/elevation';
+import Checkbox from '../Checkbox';
+import { UpwardArrow } from '../../icons/icons';
 
 /*
  * The user of the table is responsible for passing in a unique key for each
@@ -12,9 +16,6 @@ import Footer from './Footer';
  *
  *
  * TODO:
- * - row hover
- * - row selection
- * - enable column sorting
  * - column name hover
  * - long header titles
  * - inline text editing
@@ -22,14 +23,141 @@ import Footer from './Footer';
  * - alternate headers
  */
 
-const incrementCurrentPage = ({ currentPage }) => ({ currentPage: currentPage + 1 });
-const decrementCurrentPage = ({ currentPage }) => ({ currentPage: currentPage - 1 });
 
-class Table extends Component {
-  state = {
-    currentPage: this.props.currentPage || 1,
+const incrementCurrentPage = ({ currentPage }) => ({
+  currentPage: currentPage + 1,
+});
+const decrementCurrentPage = ({ currentPage }) => ({
+  currentPage: currentPage - 1,
+});
+
+class Table extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedAllActive: false,
+      selectedItems: {},
+      sortedBy: '',
+      descending: false,
+      sortedData: this.props.data,
+      currentPage: this.props.currentPage || 1,
+    };
+    this.rowsPerPage = this.props.rowsPerPage || 10;
   }
-  rowsPerPage = this.props.rowsPerPage || 10;
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.data !== nextProps.data) {
+      let data;
+      const currentSort = this.state.sortedBy;
+      if (currentSort) {
+        const sorter = naturalSort({ desc: this.state.descending });
+        // sort by key!
+        data = nextProps.data.sort(
+          (a, b) => sorter(a[currentSort], b[currentSort])
+        );
+      } else {
+        data = nextProps.data;
+      }
+      // currently we set selecteAllActive just to false
+      // thats because we would have to diff out each SelectedItems.key
+      // vs our new data. Because in this scenario it means nothing
+      // to compare length between pages because they could always have
+      // the same length
+      this.setState({ sortedData: data });
+    }
+  }
+
+  selectAll = () => {
+    const totalDataPoints = this.props.totalDataPoints || this.props.data.length;
+    const fakingPagination = totalDataPoints > this.props.data.length;
+    const currentPage = this.props.currentPage || this.state.currentPage;
+    let data;
+    if (fakingPagination || (totalDataPoints <= this.rowsPerPage)) {
+      data = this.state.sortedData;
+    } else {
+      data = this.state.sortedData.slice(
+        (currentPage - 1) * this.rowsPerPage, currentPage * this.rowsPerPage
+      );
+    }
+    const itemsToSet = {};
+    for (let i = 0; i < data.length; i += 1) {
+      const item = data[i];
+      !this.state.selectedItems[item.key] && this.props.onCheck && this.props.onCheck(item);
+      itemsToSet[item.key] = true;
+    }
+    this.setState({
+      selectedItems: itemsToSet,
+      selectedAllActive: true,
+    });
+  }
+
+  toggleIndividualSelect = (datum) => {
+    const itemsToSet = { ...this.state.selectedItems };
+    if (itemsToSet[datum.key]) {
+      this.props.onUncheck(datum);
+      delete itemsToSet[datum.key];
+    } else {
+      this.props.onCheck(datum);
+      itemsToSet[datum.key] = true;
+    }
+    const selectedAll =
+      Object.keys(this.state.sortedData).length === Object.keys(itemsToSet).length;
+    this.setState({
+      selectedItems: itemsToSet,
+      selectedAllActive: selectedAll,
+    });
+  }
+
+  unselectAll = () => {
+    // why loop through the object rather than
+    // just setting it to {}
+
+    // we need to call props.onUncheck for each!
+    const totalDataPoints = this.props.totalDataPoints || this.props.data.length;
+    const fakingPagination = totalDataPoints > this.props.data.length;
+    const currentPage = this.props.currentPage || this.state.currentPage;
+    let data;
+    if (fakingPagination || (totalDataPoints <= this.rowsPerPage)) {
+      data = this.state.sortedData;
+    } else {
+      data = this.state.sortedData.slice(
+        (currentPage - 1) * this.rowsPerPage, currentPage * this.rowsPerPage
+      );
+    }
+    const itemsToSet = {};
+    for (let i = 0; i < data.length; i += 1) {
+      const item = data[i];
+      this.props.onUncheck && this.props.onUncheck(item);
+      delete itemsToSet[item.key];
+    }
+    this.setState({
+      selectedItems: itemsToSet,
+      selectedAllActive: false,
+    });
+  }
+
+  sortBy(key) {
+    let shouldDescend;
+    if (key === this.state.sortedBy) {
+      // flip descending or ascending
+      if (this.state.descending) {
+        shouldDescend = false;
+      } else {
+        shouldDescend = true;
+      }
+    } else {
+      // default, new stort to descending
+      shouldDescend = false;
+    }
+    // init the sorter
+    const sorter = naturalSort({ desc: shouldDescend });
+
+    // sort by key!
+    const sorted = this.state.sortedData.sort(
+      (a, b) => sorter(a[key], b[key])
+    );
+    this.setState({ descending: shouldDescend, sortedData: sorted, sortedBy: key });
+  }
 
   handleBackwardsPagination = () => {
     if (this.props.handleBackwardsPagination) {
@@ -64,15 +192,29 @@ class Table extends Component {
         <table className="smc-table-table">
           <thead className="smc-table-head">
             <Row header>
-              {this.props.fields.map(({ label, numerical, key }, i) => (
+              {this.props.hasCheckboxes && <th>
+                <Checkbox
+                  disabled={this.props.rowsPerPage}
+                  checked={this.state.selectedAllActive}
+                  onChange={this.state.selectedAllActive ? this.unselectAll : this.selectAll}
+                />
+              </th>}
+              {this.props.fields.map(({ label, numerical, key, sortable }, i) => (
                 <Title
+                  sortedBy={this.state.sortedBy === key}
                   key={label}
                   column={key}
                   numerical={numerical}
                   first={i === 0}
                   last={i === this.props.fields.length - 1}
                 >
-                  {label}
+                  <div className='sortButtonContainer'>
+                    {sortable && <UpwardArrow
+                      className={this.state.sortedBy === key && !this.state.descending ? 'sortButton rotate' : 'sortButton'}
+                      onClick={() => this.sortBy(key)}
+                    />}
+                    {label}
+                  </div>
                 </Title>
               ))}
             </Row>
@@ -81,13 +223,21 @@ class Table extends Component {
             {
               (
                 (fakingPagination || (totalDataPoints <= this.rowsPerPage))
-                  ? this.props.data
-                  : this.props.data.slice(
+                  ? this.state.sortedData
+                  : this.state.sortedData.slice(
                     (currentPage - 1) * this.rowsPerPage, currentPage * this.rowsPerPage
                   )
               )
                 .map(datum => (
-                  <Row key={`row_${datum.key}`}>
+                  <Row selected={Boolean(this.state.selectedItems[datum.key])} key={`row_${datum.key}`}>
+                    {this.props.hasCheckboxes &&
+                      <td>
+                        <Checkbox
+                          checked={Boolean(this.state.selectedItems[datum.key])}
+                          onChange={() => this.toggleIndividualSelect(datum)}
+                        />
+                      </td>
+                    }
                     {this.props.fields.map(({ key, numerical }, i) => (
                       <Datum
                         key={`{${datum.key}_${key}}`}
@@ -99,6 +249,7 @@ class Table extends Component {
                         {datum[key]}
                       </Datum>
                     ))}
+
                   </Row>
                 ))
             }
@@ -133,10 +284,54 @@ class Table extends Component {
 }
 
 
-export default styled(Table)`
+export default styled(Table) `
+  ${props => (props.fullWidth ? 'width: 100%' : '')};
+  ${elevation(3)};
+  display: inline-block;
+  overflow: hidden;
+  background-color: #fff;
+  border-radius: 3px;
+  border-spacing: 0;
+  border: 0px;
+
+  > .smc-table-header {
+    padding: 0 14px;
+  }
+
   > .smc-table-table {
-    width: 100%;
-    border-collapse:collapse;
-    border-spacing: 40px;
+    border-collapse: collapse;
+
+    .sortButtonContainer {
+      height: 15px;
+      display: inline-flex;
+      
+      > .sortButton {
+        height: 15px;
+        width: 15px;
+        float: right;
+        cursor: pointer;
+        border-radius: 7.5px;
+        display: block;
+        margin-right: 16px;
+        fill: rgba(0, 0, 0, .54);
+        transform-origin: center;
+        transition: 0.3s;
+      }
+
+      > .sortButton:hover {
+        background-color: rgba(0, 0, 0, .04);
+      }
+
+      > .rotate {
+        transform: rotate(180deg);
+      }
+    }
+
+    tr {
+      border: 0px;
+      border-bottom: 1px solid rgba(0, 0, 0, .54);
+    }
+    ${props => (props.fullWidth ? 'width: 100%' : 'width: auto')};
+    border-spacing: 0;
   }
 `;

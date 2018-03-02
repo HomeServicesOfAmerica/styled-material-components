@@ -58,9 +58,9 @@ Read more about contributing to the open source community on Github's fantastic 
 ## Resources and Terminology
 
 * **[React](https://reactjs.org/)**
-is a component-based library for for managing state and creating user interfaces.
+is a component-based library for managing state and creating user interfaces.
 * **[styled-components](https://www.styled-components.com/)**
-Inspired by the component-based architecture of React, Max Stoiber and Glenn Maddern created a library, styled-components that allows you to style your application using React components.
+Inspired by the component-based architecture of React, Max Stoiber and Glenn Maddern created a library, styled-components, that allows you to style your application using React components.
 * **[design language / design vocabulary](https://en.wikipedia.org/wiki/Design_language)**: a set of design guidelines or principles that allow designers to create thematically consistent user interfaces.
 * **[Material Design](https://material.io/)**
 is the name of a design language created by Google. Many of the Google applications you probably use (Gmail, YouTube, Inbox, Google Maps and many others) have implemented the Material Design guidelines.

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import List from '../src/components/List/List';
 import ListItem from '../src/components/List/ListItem';
 import ListItemText from '../src/components/List/ListItemText';
+import ListSubheader from '../src/components/List/ListSubheader';
 import MaterialThemeProvider from '../src/theme/ThemeProvider';
 
 const ListsPage = ({ className }) => (
@@ -39,35 +40,50 @@ const ListsPage = ({ className }) => (
       <h1>List with more text</h1>
       <div className="list">
         <List>
-          <ListItem leftAvatar="http://www.wasiofaces.com/wp-content/uploads/San-Diego-Headshots-Photography-041.jpg" avatarSize={60}>
+          <ListItem
+            leftAvatar="http://www.wasiofaces.com/wp-content/uploads/San-Diego-Headshots-Photography-041.jpg"
+            avatarSize={60}
+          >
             <ListItemText
-              primary="Primary Title" secondary={
+              primary="Primary Title"
+              secondary={
                 <div>
                   <p>(214) 520-8300</p>
                   <p>5015 Tracy Street Suite 102</p>
                   <p>Dallas, Texas 75205</p>
                 </div>
-              } />
+              }
+            />
           </ListItem>
-          <ListItem leftAvatar="http://www.wasiofaces.com/wp-content/uploads/San-Diego-Headshots-Photography-041.jpg" avatarSize={60}>
+          <ListItem
+            leftAvatar="http://www.wasiofaces.com/wp-content/uploads/San-Diego-Headshots-Photography-041.jpg"
+            avatarSize={60}
+          >
             <ListItemText
-              primary="Primary Title" secondary={
+              primary="Primary Title"
+              secondary={
                 <div>
                   <p>(214) 520-8300</p>
                   <p>5015 Tracy Street Suite 102</p>
                   <p>Dallas, Texas 75205</p>
                 </div>
-              } />
+              }
+            />
           </ListItem>
-          <ListItem leftAvatar="http://www.wasiofaces.com/wp-content/uploads/San-Diego-Headshots-Photography-041.jpg" avatarSize={60}>
+          <ListItem
+            leftAvatar="http://www.wasiofaces.com/wp-content/uploads/San-Diego-Headshots-Photography-041.jpg"
+            avatarSize={60}
+          >
             <ListItemText
-              primary="Primary Title" secondary={
+              primary="Primary Title"
+              secondary={
                 <div>
                   <p>(214) 520-8300</p>
                   <p>5015 Tracy Street Suite 102</p>
                   <p>Dallas, Texas 75205</p>
                 </div>
-              } />
+              }
+            />
           </ListItem>
         </List>
       </div>
@@ -97,6 +113,36 @@ const ListsPage = ({ className }) => (
       <h1>List without Avatar, with dividers</h1>
       <div className="list">
         <List>
+          <ListItem withDivider>
+            <ListItemText primary="Primary Title" secondary="This is the secondary line" />
+          </ListItem>
+          <ListItem withDivider>
+            <ListItemText primary="Primary Title" secondary="This is the secondary line" />
+          </ListItem>
+          <ListItem withDivider>
+            <ListItemText primary="Primary Title" secondary="This is the secondary line" />
+          </ListItem>
+        </List>
+      </div>
+      <h1>List with Subheader</h1>
+      <div className="list">
+        <List>
+          <ListSubheader>Subheader</ListSubheader>
+          <ListItem withDivider>
+            <ListItemText primary="Primary Title" secondary="This is the secondary line" />
+          </ListItem>
+          <ListItem withDivider>
+            <ListItemText primary="Primary Title" secondary="This is the secondary line" />
+          </ListItem>
+          <ListItem withDivider>
+            <ListItemText primary="Primary Title" secondary="This is the secondary line" />
+          </ListItem>
+        </List>
+      </div>
+      <h1>List with primary Subheader</h1>
+      <div className="list">
+        <List>
+          <ListSubheader primary>Subheader</ListSubheader>
           <ListItem withDivider>
             <ListItemText primary="Primary Title" secondary="This is the secondary line" />
           </ListItem>

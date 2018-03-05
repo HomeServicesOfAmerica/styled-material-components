@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 class Checkbox extends PureComponent {
   state = {
-    checked: this.props.checked || this.props.defaultChecked || false,
-    indeterminate: this.props.indeterminate || false,
+    checked: this.props.checked || this.props.default === 'checked' || false,
+    indeterminate: this.props.default === 'indeterminate' || false,
   };
 
   handleInputChange = (e) => {
@@ -17,24 +17,23 @@ class Checkbox extends PureComponent {
   };
 
   render() {
-    const { primary, disabled, checked: checkedProp, value, id, className } = this.props;
-    const { indeterminate } = this.state;
+    const {
+      primary,
+      disabled,
+      checked: checkedProp,
+      indeterminate: indeterminateProp,
+      value,
+      id,
+      className,
+    } = this.props;
     // determine if checkbox is controlled or uncontrolled
     const checked = checkedProp !== undefined ? checkedProp : this.state.checked;
+    const indeterminate =
+      indeterminateProp !== undefined ? indeterminateProp : this.state.indeterminate;
 
     return (
-      <Wrapper
-        className={className}
-        primary={primary}
-        disabled={disabled}
-        checked={checked}
-      >
-        <Box
-          primary={primary}
-          checked={checked}
-          disabled={disabled}
-          indeterminate={indeterminate}
-        >
+      <Wrapper className={className} primary={primary} disabled={disabled} checked={checked}>
+        <Box primary={primary} checked={checked} disabled={disabled} indeterminate={indeterminate}>
           {indeterminate && <IndeterminateMark />}
           {checked && !indeterminate && <CheckMark />}
         </Box>

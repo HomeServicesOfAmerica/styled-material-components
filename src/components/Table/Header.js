@@ -7,9 +7,9 @@ const HeaderComponent = ({ children, className }) => (
   </div>
 );
 
-const Header = styled(HeaderComponent)`
+const Header = styled(HeaderComponent) `
   font-size: 20px;
-  color: rgba(0, 0, 0, .87);
+  color: ${props => props.theme.textColors.primary};
   text-align: left;
   line-height: 64px;
 `;

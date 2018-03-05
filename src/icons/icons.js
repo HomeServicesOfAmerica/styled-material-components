@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { ArrowDropDownPath } from './ArrowDropDownPath';
-import { UpwardArrowPath } from './UpwardArrowPath';
+import { ArrowUpwardPath } from './ArrowUpwardPath';
 import { KeyboardArrowLeftPath } from './KeyboardArrowLeftPath';
 import { KeyboardArrowRightPath } from './KeyboardArrowRightPath';
 import { StarBorderPath } from './StarBorderPath';
@@ -16,7 +16,7 @@ const DEFAULT_SIZE = 24;
 
 const iconPaths = {
   arrow_drop_down: ArrowDropDownPath,
-  upward_arrow: UpwardArrowPath,
+  upward_arrow: ArrowUpwardPath,
   keyboard_arrow_left: KeyboardArrowLeftPath,
   keyboard_arrow_right: KeyboardArrowRightPath,
   star_border: StarBorderPath,
@@ -53,8 +53,8 @@ export const ArrowDropDown = Icon.extend.attrs({
   children: ArrowDropDownPath,
 }) ``;
 
-export const UpwardArrow = Icon.extend.attrs({
-  children: UpwardArrowPath,
+export const ArrowUpward = Icon.extend.attrs({
+  children: ArrowUpwardPath,
 }) ``;
 
 export const KeyboardArrowLeftIcon = Icon.extend.attrs({

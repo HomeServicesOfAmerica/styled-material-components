@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
+import isEqual from 'lodash.isequal';
+
 import Row from './Row';
 import Datum from './Datum';
 import Title from './Title';
@@ -8,7 +10,7 @@ import Footer from './Footer';
 import naturalSort from './naturalSort';
 import elevation from '../../mixins/elevation';
 import Checkbox from '../Checkbox';
-import { UpwardArrow } from '../../icons/icons';
+import { ArrowUpward } from '../../icons/icons';
 
 /*
  * The user of the table is responsible for passing in a unique key for each
@@ -46,24 +48,22 @@ class Table extends PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.data !== nextProps.data) {
-      let data;
-      const currentSort = this.state.sortedBy;
-      if (currentSort) {
-        const sorter = naturalSort({ desc: this.state.descending });
-        // sort by key!
-        data = nextProps.data.sort(
-          (a, b) => sorter(a[currentSort], b[currentSort])
-        );
-      } else {
-        data = nextProps.data;
-      }
-      // currently we set selecteAllActive just to false
-      // thats because we would have to diff out each SelectedItems.key
-      // vs our new data. Because in this scenario it means nothing
-      // to compare length between pages because they could always have
-      // the same length
-      this.setState({ sortedData: data });
+    // added in some super cool checks
+    // first we see if the ref is different
+    // then we see if the length is different
+    // then we deep diff the two
+
+    // this is to catch weird usage of the comp
+    // ie: pushing or popping from an array
+
+    if (
+      this.props.data !== nextProps.data
+      ||
+      this.props.data.length !== nextProps.data.length
+      ||
+      !isEqual(this.props.data, nextProps.data)
+    ) {
+      this.updateWithNewProps(nextProps.data);
     }
   }
 
@@ -108,6 +108,26 @@ class Table extends PureComponent {
     });
   }
 
+
+  updateWithNewProps = (newData) => {
+    let sortedData;
+    const currentSort = this.state.sortedBy;
+    // if we have a key to sortByKey, do it:
+    if (currentSort) {
+      // grab descending from state, as it shouldn't have to change here
+      const sorter = naturalSort({ desc: this.state.descending });
+      // clone
+      const data = [...newData];
+      sortedData = data.sort(
+        (a, b) => sorter(a[currentSort], b[currentSort])
+      );
+    } else {
+      // else update with new data, unsorted
+      sortedData = newData;
+    }
+    this.setState({ sortedData });
+  };
+
   unselectAll = () => {
     // why loop through the object rather than
     // just setting it to {}
@@ -136,7 +156,7 @@ class Table extends PureComponent {
     });
   }
 
-  sortBy(key) {
+  sortByKey(key) {
     let shouldDescend;
     if (key === this.state.sortedBy) {
       // flip descending or ascending
@@ -146,14 +166,15 @@ class Table extends PureComponent {
         shouldDescend = true;
       }
     } else {
-      // default, new stort to descending
+      // default, new sort to descending
       shouldDescend = false;
     }
     // init the sorter
     const sorter = naturalSort({ desc: shouldDescend });
 
     // sort by key!
-    const sorted = this.state.sortedData.sort(
+    const data = [...this.state.sortedData];
+    const sorted = data.sort(
       (a, b) => sorter(a[key], b[key])
     );
     this.setState({ descending: shouldDescend, sortedData: sorted, sortedBy: key });
@@ -209,9 +230,9 @@ class Table extends PureComponent {
                   last={i === this.props.fields.length - 1}
                 >
                   <div className='sortButtonContainer'>
-                    {sortable && <UpwardArrow
+                    {sortable && <ArrowUpward
                       className={this.state.sortedBy === key && !this.state.descending ? 'sortButton rotate' : 'sortButton'}
-                      onClick={() => this.sortBy(key)}
+                      onClick={() => this.sortByKey(key)}
                     />}
                     {label}
                   </div>
@@ -313,7 +334,7 @@ export default styled(Table) `
         border-radius: 7.5px;
         display: block;
         margin-right: 16px;
-        fill: rgba(0, 0, 0, .54);
+        fill: ${props => props.theme.textColors.secondary};
         transform-origin: center;
         transition: 0.3s;
       }
@@ -329,7 +350,7 @@ export default styled(Table) `
 
     tr {
       border: 0px;
-      border-bottom: 1px solid rgba(0, 0, 0, .54);
+      border-bottom: 1px solid ${props => props.theme.textColors.secondary};
     }
     ${props => (props.fullWidth ? 'width: 100%' : 'width: auto')};
     border-spacing: 0;

@@ -13,7 +13,6 @@ const fields = [
     key: 'event',
     label: 'Event',
     numerical: false,
-    sortable: true,
   },
   {
     key: 'price',
@@ -190,7 +189,7 @@ const Tables = () => (
               it is passed the Datum of that row as its first param
             </li>
             <li>
-              onUnheck: () => any
+              onUncheck: () => any
               Callback that will be called when the user clicks a checkbox off.
               it is passed the Datum of that row as its first param
             </li>

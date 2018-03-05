@@ -8,7 +8,7 @@ import defaultTheme from '../src/theme/defaultTheme';
 const StyledCheckbox = Checkbox.extend`
   ${Box} {
     background-color: transparent;
-    border-color: skyblue
+    border-color: skyblue;
   }
   ${CheckMark} {
     stroke: hotpink;
@@ -40,7 +40,7 @@ class CheckboxesPage extends PureComponent {
             <label htmlFor="checkbox1">Primary</label>
           </ListItem>
           <ListItem>
-            <Checkbox defaultChecked id="checkbox3" />
+            <Checkbox default="checked" id="checkbox3" />
             <label htmlFor="checkbox3">Defaults to Checked</label>
           </ListItem>
           <ListItem>
@@ -56,7 +56,7 @@ class CheckboxesPage extends PureComponent {
             <label htmlFor="checkbox6">Controlled Checkbox</label>
           </ListItem>
           <ListItem>
-            <Checkbox indeterminate id="checkbox7" />
+            <Checkbox default="indeterminate" id="checkbox7" />
             <label htmlFor="checkbox7">Indeterminate Checkbox</label>
           </ListItem>
           <ListItem>

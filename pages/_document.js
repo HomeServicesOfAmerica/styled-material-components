@@ -13,7 +13,7 @@ export default class MyDocument extends Document {
           {styleTags}
         </Head>
         <body style={{ overflow: 'visible' }}>
-          <div className='root'>
+          <div className='root' style={{ width: '100%' }}>
             {main}
           </div>
           <NextScript />

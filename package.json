@@ -28,11 +28,14 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "color": "^2.0.0",
+    "create-react-context": "^0.2.1",
     "eslint-config-concierge-auctions-base": "^0.0.6",
     "lodash.isequal": "^4.5.0",
     "lodash.debounce": "^4.0.8",
     "lodash.merge": "^4.6.0",
     "react": "^16.0.0",
+    "react-tunnels": "^1.0.2",
+    "respondable": "^1.0.1",
     "styled-components": "^2.2.3"
   },
   "devDependencies": {

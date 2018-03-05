@@ -1,6 +1,7 @@
 import React from 'react';
 import { ThemeProvider, injectGlobal } from 'styled-components';
 import merge from 'lodash.merge';
+import { ScreenSizeContext } from '../contexts/ScreenSizeContext';
 import defaultTheme from './defaultTheme';
 
 /* eslint-disable no-unused-expressions */
@@ -19,7 +20,9 @@ injectGlobal`
 
 const MaterialThemeProvider = ({ children, theme = {} }) => (
   <ThemeProvider theme={merge(defaultTheme, theme)}>
-    {children}
+    <ScreenSizeContext>
+      {children}
+    </ScreenSizeContext>
   </ThemeProvider>
 );
 

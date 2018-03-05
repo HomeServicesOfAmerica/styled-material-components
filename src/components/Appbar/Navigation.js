@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import debounce from 'lodash.debounce';
-import { Icon } from './Appbar';
 
 class NavigationContainer extends Component {
   state = {
@@ -21,6 +20,10 @@ class NavigationContainer extends Component {
     }
   }
 
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.resizeInkBar);
+  }
+
   resizeInkBar = debounce(() => {
     const element = document.querySelector(
       `div[data-smc="AppbarNavigationItem-${this.props.active}"]`
@@ -34,22 +37,23 @@ class NavigationContainer extends Component {
 
   render() {
     return (
-      <div data-smc="AppbarNavigation" className={this.props.className}>
+      <React.Fragment>
         {this.props.children}
         <InkBar width={this.state.width} offset={this.state.offset} />
-      </div>
+      </React.Fragment>
     );
   }
 }
 
-export const InkBar = styled.div`
+export const InkBar = styled.div.attrs({
+  'aria-hidden': true,
+})`
   background-color: ${props => props.theme.accent};
   display: block;
   height: 3px;
   position: absolute;
   bottom: 0px;
   left: ${props => props.offset}px;
-  z-index: 100;
   width: ${props => props.width}px;
   transition: left 250ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
   will-change: left;
@@ -66,14 +70,6 @@ export const NavigationItem = styled.div.attrs({
 `;
 
 export const Navigation = styled(NavigationContainer)`
-  display: flex;
   position: relative;
-  justify-content: flex-end;
-  flex-basis: 85%;
   height: 100%;
-  ${Icon} + & {
-    flex-basis: calc(85% - 48px);
-  }
-  align-items: stretch;
-  align-content: stretch;
 `;

@@ -14,7 +14,6 @@ export * from './components/Tabs';
 export { Avatar } from './components/Avatar';
 export { default as BottomSheet } from './components/BottomSheet';
 export { default as Button } from './components/Button';
-export { default as Checkbox } from './components/Checkbox';
 export * from './components/Checkbox';
 export * from './components/Chip';
 export * from './components/Circular';

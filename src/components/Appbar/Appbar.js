@@ -1,5 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { Column, Row } from '../FlexGrid';
 import typography from '../../mixins/typography';
 import elevation from '../../mixins/elevation';
 
@@ -11,29 +12,55 @@ export const Icon = styled.div`
 
 export const Title = styled.h1.attrs({
   'data-smc': 'AppbarTitle',
+  height: props => (props.dense ? 48 : 64),
+  width: props => (props.double ? 100 : 15),
 })`
   margin: 0 12px;
-  ${typography('title')}
-  ${Icon} + & {
-    flex-basis: calc(15% - 48px);
-  }
-`;
-
-
-const AppbarComponent = ({ className, title, navIcon, children }) => (
-  <div className={className} data-smc="Appbar">
-    {navIcon && <Icon><navIcon /></Icon>}
-    <Title>{title}</Title>
-    {children}
-  </div>
-);
-
-export const Appbar = styled(AppbarComponent)`
+  height: ${props => props.height}px;
   display: flex;
   align-items: center;
+  flex: 1;
+  ${typography('title')}
+`;
+
+const AppbarComponent = ({ className, title, navIcon, children, dense, double = false }) => (
+  <header className={className} data-smc="Appbar">
+    <Column size={12} noGutters>
+      <Row stretch>
+        <Column noGutters size={3}>
+          {navIcon && <Icon><navIcon /></Icon>}
+          <Title double={double} dense={dense}>{title}</Title>
+        </Column>
+        {!double && (
+          <Column size={9} noGutters>
+            <Row horizontal="right" vertical="middle" relative>
+              {children}
+            </Row>
+          </Column>
+        )}
+      </Row>
+      {double && (
+        <Row horizontal="left" vertical="middle" relative>
+          {children}
+        </Row>
+      )}
+    </Column>
+  </header>
+);
+
+const sizeByScale = (dense, double) => {
+  let height = dense ? 48 : 64;
+  if (double) height *= 2;
+  return css`
+    height: ${height}px;
+  `;
+};
+
+export const Appbar = styled(AppbarComponent)`
+  align-items: ${props => (props.double ? 'left' : 'center')};
   padding: 0 24px;
   background-color: ${props => props.theme.primary};
   ${elevation(2)}
-  height: 64px;
+  ${props => sizeByScale(props.dense, props.double)}
   color: #fff;
 `;

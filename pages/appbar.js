@@ -17,7 +17,9 @@ export default class AppbarPage extends Component {
   state = {
     persistentRight: false,
     temporaryRight: false,
-    active: 'test1',
+    mainNav: 'test1',
+    denseNav: 'test4',
+    doubleNav: 'test7',
   };
 
   toggleTemporaryRight = () => this.setState(prevState => ({
@@ -36,7 +38,9 @@ export default class AppbarPage extends Component {
     </a>
   );
 
-  setNav = active => this.setState({ active });
+  setMainNav = mainNav => this.setState({ mainNav });
+  setDenseNav = denseNav => this.setState({ denseNav });
+  setDoubleNav = doubleNav => this.setState({ doubleNav });
 
   render() {
     return (
@@ -80,15 +84,43 @@ export default class AppbarPage extends Component {
               Launch Temporary Drawer
             </Button>
             <h2>Appbar with navigation</h2>
-            <Appbar title='Navigation'>
-              <Navigation active={this.state.active}>
-                <NavigationItem onClick={() => this.setNav('test1')} navKey="test1">
+            <Appbar title='Navigation' id="main">
+              <Navigation active={this.state.mainNav}>
+                <NavigationItem onClick={() => this.setMainNav('test1')} navKey="test1">
                   <p>Test</p>
                 </NavigationItem>
-                <NavigationItem onClick={() => this.setNav('test2')} navKey="test2">
+                <NavigationItem onClick={() => this.setMainNav('test2')} navKey="test2">
                   <p>Components</p>
                 </NavigationItem>
-                <NavigationItem onClick={() => this.setNav('test3')} navKey="test3">
+                <NavigationItem onClick={() => this.setMainNav('test3')} navKey="test3">
+                  <p>Themes</p>
+                </NavigationItem>
+              </Navigation>
+            </Appbar>
+            <h2>Dense Appbar</h2>
+            <Appbar title='Navigation' dense>
+              <Navigation active={this.state.denseNav}>
+                <NavigationItem onClick={() => this.setDenseNav('test4')} navKey="test4">
+                  <p>Test</p>
+                </NavigationItem>
+                <NavigationItem onClick={() => this.setDenseNav('test5')} navKey="test5">
+                  <p>Components</p>
+                </NavigationItem>
+                <NavigationItem onClick={() => this.setDenseNav('test6')} navKey="test6">
+                  <p>Themes</p>
+                </NavigationItem>
+              </Navigation>
+            </Appbar>
+            <h2>Double Appbar</h2>
+            <Appbar title='Navigation' dense double>
+              <Navigation active={this.state.doubleNav}>
+                <NavigationItem onClick={() => this.setDoubleNav('test7')} navKey="test7">
+                  <p>Test</p>
+                </NavigationItem>
+                <NavigationItem onClick={() => this.setDoubleNav('test8')} navKey="test8">
+                  <p>Components</p>
+                </NavigationItem>
+                <NavigationItem onClick={() => this.setDoubleNav('test9')} navKey="test9">
                   <p>Themes</p>
                 </NavigationItem>
               </Navigation>

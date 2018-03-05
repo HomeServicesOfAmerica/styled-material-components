@@ -11,6 +11,7 @@ module.exports = {
       '/dialog': { page: '/dialog' },
       '/divider': { page: '/divider' },
       '/drawer': { page: '/drawer' },
+      '/flex-grid': { page: '/flex-grid' },
       '/gridlists': { page: '/gridlists' },
       '/icons': { page: '/icons' },
       '/lists': { page: '/lists' },

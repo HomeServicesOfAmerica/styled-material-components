@@ -38,6 +38,9 @@ const HomePage = ({ className }) => (
         <Link href="/drawer"><a>Drawers Page</a></Link>
       </ListItem>
       <ListItem>
+        <Link href="/flex-grid"><a>Flex Grid Page</a></Link>
+      </ListItem>
+      <ListItem>
         <Link href="/gridlists"><a>Grid Lists Page</a></Link>
       </ListItem>
       <ListItem>

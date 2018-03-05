@@ -34,7 +34,7 @@ class MenuListComponent extends React.Component {
   }
 }
 
-const MenuSelect = styled(MenuListComponent)`
+const MenuList = styled(MenuListComponent)`
   position: relative;
   margin: 8px 0;
   padding: 0;
@@ -42,4 +42,4 @@ const MenuSelect = styled(MenuListComponent)`
   width: auto;
 `;
 
-export default MenuSelect;
+export default MenuList;

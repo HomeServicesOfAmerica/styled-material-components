@@ -1,84 +1,6 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 
-class Checkbox extends PureComponent {
-  state = {
-    checked: this.props.checked || this.props.default === 'checked' || false,
-    indeterminate: this.props.default === 'indeterminate' || false,
-  };
-
-  handleInputChange = (e) => {
-    const checked = e.target.checked;
-    this.setState({ indeterminate: false, checked });
-
-    if (this.props.onChange) {
-      this.props.onChange(e);
-    }
-  };
-
-  render() {
-    const {
-      primary,
-      disabled,
-      checked: checkedProp,
-      indeterminate: indeterminateProp,
-      value,
-      id,
-      className,
-    } = this.props;
-    // determine if checkbox is controlled or uncontrolled
-    const checked = checkedProp !== undefined ? checkedProp : this.state.checked;
-    const indeterminate =
-      indeterminateProp !== undefined ? indeterminateProp : this.state.indeterminate;
-
-    return (
-      <Wrapper className={className} primary={primary} disabled={disabled} checked={checked}>
-        <Box primary={primary} checked={checked} disabled={disabled} indeterminate={indeterminate}>
-          {indeterminate && <IndeterminateMark />}
-          {checked && !indeterminate && <CheckMark />}
-        </Box>
-        <Input
-          onChange={this.handleInputChange}
-          disabled={disabled}
-          checked={checked}
-          value={value}
-          id={id}
-        />
-      </Wrapper>
-    );
-  }
-}
-
-const Wrapper = styled.div`
-  display: inline-block;
-  position: relative;
-  padding: 11px;
-  width: 18px;
-  height: 18px;
-  vertical-align: middle;
-  cursor: ${props => !props.disabled && 'pointer'};
-  :hover::before {
-    transition: 0.3s;
-    opacity: 0.04;
-  }
-  ::before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background-color: ${(props) => {
-    if (props.disabled) return 'transparent';
-    else if (!props.checked) return props.theme.textColors.secondary;
-    else if (props.primary) return props.theme.primary;
-    return props.theme.accent;
-  }};
-    opacity: 0;
-    content: '';
-  }
-`;
-
 const Box = styled.div`
   transition: 0.3s;
   display: inline-flex;
@@ -108,7 +30,7 @@ const Box = styled.div`
 const Input = styled.input.attrs({
   type: 'checkbox',
   disabled: props => props.disabled,
-}) `
+})`
   position: absolute;
   opacity: 0;
   left: 0;
@@ -122,7 +44,7 @@ const Input = styled.input.attrs({
 const CheckMark = styled.svg.attrs({
   viewBox: '0 0 24 24',
   children: <path d="M1.73,12.91 8.1,19.28 22.79,4.59" />,
-}) `
+})`
   fill: none;
   stroke: ${props => props.theme.white};
   width: 100%;
@@ -137,5 +59,87 @@ const IndeterminateMark = styled.div`
   background-color: ${props => props.theme.white};
 `;
 
-export default styled(Checkbox) ``;
-export { Wrapper, Box, CheckMark, IndeterminateMark };
+class CheckboxComponent extends PureComponent {
+  state = {
+    checked: this.props.checked || this.props.default === 'checked' || false,
+    indeterminate: this.props.default === 'indeterminate' || false,
+  };
+
+  handleInputChange = (e) => {
+    const checked = e.target.checked;
+    this.setState({ indeterminate: false, checked });
+
+    if (this.props.onChange) {
+      this.props.onChange(e);
+    }
+  };
+
+  render() {
+    const {
+      primary,
+      disabled,
+      checked: checkedProp,
+      checkMark: checkMarkProp,
+      className,
+      indeterminate: indeterminateProp,
+      indeterminateMark: indeterminateMarkProp,
+      value,
+      id,
+    } = this.props;
+    // determine if checkbox is controlled or uncontrolled
+    const checked = checkedProp !== undefined ? checkedProp : this.state.checked;
+    const indeterminate =
+      indeterminateProp !== undefined ? indeterminateProp : this.state.indeterminate;
+    // check for CheckMark or IndeterminateMark icons passed as props
+    const CheckMarkComponent = checkMarkProp || CheckMark;
+    const IndeterminateMarkComponent = indeterminateMarkProp || IndeterminateMark;
+
+    return (
+      <div className={className}>
+        <Box primary={primary} checked={checked} disabled={disabled} indeterminate={indeterminate}>
+          {indeterminate && <IndeterminateMarkComponent />}
+          {checked && !indeterminate && <CheckMarkComponent />}
+        </Box>
+        <Input
+          onChange={this.handleInputChange}
+          disabled={disabled}
+          checked={checked}
+          value={value}
+          id={id}
+        />
+      </div>
+    );
+  }
+}
+
+const Checkbox = styled(CheckboxComponent)`
+  display: inline-block;
+  position: relative;
+  padding: 11px;
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  cursor: ${props => !props.disabled && 'pointer'};
+  :hover::before {
+    transition: 0.3s;
+    opacity: 0.04;
+  }
+  ::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: ${(props) => {
+    if (props.disabled) return 'transparent';
+    else if (!props.checked) return props.theme.textColors.secondary;
+    else if (props.primary) return props.theme.primary;
+    return props.theme.accent;
+  }};
+    opacity: 0;
+    content: '';
+  }
+`;
+
+export { Checkbox, Box, CheckMark, IndeterminateMark };

@@ -14,7 +14,7 @@ class TextFieldComponent extends PureComponent {
   componentWillReceiveProps(nextProps) {
     if (nextProps.reset) {
       nextProps.onReset && nextProps.onReset();
-      this.setState({ text: this.props.defaultValue || '' });
+      this.setState({ text: nextProps.defaultValue || '' });
     }
   }
 

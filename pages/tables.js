@@ -175,6 +175,14 @@ const Tables = () => (
             handleBackwardsPagination: () => any
             Callback that will be called when the user clicks the 'back' arrow
           </li>
+          <li>
+            searchable?: boolean
+            denotes if you intend to supply a search callback for the Search input
+          </li>
+          <li>
+            onSearch?: () => any
+            function to be called onChange in the search input field
+          </li>
           <br />
           <li>
             hasCheckboxes?: boolean
@@ -218,6 +226,11 @@ const Tables = () => (
         data={data}
         header="Table header"
       />
+      <h2>Headless Table! :spooky:</h2>
+      <Table
+        fields={fields}
+        data={data}
+      />
       <h2>Table with column style override</h2>
       <StyledTable
         fields={fields}
@@ -250,6 +263,23 @@ const Tables = () => (
       <Table
         hasCheckboxes
         rowsPerPage={2}
+        onCheck={(e) => {
+          console.log('select', e.key);
+        }}
+        onUncheck={(e) => {
+          console.log('deselect', e.key);
+        }}
+        fields={fields}
+        data={data}
+        header={`Check the console for callbacks!`}
+      />
+      <h2>Table checkboxes, with sorting, WITH SEARCH!?!!?</h2>
+      <Table
+        searchable
+        onSearch={(e) => {
+          console.log('search!', e.target.value);
+        }}
+        hasCheckboxes
         onCheck={(e) => {
           console.log('select', e.key);
         }}

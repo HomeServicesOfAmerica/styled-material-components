@@ -11,7 +11,7 @@ class TextFieldComponent extends PureComponent {
     hasBeenFocused: false,
     height: '100%',
   };
-  
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.reset) {
       nextProps.onReset && nextProps.onReset();
@@ -27,7 +27,7 @@ class TextFieldComponent extends PureComponent {
     const isInvalid = this.props.validator && !this.props.validator(text);
     const isEmptyButRequired = this.props.required ? !e.target.value : false;
     const newHeight = this.props.textarea ? this.textArea.scrollHeight : '';
-    
+
     this.setState({
       text,
       error: this.props.error || isInvalid || isEmptyButRequired,
@@ -142,11 +142,14 @@ class TextFieldComponent extends PureComponent {
               onFocus={this.onFocus}
               onBlur={this.onBlur}
               className={'smc-text-field-area'}
-              innerRef={(ref) => {this.textArea = ref;}}
+              innerRef={(ref) => {
+                this.textArea = ref;
+              }}
             />
           )
           : (
             <Input
+              type={this.props.type || ''}
               hasPrefix={!!this.props.prefix}
               hasSuffix={!!this.props.suffix}
               inputStyle={this.props.inputStyle}
@@ -210,7 +213,7 @@ const SuffixComponent = props => (
   <div className={`${props.className} smc-textfield-suffix`}>{props.children}</div>
 );
 
-const Suffix = styled(SuffixComponent)`
+const Suffix = styled(SuffixComponent) `
   position: absolute;
   bottom: 0;
   right: 0;
@@ -221,7 +224,7 @@ const PrefixComponent = props => (
   <div className={`${props.className} smc-textfield-prefix`}>{props.children}</div>
 );
 
-const Prefix = styled(PrefixComponent)`
+const Prefix = styled(PrefixComponent) `
   position: absolute;
   bottom: 0;
   left: 0;
@@ -316,7 +319,7 @@ const Area = styled.textarea`${inputStyles}`.extend`
   resize: none;
 `;
 
-const TextField = styled(TextFieldComponent)`
+const TextField = styled(TextFieldComponent) `
   width: ${props => (props.fullWidth ? '100%' : '167px')};
   font-size: 1em;
   line-height: 1.5em;

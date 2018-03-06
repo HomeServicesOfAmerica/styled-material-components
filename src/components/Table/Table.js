@@ -8,6 +8,7 @@ import Title from './Title';
 import Header from './Header';
 import Footer from './Footer';
 import naturalSort from './naturalSort';
+import Search from './Search';
 import Checkbox from '../Checkbox';
 import { ArrowUpwardIcon } from '../../icons/icons';
 
@@ -40,7 +41,7 @@ class Table extends PureComponent {
       selectedItems: {},
       sortedBy: '',
       descending: false,
-      sortedData: this.props.data,
+      mutatedData: [...this.props.data],
       currentPage: this.props.currentPage || 1,
     };
     this.rowsPerPage = this.props.rowsPerPage || 10;
@@ -67,14 +68,14 @@ class Table extends PureComponent {
   }
 
   selectAll = () => {
-    const totalDataPoints = this.props.totalDataPoints || this.props.data.length;
-    const fakingPagination = totalDataPoints > this.props.data.length;
+    const totalDataPoints = this.props.totalDataPoints || this.state.mutatedData.length;
+    const fakingPagination = totalDataPoints > this.state.mutatedData.length;
     const currentPage = this.props.currentPage || this.state.currentPage;
     let data;
     if (fakingPagination || (totalDataPoints <= this.rowsPerPage)) {
-      data = this.state.sortedData;
+      data = this.state.mutatedData;
     } else {
-      data = this.state.sortedData.slice(
+      data = this.state.mutatedData.slice(
         (currentPage - 1) * this.rowsPerPage, currentPage * this.rowsPerPage
       );
     }
@@ -100,7 +101,7 @@ class Table extends PureComponent {
       itemsToSet[datum.key] = true;
     }
     const selectedAll =
-      Object.keys(this.state.sortedData).length === Object.keys(itemsToSet).length;
+      Object.keys(this.state.mutatedData).length === Object.keys(itemsToSet).length;
     this.setState({
       selectedItems: itemsToSet,
       selectedAllActive: selectedAll,
@@ -108,23 +109,23 @@ class Table extends PureComponent {
   }
 
 
-  updateWithNewProps = (newData) => {
-    let sortedData;
+  updateWithNewProps = (input) => {
+    const newData = [...input];
+    let mutatedData;
     const currentSort = this.state.sortedBy;
     // if we have a key to sortByKey, do it:
     if (currentSort) {
       // grab descending from state, as it shouldn't have to change here
       const sorter = naturalSort({ desc: this.state.descending });
       // clone
-      const data = [...newData];
-      sortedData = data.sort(
+      mutatedData = newData.sort(
         (a, b) => sorter(a[currentSort], b[currentSort])
       );
     } else {
       // else update with new data, unsorted
-      sortedData = newData;
+      mutatedData = newData;
     }
-    this.setState({ sortedData });
+    this.setState({ mutatedData });
   };
 
   unselectAll = () => {
@@ -132,14 +133,14 @@ class Table extends PureComponent {
     // just setting it to {}
 
     // we need to call props.onUncheck for each!
-    const totalDataPoints = this.props.totalDataPoints || this.props.data.length;
-    const fakingPagination = totalDataPoints > this.props.data.length;
+    const totalDataPoints = this.props.totalDataPoints || this.state.mutatedData.length;
+    const fakingPagination = totalDataPoints > this.state.mutatedData.length;
     const currentPage = this.props.currentPage || this.state.currentPage;
     let data;
     if (fakingPagination || (totalDataPoints <= this.rowsPerPage)) {
-      data = this.state.sortedData;
+      data = this.state.mutatedData;
     } else {
-      data = this.state.sortedData.slice(
+      data = this.state.mutatedData.slice(
         (currentPage - 1) * this.rowsPerPage, currentPage * this.rowsPerPage
       );
     }
@@ -172,11 +173,10 @@ class Table extends PureComponent {
     const sorter = naturalSort({ desc: shouldDescend });
 
     // sort by key!
-    const data = [...this.state.sortedData];
-    const sorted = data.sort(
+    const sorted = this.state.mutatedData.sort(
       (a, b) => sorter(a[key], b[key])
     );
-    this.setState({ descending: shouldDescend, sortedData: sorted, sortedBy: key });
+    this.setState({ descending: shouldDescend, mutatedData: sorted, sortedBy: key });
   }
 
   handleBackwardsPagination = () => {
@@ -194,14 +194,16 @@ class Table extends PureComponent {
   }
 
   render() {
-    const totalDataPoints = this.props.totalDataPoints || this.props.data.length;
+    const totalDataPoints = this.props.totalDataPoints || this.state.mutatedData.length;
     const showFooter = totalDataPoints > this.rowsPerPage;
     const currentPage = this.props.currentPage || this.state.currentPage;
-    const fakingPagination = totalDataPoints > this.props.data.length;
+    const fakingPagination = totalDataPoints > this.state.mutatedData.length;
     const showAllData = fakingPagination || (totalDataPoints <= this.rowsPerPage);
     const rowsToShow = showAllData
-      ? this.props.data
-      : this.props.data.slice((currentPage - 1) * this.rowsPerPage, currentPage * this.rowsPerPage);
+      ? this.state.mutatedData
+      : this.state.mutatedData.slice(
+        (currentPage - 1) * this.rowsPerPage, currentPage * this.rowsPerPage
+      );
     let extraRows = 0;
     if (!showAllData || fakingPagination) {
       extraRows = Math.max(0, this.rowsPerPage - rowsToShow.length);
@@ -209,6 +211,7 @@ class Table extends PureComponent {
     return (
       <div className={`smc-table-wrapper ${this.props.className}`}>
         {this.props.header && <Header>{this.props.header}</Header>}
+        {this.props.searchable && <div className="smc-table-search"><Search onSearch={this.props.onSearch} /></div>}
         <table className="smc-table-table">
           <thead className="smc-table-head">
             <Row header>
@@ -243,8 +246,8 @@ class Table extends PureComponent {
             {
               (
                 (fakingPagination || (totalDataPoints <= this.rowsPerPage))
-                  ? this.state.sortedData
-                  : this.state.sortedData.slice(
+                  ? this.state.mutatedData
+                  : this.state.mutatedData.slice(
                     (currentPage - 1) * this.rowsPerPage, currentPage * this.rowsPerPage
                   )
               )
@@ -313,6 +316,13 @@ export default styled(Table) `
   border-spacing: 0;
   border: 0px;
 
+  > .smc-table-search {
+    // not sure if we should include a border top, looks odd to me
+    // thoughts?
+    // border-top: 1px solid ${props => props.theme.textColors.secondary};
+    border-bottom: 1px solid ${props => props.theme.textColors.secondary};
+  }
+
   > .smc-table-header {
     padding: 0 14px;
   }
@@ -322,8 +332,9 @@ export default styled(Table) `
 
     .sortButtonContainer {
       height: 15px;
-      display: inline-flex;
-
+      display: flex;
+      justify-content: flex-start;
+      
       > .sortButton {
         height: 15px;
         width: 15px;

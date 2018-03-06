@@ -56,15 +56,12 @@ export const Icon = styled.svg.attrs({
 export const ArrowDropDownIcon = Icon.extend.attrs({
   children: ArrowDropDownPath,
 }) ``;
-
 export const ArrowUpwardIcon = Icon.extend.attrs({
   children: ArrowUpwardPath,
 }) ``;
-
 export const KeyboardArrowLeftIcon = Icon.extend.attrs({
   children: KeyboardArrowLeftPath,
 }) ``;
-
 export const KeyboardArrowRightIcon = Icon.extend.attrs({
   children: KeyboardArrowRightPath,
 }) ``;

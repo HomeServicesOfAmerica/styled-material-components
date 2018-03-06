@@ -1,13 +1,14 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import typography from '../mixins/typography';
+import elevation, { elevationTransition } from '../mixins/elevation';
 
-const ChipContainer = styled.div`
+const Wrapper = styled.div`
   display: inline-flex;
   justify-content: space-between;
   align-items: center;
   margin: 8px;
-  background-color: #e0e0e0;
+  background-color: rgba(0, 0, 0, 0.08);
   height: 32px;
   border-radius: 16px;
   font-size: 13px;
@@ -16,12 +17,14 @@ const ChipContainer = styled.div`
     props.clickable &&
     `
     :hover {
-      background-color: #CECECE;
-    }`} ${props =>
-  props.removed &&
-      `
-    display: none;
-  `};
+      background-color: #CECECE
+    }`};
+  ${props => props.removed && 'display: none'};
+  :focus {
+    outline: none;
+    ${elevationTransition};
+    ${elevation(3)};
+  }
 `;
 
 const Avatar = styled.div`
@@ -34,7 +37,7 @@ const Avatar = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  ${typography('body')} 
+  ${typography('body')};
   font-size: 16px;
 `;
 
@@ -46,8 +49,7 @@ const DeleteIconSvg = styled.svg`
   width: 24px;
   height: 24px;
   margin: 0 4px 0 -8px;
-  color: rgba(0, 0, 0, 0.26);
-  fill: rgba(0, 0, 0, 0.26);
+  fill: ${props => props.theme.disabledCheckbox};
   :hover {
     fill: rgba(0, 0, 0, 0.4);
   }
@@ -102,7 +104,7 @@ class Chip extends PureComponent {
     const removed = removedProp !== undefined ? removedProp : this.state.removed;
 
     return (
-      <ChipContainer
+      <Wrapper
         className={className}
         onKeyDown={this.handleKeyDown}
         tabIndex={0}
@@ -110,16 +112,12 @@ class Chip extends PureComponent {
         removed={removed}
       >
         {avatar && <Avatar>{avatar}</Avatar>}
-        <Label onClick={onClick}>
-          {label}
-        </Label>
-        {(removable || onDelete) && (
-          <DeleteIcon onDelete={this.handleDeleteIconClick} />
-        )}
-      </ChipContainer>
+        <Label onClick={onClick}>{label}</Label>
+        {(removable || onDelete) && <DeleteIcon onDelete={this.handleDeleteIconClick} />}
+      </Wrapper>
     );
   }
 }
 
 export default styled(Chip)``;
-export { ChipContainer, Label, Avatar, DeleteIcon };
+export { Wrapper, Label, Avatar, DeleteIcon };

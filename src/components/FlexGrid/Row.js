@@ -5,8 +5,9 @@
  * easily setting some common flex styles.
  */
 import React, { Component } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import createReactContext from 'create-react-context';
+import { rowMixin } from '../../mixins/flex';
 
 /**
  * RowContext
@@ -41,66 +42,6 @@ export const RowConsumer = RowContext.Consumer;
  * will be accessible to any RowConsumer within it's tree.
  */
 const RowProvider = RowContext.Provider;
-
-/**
- * computeDirection
- *
- * Styled Mixin for determining how to justify and align the row
- * @param {Object} props               Props provided by the user
- * @param {String} props.horizontal    horizontal positioning ('left'|'center'|'right')
- * @param {String} props.distribution  Item spacing ('around' | 'between')
- * @param {String} props.vertical      vertical positioning ('top'|'middle'|'bottom')
- * @param {Boolen} props.stretch       Stretch items to fit parent ?
- */
-const computeDirection = ({ horizontal, distribution, vertical, stretch }) => {
-  let justifyContent = 'flex-start';
-  let alignItems = 'flex-start';
-
-  switch (horizontal) {
-    case 'center':
-      justifyContent = 'center';
-      break;
-    case 'right':
-      justifyContent = 'flex-end';
-      break;
-    default:
-      break;
-  }
-
-  switch (distribution) {
-    case 'around':
-      justifyContent = 'space-around';
-      break;
-    case 'between':
-      justifyContent = 'space-between';
-      break;
-    default:
-      break;
-  }
-
-  switch (vertical) {
-    case 'top':
-      alignItems = 'flex-start';
-      break;
-    case 'bottom':
-      alignItems = 'flex-end';
-      break;
-    case 'middle':
-      alignItems = 'center';
-      break;
-    default:
-      break;
-  }
-
-  if (stretch) {
-    alignItems = 'stretch';
-  }
-
-  return css`
-    justify-content: ${justifyContent};
-    align-items: ${alignItems};
-  `;
-};
 
 class RowComponent extends Component {
   // Initial state is inherited from props
@@ -142,14 +83,7 @@ class RowComponent extends Component {
 }
 
 export const Row = styled(RowComponent)`
-  display: flex;
-  flex: 1;
-  flex-wrap: wrap;
-  flex-direction: row;
-  ${({ relative }) => relative && css`
-    position: relative;
-  `}
-  ${computeDirection}
+  ${props => rowMixin(props)}
 `;
 
 export const withRowState = fn => (props, context = {}) => (

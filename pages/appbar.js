@@ -1,7 +1,19 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 // import MaterialThemeProvider from '../src/theme/ThemeProvider';
-import { ThemeProvider, Appbar, Drawer, Button, Navigation, NavigationItem } from '../src';
+import {
+  ThemeProvider,
+  Appbar,
+  AppbarTitle,
+  Drawer,
+  Button,
+  CloseIcon,
+  /*
+  MenuIcon,
+  Navigation,
+  NavigationItem
+  */
+} from '../src';
 
 const PageContainer = styled.div`
   width: 100vw;
@@ -9,6 +21,15 @@ const PageContainer = styled.div`
 
 const Content = styled.div`
   padding: 10px;
+`;
+
+const Icon = styled(CloseIcon).attrs({
+  fill: 'white',
+})`
+  width: 24px;
+  padding: 8px 8px 8px 0;
+  cursor: pointer;
+  text-align: center;
 `;
 
 export default class AppbarPage extends Component {
@@ -45,7 +66,9 @@ export default class AppbarPage extends Component {
       <ThemeProvider theme={{ primary: '#03A9F4' }}>
         <PageContainer>
           {!this.state.persistentRight
-            ? <Appbar title='This is a title!' />
+            ? <Appbar>
+              <AppbarTitle>This is a title</AppbarTitle>
+            </Appbar>
             : <span />
           }
           <Content>
@@ -55,8 +78,11 @@ export default class AppbarPage extends Component {
               attachment='right'
               open={this.state.persistentRight}
               handleRequestClose={this.togglePersistentRight}>
-              <Appbar navIcon={this.closeIcon} title='I have a close button!' />
-              <Appbar title='I am in this drawer!' />
+              <Appbar>
+                <AppbarTitle Icon={Icon} onIconClick={this.togglePersistentRight}>
+                  {`<- Click Me`}
+                </AppbarTitle>
+              </Appbar>
               <p>I am a <b>persistent</b> drawer!</p>
             </Drawer>
             <Drawer
@@ -64,7 +90,9 @@ export default class AppbarPage extends Component {
               attachment='right'
               open={this.state.temporaryRight}
               handleRequestClose={this.toggleTemporaryRight}>
-              <Appbar title='I am in this drawer!' />
+              <Appbar>
+                <AppbarTitle>I am in this drawer!</AppbarTitle>
+              </Appbar>
               <p>I am a <b>temporary</b> drawer!</p>
             </Drawer>
             <Button
@@ -81,8 +109,10 @@ export default class AppbarPage extends Component {
             >
               Launch Temporary Drawer
             </Button>
+            {/* Broken for now
             <h2>Appbar with navigation</h2>
-            <Appbar title='Navigation' id="main">
+            <Appbar>
+              <AppbarTitle>Navigation</AppbarTitle>
               <Navigation active={this.state.mainNav}>
                 <NavigationItem onClick={() => this.setMainNav('test1')} navKey="test1">
                   <p>Test</p>
@@ -95,8 +125,9 @@ export default class AppbarPage extends Component {
                 </NavigationItem>
               </Navigation>
             </Appbar>
-            <h2>Dense Appbar</h2>
-            <Appbar title='Navigation' dense>
+              <h2>Dense Appbar</h2>
+            <Appbar dense>
+              <AppbarTitle>Navigation</AppbarTitle>
               <Navigation active={this.state.denseNav}>
                 <NavigationItem onClick={() => this.setDenseNav('test4')} navKey="test4">
                   <p>Test</p>
@@ -123,6 +154,7 @@ export default class AppbarPage extends Component {
                 </NavigationItem>
               </Navigation>
             </Appbar>
+            */}
           </Content>
         </PageContainer>
       </ThemeProvider>

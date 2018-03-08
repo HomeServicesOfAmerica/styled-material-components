@@ -14,7 +14,7 @@ export const AppbarTitle = styled.h1.attrs({
   'data-smc': 'AppbarTitle',
   height: props => (props.dense ? 48 : 64),
   width: props => (props.double ? 100 : 15),
-})`
+}) `
   margin: 0 12px;
   height: ${props => props.height}px;
   display: flex;
@@ -23,11 +23,19 @@ export const AppbarTitle = styled.h1.attrs({
   ${typography('title')}
 `;
 
-const AppbarComponent = ({ className, title, navIcon, children, dense, double = false }) => (
+const AppbarComponent = ({
+  className,
+  title,
+  navIcon,
+  children,
+  dense,
+  double = false,
+  fullTitle = false,
+}) => (
   <header className={className} data-smc="Appbar">
     <Column size={12} noGutters>
       <Row stretch>
-        <Column noGutters size={3}>
+        <Column noGutters size={fullTitle ? 12 : 3}>
           {navIcon && <AppbarIcon><navIcon /></AppbarIcon>}
           <AppbarTitle double={double} dense={dense}>{title}</AppbarTitle>
         </Column>
@@ -56,7 +64,7 @@ const sizeByScale = (dense, double) => {
   `;
 };
 
-export const Appbar = styled(AppbarComponent)`
+export const Appbar = styled(AppbarComponent) `
   align-items: ${props => (props.double ? 'left' : 'center')};
   padding: 0 24px;
   background-color: ${props => props.theme.primary};

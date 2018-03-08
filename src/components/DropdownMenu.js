@@ -32,7 +32,9 @@ const Symbol = styled(ArrowDropDownIcon)`
   fill: #726969;
 `;
 
-
+/*
+ * TODO implement real onchange handler for select field
+ */
 export default class DropdownMenu extends Component {
   state = {
     isOpen: false,
@@ -89,6 +91,7 @@ export default class DropdownMenu extends Component {
             <Dropdown
               value={selected}
               hidden={isOpen}
+              onChange={() => {}}
             >
               {options.map(option => (
                 <HiddenOption key={option}>

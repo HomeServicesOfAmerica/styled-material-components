@@ -8,7 +8,6 @@ import Title from './Title';
 import Header from './Header';
 import Footer from './Footer';
 import naturalSort from './naturalSort';
-import elevation from '../../mixins/elevation';
 import Checkbox from '../Checkbox';
 import { ArrowUpwardIcon } from '../../icons/icons';
 
@@ -307,7 +306,6 @@ class Table extends PureComponent {
 
 export default styled(Table) `
   ${props => (props.fullWidth ? 'width: 100%' : '')};
-  ${elevation(3)};
   display: inline-block;
   overflow: hidden;
   background-color: #fff;

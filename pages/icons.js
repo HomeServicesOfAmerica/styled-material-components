@@ -16,7 +16,7 @@ const availableIcons = [
     ]
   },
   {
-    category: 'Hardare',
+    category: 'Hardware',
     icons: [
       'keyboard_arrow_left',
       'keyboard_arrow_right',

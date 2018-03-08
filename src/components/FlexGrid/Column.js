@@ -181,7 +181,7 @@ const flexSizeMixin = ({
 const SizedColumn = styled.div`
   display: flex;
   flex-direction: column;
-  ${props => (props.noGutters ? '' : 'margin: 0.5em')};
+  ${props => (props.noGutters ? '' : `padding: 0 ${props.theme.layout.gutterSize}`)};
   flex: 0 0 auto;
   max-width: none;
   order: 0;

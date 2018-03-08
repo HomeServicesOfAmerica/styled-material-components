@@ -2,33 +2,37 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { ArrowDropDownPath } from './ArrowDropDownPath';
 import { ArrowUpwardPath } from './ArrowUpwardPath';
+import { ClosePath } from './ClosePath';
 import { InfoOutlinePath } from './InfoOutlinePath';
+import { KeyboardArrowDownPath } from './KeyboardArrowDownPath';
 import { KeyboardArrowLeftPath } from './KeyboardArrowLeftPath';
 import { KeyboardArrowRightPath } from './KeyboardArrowRightPath';
+import { KeyboardArrowUpPath } from './KeyboardArrowUpPath';
+import { PinDropPath } from './PinDropPath';
+import { MenuPath } from './MenuPath';
 import { SearchPath } from './SearchPath';
 import { StarBorderPath } from './StarBorderPath';
 import { StarHalfPath } from './StarHalfPath';
 import { StarPath } from './StarPath';
-import { KeyboardArrowUpPath } from './KeyboardArrowUpPath';
-import { KeyboardArrowDownPath } from './KeyboardArrowDownPath';
-import { PinDropPath } from './PinDropPath';
 
 const DEFAULT_FILL = 'rgb(0, 0, 0)';
 const DEFAULT_SIZE = 24;
 
 const iconPaths = {
   arrow_drop_down: ArrowDropDownPath,
-  upward_arrow: ArrowUpwardPath,
+  close: ClosePath,
+  info_outline: InfoOutlinePath,
+  keyboard_arrow_down: KeyboardArrowDownPath,
   keyboard_arrow_left: KeyboardArrowLeftPath,
   keyboard_arrow_right: KeyboardArrowRightPath,
+  keyboard_arrow_up: KeyboardArrowUpPath,
+  pin_drop: PinDropPath,
+  menu: MenuPath,
+  search: SearchPath,
   star_border: StarBorderPath,
   star_half: StarHalfPath,
   star: StarPath,
-  keyboard_arrow_up: KeyboardArrowUpPath,
-  keyboard_arrow_down: KeyboardArrowDownPath,
-  pin_drop: PinDropPath,
-  info_outline: InfoOutlinePath,
-  search: SearchPath,
+  upward_arrow: ArrowUpwardPath,
 };
 
 const getChildren = ({ icon }) => {
@@ -53,17 +57,39 @@ export const Icon = styled.svg.attrs({
   children: getChildren,
 }) ``;
 
+
 export const ArrowDropDownIcon = Icon.extend.attrs({
   children: ArrowDropDownPath,
 }) ``;
 export const ArrowUpwardIcon = Icon.extend.attrs({
   children: ArrowUpwardPath,
 }) ``;
+export const CloseIcon = Icon.extend.attrs({
+  children: ClosePath,
+}) ``;
+export const InfoOutlineIcon = Icon.extend.attrs({
+  children: InfoOutlinePath,
+}) ``;
+export const KeyboardArrowDownIcon = Icon.extend.attrs({
+  children: KeyboardArrowDownPath,
+}) ``;
 export const KeyboardArrowLeftIcon = Icon.extend.attrs({
   children: KeyboardArrowLeftPath,
 }) ``;
 export const KeyboardArrowRightIcon = Icon.extend.attrs({
   children: KeyboardArrowRightPath,
+}) ``;
+export const KeyboardArrowUpIcon = Icon.extend.attrs({
+  children: KeyboardArrowUpPath,
+}) ``;
+export const PinDropIcon = Icon.extend.attrs({
+  children: PinDropPath,
+}) ``;
+export const MenuIcon = Icon.extend.attrs({
+  children: MenuPath,
+}) ``;
+export const SearchIcon = Icon.extend.attrs({
+  children: SearchPath,
 }) ``;
 export const StarBorderIcon = Icon.extend.attrs({
   children: StarBorderPath,
@@ -73,19 +99,4 @@ export const StarHalfIcon = Icon.extend.attrs({
 }) ``;
 export const StarIcon = Icon.extend.attrs({
   children: StarPath,
-}) ``;
-export const KeyboardArrowUpIcon = Icon.extend.attrs({
-  children: KeyboardArrowUpPath,
-}) ``;
-export const KeyboardArrowDownIcon = Icon.extend.attrs({
-  children: KeyboardArrowDownPath,
-}) ``;
-export const PinDropIcon = Icon.extend.attrs({
-  children: PinDropPath,
-}) ``;
-export const InfoOutlineIcon = Icon.extend.attrs({
-  children: InfoOutlinePath,
-}) ``;
-export const SearchIcon = Icon.extend.attrs({
-  children: SearchPath,
 }) ``;

@@ -9,6 +9,13 @@ import {
 
 const availableIcons = [
   {
+    category: 'Action',
+    icons: [
+      'search',
+      'info_outline',
+    ]
+  },
+  {
     category: 'Hardare',
     icons: [
       'keyboard_arrow_left',

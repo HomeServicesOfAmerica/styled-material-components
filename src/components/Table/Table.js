@@ -10,7 +10,7 @@ import Footer from './Footer';
 import naturalSort from './naturalSort';
 import elevation from '../../mixins/elevation';
 import Checkbox from '../Checkbox';
-import { ArrowUpward } from '../../icons/icons';
+import { ArrowUpwardIcon } from '../../icons/icons';
 
 /*
  * The user of the table is responsible for passing in a unique key for each
@@ -230,7 +230,7 @@ class Table extends PureComponent {
                   last={i === this.props.fields.length - 1}
                 >
                   <div className='sortButtonContainer'>
-                    {sortable && <ArrowUpward
+                    {sortable && <ArrowUpwardIcon
                       className={this.state.sortedBy === key && !this.state.descending ? 'sortButton rotate' : 'sortButton'}
                       onClick={() => this.sortByKey(key)}
                     />}
@@ -325,7 +325,7 @@ export default styled(Table) `
     .sortButtonContainer {
       height: 15px;
       display: inline-flex;
-      
+
       > .sortButton {
         height: 15px;
         width: 15px;

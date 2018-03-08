@@ -1,6 +1,5 @@
 import React from 'react';
-import MaterialThemeProvider from '../src/theme/ThemeProvider';
-import { Row, Column } from '../src/components/FlexGrid';
+import { Row, Column, ThemeProvider } from '../src';
 
 const BlueColumn = Column.extend`
   background-color: teal;
@@ -15,7 +14,7 @@ const CustomRow = Row.extend`
 `;
 
 export default () => (
-  <MaterialThemeProvider>
+  <ThemeProvider>
     <h1>FlexGrid Layouts</h1>
     <section>
       <h2>Responsive</h2>
@@ -260,6 +259,5 @@ export default () => (
         </BlueColumn>
       </CustomRow>
     </section>
-  </MaterialThemeProvider>
+  </ThemeProvider>
 );
-

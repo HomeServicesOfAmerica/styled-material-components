@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Tabs, Tab, TabsContainer, TabNavigationContainer } from '../src/index';
-import MaterialThemeProvider from '../src/theme/ThemeProvider';
-import Button from '../src/components/Button';
+import { Tabs, Tab, TabsContainer, TabNavigationContainer, ThemeProvider, Button } from '../src';
 
 // TODO: animations (inkbar && ripple)
 // TODO: accept icon as option with or instead of text label
@@ -58,7 +56,7 @@ const WithStyledTabContainer = styled.div`
 `
 
 const TabsPage = ({ className }) => (
-  <MaterialThemeProvider theme={{ primary: '#03A9F4' }}>
+  <ThemeProvider theme={{ primary: '#03A9F4' }}>
     <div className={className}>
       <h1>Tabs</h1>
       <h2>Fixed Tabs Default</h2>
@@ -135,7 +133,7 @@ const TabsPage = ({ className }) => (
       <h2>Controlled Tabs</h2>
       <ControlledTabs />
     </div>
-  </MaterialThemeProvider>
+  </ThemeProvider>
 );
 
 export default TabsPage;

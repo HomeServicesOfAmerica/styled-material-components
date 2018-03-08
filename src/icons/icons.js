@@ -49,11 +49,11 @@ export const Icon = styled.svg.attrs({
   children: getChildren,
 }) ``;
 
-export const ArrowDropDown = Icon.extend.attrs({
+export const ArrowDropDownIcon = Icon.extend.attrs({
   children: ArrowDropDownPath,
 }) ``;
 
-export const ArrowUpward = Icon.extend.attrs({
+export const ArrowUpwardIcon = Icon.extend.attrs({
   children: ArrowUpwardPath,
 }) ``;
 

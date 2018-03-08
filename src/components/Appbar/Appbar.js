@@ -4,13 +4,13 @@ import { Column, Row } from '../FlexGrid';
 import typography from '../../mixins/typography';
 import elevation from '../../mixins/elevation';
 
-export const Icon = styled.div`
+export const AppbarIcon = styled.div`
   width: 24px;
   height: 24px;
   margin: 12px;
 `;
 
-export const Title = styled.h1.attrs({
+export const AppbarTitle = styled.h1.attrs({
   'data-smc': 'AppbarTitle',
   height: props => (props.dense ? 48 : 64),
   width: props => (props.double ? 100 : 15),
@@ -28,8 +28,8 @@ const AppbarComponent = ({ className, title, navIcon, children, dense, double = 
     <Column size={12} noGutters>
       <Row stretch>
         <Column noGutters size={3}>
-          {navIcon && <Icon><navIcon /></Icon>}
-          <Title double={double} dense={dense}>{title}</Title>
+          {navIcon && <AppbarIcon><navIcon /></AppbarIcon>}
+          <AppbarTitle double={double} dense={dense}>{title}</AppbarTitle>
         </Column>
         {!double && (
           <Column size={9} noGutters>

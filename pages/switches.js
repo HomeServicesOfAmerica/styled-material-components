@@ -1,9 +1,5 @@
 import React from 'react';
-import Switch from '../src/components/Switch/Switch';
-import MaterialThemeProvider from '../src/theme/ThemeProvider';
-import withRipple from '../src/enhancers/withRipple';
-import List from '../src/components/List/List';
-import ListItem from '../src/components/List/ListItem';
+import { Switch, ThemeProvider, withRipple, List, ListItem } from '../src';
 
 // TODO:
 // Finish diable
@@ -12,7 +8,7 @@ import ListItem from '../src/components/List/ListItem';
 const RippleSwitch = withRipple(Switch);
 
 const Switches = () => (
-  <MaterialThemeProvider>
+  <ThemeProvider>
     <List>
       <h1 style={{ marginLeft: 25 }}>Switches</h1>
       <ListItem>
@@ -32,7 +28,7 @@ const Switches = () => (
         <label htmlFor="switch4">Disabled and Dark</label>
       </ListItem>
     </List>
-  </MaterialThemeProvider>
+  </ThemeProvider>
 );
 
 export default Switches;

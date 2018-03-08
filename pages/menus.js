@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import Button from '../src/components/Button';
-import MenuItem from '../src/components/Menu/MenuItem';
-import Menu from '../src/components/Menu/Menu';
-import MaterialThemeProvider from '../src/theme/ThemeProvider';
+import { ThemeProvider, Button, MenuItem, Menu } from '../src';
 
 const StandAloneMenu = Menu.extend`
   position: relative;
@@ -13,7 +10,7 @@ class MenusPage extends Component {
     open: false,
     value: '',
   };
-  
+
   handleClick = () => {
     this.setState({ open: !this.state.open });
   };
@@ -36,7 +33,7 @@ class MenusPage extends Component {
     ];
 
     return (
-      <MaterialThemeProvider theme={{ primary: '#03A9F4' }}>
+      <ThemeProvider theme={{ primary: '#03A9F4' }}>
         <div style={{ margin: '60px 16px' }}>
           <h1>Menus</h1>
           <h2>Standalone Menu</h2>
@@ -60,7 +57,7 @@ class MenusPage extends Component {
             <h3>You selected: <span style={{ color: 'tomato' }}>{this.state.value}</span></h3>
           </div>
         </div>
-      </MaterialThemeProvider>
+      </ThemeProvider>
     );
   }
 }

@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react';
 import styled from 'styled-components';
-import MaterialThemeProvider from '../src/theme/ThemeProvider';
 import {
+  ThemeProvider,
   Icon,
-  ArrowDropDown,
+  ArrowDropDownIcon,
   KeyboardArrowLeftIcon,
-} from '../src/icons/icons';
+} from '../src';
 
 const availableIcons = [
   {
@@ -40,7 +40,7 @@ const availableIcons = [
 ];
 
 const IconsPage = ({ className }) => (
-  <MaterialThemeProvider>
+  <ThemeProvider>
     <section className={className}>
       <h1>Icons</h1>
         Icons can be rendered in one of two ways:
@@ -49,7 +49,7 @@ const IconsPage = ({ className }) => (
             Directly imported
             <ul>
               <li>
-                <ArrowDropDown /> {`<ArrowDropDown />`}
+                <ArrowDropDownIcon /> {`<ArrowDropDown />`}
               </li>
               <li>
                 <KeyboardArrowLeftIcon /> {`<KeyboardArrowLeftIcon />`}
@@ -85,7 +85,7 @@ const IconsPage = ({ className }) => (
           ))}
         </section>
     </section>
-  </MaterialThemeProvider>
+  </ThemeProvider>
 );
 
 const Icons = styled(IconsPage)`

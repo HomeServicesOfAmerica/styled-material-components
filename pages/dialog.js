@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import Button from '../src/components/Button';
-import { Dialog, DialogTitle, DialogBody, DialogFooter } from '../src/components/Dialog';
-import MaterialThemeProvider from '../src/theme/ThemeProvider';
+import { Button, Dialog, DialogTitle, DialogBody, DialogFooter, ThemeProvider } from '../src';
 
 class ExampleDialog extends Component {
   state = {
@@ -43,14 +41,14 @@ class ExampleDialog extends Component {
 }
 
 const DialogPage = () => (
-  <MaterialThemeProvider>
+  <ThemeProvider>
     <div>
       <h1>Dialog with title</h1>
       <ExampleDialog title='Dialog title' />
       <h1>Dialog without title</h1>
       <ExampleDialog />
     </div>
-  </MaterialThemeProvider>
+  </ThemeProvider>
 );
 
 export default DialogPage;

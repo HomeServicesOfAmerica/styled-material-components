@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import React, { Component, Fragment } from 'react';
 import MenuItem from './Menu/MenuItem';
 import Menu from './Menu/Menu';
-import { ArrowDropDown } from './../icons/icons';
+import { ArrowDropDownIcon } from './../icons/icons';
 
 const Dropdown = styled.select`
   border-color: transparent;
@@ -23,7 +23,7 @@ const HiddenOption = styled.option`
   display: none;
 `;
 
-const Symbol = styled(ArrowDropDown)`
+const Symbol = styled(ArrowDropDownIcon)`
   width: 20px;
   height: 20px;
   position: absolute;
@@ -40,7 +40,7 @@ export default class DropdownMenu extends Component {
     selected: this.props.defaultOption || 'select one',
     isChrome: undefined,
   }
-  
+
   /* eslint-disable react/no-did-mount-set-state */
   /*
    * Because Next.js executes its code server-side first,
@@ -59,7 +59,7 @@ export default class DropdownMenu extends Component {
     }
   }
   /* eslint-enable react/no-did-mount-set-state */
-   
+
   onSelectMenuItem = (option): void => {
     this.setState({ selected: option });
   }

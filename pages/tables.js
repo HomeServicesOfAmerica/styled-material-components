@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
-import MaterialThemeProvider from '../src/theme/ThemeProvider';
-import { Table } from '../src/components/Table';
+import { Table, ThemeProvider } from '../src';
 
 const fields = [
   {
@@ -113,7 +112,7 @@ class ControlledTable extends PureComponent {
 }
 
 const Tables = () => (
-  <MaterialThemeProvider>
+  <ThemeProvider>
     <div>
       <h1>Tables</h1>
       <h4>
@@ -262,7 +261,8 @@ const Tables = () => (
         header={`Check the console for callbacks!`}
       />
     </div>
-  </MaterialThemeProvider >
+  </ThemeProvider>
+
 );
 
 export default Tables;

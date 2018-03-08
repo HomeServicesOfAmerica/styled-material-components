@@ -151,3 +151,10 @@ export const Row = styled(RowComponent)`
   `}
   ${computeDirection}
 `;
+
+export const withRowState = fn => (props, context = {}) => (
+  <RowConsumer>
+    {rowState => fn(props, { ...context, rowState })}
+  </RowConsumer>
+);
+

@@ -30,11 +30,12 @@
     "color": "^2.0.0",
     "create-react-context": "^0.2.1",
     "eslint-config-concierge-auctions-base": "^0.0.6",
-    "lodash.isequal": "^4.5.0",
     "lodash.debounce": "^4.0.8",
+    "lodash.isequal": "^4.5.0",
     "lodash.merge": "^4.6.0",
     "react": "^16.0.0",
     "react-tunnels": "^1.0.2",
+    "recompose": "^0.26.0",
     "respondable": "^1.0.1",
     "styled-components": "^2.2.3"
   },

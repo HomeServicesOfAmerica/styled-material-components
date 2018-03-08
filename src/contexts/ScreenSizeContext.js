@@ -124,3 +124,9 @@ class ScreenSizeContextBase extends Component {
 
 // withTheme gives us access to the theme without it being a Styled Component
 export const ScreenSizeContext = withTheme(ScreenSizeContextBase);
+
+export const withScreenSize = fn => (props, context = {}) => (
+  <ScreenSizeConsumer>
+    {screenSizeState => fn(props, { ...context, screenSizeState })}
+  </ScreenSizeConsumer>
+);

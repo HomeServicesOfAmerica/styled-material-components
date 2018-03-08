@@ -1,8 +1,6 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
-import MaterialThemeProvider from '../src/theme/ThemeProvider';
-import TextField from '../src/components/TextField';
-import Button from '../src/components/Button';
+import { ThemeProvider, TextField, Button } from '../src'
 
 const validateLength = str => str.length > 7;
 
@@ -29,7 +27,7 @@ class TextFieldPage extends PureComponent {
 
   render() {
     return (
-      <MaterialThemeProvider theme={{ primary: '#03A9F4' }}>
+      <ThemeProvider theme={{ primary: '#03A9F4' }}>
         <div className={this.props.className}>
           <h1>Text Fields</h1>
           <h2>Simple Examples</h2>
@@ -38,7 +36,7 @@ class TextFieldPage extends PureComponent {
           <TextFieldWithBottomMargin defaultValue={'Default Value'} />
           <TextFieldWithBottomMargin
             floatingLabelText={'floating label'}
-          /> 
+          />
           <TextFieldWithBottomMargin
             hintText={'with hint text'}
             floatingLabelText={'floating label'}
@@ -137,7 +135,7 @@ class TextFieldPage extends PureComponent {
               options={"invalid option"}
           />
         </div>
-      </MaterialThemeProvider>
+      </ThemeProvider>
     );
   }
 }

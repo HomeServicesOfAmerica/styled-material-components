@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import MaterialThemeProvider from '../src/theme/ThemeProvider';
-import { Drawer } from '../src/components/Drawer';
-import Button from '../src/components/Button';
-import { Appbar, Navigation, NavigationItem } from '../src/components/Appbar';
+// import MaterialThemeProvider from '../src/theme/ThemeProvider';
+import { ThemeProvider, Appbar, Drawer, Button, Navigation, NavigationItem } from '../src';
 
 const PageContainer = styled.div`
   width: 100vw;
@@ -44,7 +42,7 @@ export default class AppbarPage extends Component {
 
   render() {
     return (
-      <MaterialThemeProvider theme={{ primary: '#03A9F4' }}>
+      <ThemeProvider theme={{ primary: '#03A9F4' }}>
         <PageContainer>
           {!this.state.persistentRight
             ? <Appbar title='This is a title!' />
@@ -127,8 +125,7 @@ export default class AppbarPage extends Component {
             </Appbar>
           </Content>
         </PageContainer>
-      </MaterialThemeProvider>
+      </ThemeProvider>
     );
   }
 }
-

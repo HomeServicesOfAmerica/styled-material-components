@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import MaterialThemeProvider from '../src/theme/ThemeProvider';
-import { BottomSheet } from '../src/components/BottomSheet';
-import Button from '../src/components/Button';
+import { ThemeProvider, BottomSheet, Button } from '../src';
 
 const PageContainer = styled.div`
   padding: 10px;
@@ -22,10 +20,9 @@ export default class PortalPage extends Component {
     persistent: !prevState.persistent
   }));
 
-
   render() {
     return (
-      <MaterialThemeProvider theme={{ primary: '#03A9F4' }}>
+      <ThemeProvider theme={{ primary: '#03A9F4' }}>
         <PageContainer>
           <h1>Modal Bottomsheet!</h1>
           <BottomSheet
@@ -47,7 +44,7 @@ export default class PortalPage extends Component {
           </BottomSheet>
           <Button raised primary onClick={this.togglePersistent}>Toggle Persistent</Button>
         </PageContainer>
-      </MaterialThemeProvider>
+      </ThemeProvider>
     );
   }
 }

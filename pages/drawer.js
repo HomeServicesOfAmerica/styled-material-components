@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import MaterialThemeProvider from '../src/theme/ThemeProvider';
-import { Drawer } from '../src/components/Drawer';
-import Button from '../src/components/Button';
+import { Drawer, ThemeProvider, Button } from '../src';
 
 const PageContainer = styled.div`
   padding: 10px;
@@ -37,7 +35,7 @@ export default class PortalPage extends Component {
 
   render() {
     return (
-      <MaterialThemeProvider theme={{ primary: '#03A9F4' }}>
+      <ThemeProvider theme={{ primary: '#03A9F4' }}>
         <PageContainer>
           <h1>Temporary Drawers!</h1>
           <Drawer
@@ -72,8 +70,7 @@ export default class PortalPage extends Component {
           <Button raised primary onClick={this.togglePersistentRight}>Right Persistent</Button>
           <Button raised accent onClick={this.togglePersistentLeft}>Left Persistent</Button>
         </PageContainer>
-      </MaterialThemeProvider>
+      </ThemeProvider>
     );
   }
 }
-

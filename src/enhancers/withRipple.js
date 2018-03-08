@@ -72,5 +72,4 @@ const withRipple = (ComposedComponent) => {
   };
 };
 
-
 export default withRipple;

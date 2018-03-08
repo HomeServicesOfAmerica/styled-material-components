@@ -1,9 +1,5 @@
 import React, { PureComponent } from 'react';
-import MaterialThemeProvider from '../src/theme/ThemeProvider';
-import Checkbox, { Box, CheckMark } from '../src/components/Checkbox';
-import List from '../src/components/List/List';
-import ListItem from '../src/components/List/ListItem';
-import defaultTheme from '../src/theme/defaultTheme';
+import { ThemeProvider, Checkbox, Box, CheckMark, List, ListItem, defaultTheme } from '../src';
 
 const StyledCheckbox = Checkbox.extend`
   ${Box} {
@@ -28,7 +24,7 @@ class CheckboxesPage extends PureComponent {
   render() {
     const { checked } = this.state;
     return (
-      <MaterialThemeProvider theme={defaultTheme}>
+      <ThemeProvider theme={defaultTheme}>
         <List>
           <h1 style={{ marginLeft: 25 }}>Checkboxes</h1>
           <ListItem>
@@ -64,7 +60,7 @@ class CheckboxesPage extends PureComponent {
             <label htmlFor="checkbox8">Custom Checkbox</label>
           </ListItem>
         </List>
-      </MaterialThemeProvider>
+      </ThemeProvider>
     );
   }
 }

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import typography from '../mixins/typography';
 import elevation, { elevationTransition } from '../mixins/elevation';
 
-const Wrapper = styled.div`
+const ChipWrapper = styled.div`
   display: inline-flex;
   justify-content: space-between;
   align-items: center;
@@ -27,7 +27,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const Avatar = styled.div`
+const ChipAvatar = styled.div`
   width: 32px;
   height: 32px;
   color: #616161;
@@ -41,7 +41,7 @@ const Avatar = styled.div`
   font-size: 16px;
 `;
 
-const Label = styled.span`
+const ChipLabel = styled.span`
   margin: 0 12px;
 `;
 
@@ -55,13 +55,13 @@ const DeleteIconSvg = styled.svg`
   }
 `;
 
-const DeleteIcon = styled(({ onDelete, className }) => (
+const ChipDeleteIcon = styled(({ onDelete, className }) => (
   <DeleteIconSvg className={className} onClick={onDelete}>
     <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z" />
   </DeleteIconSvg>
 ))``;
 
-class Chip extends PureComponent {
+class ChipComponent extends PureComponent {
   state = {
     removed: false,
   };
@@ -104,20 +104,20 @@ class Chip extends PureComponent {
     const removed = removedProp !== undefined ? removedProp : this.state.removed;
 
     return (
-      <Wrapper
+      <ChipWrapper
         className={className}
         onKeyDown={this.handleKeyDown}
         tabIndex={0}
         clickable={onClick}
         removed={removed}
       >
-        {avatar && <Avatar>{avatar}</Avatar>}
-        <Label onClick={onClick}>{label}</Label>
-        {(removable || onDelete) && <DeleteIcon onDelete={this.handleDeleteIconClick} />}
-      </Wrapper>
+        {avatar && <ChipAvatar>{avatar}</ChipAvatar>}
+        <ChipLabel onClick={onClick}>{label}</ChipLabel>
+        {(removable || onDelete) && <ChipDeleteIcon onDelete={this.handleDeleteIconClick} />}
+      </ChipWrapper>
     );
   }
 }
 
-export default styled(Chip)``;
-export { Wrapper, Label, Avatar, DeleteIcon };
+const Chip = styled(ChipComponent)``;
+export { Chip, ChipWrapper, ChipLabel, ChipAvatar, ChipDeleteIcon };

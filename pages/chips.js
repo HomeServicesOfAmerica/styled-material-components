@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import MaterialThemeProvider from '../src/theme/ThemeProvider';
-import Chip, { Avatar, Label, DeleteIcon } from '../src/components/Chip';
+import { Chip, ChipAvatar, ChipLabel, ChipDeleteIcon } from '../src/components/Chip';
 
 const demo = (area) => {
   // eslint-disable-next-line
@@ -8,15 +8,15 @@ const demo = (area) => {
 };
 
 const CustomChip = Chip.extend`
-  ${Avatar} {
+  ${ChipAvatar} {
     background-color: skyblue;
   }
 
-  ${Label} {
+  ${ChipLabel} {
     font-weight: 800;
   }
 
-  ${DeleteIcon} {
+  ${ChipDeleteIcon} {
     :hover {
       fill: tomato;
     }

@@ -2,8 +2,10 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { ArrowDropDownPath } from './ArrowDropDownPath';
 import { ArrowUpwardPath } from './ArrowUpwardPath';
+import { InfoOutlinePath } from './InfoOutlinePath';
 import { KeyboardArrowLeftPath } from './KeyboardArrowLeftPath';
 import { KeyboardArrowRightPath } from './KeyboardArrowRightPath';
+import { SearchPath } from './SearchPath';
 import { StarBorderPath } from './StarBorderPath';
 import { StarHalfPath } from './StarHalfPath';
 import { StarPath } from './StarPath';
@@ -25,6 +27,8 @@ const iconPaths = {
   keyboard_arrow_up: KeyboardArrowUpPath,
   keyboard_arrow_down: KeyboardArrowDownPath,
   pin_drop: PinDropPath,
+  info_outline: InfoOutlinePath,
+  search: SearchPath,
 };
 
 const getChildren = ({ icon }) => {
@@ -79,6 +83,12 @@ export const KeyboardArrowUpIcon = Icon.extend.attrs({
 export const KeyboardArrowDownIcon = Icon.extend.attrs({
   children: KeyboardArrowDownPath,
 }) ``;
-export const PinDropPathIcon = Icon.extend.attrs({
+export const PinDropIcon = Icon.extend.attrs({
   children: PinDropPath,
+}) ``;
+export const InfoOutlineIcon = Icon.extend.attrs({
+  children: InfoOutlinePath,
+}) ``;
+export const SearchIcon = Icon.extend.attrs({
+  children: SearchPath,
 }) ``;

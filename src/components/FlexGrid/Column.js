@@ -5,6 +5,7 @@
  * of the screen to grow, shrink, reorder as described by the end
  * user via size props.
  */
+import React from 'react';
 import styled, { css } from 'styled-components';
 import { ScreenSizeConsumer } from '../../contexts/ScreenSizeContext';
 import { RowConsumer } from './Row';

@@ -212,7 +212,7 @@ class Table extends PureComponent {
         <table className="smc-table-table">
           <thead className="smc-table-head">
             <Row header>
-              {this.props.hasCheckboxes && <th>
+              {this.props.hasCheckboxes && <th className='smc-table-head-checkbox'>
                 <Checkbox
                   disabled={this.props.rowsPerPage}
                   checked={this.state.selectedAllActive}
@@ -319,6 +319,10 @@ export default styled(Table) `
 
   > .smc-table-table {
     border-collapse: collapse;
+
+    .smc-table-head-checkbox {
+      float: left;
+    }
 
     .sortButtonContainer {
       height: 15px;

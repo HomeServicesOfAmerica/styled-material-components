@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import MaterialThemeProvider from '../src/theme/ThemeProvider';
 import { GridList, GridTile } from '../src/components/GridList';
+import GridSubheader from '../src/components/GridList/GridSubheader';
 
 const Img = styled.img`
   object-fit: cover;
@@ -43,6 +44,7 @@ const GridListsPage = ({ className }) => (
       <h3>Row</h3>
       <p>Gridlists default to flex-direction: row (and are responsive)</p>
       <GridList>
+        <GridSubheader className={className} title="Pizza Row" />
         {tilesData.map(tile => (
           <GridTile
             key={tile.img}
@@ -56,6 +58,7 @@ const GridListsPage = ({ className }) => (
       
       <div height="200px">
         <GridList column>
+        <GridSubheader className={className} title="Pizza Column" />
           {tilesData.map(tile => (
             <GridTile
               key={tile.img}

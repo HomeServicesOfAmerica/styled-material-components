@@ -120,6 +120,14 @@ class TextFieldComponent extends PureComponent {
         >
           {this.props.errorText}
         </ErrorText>
+        {this.props.charLimit &&
+        <CharLimitText
+          show={this.props.charLimit}
+          error={this.state.text.length > this.props.charLimit}
+          className={'smc-text-field-char-limit-text'}
+        >
+          {this.state.text.length}/{this.props.charLimit}
+        </CharLimitText>}
         <UnderlineFocus
           disabled={this.props.options || this.props.focusDisabled}
           className={'smc-text-field-underline-focus'}
@@ -137,6 +145,7 @@ class TextFieldComponent extends PureComponent {
               disabled={this.props.disabled}
               autoFocus={this.props.autoFocus}
               value={this.props.value || this.state.text}
+              charLimit={this.props}
               height={this.state.height}
               onChange={this.onChange}
               onFocus={this.onFocus}
@@ -258,6 +267,12 @@ const ErrorText = styled.div`
   ${fadeInOut};
   ${placeBelow};
   ${props => props.errorTextStyle};
+`;
+
+const CharLimitText = styled.div`
+  color: ${props => (props.error ? error : hintTextColor)}
+  ${placeBelow};
+  text-align: right;
 `;
 
 const HelperText = styled.div`

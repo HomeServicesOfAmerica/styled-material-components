@@ -26,10 +26,8 @@ const GridSubheader = styled(GridSubheaderComponent)`
   height: 48px;
   width: 100%;
   padding-left: 16px;
-  position: {}
 
   > .smc-grid-subheader {
-    background-color: black;
     position: relative;
   }
 
@@ -38,7 +36,5 @@ const GridSubheader = styled(GridSubheaderComponent)`
     box-shadow: 0 5px rgba(0,0,0,0.1);
   }
 `;
-  // transition: all 0.5s;
-  // z-index: 1;
 
 export default GridSubheader;

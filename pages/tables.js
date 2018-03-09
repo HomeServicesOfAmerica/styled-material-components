@@ -64,16 +64,9 @@ const data = [
     event: 'Something else',
     price: '$34,232,544',
   },
-  {
-    key: '4534r34',
-    date: '03/14/15',
-    event: 'Really Big Price Change',
-    price: '$4,000',
-  },
 ];
 
 const StyledTable = Table.extend`
-  max-width: 500px;
   .smc-table-datum-price {
     color: red;
   }
@@ -100,8 +93,8 @@ class ControlledTable extends PureComponent {
     return (
       <Table
         fields={fields}
-        data={data.slice((currentPage - 1) * 3, currentPage * 3)}
-        rowsPerPage={3}
+        data={data.slice((currentPage - 1) * 4, currentPage * 4)}
+        rowsPerPage={4}
         header="Faked Pagination"
         totalDataPoints={5}
         handleForwardPagination={this.handleForwardPagination}
@@ -248,6 +241,20 @@ const Tables = () => (
       <ControlledTable />
       <h2>Table checkboxes</h2>
       <Table
+        hasCheckboxes
+        onCheck={() => {
+          console.log('select');
+        }}
+        onUncheck={() => {
+          console.log('deselect');
+        }}
+        fields={fields}
+        data={data}
+        header={`Check the console for callbacks!`}
+      />
+      <h2>Full Width!</h2>
+      <Table
+        fullWidth
         hasCheckboxes
         onCheck={() => {
           console.log('select');

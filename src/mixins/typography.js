@@ -127,4 +127,10 @@ export const typographyAdjustMargin = style => css`
   ${marginStyles[style]}
 `;
 
+export const overflowEllipsis = css`
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+`;
+
 export default typography;

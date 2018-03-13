@@ -11,9 +11,6 @@ const HomePage = ({ className }) => (
     <List className={className}>
       <h1>Styled Material Components</h1>
       <ListItem>
-        <Link href="/appbar"><a>Appbars Page</a></Link>
-      </ListItem>
-      <ListItem>
         <Link href="/buttons"><a>Buttons Page</a></Link>
       </ListItem>
       <ListItem>
@@ -60,6 +57,9 @@ const HomePage = ({ className }) => (
       </ListItem>
       <ListItem>
         <Link href="/text-fields"><a>TextFields Page</a></Link>
+      </ListItem>
+      <ListItem>
+        <Link href="/toolbar"><a>Toolbars Page</a></Link>
       </ListItem>
       <ListItem>
         <Link href="/sliders"><a>Sliders Page</a></Link>

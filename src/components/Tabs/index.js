@@ -1,3 +1,2 @@
-export { default as Tabs } from './Tabs';
+export * from './Tab';
 export * from './Tabs';
-export { default as Tab } from './Tab';

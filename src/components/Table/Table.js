@@ -37,14 +37,13 @@ class Table extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      selectedAllActive: false,
       selectedItems: {},
-      sortedBy: '',
-      descending: false,
       mutatedData: [...this.props.data],
+      sortedBy: null,
+      descending: false,
       currentPage: this.props.currentPage || 1,
+      rowsPerPage: this.props.rowsPerPage || 10,
     };
-    this.rowsPerPage = this.props.rowsPerPage || 10;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -72,14 +71,14 @@ class Table extends PureComponent {
     const fakingPagination = totalDataPoints > this.state.mutatedData.length;
     const currentPage = this.props.currentPage || this.state.currentPage;
     let data;
-    if (fakingPagination || (totalDataPoints <= this.rowsPerPage)) {
+    if (fakingPagination || (totalDataPoints <= this.state.rowsPerPage)) {
       data = this.state.mutatedData;
     } else {
       data = this.state.mutatedData.slice(
-        (currentPage - 1) * this.rowsPerPage, currentPage * this.rowsPerPage
+        (currentPage - 1) * this.state.rowsPerPage, currentPage * this.state.rowsPerPage
       );
     }
-    const itemsToSet = {};
+    const itemsToSet = { ...this.state.selectedItems };
     for (let i = 0; i < data.length; i += 1) {
       const item = data[i];
       !this.state.selectedItems[item.key] && this.props.onCheck && this.props.onCheck(item);
@@ -87,7 +86,6 @@ class Table extends PureComponent {
     }
     this.setState({
       selectedItems: itemsToSet,
-      selectedAllActive: true,
     });
   }
 
@@ -100,11 +98,8 @@ class Table extends PureComponent {
       this.props.onCheck(datum);
       itemsToSet[datum.key] = true;
     }
-    const selectedAll =
-      Object.keys(this.state.mutatedData).length === Object.keys(itemsToSet).length;
     this.setState({
       selectedItems: itemsToSet,
-      selectedAllActive: selectedAll,
     });
   }
 
@@ -113,7 +108,7 @@ class Table extends PureComponent {
     const newData = [...input];
     let mutatedData;
     const currentSort = this.state.sortedBy;
-    // if we have a key to sortByKey, do it:
+    // if we have a key to sortBy, do it:
     if (currentSort) {
       // grab descending from state, as it shouldn't have to change here
       const sorter = naturalSort({ desc: this.state.descending });
@@ -137,14 +132,14 @@ class Table extends PureComponent {
     const fakingPagination = totalDataPoints > this.state.mutatedData.length;
     const currentPage = this.props.currentPage || this.state.currentPage;
     let data;
-    if (fakingPagination || (totalDataPoints <= this.rowsPerPage)) {
+    if (fakingPagination || (totalDataPoints <= this.state.rowsPerPage)) {
       data = this.state.mutatedData;
     } else {
       data = this.state.mutatedData.slice(
-        (currentPage - 1) * this.rowsPerPage, currentPage * this.rowsPerPage
+        (currentPage - 1) * this.state.rowsPerPage, currentPage * this.state.rowsPerPage
       );
     }
-    const itemsToSet = {};
+    const itemsToSet = { ...this.state.selectedItems };
     for (let i = 0; i < data.length; i += 1) {
       const item = data[i];
       this.props.onUncheck && this.props.onUncheck(item);
@@ -152,31 +147,34 @@ class Table extends PureComponent {
     }
     this.setState({
       selectedItems: itemsToSet,
-      selectedAllActive: false,
     });
   }
 
-  sortByKey(key) {
-    let shouldDescend;
+  sortBy(key) {
+    let descending = this.state.descending;
+    const mutatedData = [...this.state.mutatedData];
+    if (this.props.onSort) {
+      return this.props.onSort(key);
+    }
     if (key === this.state.sortedBy) {
       // flip descending or ascending
       if (this.state.descending) {
-        shouldDescend = false;
+        descending = false;
       } else {
-        shouldDescend = true;
+        descending = true;
       }
     } else {
       // default, new sort to descending
-      shouldDescend = false;
+      descending = true;
     }
     // init the sorter
-    const sorter = naturalSort({ desc: shouldDescend });
+    const sorter = naturalSort({ desc: descending });
 
     // sort by key!
-    const sorted = this.state.mutatedData.sort(
+    mutatedData.sort(
       (a, b) => sorter(a[key], b[key])
     );
-    this.setState({ descending: shouldDescend, mutatedData: sorted, sortedBy: key });
+    this.setState({ descending, mutatedData, sortedBy: key });
   }
 
   handleBackwardsPagination = () => {
@@ -193,48 +191,67 @@ class Table extends PureComponent {
     this.setState(incrementCurrentPage);
   }
 
+  determineSelected = (superset, subset) => {
+    if (subset.length === 0) {
+      return false;
+    }
+    return subset.every(value => (superset.indexOf(value) >= 0));
+  }
+
   render() {
-    const totalDataPoints = this.props.totalDataPoints || this.state.mutatedData.length;
-    const showFooter = totalDataPoints > this.rowsPerPage;
+    const { hasCheckboxes, fields } = this.props;
+    const { rowsPerPage, mutatedData, selectedItems } = this.state;
+    const totalDataPoints = this.props.totalDataPoints || mutatedData.length;
+    const showFooter = totalDataPoints > rowsPerPage;
     const currentPage = this.props.currentPage || this.state.currentPage;
-    const fakingPagination = totalDataPoints > this.state.mutatedData.length;
-    const showAllData = fakingPagination || (totalDataPoints <= this.rowsPerPage);
+    const fakingPagination = totalDataPoints > mutatedData.length;
+    const showAllData = fakingPagination || (totalDataPoints <= rowsPerPage);
     const rowsToShow = showAllData
-      ? this.state.mutatedData
-      : this.state.mutatedData.slice(
-        (currentPage - 1) * this.rowsPerPage, currentPage * this.rowsPerPage
+      ? mutatedData
+      : mutatedData.slice(
+        (currentPage - 1) * rowsPerPage, currentPage * rowsPerPage
       );
     let extraRows = 0;
     if (!showAllData || fakingPagination) {
-      extraRows = Math.max(0, this.rowsPerPage - rowsToShow.length);
+      extraRows = Math.max(0, rowsPerPage - rowsToShow.length);
     }
+    const sort = (this.props.sortedBy || this.state.sortedBy);
+    const descending = (this.props.descending || this.state.descending);
+
+    const currentSelectionKeys = Object.keys(selectedItems);
+    const currentPageKeys = rowsToShow.map(item => item.key);
+    const selectedAllActive = this.determineSelected(currentSelectionKeys, currentPageKeys);
+
     return (
       <div className={`smc-table-wrapper ${this.props.className}`}>
         {this.props.header && <Header>{this.props.header}</Header>}
-        {this.props.searchable && <div className="smc-table-search"><Search onSearch={this.props.onSearch} /></div>}
+        {this.props.onSearch && <div className="smc-table-search"><Search onSearch={this.props.onSearch} /></div>}
         <table className="smc-table-table">
           <thead className="smc-table-head">
             <Row header>
-              {this.props.hasCheckboxes && <th className='smc-table-head-checkbox'>
+              {hasCheckboxes && <th onClick={selectedAllActive ? this.unselectAll : this.selectAll} className='smc-table-head-checkbox'>
                 <Checkbox
-                  disabled={this.props.rowsPerPage}
-                  checked={this.state.selectedAllActive}
-                  onChange={this.state.selectedAllActive ? this.unselectAll : this.selectAll}
+                  checked={selectedAllActive}
                 />
               </th>}
-              {this.props.fields.map(({ label, numerical, key, sortable }, i) => (
+              {fields.map(({ label, numerical, key, sortable }, i) => (
                 <Title
                   sortedBy={this.state.sortedBy === key}
                   key={label}
                   column={key}
                   numerical={numerical}
                   first={i === 0}
-                  last={i === this.props.fields.length - 1}
+                  last={i === fields.length - 1}
                 >
                   <div className='sortButtonContainer'>
                     {sortable && <ArrowUpwardIcon
-                      className={this.state.sortedBy === key && !this.state.descending ? 'sortButton rotate' : 'sortButton'}
-                      onClick={() => this.sortByKey(key)}
+                      className={
+                        // sorry for this mess
+                        sort === key
+                          && descending ?
+                          'sortButton rotate' : 'sortButton'
+                      }
+                      onClick={() => this.sortBy(key)}
                     />}
                     {label}
                   </div>
@@ -245,15 +262,15 @@ class Table extends PureComponent {
           <tbody>
             {
               (
-                (fakingPagination || (totalDataPoints <= this.rowsPerPage))
-                  ? this.state.mutatedData
-                  : this.state.mutatedData.slice(
-                    (currentPage - 1) * this.rowsPerPage, currentPage * this.rowsPerPage
+                (fakingPagination || (totalDataPoints <= rowsPerPage))
+                  ? mutatedData
+                  : mutatedData.slice(
+                    (currentPage - 1) * rowsPerPage, currentPage * rowsPerPage
                   )
               )
                 .map(datum => (
                   <Row selected={Boolean(this.state.selectedItems[datum.key])} key={`row_${datum.key}`}>
-                    {this.props.hasCheckboxes &&
+                    {hasCheckboxes &&
                       <td>
                         <Checkbox
                           checked={Boolean(this.state.selectedItems[datum.key])}
@@ -261,13 +278,13 @@ class Table extends PureComponent {
                         />
                       </td>
                     }
-                    {this.props.fields.map(({ key, numerical }, i) => (
+                    {fields.map(({ key, numerical }, i) => (
                       <Datum
                         key={`{${datum.key}_${key}}`}
                         column={key}
                         numerical={numerical}
                         first={i === 0}
-                        last={i === this.props.fields.length - 1}
+                        last={i === fields.length - 1}
                       >
                         {datum[key]}
                       </Datum>
@@ -279,13 +296,13 @@ class Table extends PureComponent {
             {Array(extraRows).fill('').map((val, j) => (
               // eslint-disable-next-line react/no-array-index-key
               <Row key={`faux-data-${j}`}>
-                {this.props.fields.map(({ key, numerical }, i) => (
+                {fields.map(({ key, numerical }, i) => (
                   <Datum
                     key={`faux-data_${key}}`}
                     column={key}
                     numerical={numerical}
                     first={i === 0}
-                    last={i === this.props.fields.length - 1}
+                    last={i === fields.length - 1}
                   />
                 ))}
               </Row>
@@ -295,7 +312,7 @@ class Table extends PureComponent {
         {showFooter && (
           <Footer
             currentPage={currentPage}
-            rowsPerPage={this.rowsPerPage}
+            rowsPerPage={rowsPerPage}
             totalDataPoints={totalDataPoints}
             handleBackwardsPagination={this.handleBackwardsPagination}
             handleForwardPagination={this.handleForwardPagination}
@@ -331,6 +348,7 @@ export default styled(Table) `
     border-collapse: collapse;
 
     .smc-table-head-checkbox {
+      padding-top: 6px;
       float: left;
     }
 

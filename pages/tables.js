@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import { Table, ThemeProvider } from '../src';
 
+import naturalSort from '../src/components/Table/naturalSort';
+
 const fields = [
   {
     key: 'date',
@@ -77,8 +79,30 @@ const decrementCurrentPage = ({ currentPage }) => ({ currentPage: currentPage - 
 
 class ControlledTable extends PureComponent {
   state = {
+    mutatedData: [...data],
     currentPage: 1,
+    descending: false,
+    sortedBy: '',
   };
+
+  handleSort = (key) => {
+    let descending = this.state.descending;
+    const mutatedData = [...this.state.mutatedData];
+    if (key === this.state.sortedBy) {
+      if (this.state.descending) {
+        descending = false;
+      } else {
+        descending = true;
+      }
+    } else {
+      descending = true;
+    }
+    const sorter = naturalSort({ desc: descending });
+    mutatedData.sort(
+      (a, b) => sorter(a[key], b[key])
+    );
+    this.setState({ descending, mutatedData, sortedBy: key });
+  }
 
   handleForwardPagination = () => {
     this.setState(incrementCurrentPage);
@@ -89,16 +113,31 @@ class ControlledTable extends PureComponent {
   }
 
   render() {
-    const { currentPage } = this.state;
+    const { currentPage, descending, sortedBy, mutatedData } = this.state;
     return (
       <Table
+        onSearch={(e) => {
+          console.log('search!', e.target.value);
+        }}
+        onSort={this.props.dontSort ? false : (key) => {
+          this.handleSort(key);
+        }}
+        sortedBy={sortedBy}
+        hasCheckboxes
+        onCheck={(e) => {
+          console.log('select', e.key);
+        }}
+        onUncheck={(e) => {
+          console.log('deselect', e.key);
+        }}
+        descending={descending}
         fields={fields}
-        data={data.slice((currentPage - 1) * 4, currentPage * 4)}
+        data={[...mutatedData].slice((currentPage - 1) * 4, currentPage * 4)}
+        totalDataPoints={mutatedData.length}
         rowsPerPage={4}
-        header="Faked Pagination"
-        totalDataPoints={5}
         handleForwardPagination={this.handleForwardPagination}
         handleBackwardsPagination={this.handleBackwardsPagination}
+        header={`Check the console for callbacks!`}
       />
     );
   }
@@ -160,6 +199,10 @@ const Tables = () => (
             Use this if you're "faking" pagination by passing in new data for each page,
             for example by fetching new data on paginate
           </li>
+          <br />
+          <li>
+            Controlled Data:
+          </li>
           <li>
             handleForwardPagination: () => any
             Callback that will be called when the user clicks the 'next' arrow
@@ -168,13 +211,47 @@ const Tables = () => (
             handleBackwardsPagination: () => any
             Callback that will be called when the user clicks the 'back' arrow
           </li>
+          <br />
           <li>
-            searchable?: boolean
-            denotes if you intend to supply a search callback for the Search input
+            onSort?: (key) => void
+            Supply your own sorting method! Gives you 'key' param!
+            Remember to control your data!
           </li>
+          <ul>
+
+            <li>
+              sortedBy?: string
+              Current key that we are sorted by (used for row hilighting)
+            </li>
+            <li>
+              descending?: boolean
+              whether we are currently sorting by ascending or descending!
+            </li>
+          </ul>
           <li>
-            onSearch?: () => any
-            function to be called onChange in the search input field
+            notes on sorting:
+          </li>
+          <ul>
+            <li>
+              if Uncontrolled, the sort will order all the data regardles of the currentPage
+              this is because it manipulates all the data it was given. Page agnostic.
+            </li>
+            <li>
+              if controlled via a parent, it will manipulate only the data on that page.
+              as that is all it was given.
+            </li>
+            <li>
+              The sorting default method is called NaturalSort. Credits to: <a href='https://github.com/bubkoo/natsort' target='none'>https://github.com/bubkoo/natsort</a>
+            </li>
+            <li>
+              you can supply your own if you intend to mutate the data yourself see onSort
+            </li>
+          </ul>
+          <br />
+          <li>
+            onSearch?: (string) => any
+            function to be called onChange in the search input field. gives
+            you the search input value
           </li>
           <br />
           <li>
@@ -192,23 +269,6 @@ const Tables = () => (
               onUncheck: () => any
               Callback that will be called when the user clicks a checkbox off.
               it is passed the Datum of that row as its first param
-            </li>
-          </ul>
-          <br />
-          <li>
-            notes on sorting:
-          </li>
-          <ul>
-            <li>
-              if Uncontrolled, the sort will order all the data regardles of the currentPage
-              this is because it manipulates all the data it was given. Page agnostic.
-            </li>
-            <li>
-              if controlled via a parent, it will manipulate only the data on that page.
-              as that is all it was given.
-            </li>
-            <li>
-              The sorting method is called NaturalSort. Credits to: <a href='https://github.com/bubkoo/natsort' target='none'>https://github.com/bubkoo/natsort</a>
             </li>
           </ul>
         </ul>
@@ -237,8 +297,6 @@ const Tables = () => (
         rowsPerPage={2}
         header="Real pagination"
       />
-      <h2>Controlled table with footer</h2>
-      <ControlledTable />
       <h2>Table checkboxes</h2>
       <Table
         hasCheckboxes
@@ -282,7 +340,6 @@ const Tables = () => (
       />
       <h2>Table checkboxes, with sorting, WITH SEARCH!?!!?</h2>
       <Table
-        searchable
         onSearch={(e) => {
           console.log('search!', e.target.value);
         }}
@@ -297,6 +354,10 @@ const Tables = () => (
         data={data}
         header={`Check the console for callbacks!`}
       />
+      <h2>Assume Direct Control</h2>
+      <ControlledTable />
+      <h2>Assume Direct Control (but give up sort)</h2>
+      <ControlledTable dontSort />
     </div>
   </ThemeProvider>
 

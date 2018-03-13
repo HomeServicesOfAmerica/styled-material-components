@@ -1,4 +1,4 @@
-export * from './components/Appbar';
+export * from './components/Toolbar';
 export * from './components/Card';
 export * from './components/Dialog';
 export * from './components/FlexGrid';

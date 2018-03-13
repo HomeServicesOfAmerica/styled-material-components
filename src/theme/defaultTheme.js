@@ -91,6 +91,12 @@ const defaultTheme = {
   },
   slider: sliderTheme,
   disabledCheckbox: black.alpha(0.26).toString(),
+  toolbar: {
+    horizontalPaddingDesktop: '24px',
+    horizontalPaddingMobile: '16px',
+    iconSize: '24px',
+    iconPadding: '12px',
+  },
 };
 
 export default defaultTheme;

@@ -204,6 +204,12 @@ const Tables = () => (
             Controlled Data:
           </li>
           <li>
+            rowsDropDown?: [int]
+            array of ints that specifies how many rows the user can choose from
+            defaults to Fibonacci * rowsPerPage
+            supplying an empty array will hide the "rowsPerPage"
+          </li>
+          <li>
             handleForwardPagination: () => any
             Callback that will be called when the user clicks the 'next' arrow
           </li>
@@ -296,6 +302,24 @@ const Tables = () => (
         data={data}
         rowsPerPage={2}
         header="Real pagination"
+      />
+      <h2>Uncontrolled Table with footer and custom dropdowns</h2>
+      <Table
+        fields={fields}
+        data={data}
+        rowsDropDown={[2, 3, 4, 1337]}
+        rowsPerPage={2}
+        totalDataPoints={data.length}
+        header="Custom Rows Per Page Selection!"
+      />
+      <br />
+      <Table
+        fields={fields}
+        data={data}
+        rowsDropDown={[]}
+        rowsPerPage={2}
+        totalDataPoints={data.length}
+        header="Hidden Rows Per Page Selection!"
       />
       <h2>Table checkboxes</h2>
       <Table

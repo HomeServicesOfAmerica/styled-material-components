@@ -198,11 +198,14 @@ class Table extends PureComponent {
     return subset.every(value => (superset.indexOf(value) >= 0));
   }
 
+  changeRows = (rowsPerPage) => {
+    this.setState({ rowsPerPage });
+  }
+
   render() {
-    const { hasCheckboxes, fields } = this.props;
+    const { hasCheckboxes, fields, rowsDropDown } = this.props;
     const { rowsPerPage, mutatedData, selectedItems } = this.state;
     const totalDataPoints = this.props.totalDataPoints || mutatedData.length;
-    const showFooter = totalDataPoints > rowsPerPage;
     const currentPage = this.props.currentPage || this.state.currentPage;
     const fakingPagination = totalDataPoints > mutatedData.length;
     const showAllData = fakingPagination || (totalDataPoints <= rowsPerPage);
@@ -243,7 +246,7 @@ class Table extends PureComponent {
                   first={i === 0}
                   last={i === fields.length - 1}
                 >
-                  <div className='sortButtonContainer'>
+                  <div className={`smc-sort-button-container ${i === fields.length - 1 && 'last'}`}>
                     {sortable && <ArrowUpwardIcon
                       className={
                         // sorry for this mess
@@ -309,15 +312,15 @@ class Table extends PureComponent {
             ))}
           </tbody>
         </table>
-        {showFooter && (
-          <Footer
-            currentPage={currentPage}
-            rowsPerPage={rowsPerPage}
-            totalDataPoints={totalDataPoints}
-            handleBackwardsPagination={this.handleBackwardsPagination}
-            handleForwardPagination={this.handleForwardPagination}
-          />
-        )}
+        <Footer
+          rowsDropDown={rowsDropDown}
+          currentPage={currentPage}
+          rowsPerPage={rowsPerPage}
+          handleRowsPerPageChange={this.changeRows}
+          totalDataPoints={totalDataPoints}
+          handleBackwardsPagination={this.handleBackwardsPagination}
+          handleForwardPagination={this.handleForwardPagination}
+        />
       </div>
     );
   }
@@ -334,10 +337,7 @@ export default styled(Table) `
   border: 0px;
 
   > .smc-table-search {
-    // not sure if we should include a border top, looks odd to me
-    // thoughts?
-    // border-top: 1px solid ${props => props.theme.textColors.secondary};
-    border-bottom: 1px solid ${props => props.theme.textColors.secondary};
+    border-bottom: 1px solid rgba(225, 225, 225, 1);
   }
 
   > .smc-table-header {
@@ -352,10 +352,16 @@ export default styled(Table) `
       float: left;
     }
 
-    .sortButtonContainer {
+
+
+    .smc-sort-button-container {
       height: 15px;
       display: flex;
       justify-content: flex-start;
+
+      &.last {
+        float: right;
+      }
       
       > .sortButton {
         height: 15px;
@@ -381,8 +387,9 @@ export default styled(Table) `
 
     tr {
       border: 0px;
-      border-bottom: 1px solid ${props => props.theme.textColors.secondary};
+      border-bottom: 1px solid rgba(225, 225, 225, 1);
     }
+
     ${props => (props.fullWidth ? 'width: 100%' : 'width: auto')};
     border-spacing: 0;
   }

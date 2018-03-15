@@ -12,6 +12,7 @@ const Dropdown = styled.select`
   position: absolute;
   z-index: 1;
   font-size: 17px;
+  cursor: pointer;
   -webkit-appearance: button; /* hide default arrow in chrome OSX */
 
   &:focus {
@@ -32,9 +33,6 @@ const Symbol = styled(ArrowDropDownIcon)`
   fill: #726969;
 `;
 
-/*
- * TODO implement real onchange handler for select field
- */
 export default class DropdownMenu extends Component {
   state = {
     isOpen: false,
@@ -42,7 +40,7 @@ export default class DropdownMenu extends Component {
     selected: this.props.defaultOption || 'select one',
     isChrome: undefined,
   }
-
+  
   /* eslint-disable react/no-did-mount-set-state */
   /*
    * Because Next.js executes its code server-side first,
@@ -60,9 +58,19 @@ export default class DropdownMenu extends Component {
       this.setState({ isChrome });
     }
   }
-  /* eslint-enable react/no-did-mount-set-state */
 
+  handleClose = () => {
+    this.setState({ isOpen: false });
+  };
+
+  handleOpen = () => {
+    this.setState({ isOpen: true });
+  };
+   
   onSelectMenuItem = (option): void => {
+    if (this.props.callback) {
+      this.props.callback(option);
+    }
     this.setState({ selected: option });
   }
 
@@ -74,10 +82,11 @@ export default class DropdownMenu extends Component {
   render() {
     const { options, isOpen, selected, isChrome } = this.state;
     return (
-      <div onClick={this.toggleSelect}>
+      <div onClick={this.toggleSelect} onFocus={this.handleOpen} tabIndex="0">
         {isChrome === false && (
           <Dropdown
             defaultValue={selected}
+            onClick={({ target: { value } }) => this.props.callback(value)}
           >
             {options.map(option => (
               <option key={option}>
@@ -91,10 +100,11 @@ export default class DropdownMenu extends Component {
             <Dropdown
               value={selected}
               hidden={isOpen}
-              onChange={() => {}}
             >
               {options.map(option => (
-                <HiddenOption key={option}>
+                <HiddenOption
+                  key={option}
+                >
                   {option}
                 </HiddenOption>
               ))}
@@ -103,6 +113,7 @@ export default class DropdownMenu extends Component {
               aria-hidden="true"
               value={selected}
               open={isOpen}
+              onClose={this.handleClose}
             >
               {options.map(option => (
                 <MenuItem

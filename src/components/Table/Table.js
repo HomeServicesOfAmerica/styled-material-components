@@ -9,7 +9,7 @@ import Header from './Header';
 import Footer from './Footer';
 import naturalSort from './naturalSort';
 import Search from './Search';
-import Checkbox from '../Checkbox';
+import { Checkbox } from '../Checkbox';
 import { ArrowUpwardIcon } from '../../icons/icons';
 
 /*

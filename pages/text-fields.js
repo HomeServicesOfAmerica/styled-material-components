@@ -125,6 +125,12 @@ class TextFieldPage extends PureComponent {
             rows={2}
             charLimit={100}
           />
+          <TextFieldWithBottomMargin
+            textarea
+            hasBorder
+            floatingAreaLabelText="Border textarea"
+            rows={4}
+          />
           <br />
 
           <h2>Dropdown Menu</h2>

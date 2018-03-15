@@ -1,6 +1,7 @@
 /**
  * @file ScreenSizeContext
  * @author Brad Decker <bhdecker84@gmail.com|brad@merlinlabs.com>
+ * @author Ari Frankel <ari.l.frankel@gmail.com|ari@merlinlabs.com>
  * @description Defines a context that will allow all children to
  * access the current screenSize. This is implmented using respondable.
  * All breakpoints are adjustable by the end user.
@@ -9,6 +10,7 @@ import React, { Component } from 'react';
 import createReactContext from 'create-react-context';
 import { withTheme } from 'styled-components';
 import respondable from 'respondable';
+import platform from 'platform';
 
 /**
  * Context
@@ -34,9 +36,22 @@ export const ScreenSizeConsumer = Context.Consumer;
 class ScreenSizeContextBase extends Component {
   state = {
     screenSize: 'server',
+    platformData: {},
   };
 
   componentDidMount() {
+    // Get platform data using Platform
+    // It is necessary to capture the platform data on the client.
+    // Platform relies on window.navigator.
+    // eslint-disable-next-line
+    this.setState({
+      platformData: {
+        product: platform.product,
+        osFamily: platform.os ? platform.os.family : null,
+        majorVersion: platform.version ? parseInt(platform.version.split('.')[0], 10) : -1,
+        majorOsVersion: platform.os && platform.os.version ? parseInt(platform.os.version.split('.')[0], 10) : -1,
+      },
+    });
     // Initialize Respondable
     // first prop is a map in the form of [mediaQuery]: 'string'
     // If the mediaQuery matches, 'string' will be returned as active.

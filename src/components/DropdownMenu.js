@@ -12,6 +12,7 @@ const Dropdown = styled.select`
   position: absolute;
   z-index: 1;
   font-size: 17px;
+  cursor: pointer;
   -webkit-appearance: button; /* hide default arrow in chrome OSX */
 
   &:focus {
@@ -60,6 +61,15 @@ export default class DropdownMenu extends Component {
       this.setState({ isChrome });
     }
   }
+
+  handleClose = () => {
+    this.setState({ isOpen: false });
+  };
+
+  handleOpen = () => {
+    this.setState({ isOpen: true });
+  };
+
   /* eslint-enable react/no-did-mount-set-state */
 
   onSelectMenuItem = (option): void => {
@@ -74,7 +84,7 @@ export default class DropdownMenu extends Component {
   render() {
     const { options, isOpen, selected, isChrome } = this.state;
     return (
-      <div onClick={this.toggleSelect}>
+      <div onClick={this.toggleSelect} onFocus={this.handleOpen} tabIndex="0">
         {isChrome === false && (
           <Dropdown
             defaultValue={selected}
@@ -103,6 +113,7 @@ export default class DropdownMenu extends Component {
               aria-hidden="true"
               value={selected}
               open={isOpen}
+              onClose={this.handleClose}
             >
               {options.map(option => (
                 <MenuItem

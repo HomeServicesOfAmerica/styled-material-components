@@ -390,9 +390,6 @@ const TextField = styled(TextFieldComponent) `
   font-family: lato, sans-serif;
   border-bottom: ${props => (props.hasBorder ? 'none' : '0.5px')} ${props => (props.disabled ? 'dotted' : 'solid')};
   border-bottom-color: ${props => (props.error ? error : hintTextColor)};
-  ${props => props.options && `
-    border-bottom-color: #726969;
-  `}
 `;
 
 export default TextField;

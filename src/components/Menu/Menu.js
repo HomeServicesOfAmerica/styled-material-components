@@ -15,7 +15,7 @@ class MenuComponent extends Component {
 
   handleClick = (event) => {
     if (this.menu.contains(event.target)) return;
-    this.props.onClose && this.props.onClose();
+    this.props.onClose && this.props.onClose(event);
   }
 
   render() {

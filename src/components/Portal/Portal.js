@@ -46,6 +46,7 @@ export class Portal extends Component {
 
     return createPortal(
       <PortalContainer
+        className={this.props.className}
         direction={this.props.attachment}
         open={this.props.open}
         onClick={this.props.onRequestClose}>

@@ -5,7 +5,7 @@ export * from './components/FlexGrid';
 export * from './components/GridList';
 export * from './components/List';
 export * from './components/Menu';
-export { Portal } from './components/Portal';
+export { Portal, Overlay } from './components/Portal';
 export * from './components/Slider';
 export * from './components/Switch';
 export * from './components/Table';
@@ -24,6 +24,7 @@ export { default as FloatingActionButton } from './components/FloatingActionButt
 export * from './components/Image';
 export { default as Snackbar } from './components/Snackbar';
 export { default as TextField } from './components/TextField';
+export * from './components/Tooltip';
 
 export * from './contexts/ScreenSizeContext';
 

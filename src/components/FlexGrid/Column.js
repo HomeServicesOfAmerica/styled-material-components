@@ -1,6 +1,7 @@
 /**
  * @file Column
  * @author Brad Decker <bhdecker84@gmail.com|brad@merlinlabs.com>
+ * @author Ari Frankel <ari.l.frankel@gmail.com|ari@merlinlabs.com>
  * @description Defines a flex grid column that responds to the size
  * of the screen to grow, shrink, reorder as described by the end
  * user via size props.
@@ -209,7 +210,7 @@ const enhancer = compose(
 );
 
 const ColumnComponent = enhancer(
-  ({ className, children, ...props }, { screenSizeState, rowState }) => (
+  ({ className, children, screenSizeState, rowState, ...props }) => (
     <SizedColumn
       {...props}
       data-smc="Column"

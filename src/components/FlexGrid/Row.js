@@ -1,10 +1,11 @@
 /**
  * @file Row
  * @author Brad Decker <bhdecker84@gmail.com|brad@merlinlabs.com>
+ * @author Ari Frankel <ari.l.frankel@gmail.com|ari@merlinlabs.com>
  * @description Defines a flex grid row that has props defined for
  * easily setting some common flex styles.
  */
-import React, { Component } from 'react';
+import React, { Component, ComponentType } from 'react';
 import styled from 'styled-components';
 import createReactContext from 'create-react-context';
 import { rowMixin } from '../../mixins/flex';
@@ -86,9 +87,12 @@ export const Row = styled(RowComponent)`
   ${props => rowMixin(props)}
 `;
 
-export const withRowState = fn => (props, context = {}) => (
+export const withRowState = (ComposedComponent: ComponentType<*>) => props => (
   <RowConsumer>
-    {rowState => fn(props, { ...context, rowState })}
+    {rowState => (
+      <ComposedComponent {...props} rowState={rowState}>
+        {props.children}
+      </ComposedComponent>
+    )}
   </RowConsumer>
 );
-

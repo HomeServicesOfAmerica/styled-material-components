@@ -6,11 +6,26 @@
  * access the current screenSize. This is implmented using respondable.
  * All breakpoints are adjustable by the end user.
  */
-import React, { Component } from 'react';
+import React, { ComponentType, Component } from 'react';
 import createReactContext from 'create-react-context';
 import { withTheme } from 'styled-components';
 import respondable from 'respondable';
 import platform from 'platform';
+
+/*
+ * Utilities for screen size. May want to move this in to a lib file soon
+ * as it likely grows soon
+*/
+const screenSizes = ['xs', 'sm', 'md', 'lg', 'xl', 'server'];
+export type screenSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'server';
+
+export const greaterThanOrEqual = (refSize: screenSize) => (size: screenSize) =>
+  screenSizes.indexOf(size) >= screenSizes.indexOf(refSize);
+
+export const lessThanOrEqual = (refSize: screenSize) => (size: screenSize) =>
+  screenSizes.indexOf(size) <= screenSizes.indexOf(refSize);
+
+export const isDesktop = greaterThanOrEqual('lg');
 
 /**
  * Context
@@ -140,8 +155,17 @@ class ScreenSizeContextBase extends Component {
 // withTheme gives us access to the theme without it being a Styled Component
 export const ScreenSizeContext = withTheme(ScreenSizeContextBase);
 
-export const withScreenSize = fn => (props, context = {}) => (
+// This HOC will pass along screenSizeState as well as the isDesktop method
+export const withScreenSize = (ComposedComponent: ComponentType<*>) => props => (
   <ScreenSizeConsumer>
-    {screenSizeState => fn(props, { ...context, screenSizeState })}
+    {({ platformData, ...screenSizeState }) => (
+      <ComposedComponent
+        {...props}
+        isDesktop={isDesktop}
+        platformData={platformData}
+        screenSizeState={screenSizeState} >
+        {props.children}
+      </ComposedComponent>
+    )}
   </ScreenSizeConsumer>
 );

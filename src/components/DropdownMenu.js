@@ -33,9 +33,6 @@ const Symbol = styled(ArrowDropDownIcon)`
   fill: #726969;
 `;
 
-/*
- * TODO implement real onchange handler for select field
- */
 export default class DropdownMenu extends Component {
   state = {
     isOpen: false,
@@ -43,7 +40,7 @@ export default class DropdownMenu extends Component {
     selected: this.props.defaultOption || 'select one',
     isChrome: undefined,
   }
-
+  
   /* eslint-disable react/no-did-mount-set-state */
   /*
    * Because Next.js executes its code server-side first,
@@ -69,10 +66,11 @@ export default class DropdownMenu extends Component {
   handleOpen = () => {
     this.setState({ isOpen: true });
   };
-
-  /* eslint-enable react/no-did-mount-set-state */
-
+   
   onSelectMenuItem = (option): void => {
+    if (this.props.callback) {
+      this.props.callback(option);
+    }
     this.setState({ selected: option });
   }
 
@@ -85,9 +83,10 @@ export default class DropdownMenu extends Component {
     const { options, isOpen, selected, isChrome } = this.state;
     return (
       <div onClick={this.toggleSelect} onFocus={this.handleOpen} tabIndex="0">
-        {isChrome === false && (
+        {!isChrome && (
           <Dropdown
             defaultValue={selected}
+            onChange={({ target: { value } }) => this.onSelectMenuItem(value)}
           >
             {options.map(option => (
               <option key={option}>
@@ -96,15 +95,16 @@ export default class DropdownMenu extends Component {
             ))}
           </Dropdown>
         )}
-        {isChrome === true && (
+        {isChrome && (
           <Fragment>
             <Dropdown
               value={selected}
               hidden={isOpen}
-              onChange={() => {}}
             >
               {options.map(option => (
-                <HiddenOption key={option}>
+                <HiddenOption
+                  key={option}
+                >
                   {option}
                 </HiddenOption>
               ))}

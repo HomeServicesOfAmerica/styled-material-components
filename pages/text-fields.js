@@ -133,11 +133,11 @@ class TextFieldPage extends PureComponent {
             rows={4}
           />
           <br />
-
           <h2>Dropdown Menu</h2>
           <TextFieldWithBottomMargin
             floatingLabelText="Dropdown Menu"
             options={['option1', 'option2']}
+            callback={e => alert(`Can handle callbacks, ${e}`)}
           />
           <h4>No Selected Default Option</h4>
           <TextFieldWithBottomMargin

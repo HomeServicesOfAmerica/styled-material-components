@@ -102,6 +102,7 @@ class TextFieldComponent extends PureComponent {
           <DropdownMenu
             defaultOption={this.props.defaultOption}
             options={this.props.options}
+            callback={this.props.callback}
           />
         )}
         {!this.props.options && (
@@ -140,6 +141,7 @@ class TextFieldComponent extends PureComponent {
         >
           {this.props.errorText}
         </ErrorText>
+        <UnderlineFocus
         {this.props.charLimit &&
         <CharLimitText
           show={this.props.charLimit}

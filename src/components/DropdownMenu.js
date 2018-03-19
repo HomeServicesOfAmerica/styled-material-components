@@ -69,6 +69,11 @@ export default class DropdownMenu extends Component {
   handleOpen = () => {
     this.setState({ isOpen: true });
   };
+   
+  onSelectMenuItem = (option): void => {
+    if (this.props.callback) {
+      this.props.callback(option);
+    }
 
   /* eslint-enable react/no-did-mount-set-state */
 
@@ -88,6 +93,7 @@ export default class DropdownMenu extends Component {
         {isChrome === false && (
           <Dropdown
             defaultValue={selected}
+            onClick={({ target: { value } }) => this.props.callback(value)}
           >
             {options.map(option => (
               <option key={option}>
@@ -101,6 +107,11 @@ export default class DropdownMenu extends Component {
             <Dropdown
               value={selected}
               hidden={isOpen}
+            >
+              {options.map(option => (
+                <HiddenOption
+                  key={option}
+                >
               onChange={() => {}}
             >
               {options.map(option => (

@@ -155,6 +155,30 @@ class TextFieldPage extends PureComponent {
             floatingLabelText="Dropdown Menu"
             options={'invalid option'}
           />
+          <Button onClick={() => this.setState({ shouldReset: true })}>Reset</Button>
+          <h2>Dropdown Menu</h2>
+          <TextFieldWithBottomMargin
+            floatingLabelText="Dropdown Menu"
+            options={['option1', 'option2']}
+            callback={e => alert(`Can be externally controlled, ${e}`)}
+          />
+          <h4>No Selected Default Option</h4>
+          <TextFieldWithBottomMargin
+            floatingLabelText="Dropdown Menu"
+            options={['option1', 'option2']}
+            defaultOption={'select an option'}
+          />
+          <h4>Selected Default Option</h4>
+          <TextFieldWithBottomMargin
+            floatingLabelText="Dropdown Menu"
+            options={['option0', 'option1', 'option2']}
+            defaultOption={'option2'}
+          />
+          <h4>Invalid Options Passed In</h4>
+          <TextFieldWithBottomMargin
+            floatingLabelText="Dropdown Menu"
+            options={'invalid option'}
+          />
         </div>
       </ThemeProvider>
     );

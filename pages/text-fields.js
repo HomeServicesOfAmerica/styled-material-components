@@ -161,7 +161,7 @@ class TextFieldPage extends PureComponent {
   }
 }
 
-const StyledTextFieldPage = styled(TextFieldPage)`
+const StyledTextFieldPage = styled(TextFieldPage) `
   margin: 0 10%;
   width: 80%;
 `;

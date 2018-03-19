@@ -73,7 +73,7 @@ class TextFieldComponent extends PureComponent {
           }
         >
           {this.props.floatingLabelText || ''}
-          {this.props.required ? '*' : ''}
+          {this.props.required ? ' *' : ''}
           {/* <RequiredStar
             hasBeenFocused={this.state.hasBeenFocused}
             show={this.props.required}
@@ -96,7 +96,6 @@ class TextFieldComponent extends PureComponent {
           }
         >
           {this.props.floatingAreaLabelText || null}
-          {this.props.required ? '*' : ''}
         </FloatingAreaLabel>
         {hasValidOptions && (
           <DropdownMenu
@@ -115,7 +114,7 @@ class TextFieldComponent extends PureComponent {
             {this.props.hintText}
           </HintText>
         )}
-        {this.props.helperText && (
+        {(this.props.helperText && !this.props.errorText) && (
           <HelperText
             className={'smc-text-field-helper-text'}
             helperTextStyle={this.props.helperTextStyle}
@@ -141,14 +140,14 @@ class TextFieldComponent extends PureComponent {
           {this.props.errorText}
         </ErrorText>
         {this.props.charLimit &&
-        <CharLimitText
-          show={this.props.charLimit}
-          error={this.state.text.length > this.props.charLimit}
-          className={'smc-text-field-char-limit-text'}
-        >
-          {this.state.text.length}/{this.props.charLimit}
-        </CharLimitText>}
-        { !this.props.hasBorder && <UnderlineFocus
+          <CharLimitText
+            show={this.props.charLimit}
+            error={this.state.text.length > this.props.charLimit}
+            className={'smc-text-field-char-limit-text'}
+          >
+            {this.state.text.length}/{this.props.charLimit}
+          </CharLimitText>}
+        {!this.props.hasBorder && <UnderlineFocus
           disabled={this.props.options || this.props.focusDisabled}
           className={'smc-text-field-underline-focus'}
           underlineFocusStyle={this.props.underlineFocusStyle}
@@ -191,7 +190,7 @@ class TextFieldComponent extends PureComponent {
               onBlur={this.onBlur}
               className={'smc-text-field-input'}
             />
-      
+
           )
         }
       </div>

@@ -23,7 +23,7 @@ const TabBarContainer = styled.nav`
   width: 100%;
 `;
 
-export class TabBar extends React.PureComponent {
+class TabBarComponent extends React.PureComponent {
   static defaultProps = {
     fixed: false,
     selectedIndex: 0,
@@ -104,7 +104,9 @@ const TabsComponent = ({ className, children }) => (
   </section>
 );
 
-export const Tabs = styled(TabsComponent)`
+export const TabBar = styled(TabBarComponent) ``;
+
+export const Tabs = styled(TabsComponent) `
   box-sizing: border-box;
   display: flex;
   flex-direction: column;

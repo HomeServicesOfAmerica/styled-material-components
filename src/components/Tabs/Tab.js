@@ -39,16 +39,12 @@ const TabComponent = ({ children, className, Icon, index, onClick }) => (
   </RippleTab>
 );
 
-export const Tab = styled(TabComponent)`
+export const Tab = styled(TabComponent) `
   opacity: ${props => (props.selected ? 1 : 0.7)};
   height: ${props => (props.Icon && props.children ? 72 : 48)}px;
 `;
 
-const TabContentContainer = styled.div`
+export const TabContent = styled.div`
   padding: 24px;
   width: 100%;
 `;
-
-export const TabContent = ({ children }) => (
-  <TabContentContainer data-smc="TabContent">{children}</TabContentContainer>
-);

@@ -1,12 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-<<<<<<< HEAD
-import MaterialThemeProvider from '../src/theme/ThemeProvider';
-import { GridList, GridTile } from '../src/components/GridList';
-import GridSubheader from '../src/components/GridList/GridSubheader';
-=======
-import { GridList, GridTile, ThemeProvider } from '../src';
->>>>>>> f432942d44a94e287c92cac45b6d0b7a0c74c686
+import { GridList, GridTile, GridSubheader, ThemeProvider } from '../src';
 
 const Img = styled.img`
   object-fit: cover;

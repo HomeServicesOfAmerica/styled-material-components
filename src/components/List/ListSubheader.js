@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-ListSubheader.js
-=======
 import React from 'react';
 import styled from 'styled-components';
 import typography from '../../mixins/typography';
@@ -20,4 +17,3 @@ const ListSubheader = styled(ListSubheaderComponent)`
 `;
 
 export default ListSubheader;
->>>>>>> f432942d44a94e287c92cac45b6d0b7a0c74c686

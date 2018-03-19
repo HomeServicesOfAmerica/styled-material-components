@@ -3,11 +3,8 @@ import styled from 'styled-components';
 
 const GridSubheaderComponent = ({ className, title }) => (
   <div className={`${className} smc-grid-subheader`}>
-    {console.log('gridList elements: ', React)}
     {title && (
-      <div>
-        {title}
-      </div>
+      <div>{title}</div>
     )}
   </div>
 );

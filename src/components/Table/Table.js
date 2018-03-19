@@ -150,7 +150,7 @@ class Table extends PureComponent {
     });
   }
 
-  sortBy(key) {
+  sortBy = (key) => {
     let descending = this.state.descending;
     const mutatedData = [...this.state.mutatedData];
     if (this.props.onSort) {

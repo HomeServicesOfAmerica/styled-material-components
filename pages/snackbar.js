@@ -1,8 +1,6 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
-import Button from '../src/components/Button';
-import Snackbar from '../src/components/Snackbar';
-import MaterialThemeProvider from '../src/theme/ThemeProvider';
+import { ThemeProvider, Button, Snackbar } from '../src';
 
 class SnackbarPage extends PureComponent {
   state = {
@@ -13,7 +11,7 @@ class SnackbarPage extends PureComponent {
 
   render() {
     return (
-      <MaterialThemeProvider theme={{ primary: '#03A9F4' }}>
+      <ThemeProvider theme={{ primary: '#03A9F4' }}>
         <div className={this.props.className}>
           <h1>Snackbar</h1>
           <ul>
@@ -32,7 +30,7 @@ class SnackbarPage extends PureComponent {
             autoHideDuration={1500}
             message='this is a foodless snackbar :(' />
         </div>
-      </MaterialThemeProvider>
+      </ThemeProvider>
     );
   }
 }

@@ -2,3 +2,4 @@ node_modules
 .next
 dist
 docs
+yarn-error.log

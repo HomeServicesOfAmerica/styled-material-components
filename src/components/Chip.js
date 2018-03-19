@@ -1,13 +1,14 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import typography from '../mixins/typography';
+import elevation, { elevationTransition } from '../mixins/elevation';
 
-const ChipContainer = styled.div`
+const ChipWrapper = styled.div`
   display: inline-flex;
   justify-content: space-between;
   align-items: center;
   margin: 8px;
-  background-color: #e0e0e0;
+  background-color: rgba(0, 0, 0, 0.08);
   height: 32px;
   border-radius: 16px;
   font-size: 13px;
@@ -16,15 +17,17 @@ const ChipContainer = styled.div`
     props.clickable &&
     `
     :hover {
-      background-color: #CECECE;
-    }`} ${props =>
-  props.removed &&
-      `
-    display: none;
-  `};
+      background-color: #CECECE
+    }`};
+  ${props => props.removed && 'display: none'};
+  :focus {
+    outline: none;
+    ${elevationTransition};
+    ${elevation(3)};
+  }
 `;
 
-const Avatar = styled.div`
+const ChipAvatar = styled.div`
   width: 32px;
   height: 32px;
   color: #616161;
@@ -34,11 +37,11 @@ const Avatar = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  ${typography('body')} 
+  ${typography('body')};
   font-size: 16px;
 `;
 
-const Label = styled.span`
+const ChipLabel = styled.span`
   margin: 0 12px;
 `;
 
@@ -46,20 +49,19 @@ const DeleteIconSvg = styled.svg`
   width: 24px;
   height: 24px;
   margin: 0 4px 0 -8px;
-  color: rgba(0, 0, 0, 0.26);
-  fill: rgba(0, 0, 0, 0.26);
+  fill: ${props => props.theme.disabledCheckbox};
   :hover {
     fill: rgba(0, 0, 0, 0.4);
   }
 `;
 
-const DeleteIcon = styled(({ onDelete, className }) => (
+const ChipDeleteIcon = styled(({ onDelete, className }) => (
   <DeleteIconSvg className={className} onClick={onDelete}>
     <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z" />
   </DeleteIconSvg>
 ))``;
 
-class Chip extends PureComponent {
+class ChipComponent extends PureComponent {
   state = {
     removed: false,
   };
@@ -102,24 +104,20 @@ class Chip extends PureComponent {
     const removed = removedProp !== undefined ? removedProp : this.state.removed;
 
     return (
-      <ChipContainer
+      <ChipWrapper
         className={className}
         onKeyDown={this.handleKeyDown}
         tabIndex={0}
         clickable={onClick}
         removed={removed}
       >
-        {avatar && <Avatar>{avatar}</Avatar>}
-        <Label onClick={onClick}>
-          {label}
-        </Label>
-        {(removable || onDelete) && (
-          <DeleteIcon onDelete={this.handleDeleteIconClick} />
-        )}
-      </ChipContainer>
+        {avatar && <ChipAvatar>{avatar}</ChipAvatar>}
+        <ChipLabel onClick={onClick}>{label}</ChipLabel>
+        {(removable || onDelete) && <ChipDeleteIcon onDelete={this.handleDeleteIconClick} />}
+      </ChipWrapper>
     );
   }
 }
 
-export default Chip;
-export { ChipContainer, Label, Avatar, DeleteIcon };
+const Chip = styled(ChipComponent)``;
+export { Chip, ChipWrapper, ChipLabel, ChipAvatar, ChipDeleteIcon };

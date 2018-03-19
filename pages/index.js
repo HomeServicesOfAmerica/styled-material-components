@@ -11,9 +11,6 @@ const HomePage = ({ className }) => (
     <List className={className}>
       <h1>Styled Material Components</h1>
       <ListItem>
-        <Link href="/appbar"><a>Appbars Page</a></Link>
-      </ListItem>
-      <ListItem>
         <Link href="/buttons"><a>Buttons Page</a></Link>
       </ListItem>
       <ListItem>
@@ -38,10 +35,19 @@ const HomePage = ({ className }) => (
         <Link href="/drawer"><a>Drawers Page</a></Link>
       </ListItem>
       <ListItem>
+        <Link href="/flex-grid"><a>Flex Grid Page</a></Link>
+      </ListItem>
+      <ListItem>
         <Link href="/gridlists"><a>Grid Lists Page</a></Link>
       </ListItem>
       <ListItem>
+        <Link href="/icons"><a>Icons Page</a></Link>
+      </ListItem>
+      <ListItem>
         <Link href="/lists"><a>Lists Page</a></Link>
+      </ListItem>
+      <ListItem>
+        <Link href="/menus"><a>Menus Page</a></Link>
       </ListItem>
       <ListItem>
         <Link href="/tabs"><a>Tabs Page</a></Link>
@@ -51,6 +57,9 @@ const HomePage = ({ className }) => (
       </ListItem>
       <ListItem>
         <Link href="/text-fields"><a>TextFields Page</a></Link>
+      </ListItem>
+      <ListItem>
+        <Link href="/toolbar"><a>Toolbars Page</a></Link>
       </ListItem>
       <ListItem>
         <Link href="/sliders"><a>Sliders Page</a></Link>

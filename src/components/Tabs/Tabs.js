@@ -1,105 +1,131 @@
-import React, { PureComponent, Children, isValidElement, cloneElement } from 'react';
+import * as React from 'react';
+import debounce from 'lodash.debounce';
 import styled from 'styled-components';
-import InkBar from './InkBar';
+import { contrastingColor } from '../../mixins/theme';
 
-const TabsContainer = styled.nav`
+const InkBar = styled.div`
+  bottom: 0;
+  height: 2px;
+  position: absolute;
+  transition-duration: 200ms;
+  transition-property: left, width;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: ${props => props.inkbarColor || props.theme.accent};
+  left: ${props => props.left}px;
+  width: ${props => props.width}px;
+`;
+
+const TabBarContainer = styled.nav`
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
   position: relative;
-  margin: 0 auto;
-  text-transform: uppercase;
   width: 100%;
-  color: ${props => props.theme.textColors.primary};
 `;
 
-const Content = styled.div`
-  font-family: lato, sans-serif;
-  text-transform: none;
-`;
-
-const TabNavigationContainer = styled.div`
-  background-color: transparent;
-`;
-
-class TabsComponent extends PureComponent {
+class TabBarComponent extends React.PureComponent {
   static defaultProps = {
-    width: undefined,
+    fixed: false,
+    selectedIndex: 0,
     showInkbar: true,
-  }
+  };
 
-  constructor(props) {
-    super(props);
-    const tabs = [];
-    Children.forEach(props.children, (tab) => {
-      if (isValidElement(tab)) {
-        tabs.push(tab);
-      }
-    });
-    const numTabs = tabs.length;
-    this.state = {
-      selectedIndex: 0,
-      tabs,
-      numTabs,
-    };
-  }
+  state = {
+    inkbarPosition: {},
+  };
 
   componentDidMount() {
-    window.addEventListener('resize', this.setTabWidth);
-    this.setTabWidth();
+    this.mounted = true;
+
+    window.addEventListener('resize', this.resizeInkbar);
+    this.resizeInkbar();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps === this.props) return;
+
+    if (nextProps.selectedIndex !== this.props.selectedIndex) {
+      this.resizeInkbar();
+    }
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.setTabWidth);
+    this.mounted = false;
+
+    window.removeEventListener('resize', this.resizeInkbar);
   }
 
-  setTabWidth = () => {
-    const tabWidth =
-      this.props.width ||
-      parseInt(this.tabs.getBoundingClientRect().width / this.state.numTabs, 10);
-    this.setState({ tabWidth }); // eslint-disable-line 
-  }
+  nav = null;
+  mounted = false;
 
-  updateSelectedIndex = selectedIndex => this.setState({ selectedIndex });
+  resizeInkbar = debounce(() => {
+    const { left: navLeft } = this.nav.getBoundingClientRect();
+    const { left, width } = this.nav.children[this.props.selectedIndex].getBoundingClientRect();
 
-  getSelected = index => this.state.selectedIndex === index;
+    this.setState({
+      inkbarPosition: {
+        left: left - navLeft,
+        width,
+      },
+    });
+  });
 
   render() {
-    const tabContent = [];
-    const tabNavigation = this.state.tabs.map((tab, i) => {
-      const selected = this.getSelected(i);
-      tabContent.push(tab.props.children ? <Content>{tab.props.children}</Content> : undefined);
-      return cloneElement(tab, {
-        key: i,
-        index: i,
-        selected,
-        tabWidth: this.state.tabWidth,
-        numTabs: this.state.numTabs,
-        onClick: this.updateSelectedIndex,
-        activeBackgroundColor: this.props.activeBackgroundColor,
-        passiveBackgroundColor: this.props.passiveBackgroundColor,
-        activeFontColor: this.props.activeFontColor,
-        passiveFontColor: this.props.passiveFontColor,
-      });
-    });
+    const { children, inkbarColor, onClick, showInkbar } = this.props;
+
+    const tabs = React.Children.map(children, (child, index) =>
+      React.cloneElement(child, {
+        index,
+        selected: this.props.selectedIndex === index,
+        onClick,
+      })
+    );
 
     return (
-      // eslint-disable-next-line
-      <TabsContainer innerRef={node => this.tabs = node} className='smc-tab-bar'>
-        <TabNavigationContainer className='smc-tab-navigation-container'>
-          {tabNavigation}
-        </TabNavigationContainer>
-        {this.props.showInkbar ?
-          <InkBar
-            numTabs={this.state.numTabs}
-            selectedIndex={this.state.selectedIndex}
-            tabWidth={this.state.tabWidth}
-            inkbarColor={this.props.inkbarColor} /> :
-          null
-        }
-        {tabContent[this.state.selectedIndex]}
-      </TabsContainer>
+      <TabBarContainer
+        data-smc="TabBar"
+        innerRef={(node) => {
+          this.nav = node;
+        }}
+      >
+        {tabs}
+        {showInkbar &&
+          this.mounted && (
+            <InkBar data-smc="InkBar" inkbarColor={inkbarColor} {...this.state.inkbarPosition} />
+          )}
+      </TabBarContainer>
     );
   }
 }
 
-const Tabs = styled(TabsComponent)``;
+const TabsComponent = ({ className, children }) => (
+  <section className={className} data-smc="Tabs">
+    {children}
+  </section>
+);
 
-export default Tabs;
+export const TabBar = styled(TabBarComponent) ``;
+
+export const Tabs = styled(TabsComponent) `
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+
+  & [data-smc~='Icon'] {
+    background-color: transparent;
+    color: inherit;
+    fill: currentColor;
+  }
+
+  & [data-smc~='Tab'] {
+    flex: ${props => (props.fixed ? 1 : 'none')};
+  }
+
+  & [data-smc='TabBar'] {
+    background-color: ${({ theme }) => theme.primary};
+    ${({ theme }) => contrastingColor('color', theme.primary)};
+  }
+`;

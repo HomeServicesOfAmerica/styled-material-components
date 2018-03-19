@@ -9,11 +9,11 @@ export default class MyDocument extends Document {
     return (
       <html lang="en">
         <Head>
-          <title>My page</title>
+          <title>Styled Material Components</title>
           {styleTags}
         </Head>
         <body style={{ overflow: 'visible' }}>
-          <div className='root'>
+          <div className='root' style={{ width: '100%' }}>
             {main}
           </div>
           <NextScript />

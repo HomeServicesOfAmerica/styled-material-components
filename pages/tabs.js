@@ -1,67 +1,76 @@
 import React from 'react';
-import Tabs from '../src/components/Tabs/Tabs';
-import Tab from '../src/components/Tabs/Tab';
-import MaterialThemeProvider from '../src/theme/ThemeProvider';
+import styled from 'styled-components';
+import { TabBar, TabContent, Tab, Tabs, ThemeProvider, Icon } from '../src';
 
-// TODO: animations (inkbar && ripple)
-// TODO: accept icon as option with or instead of text label
-// TODO: accept onChange as props
 // TODO: (future) scrollable tabs
-// TODO: controlled tabs
 
-const TabsPage = ({ className }) => (
-  <MaterialThemeProvider theme={{ primary: '#03A9F4' }}>
-    <div className={className}>
-      <h1>Tabs</h1>
-      <h2>Fixed Tabs Default</h2>
-      <p>
-        By default the fixed tabs will take an equal width percent of their parent container and
-        use the theme styles.
-      </p>
-      <Tabs>
-        <Tab label='Tab One'>
-          First tab content is great
-        </Tab>
-        <Tab label='Tab Two'>
-          Tab two has content as well
-        </Tab>
-        <Tab label='Tab Three'>
-          Totally tabular
-        </Tab>
-      </Tabs>
-      <br />
-      <br />
-      <h2>Fixed Tabs Custom Styles</h2>
-      <p>
-        Tabs can accept props for:
-      </p>
-      <ul>
-        <li>activeBackgroundColor - hexa or rgb string</li>
-        <li>passiveBackgroundColor - hexa or rgb string</li>
-        <li>activeFontColor - hexa or rgb string</li>
-        <li>passiveFontColor - hexa or rgb string</li>
-        <li>showInkbar - default is true, boolean</li>
-        <li>inkbarColor - default is accent theme color, or prop passed as a hexa or rgb string</li>
-      </ul>
-      <Tabs
-        width='130'
-        activeBackgroundColor='#b5211e'
-        passiveBackgroundColor='#df4340'
-        activeFontColor='#fff'
-        passiveFontColor='#c2c2c2'
-        showInkbar={false}>
-        <Tab label='Tab One'>
-          First tab content is great
-        </Tab>
-        <Tab label='Tab Two'>
-          Tab two has content as well
-        </Tab>
-        <Tab label='Tab Three'>
-          Totally tabular
-        </Tab>
-      </Tabs>
-    </div>
-  </MaterialThemeProvider>
+const Content = styled.div`
+  padding: 24px;
+`;
+
+const PageContainer = styled.div`
+  width: 100%;
+`;
+
+const Container = styled.div`
+  background-color: white;
+  margin: 16px 0;
+  padding: 24px;
+  width: 700px;
+`;
+
+class ControlledTabs extends React.Component {
+  state = {
+    selectedIndex: 0,
+  };
+
+  handleTabClick = (event, selectedIndex) => {
+    this.setState({ selectedIndex });
+  };
+
+  render() {
+    const { selectedIndex } = this.state;
+
+    return (
+      <React.Fragment>
+        <Tabs fixed={this.props.fixed}>
+          <TabBar onClick={this.handleTabClick} selectedIndex={selectedIndex}>
+            <Tab Icon={this.props.showIcon ? <Icon icon="star" /> : null}>Tab One</Tab>
+            <Tab Icon={this.props.showIcon ? <Icon icon="info_outline" /> : null}>Tab Two</Tab>
+            <Tab Icon={this.props.showIcon ? <Icon icon="pin_drop" /> : null}>Tab Three</Tab>
+          </TabBar>
+          {selectedIndex === 0 && <TabContent>First tab content is great</TabContent>}
+          {selectedIndex === 1 && <TabContent>Tab two has content as well</TabContent>}
+          {selectedIndex === 2 && <TabContent>Totally tabular</TabContent>}
+        </Tabs>
+      </React.Fragment>
+    );
+  }
+}
+
+const TabsPage = () => (
+  <ThemeProvider theme={{ primary: '#03A9F4' }}>
+    <PageContainer>
+      <Content>
+        <h1>Tabs</h1>
+
+        <h2>Default Tabs</h2>
+        <Container>
+          <ControlledTabs />
+        </Container>
+
+        <h2>Fixed Tabs</h2>
+        <Container>
+          <ControlledTabs fixed />
+        </Container>
+
+        <h2>Fixed Tabs with icons</h2>
+        <Container>
+          <ControlledTabs fixed showIcon />
+        </Container>
+      </Content>
+    </PageContainer>
+  </ThemeProvider>
 );
 
 export default TabsPage;

@@ -1,63 +1,50 @@
-import React from 'react';
-import styled, { css } from 'styled-components';
+import * as React from 'react';
+import styled from 'styled-components';
+import typography from '../../mixins/typography';
+import withRipple from '../../enhancers/withRipple';
 
-const customBackgroundColor = css`${props => (props.selected ? props.activeBackgroundColor : props.passiveBackgroundColor)}`;
-const themeBackgroundColor = css`${props => (props.selected ? props.theme.primary : props.theme.white)}`;
-const customFontColor = css`${props => (props.selected ? props.activeFontColor : props.passiveFontColor)}`;
-const themeFontColor = css`${props => (props.selected ? props.theme.textColors.primary : props.theme.textColors.secondary)}`;
-
-const TabContainer = styled.a`
-  font-family: lato, sans-serif;
-  position: relative;
-  font-size: 0.875rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  line-height: 1.5rem;
-  display: table-cell;
+const TabButton = styled.button`
+  align-items: center;
+  background: transparent;
+  border: none;
   box-sizing: border-box;
-  min-height: 48px;
-  height: 48px;
-  text-align: center;
-  text-decoration: none;
-  white-space: nowrap;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-height: 72px;
+  max-width: 264px;
+  min-height: 48px;
+  min-width: 72px;
   overflow: hidden;
-  vertical-align: middle;
-  color: ${props => (props.activeFontColor && props.passiveFontColor ? customFontColor : themeFontColor)};
-  background-color: ${props => (props.activeBackgroundColor && props.passiveBackgroundColor ? customBackgroundColor : themeBackgroundColor)};
-  opacity: ${props => (props.selected ? 1 : 0.87)};
-  width: ${props => props.tabWidth};
-  &:hover {
-    opacity: 1;
-  }
+  outline: none;
+  padding-left: 12px;
+  padding-right: 12px;
+  text-transform: uppercase;
+  user-select: none;
+  -webkit-appearance: none;
 `;
 
-const TabComponent = ({
-  label,
-  icon,
-  selected,
-  onClick,
-  index,
-  tabWidth,
-  activeBackgroundColor,
-  passiveBackgroundColor,
-  activeFontColor,
-  passiveFontColor,
-}) => (
-  <TabContainer
-    className='smc-tab'
-    onClick={() => onClick(index)}
-    selected={selected}
-    tabWidth={`${tabWidth}px`}
-    activeBackgroundColor={activeBackgroundColor}
-    passiveBackgroundColor={passiveBackgroundColor}
-    activeFontColor={activeFontColor}
-    passiveFontColor={passiveFontColor}>
-    {icon || null}
-    {label}
-  </TabContainer>
+const RippleTab = withRipple(TabButton);
+
+const TabLabel = styled.span`
+  padding: 4px 12px;
+  ${typography('body2')};
+`;
+
+const TabComponent = ({ children, className, Icon, index, onClick }) => (
+  <RippleTab className={className} onClick={event => onClick(event, index)} data-smc="Tab">
+    {Icon}
+    <TabLabel data-smc="TabLabel">{children}</TabLabel>
+  </RippleTab>
 );
 
-const Tab = styled(TabComponent)``;
+export const Tab = styled(TabComponent) `
+  opacity: ${props => (props.selected ? 1 : 0.7)};
+  height: ${props => (props.Icon && props.children ? 72 : 48)}px;
+`;
 
-export default Tab;
+export const TabContent = styled.div`
+  padding: 24px;
+  width: 100%;
+`;

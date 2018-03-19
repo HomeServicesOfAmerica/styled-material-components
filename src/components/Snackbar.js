@@ -76,10 +76,10 @@ class SnackbarComponent extends PureComponent {
 }
 
 const Snackbar = styled(SnackbarComponent)`
+  display: ${props => (props.open && !props.animateOut ? 'flex' : 'none')};
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
-  display: flex;
   height: 48px;
   min-width: 288px;
   max-width: 568px;

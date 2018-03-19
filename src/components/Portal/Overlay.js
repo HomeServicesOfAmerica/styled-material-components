@@ -12,7 +12,7 @@ export const BaseOverlay = props => (
 
 export const Overlay = styled(BaseOverlay)`
   background: rgba(0, 0, 0, .6);
-  position: absolute;
+  position: fixed;
   left: 0;
   right: 0;
   bottom: 0;

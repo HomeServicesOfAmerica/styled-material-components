@@ -8,6 +8,7 @@ Welcome to Styled Material Components! We're so glad you're here. Please read th
 0. [How to contribute](#how-to-contribute)
 0. [Contribution review process](#contribution-review-process)
 0. [Community](#community)
+0. [Resources and Terminology]
 
 ## Issues and Contributions
 The easiest way to start contributing is to check out our current open [Issues](https://github.com/ConciergeAuctions/styled-material-components/issues). Here you will find open issues that need to be implemented including but not limited to: features, enhancements, bug fixes, discussions, and questions. Issues we've identified as possible good places to start for first time contributors are labeled as "good first issue." Feel free to assign yourself to issues you are interested in tackling and open a PR when you feel like your code satisfies the open issue. 
@@ -53,3 +54,25 @@ Wherever possible, do not take these conversations to private channels, includin
 Follow us on [Twitter](https://twitter.com/merlinOSA) to learn more about our open source initiatives and get involved with our community <3
 
 Read more about contributing to the open source community on Github's fantastic [Open Source Guides](https://opensource.guide/)
+
+## Resources and Terminology
+
+* **[React](https://reactjs.org/)**
+is a component-based library for managing state and creating user interfaces.
+* **[styled-components](https://www.styled-components.com/)**
+Inspired by the component-based architecture of React, Max Stoiber and Glenn Maddern created a library, styled-components, that allows you to style your application using React components.
+* **[design language / design vocabulary](https://en.wikipedia.org/wiki/Design_language)**: a set of design guidelines or principles that allow designers to create thematically consistent user interfaces.
+* **[Material Design](https://material.io/)**
+is the name of a design language created by Google. Many of the Google applications you probably use (Gmail, YouTube, Inbox, Google Maps and many others) have implemented the Material Design guidelines.
+  * **[material.io](https://material.io/)** 
+is the home page for Google's Material Design system.
+* **[Material Components](https://material.io/components/)** 
+is the name of Google's own UI implementation of their Material Design spec.
+  * **[material.io/components](https://material.io/components/)**
+is the home page for Google's Material Components.  
+* **[Material UI](http://www.material-ui.com/#/)**
+is a library that implements Google's Material Design, crafted in React components. If you want to create a React project using the popular Material Design guidelines, Material UI provides a component-based library that is designed to be used in a React application.   
+* **[Styled Material Components](https://github.com/ConciergeAuctions/styled-material-components)**
+(this library) creates a fresh implementation of Material Components, using Styled Components. 
+* **[styled-material-components](https://www.npmjs.com/package/styled-material-components)**
+is the npm package for Styled Material Components. 

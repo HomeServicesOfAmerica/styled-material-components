@@ -224,6 +224,7 @@ class Table extends PureComponent {
     const currentSelectionKeys = Object.keys(selectedItems);
     const currentPageKeys = rowsToShow.map(item => item.key);
     const selectedAllActive = this.determineSelected(currentSelectionKeys, currentPageKeys);
+    const sortBy = this.props.sortBy || this.sortBy;
 
     return (
       <div className={`smc-table-wrapper ${this.props.className}`}>
@@ -254,7 +255,7 @@ class Table extends PureComponent {
                           && descending ?
                           'sortButton rotate' : 'sortButton'
                       }
-                      onClick={() => this.sortBy(key)}
+                      onClick={() => sortBy(key)}
                     />}
                     {label}
                   </div>

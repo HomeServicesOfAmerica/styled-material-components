@@ -3,7 +3,7 @@ import { Button, Dialog, DialogTitle, DialogBody, DialogFooter, ThemeProvider } 
 
 class ExampleDialog extends Component {
   state = {
-    open: false
+    open: false,
   };
 
   openDialog = () => this.setState({ open: true });
@@ -11,10 +11,10 @@ class ExampleDialog extends Component {
   closeDialog = () => this.setState({ open: false });
 
   render() {
-    const { open, title, body } = this.props;
+    const { title } = this.props;
     return (
       <div>
-        <Dialog open={this.state.open}>
+        <Dialog open={this.state.open} onClose={this.closeDialog}>
           {Boolean(title) && (
             <DialogTitle>
               {title}
@@ -36,7 +36,7 @@ class ExampleDialog extends Component {
           Open dialog
         </Button>
       </div>
-    )
+    );
   }
 }
 

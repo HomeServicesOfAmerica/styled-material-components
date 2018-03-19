@@ -23,7 +23,7 @@ class TextFieldPage extends PureComponent {
     shouldReset: false,
   };
 
-  handleChange = e => this.setState({ controlledInputValue: e.target.value });
+  handleChange = e => this.setState({ [e.target.name]: e.target.value });
 
   render() {
     return (
@@ -49,6 +49,7 @@ class TextFieldPage extends PureComponent {
           <TextFieldWithBottomMargin helperText={'default helper text'} />
           <TextFieldWithBottomMargin hintText={'disabled'} disabled />
           <TextFieldWithBottomMargin
+            name="controlledInputValue"
             hintText={'Controlled Input'}
             value={this.state.controlledInputValue}
             onChange={this.handleChange}

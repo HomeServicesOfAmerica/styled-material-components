@@ -1,9 +1,6 @@
 import React, { PureComponent } from 'react';
-import MaterialThemeProvider from '../src/theme/ThemeProvider';
-import Checkbox, { Box, CheckMark } from '../src/components/Checkbox';
-import List from '../src/components/List/List';
-import ListItem from '../src/components/List/ListItem';
-import defaultTheme from '../src/theme/defaultTheme';
+import styled from 'styled-components';
+import { ThemeProvider, Checkbox, Box, CheckMark, List, ListItem, defaultTheme } from '../src';
 
 const StyledCheckbox = Checkbox.extend`
   ${Box} {
@@ -15,20 +12,50 @@ const StyledCheckbox = Checkbox.extend`
     stroke-width: 5px;
   }
 `;
+
+const Square = styled.div`
+  background-color: ${props => props.theme.primary};
+  height: 8px;
+  width: 8px;
+`;
+
+const StyledCheckbox2 = Checkbox.extend`
+  :hover::before {
+    opacity: 0;
+  }
+
+  ${Box} {
+    ${props =>
+    props.checked &&
+      `
+      border: solid 3px ${props.theme.primary};
+      background-color: transparent;
+    `};
+  }
+`;
+
 class CheckboxesPage extends PureComponent {
   state = {
-    checked: true,
+    checked: {
+      1: true,
+      2: false,
+    },
   };
 
-  handleChange = () => {
-    const checked = !this.state.checked;
-    this.setState({ checked });
+  handleChange = (n) => {
+    const checked = !this.state.checked[n];
+    this.setState({
+      checked: {
+        ...this.state.checked,
+        [n]: checked,
+      },
+    });
   };
 
   render() {
     const { checked } = this.state;
     return (
-      <MaterialThemeProvider theme={defaultTheme}>
+      <ThemeProvider theme={defaultTheme}>
         <List>
           <h1 style={{ marginLeft: 25 }}>Checkboxes</h1>
           <ListItem>
@@ -52,7 +79,13 @@ class CheckboxesPage extends PureComponent {
             <label htmlFor="checkbox5">Checked and Disabled</label>
           </ListItem>
           <ListItem>
-            <Checkbox checked={checked} onChange={this.handleChange} id="checkbox6" />
+            <Checkbox
+              checked={checked[1]}
+              onChange={() => {
+                this.handleChange(1);
+              }}
+              id="checkbox6"
+            />
             <label htmlFor="checkbox6">Controlled Checkbox</label>
           </ListItem>
           <ListItem>
@@ -63,8 +96,19 @@ class CheckboxesPage extends PureComponent {
             <StyledCheckbox id="checkbox8" />
             <label htmlFor="checkbox8">Custom Checkbox</label>
           </ListItem>
+          <ListItem>
+            <StyledCheckbox2
+              checked={checked[2]}
+              onChange={() => {
+                this.handleChange(2);
+              }}
+              id="checkbox9"
+              checkMark={Square}
+            />
+            <label htmlFor="checkbox9">Custom Checkbox</label>
+          </ListItem>
         </List>
-      </MaterialThemeProvider>
+      </ThemeProvider>
     );
   }
 }

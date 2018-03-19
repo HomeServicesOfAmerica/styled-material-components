@@ -11,7 +11,7 @@ class TextFieldComponent extends PureComponent {
     hasBeenFocused: false,
     height: '100%',
   };
-  
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.reset) {
       nextProps.onReset && nextProps.onReset();
@@ -27,7 +27,7 @@ class TextFieldComponent extends PureComponent {
     const isInvalid = this.props.validator && !this.props.validator(text);
     const isEmptyButRequired = this.props.required ? !e.target.value : false;
     const newHeight = this.props.textarea ? this.textArea.scrollHeight : '';
-    
+
     this.setState({
       text,
       error: this.props.error || isInvalid || isEmptyButRequired,
@@ -57,6 +57,7 @@ class TextFieldComponent extends PureComponent {
         <Suffix>{this.props.suffix}</Suffix>
         <Prefix>{this.props.prefix}</Prefix>
         <FloatingLabel
+          aria-label={this.props.floatingLabelText}
           className={'smc-text-field-floating-label'}
           error={hasError}
           hasPrefix={!!this.props.prefix}
@@ -78,6 +79,25 @@ class TextFieldComponent extends PureComponent {
             show={this.props.required}
             requiredStarStyle={this.props.requiredStarStyle} /> */}
         </FloatingLabel>
+        <FloatingAreaLabel
+          aria-label={this.props.floatingAreaLabelText}
+          className={'smc-text-area-floating-label'}
+          error={hasError}
+          hasPrefix={!!this.props.prefix}
+          focus={this.state.focus}
+          floatingLabelStyle={
+            hasError ? this.props.floatingLabelErrorStyle : this.props.floatingLabelStyle
+          }
+          floating={this.state.focus ||
+            this.props.hintText ||
+            this.props.options ||
+            this.props.defaultOption ||
+            this.state.text.length
+          }
+        >
+          {this.props.floatingAreaLabelText || null}
+          {this.props.required ? '*' : ''}
+        </FloatingAreaLabel>
         {hasValidOptions && (
           <DropdownMenu
             defaultOption={this.props.defaultOption}
@@ -122,32 +142,46 @@ class TextFieldComponent extends PureComponent {
           {this.props.errorText}
         </ErrorText>
         <UnderlineFocus
+        {this.props.charLimit &&
+        <CharLimitText
+          show={this.props.charLimit}
+          error={this.state.text.length > this.props.charLimit}
+          className={'smc-text-field-char-limit-text'}
+        >
+          {this.state.text.length}/{this.props.charLimit}
+        </CharLimitText>}
+        { !this.props.hasBorder && <UnderlineFocus
           disabled={this.props.options || this.props.focusDisabled}
           className={'smc-text-field-underline-focus'}
           underlineFocusStyle={this.props.underlineFocusStyle}
           focus={this.state.focus}
           error={hasError}
-        />
+        />}
         {this.props.textarea
           ? (
             <Area
               rows={this.props.rows || 1}
               hasPrefix={!!this.props.prefix}
               hasSuffix={!!this.props.suffix}
+              hasBorder={this.props.hasBorder}
               inputStyle={this.props.inputStyle}
               disabled={this.props.disabled}
               autoFocus={this.props.autoFocus}
               value={this.props.value || this.state.text}
+              charLimit={this.props}
               height={this.state.height}
               onChange={this.onChange}
               onFocus={this.onFocus}
               onBlur={this.onBlur}
               className={'smc-text-field-area'}
-              innerRef={(ref) => {this.textArea = ref;}}
+              innerRef={(ref) => {
+                this.textArea = ref;
+              }}
             />
           )
           : (
             <Input
+              type={this.props.type || ''}
               hasPrefix={!!this.props.prefix}
               hasSuffix={!!this.props.suffix}
               inputStyle={this.props.inputStyle}
@@ -159,6 +193,7 @@ class TextFieldComponent extends PureComponent {
               onBlur={this.onBlur}
               className={'smc-text-field-input'}
             />
+      
           )
         }
       </div>
@@ -211,7 +246,7 @@ const SuffixComponent = props => (
   <div className={`${props.className} smc-textfield-suffix`}>{props.children}</div>
 );
 
-const Suffix = styled(SuffixComponent)`
+const Suffix = styled(SuffixComponent) `
   position: absolute;
   bottom: 0;
   right: 0;
@@ -222,7 +257,7 @@ const PrefixComponent = props => (
   <div className={`${props.className} smc-textfield-prefix`}>{props.children}</div>
 );
 
-const Prefix = styled(PrefixComponent)`
+const Prefix = styled(PrefixComponent) `
   position: absolute;
   bottom: 0;
   left: 0;
@@ -245,6 +280,22 @@ const FloatingLabel = styled.div`
   ${props => props.floatingLabelStyle};
 `;
 
+const FloatingAreaLabel = styled.div`
+  position: absolute;
+  transition: all 200ms;
+  top: ${props => (props.floating ? '0' : '1em')};
+  font-size: 1em;
+  transform: ${props => `scale(${props.floating ? 0.75 : 1})`};
+  transform-origin: 0 50%;
+  color: ${(props) => {
+    if (props.error) return error;
+    return props.focus && props.floating ? primary : secondaryTextColor;
+  }};
+  width: 80%;
+  left: 1em;
+  ${props => props.floatingLabelStyle};
+`;
+
 const HintText = styled.div`
   position: absolute;
   color: ${props => (props.error ? error : hintTextColor)};
@@ -259,6 +310,12 @@ const ErrorText = styled.div`
   ${fadeInOut};
   ${placeBelow};
   ${props => props.errorTextStyle};
+`;
+
+const CharLimitText = styled.div`
+  color: ${props => (props.error ? error : hintTextColor)}
+  ${placeBelow};
+  text-align: right;
 `;
 
 const HelperText = styled.div`
@@ -309,22 +366,31 @@ const Input = styled.input`${inputStyles}`.extend`
 `;
 
 const Area = styled.textarea`${inputStyles}`.extend`
-  width: calc(100% - ${({ hasSuffix }) => hasSuffix ? 1 : 0}em);
+  width: calc(80% - ${({ hasSuffix }) => hasSuffix ? 1 : 0}em);
   height:  ${props => props.height - 4}px;
   color: ${primaryTextColor};
   padding-left: ${props => (props.hasPrefix ? '1em' : '0')};
   ${props => props.inputStyle};
+  border-style: ${props => (props.hasBorder ? 'solid' : 'none')};
+  border-width: ${props => (props.hasBorder ? '1px' : 'none')};
+  border-radius: ${props => (props.hasBorder ? '4px' : 'none')};
+  border-color: ${props => (props.error ? error : hintTextColor)};
   resize: none;
+  padding: ${props => (props.hasBorder ? '1em 1em 0 1em' : 'none')};
+
+  &:focus {
+    border-color: ${primary};
+}
 `;
 
-const TextField = styled(TextFieldComponent)`
+const TextField = styled(TextFieldComponent) `
   width: ${props => (props.fullWidth ? '100%' : '167px')};
   font-size: 1em;
   line-height: 1.5em;
   position: relative;
   background-color: transparent;
   font-family: lato, sans-serif;
-  border-bottom: 0.5px ${props => (props.disabled ? 'dotted' : 'solid')};
+  border-bottom: ${props => (props.hasBorder ? 'none' : '0.5px')} ${props => (props.disabled ? 'dotted' : 'solid')};
   border-bottom-color: ${props => (props.error ? error : hintTextColor)};
 `;
 

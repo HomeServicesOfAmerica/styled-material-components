@@ -1,9 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Button from '../src/components/Button';
-import FloatingActionButton from '../src/components/FloatingActionButton';
-import withRipple from '../src/enhancers/withRipple';
-import MaterialThemeProvider from '../src/theme/ThemeProvider';
+import { Button, FloatingActionButton, withRipple, ThemeProvider } from '../src';
 
 const RippleButton = withRipple(Button);
 
@@ -14,7 +11,7 @@ const icon =
 
 
 const ButtonsPage = ({ className }) => (
-  <MaterialThemeProvider theme={{ primary: '#03A9F4' }}>
+  <ThemeProvider theme={{ primary: '#03A9F4' }}>
     <div className={className}>
       <h1>Flat Buttons</h1>
       <Button onClick={() => alert('On Click Fired')}>Flat</Button>
@@ -36,7 +33,7 @@ const ButtonsPage = ({ className }) => (
       <FloatingActionButton disabled mini>{icon}</FloatingActionButton>
 
     </div>
-  </MaterialThemeProvider>
+  </ThemeProvider>
 );
 
 const StyledButtonsPage = styled(ButtonsPage)`

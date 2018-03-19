@@ -57,7 +57,7 @@ const defaultTheme = {
     baseGridSize: 12,
     // When using the layout features, what screensize should we default to when it is unknown
     defaultScreenSize: 'xs',
-    gutterSize: '0.5em',
+    gutterSize: '16px',
     screenSizePriority: ['xl', 'lg', 'md', 'sm', 'xs'],
     screenSizes: {
       [xs]: 'xs',
@@ -91,6 +91,12 @@ const defaultTheme = {
   },
   slider: sliderTheme,
   disabledCheckbox: black.alpha(0.26).toString(),
+  toolbar: {
+    horizontalPaddingDesktop: '24px',
+    horizontalPaddingMobile: '16px',
+    iconSize: '24px',
+    iconPadding: '12px',
+  },
 };
 
 export default defaultTheme;

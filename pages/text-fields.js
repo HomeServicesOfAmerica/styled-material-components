@@ -1,8 +1,6 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
-import MaterialThemeProvider from '../src/theme/ThemeProvider';
-import TextField from '../src/components/TextField';
-import Button from '../src/components/Button';
+import { ThemeProvider, TextField, Button } from '../src';
 
 const validateLength = str => str.length > 7;
 
@@ -29,9 +27,10 @@ class TextFieldPage extends PureComponent {
 
   render() {
     return (
-      <MaterialThemeProvider theme={{ primary: '#03A9F4' }}>
+      <ThemeProvider theme={{ primary: '#03A9F4' }}>
         <div className={this.props.className}>
           <h1>Text Fields</h1>
+
           <h2>Simple Examples</h2>
           <TextFieldWithBottomMargin hintText={'autofocus'} autoFocus />
           <TextFieldWithBottomMargin hintText={'Hint Text'} />
@@ -59,6 +58,8 @@ class TextFieldPage extends PureComponent {
             focusDisabled
           />
           <TextFieldWithBottomMargin hintText={'Full Width'} fullWidth />
+          <br />
+
           <h2>Error Examples</h2>
           <TextFieldWithBottomMargin
             hintText={'Controlled error'}
@@ -92,6 +93,17 @@ class TextFieldPage extends PureComponent {
               </div>
             }
           />
+          <br />
+
+          <h2>Reset Field</h2>
+          <TextFieldWithBottomMargin
+            defaultValue="These changes will return"
+            reset={this.state.shouldReset}
+            onReset={() => this.setState({ shouldReset: false })}
+          />
+          <Button raised onClick={() => this.setState({ shouldReset: true })}>Reset</Button>
+          <br />
+
           <h2>Text areas</h2>
           <TextFieldWithBottomMargin
             textarea
@@ -108,10 +120,40 @@ class TextFieldPage extends PureComponent {
             floatingLabelText="Multiline text area"
           />
           <TextFieldWithBottomMargin
+            textarea
+            floatingLabelText="Char limit"
             rows={2}
-            defaultValue="These changes will return"
-            reset={this.state.shouldReset}
-            onReset={() => this.setState({ shouldReset: false })}
+            charLimit={100}
+          />
+          <TextFieldWithBottomMargin
+            textarea
+            hasBorder
+            floatingAreaLabelText="Border textarea"
+            rows={4}
+          />
+          <br />
+
+          <h2>Dropdown Menu</h2>
+          <TextFieldWithBottomMargin
+            floatingLabelText="Dropdown Menu"
+            options={['option1', 'option2']}
+          />
+          <h4>No Selected Default Option</h4>
+          <TextFieldWithBottomMargin
+            floatingLabelText="Dropdown Menu"
+            options={['option1', 'option2']}
+            defaultOption={'select an option'}
+          />
+          <h4>Selected Default Option</h4>
+          <TextFieldWithBottomMargin
+            floatingLabelText="Dropdown Menu"
+            options={['option0', 'option1', 'option2']}
+            defaultOption={'option2'}
+          />
+          <h4>Invalid Options Passed In</h4>
+          <TextFieldWithBottomMargin
+            floatingLabelText="Dropdown Menu"
+            options={'invalid option'}
           />
           <Button onClick={() => this.setState({ shouldReset: true })}>Reset</Button>
           <h2>Dropdown Menu</h2>
@@ -138,7 +180,7 @@ class TextFieldPage extends PureComponent {
             options={'invalid option'}
           />
         </div>
-      </MaterialThemeProvider>
+      </ThemeProvider>
     );
   }
 }

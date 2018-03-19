@@ -5,9 +5,11 @@
  * of the screen to grow, shrink, reorder as described by the end
  * user via size props.
  */
+import React from 'react';
 import styled, { css } from 'styled-components';
-import { ScreenSizeConsumer } from '../../contexts/ScreenSizeContext';
-import { RowConsumer } from './Row';
+import { compose } from 'recompose';
+import { withScreenSize } from '../../contexts/ScreenSizeContext';
+import { withRowState } from './Row';
 
 /**
  * getResponsiveProp
@@ -179,7 +181,7 @@ const flexSizeMixin = ({
 const SizedColumn = styled.div`
   display: flex;
   flex-direction: column;
-  ${props => (props.noGutters ? '' : 'margin: 0.5em')};
+  ${props => (props.noGutters ? '' : `padding: 0 ${props.theme.layout.gutterSize}`)};
   flex: 0 0 auto;
   max-width: none;
   order: 0;
@@ -201,24 +203,23 @@ const SizedColumn = styled.div`
  * added to the end of the generated classNames for that component. Because
  * order of classes matters in css this className takes precedent.
  */
-const ColumnComponent = ({ className, children, ...props }) => (
-  <ScreenSizeConsumer>
-    {({ screenSize, lowerScreenSize }) => (
-      <RowConsumer>
-        {row => (
-          <SizedColumn
-            {...props}
-            data-smc="Column"
-            screenSize={screenSize}
-            lowerScreenSize={lowerScreenSize}
-            row={row}
-            className={className}>
-            {children}
-          </SizedColumn>
-        )}
-      </RowConsumer>
-    )}
-  </ScreenSizeConsumer>
+const enhancer = compose(
+  withScreenSize,
+  withRowState,
+);
+
+const ColumnComponent = enhancer(
+  ({ className, children, ...props }, { screenSizeState, rowState }) => (
+    <SizedColumn
+      {...props}
+      data-smc="Column"
+      row={rowState}
+      screenSize={screenSizeState.screenSize}
+      lowerScreenSize={screenSizeState.lowerScreenSize}
+      className={className}>
+      {children}
+    </SizedColumn>
+  )
 );
 
 export const Column = styled(ColumnComponent)`

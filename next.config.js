@@ -2,7 +2,6 @@ module.exports = {
   exportPathMap() {
     return {
       '/': { page: '/' },
-      '/appbar': { page: '/appbar' },
       '/bottomsheets': { page: '/bottomsheets' },
       '/buttons': { page: '/buttons' },
       '/cards': { page: '/cards' },
@@ -22,6 +21,9 @@ module.exports = {
       '/tables': { page: '/tables' },
       '/tabs': { page: '/tabs' },
       '/text-fields': { page: '/text-fields' },
+      '/toolbar': { page: '/toolbar' },
+      '/toolbar/fixed': { page: '/toolbar/fixed' },
+      '/toolbar/normal': { page: '/toolbar/normal' },
     };
   },
 };

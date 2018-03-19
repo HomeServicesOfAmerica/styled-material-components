@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import elevation from '../../mixins/elevation';
 import MenuList from './MenuList';
 import MenuItem from './MenuItem';
@@ -8,7 +8,7 @@ class MenuComponent extends Component {
   componentDidMount() {
     document.addEventListener('mousedown', this.handleClick, false);
   }
-  
+
   componentWillUnmount() {
     document.removeEventListener('mousedown', this.handleClick, false);
   }
@@ -41,9 +41,15 @@ class MenuComponent extends Component {
   }
 }
 
+const positionStyles = css`
+  top: ${props => props.anchorEl && props.anchorEl.getBoundingClientRect().top}px;
+  left: ${props => props.anchorEl && props.anchorEl.getBoundingClientRect().left}px;
+`;
+
 const Menu = styled(MenuComponent)`
   padding: 0;
   position: absolute;
+  ${positionStyles}
   box-sizing: border-box;
   border-radius: 2px;
   overflow: hidden;

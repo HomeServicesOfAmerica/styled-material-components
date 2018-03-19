@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import Button from '../src/components/Button';
-import MenuItem from '../src/components/Menu/MenuItem';
-import Menu from '../src/components/Menu/Menu';
-import MaterialThemeProvider from '../src/theme/ThemeProvider';
+import { ThemeProvider, Button, MenuItem, Menu } from '../src';
 
 const StandAloneMenu = Menu.extend`
   position: relative;
@@ -12,10 +9,11 @@ class MenusPage extends Component {
   state = {
     open: false,
     value: '',
+    anchorEl: null,
   };
-  
-  handleClick = () => {
-    this.setState({ open: !this.state.open });
+
+  handleClick = (event) => {
+    this.setState({ open: !this.state.open, anchorEl: event.currentTarget });
   };
 
   handleSelect = (selectedItem) => {
@@ -28,6 +26,8 @@ class MenusPage extends Component {
   };
 
   render() {
+    const { anchorEl } = this.state;
+
     const menuItems = [
       { text: 'Un', onClick: () => this.handleSelect() },
       { text: 'Deux', onClick: () => this.handleSelect() },
@@ -36,7 +36,7 @@ class MenusPage extends Component {
     ];
 
     return (
-      <MaterialThemeProvider theme={{ primary: '#03A9F4' }}>
+      <ThemeProvider theme={{ primary: '#03A9F4' }}>
         <div style={{ margin: '60px 16px' }}>
           <h1>Menus</h1>
           <h2>Standalone Menu</h2>
@@ -47,20 +47,19 @@ class MenusPage extends Component {
           <p>This component is accessible (navigable by clicks or keyboard events)
             and has an ARIA role defined as menu for screenreaders </p>
           <p>Each Option can receive a handleSelect prop that accepts a callback</p>
-          <div style={{ position: 'relative', display: 'flex', width: '800px' }}>
-            <Button raised onClick={this.handleClick} style={{ marginRight: '15px' }}>Click me</Button>
-            <Menu
-              open={this.state.open}
-              value={this.state.value}
-              onClose={() => this.handleClose()}>
-              <MenuItem onClick={() => this.handleSelect('Ron')}>Ron</MenuItem>
-              <MenuItem onClick={() => this.handleSelect('Harry')}>Harry</MenuItem>
-              <MenuItem onClick={() => this.handleSelect('Hermione')}>Hermione</MenuItem>
-            </Menu>
-            <h3>You selected: <span style={{ color: 'tomato' }}>{this.state.value}</span></h3>
-          </div>
+          <Button raised onClick={this.handleClick} style={{ marginRight: '15px', float: 'right' }}>Click me</Button>
+          <Menu
+            open={this.state.open}
+            anchorEl={anchorEl}
+            value={this.state.value}
+            onClose={() => this.handleClose()}>
+            <MenuItem onClick={() => this.handleSelect('Ron')}>Ron</MenuItem>
+            <MenuItem onClick={() => this.handleSelect('Harry')}>Harry</MenuItem>
+            <MenuItem onClick={() => this.handleSelect('Hermione')}>Hermione</MenuItem>
+          </Menu>
+          <h3>You selected: <span style={{ color: 'tomato' }}>{this.state.value}</span></h3>
         </div>
-      </MaterialThemeProvider>
+      </ThemeProvider>
     );
   }
 }

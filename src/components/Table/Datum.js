@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 const DatumComponent = ({ children, className, column }) => (
-  <td className={`smc-table-datum ${className} smc-table-datum-${column}`}>
+  children ? <td className={`smc-table-datum ${className} smc-table-datum-${column}`}>
     {children}
-  </td>
+  </td> : null
 );
 
 const Datum = styled(DatumComponent) `

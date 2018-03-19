@@ -1,15 +1,22 @@
 import React, { Fragment } from 'react';
 import styled from 'styled-components';
-import MaterialThemeProvider from '../src/theme/ThemeProvider';
 import {
+  ThemeProvider,
   Icon,
-  ArrowDropDown,
+  ArrowDropDownIcon,
   KeyboardArrowLeftIcon,
-} from '../src/icons/icons';
+} from '../src';
 
 const availableIcons = [
   {
-    category: 'Hardare',
+    category: 'Action',
+    icons: [
+      'search',
+      'info_outline',
+    ],
+  },
+  {
+    category: 'Hardware',
     icons: [
       'keyboard_arrow_left',
       'keyboard_arrow_right',
@@ -27,6 +34,8 @@ const availableIcons = [
     category: 'Navigation',
     icons: [
       'arrow_drop_down',
+      'close',
+      'menu',
     ],
   },
   {
@@ -35,57 +44,57 @@ const availableIcons = [
       'star',
       'star_border',
       'star_half',
-    ]
-  }
+    ],
+  },
 ];
 
 const IconsPage = ({ className }) => (
-  <MaterialThemeProvider>
+  <ThemeProvider>
     <section className={className}>
       <h1>Icons</h1>
         Icons can be rendered in one of two ways:
-        <ul>
-          <li>
+      <ul>
+        <li>
             Directly imported
-            <ul>
-              <li>
-                <ArrowDropDown /> {`<ArrowDropDown />`}
-              </li>
-              <li>
-                <KeyboardArrowLeftIcon /> {`<KeyboardArrowLeftIcon />`}
-              </li>
-            </ul>
-          </li>
-          <li>
+          <ul>
+            <li>
+              <ArrowDropDownIcon /> {`<ArrowDropDown />`}
+            </li>
+            <li>
+              <KeyboardArrowLeftIcon /> {`<KeyboardArrowLeftIcon />`}
+            </li>
+          </ul>
+        </li>
+        <li>
             Specified as an "icon" prop to an Icon component
-            <ul>
-              <li>
-                <Icon icon="arrow_drop_down" /> {`<Icon icon="arrow_drop_down />`}
-              </li>
-              <li>
-                <Icon icon="keyboard_arrow_left" /> {`<Icon icon="keyboard_arrow_left />`}
-              </li>
-            </ul>
-          </li>
-        </ul>
+          <ul>
+            <li>
+              <Icon icon="arrow_drop_down" /> {`<Icon icon="arrow_drop_down />`}
+            </li>
+            <li>
+              <Icon icon="keyboard_arrow_left" /> {`<Icon icon="keyboard_arrow_left />`}
+            </li>
+          </ul>
+        </li>
+      </ul>
         Available icons are:
-        <section>
-          {availableIcons.map(icontype => (
-            <div key={icontype.category}>
-              <h4>{icontype.category}</h4>
-              <section className="icon-type-examples">
-                {icontype.icons.map(icon => (
-                  <div key={icon} className="icon-example">
-                    <Icon icon={icon} />
-                    {icon}
-                  </div>
-                ))}
-              </section>
-            </div>
-          ))}
-        </section>
+      <section>
+        {availableIcons.map(icontype => (
+          <div key={icontype.category}>
+            <h4>{icontype.category}</h4>
+            <section className="icon-type-examples">
+              {icontype.icons.map(icon => (
+                <div key={icon} className="icon-example">
+                  <Icon icon={icon} />
+                  {icon}
+                </div>
+              ))}
+            </section>
+          </div>
+        ))}
+      </section>
     </section>
-  </MaterialThemeProvider>
+  </ThemeProvider>
 );
 
 const Icons = styled(IconsPage)`

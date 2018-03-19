@@ -1,13 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import List from '../src/components/List/List';
-import ListItem from '../src/components/List/ListItem';
-import ListItemText from '../src/components/List/ListItemText';
-import ListSubheader from '../src/components/List/ListSubheader';
-import MaterialThemeProvider from '../src/theme/ThemeProvider';
+import { ThemeProvider, List, ListItem, ListItemText, ListSubheader } from '../src';
 
 const ListsPage = ({ className }) => (
-  <MaterialThemeProvider theme={{ primary: '#03A9F4' }}>
+  <ThemeProvider theme={{ primary: '#03A9F4' }}>
     <div className={className}>
       <h1>List with Avatar</h1>
       <div className="list">
@@ -155,7 +151,7 @@ const ListsPage = ({ className }) => (
         </List>
       </div>
     </div>
-  </MaterialThemeProvider>
+  </ThemeProvider>
 );
 
 const StyledListsPage = styled(ListsPage)`

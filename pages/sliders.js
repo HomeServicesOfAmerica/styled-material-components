@@ -1,8 +1,6 @@
 import { PureComponent } from 'react';
 import styled from 'styled-components';
-import MaterialThemeProvider from '../src/theme/ThemeProvider';
-import { Slider } from '../src/components/Slider';
-import Button from '../src/components/Button';
+import { ThemeProvider, Slider, Button } from '../src';
 
 class ControlledSlider extends PureComponent {
   state = {
@@ -43,7 +41,7 @@ class SlidersPageComponent extends PureComponent {
   render() {
     const { disabled } = this.state;
     return (
-      <MaterialThemeProvider theme={{ primary: '#03A9F4' }}>
+      <ThemeProvider theme={{ primary: '#03A9F4' }}>
         <div className={this.props.className}>
           <div>
             <h1>Sliders</h1>
@@ -104,7 +102,7 @@ class SlidersPageComponent extends PureComponent {
             </Button>
           </div>
         </div>
-      </MaterialThemeProvider>
+      </ThemeProvider>
     )
   }
 }

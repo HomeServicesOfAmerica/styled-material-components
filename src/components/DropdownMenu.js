@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import React, { Component, Fragment } from 'react';
 import MenuItem from './Menu/MenuItem';
 import Menu from './Menu/Menu';
-import { ArrowDropDown } from './../icons/icons';
+import { ArrowDropDownIcon } from './../icons/icons';
 
 const Dropdown = styled.select`
   border-color: transparent;
@@ -24,7 +24,7 @@ const HiddenOption = styled.option`
   display: none;
 `;
 
-const Symbol = styled(ArrowDropDown)`
+const Symbol = styled(ArrowDropDownIcon)`
   width: 20px;
   height: 20px;
   position: absolute;
@@ -33,7 +33,9 @@ const Symbol = styled(ArrowDropDown)`
   fill: #726969;
 `;
 
-
+/*
+ * TODO implement real onchange handler for select field
+ */
 export default class DropdownMenu extends Component {
   state = {
     isOpen: false,
@@ -41,7 +43,7 @@ export default class DropdownMenu extends Component {
     selected: this.props.defaultOption || 'select one',
     isChrome: undefined,
   }
-  
+
   /* eslint-disable react/no-did-mount-set-state */
   /*
    * Because Next.js executes its code server-side first,
@@ -72,6 +74,10 @@ export default class DropdownMenu extends Component {
     if (this.props.callback) {
       this.props.callback(option);
     }
+
+  /* eslint-enable react/no-did-mount-set-state */
+
+  onSelectMenuItem = (option): void => {
     this.setState({ selected: option });
   }
 
@@ -106,6 +112,10 @@ export default class DropdownMenu extends Component {
                 <HiddenOption
                   key={option}
                 >
+              onChange={() => {}}
+            >
+              {options.map(option => (
+                <HiddenOption key={option}>
                   {option}
                 </HiddenOption>
               ))}

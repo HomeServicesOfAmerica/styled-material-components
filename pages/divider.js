@@ -1,13 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
-import MaterialThemeProvider from '../src/theme/ThemeProvider';
-import { Divider } from '../src/index';
+import { ThemeProvider, Divider } from '../src';
 
 const DividerPageComponent = ({
   className,
 }) => (
-  <MaterialThemeProvider>
+  <ThemeProvider>
     <div className={className}>
       <h1>Divider</h1>
       <section>
@@ -33,7 +32,7 @@ const DividerPageComponent = ({
         </p>
       </section>
     </div>
-  </MaterialThemeProvider>
+  </ThemeProvider>
 );
 
 export default styled(DividerPageComponent)`

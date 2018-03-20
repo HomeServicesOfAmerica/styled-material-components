@@ -67,11 +67,11 @@ export default class DropdownMenu extends Component {
     this.setState({ isOpen: true });
   };
    
-  onSelectMenuItem = (option): void => {
-    if (this.props.callback) {
-      this.props.callback(option);
+  onSelectMenuItem = (e): void => {
+    if (this.props.onItemClick) {
+      this.props.onItemClick(e);
     }
-    this.setState({ selected: option });
+    this.setState({ selected: e.target.value });
   }
 
   toggleSelect = (e): boolean => {
@@ -86,7 +86,7 @@ export default class DropdownMenu extends Component {
         {!isChrome && (
           <Dropdown
             defaultValue={selected}
-            onChange={({ target: { value } }) => this.onSelectMenuItem(value)}
+            onChange={e => this.onSelectMenuItem(e)}
           >
             {options.map(option => (
               <option key={option}>
@@ -118,7 +118,7 @@ export default class DropdownMenu extends Component {
               {options.map(option => (
                 <MenuItem
                   key={option}
-                  onClick={() => this.onSelectMenuItem(option)}
+                  onClick={() => this.onSelectMenuItem({ target: { value: option } })}
                 >
                   {option}
                 </MenuItem>

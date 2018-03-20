@@ -14,14 +14,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ConciergeAuctions/styled-material-components.git"
+    "url": "git+https://github.com/MerlinLabs/styled-material-components.git"
   },
   "author": "Brad Decker <bhdecker84@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ConciergeAuctions/styled-material-components/issues"
+    "url": "https://github.com/MerlinLabs/styled-material-components/issues"
   },
-  "homepage": "https://github.com/ConciergeAuctions/styled-material-components#readme",
+  "homepage": "https://github.com/MerlinLabs/styled-material-components#readme",
   "dependencies": {
     "color": "^1.0.3",
     "lodash.merge": "^4.6.0",

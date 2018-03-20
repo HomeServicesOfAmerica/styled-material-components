@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import classNames from 'classnames';
 import elevation from '../../mixins/elevation';
 import { Portal } from '../Portal';
 
@@ -8,21 +9,29 @@ import { Portal } from '../Portal';
  * the user clicks out of it. Because of that, the dialog's open/shut status is
  * actually controlled in the DialogComponent's state
  */
-const DialogComponent = props => (
-  <Portal
-    open={props.open}
-    mode="overlay"
-    renderContents={
-      () => (
-        <div className={`${props.className} smc-dialog`} onClick={props.onClose}>
-          <div className='smc-dialog-surface' onClick={e => e.stopPropagation()}>
-            {props.children}
+const DialogComponent = (props) => {
+  const fullscreenDialogClass = classNames(
+    props.className, 'smc-fullscreen-dialog', {
+      open: props.open,
+      left: props.attachment === 'left',
+      right: props.attachment === 'right',
+    });
+
+  return (
+    <Portal
+      open={props.open}
+      renderContents={
+        () => (
+          <div className={`${props.className} smc-dialog`} onClick={props.onClose}>
+            <div className={`smc-dialog-surface ${props.fullscreen && fullscreenDialogClass}`} onClick={e => e.stopPropagation()}>
+              {props.children}
+            </div>
           </div>
-        </div>
-      )
-    }
-  />
-);
+        )
+      }
+    />
+  );
+};
 
 export default styled(DialogComponent)`
   width: 100%;
@@ -31,18 +40,46 @@ export default styled(DialogComponent)`
   align-items: center;
   justify-content: center;
   position: absolute;
-  left: 0;
-  right: 0;
   top: 0;
   bottom: 0;
+  left: 0;
+  right: 0;
 
   > .smc-dialog-surface {
     display: flex;
     flex-direction: column;
-    width: 70%;
-    max-width: 865px;
+    ${({ fullscreen }) => !fullscreen && `
+      width: 70%;
+      max-width: 865px
+      ${elevation(24)};
+    `};
     border-radius: 2px;
     background-color: #fff;
-    ${elevation(24)};
+  }
+
+  > .smc-fullscreen-dialog {
+    overflow: hidden;
+    transition: transform 0.3s;
+    will-change: transform;
+
+    &.left {
+      left: 0;
+      transform: translateX(-107%);
+    }
+
+    &.right {
+      right: 0;
+      transform: translateX(107%);
+    }
+
+    &.open {
+      transition: transform 0.3s;
+      transform: none;
+    }
   }
 `;
+
+DialogComponent.defaultProps = {
+  open: false,
+  attachment: 'left',
+};

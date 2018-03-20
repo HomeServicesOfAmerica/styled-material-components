@@ -101,7 +101,7 @@ class TextFieldComponent extends PureComponent {
           <DropdownMenu
             defaultOption={this.props.defaultOption}
             options={this.props.options}
-            callback={this.props.callback}
+            onItemClick={this.props.onItemClick}
           />
         )}
         {!this.props.options && (

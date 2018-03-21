@@ -37,4 +37,4 @@ export { default as elevationMixin } from './mixins/elevation';
 export { default as typography } from './mixins/typography';
 
 export { default as ThemeProvider } from './theme/ThemeProvider';
-export { default as defaultTheme } from './theme/defaultTheme';
+export * from './theme/defaultTheme';

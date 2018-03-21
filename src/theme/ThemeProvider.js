@@ -2,7 +2,7 @@ import React from 'react';
 import { ThemeProvider, injectGlobal } from 'styled-components';
 import merge from 'lodash.merge';
 import { ScreenSizeContext } from '../contexts/ScreenSizeContext';
-import defaultTheme from './defaultTheme';
+import { defaultTheme } from './defaultTheme';
 
 /* eslint-disable no-unused-expressions */
 injectGlobal`

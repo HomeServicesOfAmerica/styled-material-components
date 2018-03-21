@@ -199,6 +199,7 @@ class Table extends PureComponent {
   }
 
   changeRows = (rowsPerPage) => {
+    this.props.onRowChange && this.props.onRowChange(rowsPerPage);
     this.setState({ rowsPerPage });
   }
 

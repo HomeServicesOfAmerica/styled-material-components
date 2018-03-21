@@ -3,7 +3,7 @@ import debounce from 'lodash.debounce';
 import styled from 'styled-components';
 import { contrastingColor } from '../../mixins/theme';
 
-const InkBar = styled.div`
+export const InkBar = styled.div`
   bottom: 0;
   height: 2px;
   position: absolute;
@@ -15,7 +15,7 @@ const InkBar = styled.div`
   width: ${props => props.width}px;
 `;
 
-const TabBarContainer = styled.nav`
+export const TabBarContainer = styled.nav`
   box-sizing: border-box;
   display: flex;
   flex-direction: row;

@@ -8,7 +8,7 @@ const minW = min => `(min-width: ${min}px)`;
 const maxW = max => `(max-width: ${max}px)`;
 const o = or => `(orientation: ${or})`;
 
-const generateBreakpoint = ({ min, max, orientation, enforceAspectRatio }) => {
+export const generateBreakpoint = ({ min, max, orientation, enforceAspectRatio }) => {
   let breakpoint = `${PREFIX} ${minW(min)}`;
   if (max) {
     breakpoint += ` and ${maxW(max)}`;
@@ -49,7 +49,7 @@ const xl = generateBreakpoint({
   min: 1961,
 });
 
-const defaultTheme = {
+export const defaultTheme = {
   primary: '#3f51b5',
   accent: '#ff4081',
   white: '#ffffff',
@@ -98,5 +98,3 @@ const defaultTheme = {
     iconPadding: '12px',
   },
 };
-
-export default defaultTheme;

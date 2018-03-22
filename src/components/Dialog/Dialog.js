@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import classNames from 'classnames';
 import elevation from '../../mixins/elevation';
 import { Portal } from '../Portal';
@@ -23,7 +23,7 @@ const DialogComponent = (props) => {
       renderContents={
         () => (
           <div className={`${props.className} smc-dialog`} onClick={props.onClose}>
-            <div className={`smc-dialog-surface ${props.fullscreen && fullscreenDialogClass}`} onClick={e => e.stopPropagation()}>
+            <div className={`smc-dialog-surface ${props.fullscreen ? fullscreenDialogClass : ''}`} onClick={e => e.stopPropagation()}>
               {props.children}
             </div>
           </div>
@@ -32,6 +32,12 @@ const DialogComponent = (props) => {
     />
   );
 };
+
+const notFullScreenStyles = css`
+  width: 70%;
+  max-width: 865px;
+  ${elevation(24)};
+`;
 
 export default styled(DialogComponent)`
   width: 100%;
@@ -48,11 +54,7 @@ export default styled(DialogComponent)`
   > .smc-dialog-surface {
     display: flex;
     flex-direction: column;
-    ${({ fullscreen }) => !fullscreen && `
-      width: 70%;
-      max-width: 865px
-      ${elevation(24)};
-    `};
+    ${({ fullscreen }) => !fullscreen && notFullScreenStyles};
     border-radius: 2px;
     background-color: #fff;
   }
@@ -82,4 +84,5 @@ export default styled(DialogComponent)`
 DialogComponent.defaultProps = {
   open: false,
   attachment: 'left',
+  fullscreen: false,
 };

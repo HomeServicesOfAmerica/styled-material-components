@@ -3,7 +3,7 @@ import debounce from 'lodash.debounce';
 import styled from 'styled-components';
 import { contrastingColor } from '../../mixins/theme';
 
-export const InkBar = styled.div`
+export const TabsInkBar = styled.div`
   bottom: 0;
   height: 2px;
   position: absolute;
@@ -91,7 +91,7 @@ class TabBarComponent extends React.PureComponent {
         {tabs}
         {showInkbar &&
           this.mounted && (
-            <InkBar data-smc="InkBar" inkbarColor={inkbarColor} {...this.state.inkbarPosition} />
+            <TabsInkBar data-smc="TabsInkBar" inkbarColor={inkbarColor} {...this.state.inkbarPosition} />
           )}
       </TabBarContainer>
     );

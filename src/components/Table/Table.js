@@ -25,6 +25,31 @@ import { ArrowUpwardIcon } from '../../icons/icons';
  * - alternate headers
  */
 
+const TitleSortContainer = styled.div`
+  height: 15px;
+  display: flex;
+  justify-content: ${({ numerical }) => (numerical ? 'flex-end' : 'flex-start')};
+
+  > .sortButton {
+    vertical-align: center;
+    height: 15px;
+    width: 15px;
+    cursor: pointer;
+    border-radius: 7.5px;
+    margin-right: 5px;
+    fill: ${props => props.theme.textColors.secondary};
+    transform-origin: center;
+    transition: 0.3s;
+  }
+
+  > .sortButton:hover {
+    background-color: rgba(0, 0, 0, .04);
+  }
+
+  > .rotate {
+    transform: rotate(180deg);
+  }
+`;
 
 const incrementCurrentPage = ({ currentPage }) => ({
   currentPage: currentPage + 1,
@@ -247,18 +272,18 @@ class Table extends PureComponent {
                   first={i === 0}
                   last={i === fields.length - 1}
                 >
-                  <div className={`smc-sort-button-container ${i === fields.length - 1 && 'last'}`}>
+                  <TitleSortContainer numerical={numerical}>
                     {sortable && <ArrowUpwardIcon
                       className={
                         // sorry for this mess
                         sort === key
-                          && descending ?
+                              && descending ?
                           'sortButton rotate' : 'sortButton'
                       }
                       onClick={() => this.sortBy(key)}
                     />}
                     {label}
-                  </div>
+                  </TitleSortContainer>
                 </Title>
               ))}
             </Row>
@@ -351,39 +376,6 @@ export default styled(Table) `
     .smc-table-head-checkbox {
       padding-top: 6px;
       float: left;
-    }
-
-
-
-    .smc-sort-button-container {
-      height: 15px;
-      display: flex;
-      justify-content: flex-start;
-
-      &.last {
-        float: right;
-      }
-      
-      > .sortButton {
-        height: 15px;
-        width: 15px;
-        float: right;
-        cursor: pointer;
-        border-radius: 7.5px;
-        display: block;
-        margin-right: 16px;
-        fill: ${props => props.theme.textColors.secondary};
-        transform-origin: center;
-        transition: 0.3s;
-      }
-
-      > .sortButton:hover {
-        background-color: rgba(0, 0, 0, .04);
-      }
-
-      > .rotate {
-        transform: rotate(180deg);
-      }
     }
 
     tr {

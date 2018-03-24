@@ -9,7 +9,14 @@ class MenuListComponent extends React.Component {
 
   handleKeyDown = (event) => {
     const currItem = document.activeElement;
-
+    
+    event.preventDefault();
+    if (!event.shiftKey && event.keyCode === 9) { // tab
+      currItem.nextElementSibling.focus();
+    }
+    if (event.shiftKey && event.keyCode === 9) { // shift + tab
+      currItem.previousSibling.focus();
+    }
     if (event.keyCode === 38) { // up arrow
       currItem.previousSibling ? currItem.previousSibling.focus() : currItem.focus();
     }
@@ -18,6 +25,7 @@ class MenuListComponent extends React.Component {
     }
     if (event.keyCode === 27) { // esc
       if (this.props.onClose) this.props.onClose();
+      document.activeElement.blur();
     }
   };
 

@@ -6,15 +6,16 @@ const StyledListItem = styled.li`
 `;
 const RippleListItem = withRipple(StyledListItem);
 
-const MenuItemComponent = ({ className, children, onClick }) => (
+const MenuItemComponent = ({ className, children, onClick, onKeyDown }) => (
   <RippleListItem
     className={`${className} smc-menu-list-item`}
     onClick={onClick}
-    onKeyPress={onClick}
+    onKeyPress={onKeyDown}
     tabIndex="0">
     {children}
   </RippleListItem>
 );
+
 
 const MenuItem = styled(MenuItemComponent)`
   position: relative;

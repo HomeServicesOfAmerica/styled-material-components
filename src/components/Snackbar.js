@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react';
 import styled, { keyframes } from 'styled-components';
+import { compose } from 'recompose';
+import { withScreenSize } from '../contexts/ScreenSizeContext';
 
 const rollUp = keyframes`
   from {
@@ -19,17 +21,41 @@ const rollDown = keyframes`
   }
 `;
 
+const multilineRollUp = keyframes`
+  from {
+    bottom: -80px;
+  }
+  to {
+    bottom: 0px;
+  }
+`;
+
+const multilineRollDown = keyframes`
+  from {
+    bottom: 0px;
+  }
+  to {
+    bottom: -80px;
+  }
+`;
+
 const Message = styled.div`
-  padding: 0 24px;
   position: relative;
-  top: calc(50% - 8px);
   font-size: 14px;
-  text-transform: uppercase;
+  max-height: ${props => (props.mobile ? '32px' : '16px')};
+  ${props => props.mobile && 'font-weight: 200'};
+  ${props => !props.mobile && 'text-transform: uppercase'};
+  overflow: hidden;
 `;
 
 const SnackbarWrapper = styled.div`
   animation: ${props => (props.animation ? `${props.animation} .3s linear` : 0)};
-  bottom: ${props => (props.open && !props.animateOut ? '0px' : '-48px')};
+  bottom: ${(props) => {
+    if (props.open && !props.animateOut) {
+      return '0px';
+    }
+    return props.mobile && props.multiline ? '-80px' : '-48px';
+  }};
 `;
 
 class SnackbarComponent extends PureComponent {
@@ -58,16 +84,18 @@ class SnackbarComponent extends PureComponent {
   render() {
     let animation = null;
     if (this.props.open && !this.state.animateOut) {
-      animation = rollUp;
+      animation = this.props.mobile && this.props.multiline ? multilineRollUp : rollUp;
     } else if (this.state.animateOut) {
-      animation = rollDown;
+      animation = this.props.mobile && this.props.multiline ? multilineRollDown : rollDown;
     }
     return (
       <SnackbarWrapper
         className={`${this.props.className} smc-snackbar-container`}
         open={this.props.open}
-        animation={animation}>
-        <Message className="smc-snackbar-message">
+        animation={animation}
+        mobile={this.props.mobile}
+      >
+        <Message className="smc-snackbar-message" mobile={this.props.mobile}>
           {this.props.message || this.props.children}
         </Message>
       </SnackbarWrapper>
@@ -78,16 +106,21 @@ class SnackbarComponent extends PureComponent {
 const Snackbar = styled(SnackbarComponent)`
   display: ${props => (props.open && !props.animateOut ? 'flex' : 'none')};
   position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 48px;
-  min-width: 288px;
-  max-width: 568px;
+  left: ${props => (props.mobile ? 0 : '50%')};
+  transform: ${props => !props.mobile && 'translateX(-50%)'};
+  height: ${({ mobile, multiline }) => (mobile && multiline ? '80px' : '48px')};
+  min-width: ${props => (props.mobile ? '100%' : '288px')};
+  max-width: ${props => !props.mobile && '568px'};
   border-radius: 2px 2px 0 0;
   font-family: lato, sans-serif;
   background-color: #323232;
   color: #fff;
+  padding: ${props => (props.mobile && props.multiline ? '24px' : '14px 24px')};
+  box-sizing: border-box;
 `;
 
+const enhancer = compose(withScreenSize);
 
-export default Snackbar;
+export default enhancer(({ className, children, ...props }, { screenSizeState }) => (
+  <Snackbar {...props} mobile={['xs', 'sm'].includes(screenSizeState.screenSize)} />
+));

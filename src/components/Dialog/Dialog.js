@@ -9,29 +9,44 @@ import { Portal } from '../Portal';
  * the user clicks out of it. Because of that, the dialog's open/shut status is
  * actually controlled in the DialogComponent's state
  */
-const DialogComponent = (props) => {
-  const fullscreenDialogClass = classNames(
-    props.className, 'smc-fullscreen-dialog', {
-      open: props.open,
-      left: props.attachment === 'left',
-      right: props.attachment === 'right',
-    });
+class DialogComponent extends React.Component {
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleKeyDown);
+  }
 
-  return (
-    <Portal
-      open={props.open}
-      renderContents={
-        () => (
-          <div className={`${props.className} smc-dialog`} onClick={props.onClose}>
-            <div className={`smc-dialog-surface ${props.fullscreen ? fullscreenDialogClass : ''}`} onClick={e => e.stopPropagation()}>
-              {props.children}
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleKeyDown);
+  }
+
+  handleKeyDown = (event) => {
+    if (event.keyCode === 27) { // esc
+      (this.props.onClose) && this.props.onClose();
+    }
+  };
+  render() {
+    const fullscreenDialogClass = classNames(
+      this.props.className, 'smc-fullscreen-dialog', {
+        open: this.props.open,
+        left: this.props.attachment === 'left',
+        right: this.props.attachment === 'right',
+      });
+
+    return (
+      <Portal
+        open={this.props.open}
+        renderContents={
+          () => (
+            <div className={`${this.props.className} smc-dialog`} onClick={this.props.onClose} onKeyDown={this.handleKeyDown}>
+              <div className={`smc-dialog-surface ${this.props.fullscreen ? fullscreenDialogClass : ''}`} onClick={e => e.stopPropagation()}>
+                {this.props.children}
+              </div>
             </div>
-          </div>
-        )
-      }
-    />
-  );
-};
+          )
+        }
+      />
+    );
+  }
+}
 
 const notFullScreenStyles = css`
   width: 70%;

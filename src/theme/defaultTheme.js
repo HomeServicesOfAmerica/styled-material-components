@@ -89,6 +89,9 @@ export const defaultTheme = {
     disabled: black.alpha(0.38).toString(),
     icon: black.alpha(0.38).toString(),
   },
+  inputColorOverrides: {
+    textField: null,
+  },
   slider: sliderTheme,
   disabledCheckbox: black.alpha(0.26).toString(),
   toolbar: {

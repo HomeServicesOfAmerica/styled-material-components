@@ -7,7 +7,7 @@ class TextFieldComponent extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.isControlled = props.value != null;
+    this.isControlled = props.value !== undefined;
   }
 
   state = {
@@ -65,7 +65,7 @@ class TextFieldComponent extends PureComponent {
     const hasError = Boolean(this.state.error || this.props.error || this.props.errorText);
 
     // Boolean to add to floating label logic
-    const hasValue = (this.isControlled) && this.props.value.length > 0;
+    const hasControlledValue = (this.isControlled) && this.props.value.length > 0;
     return (
       <div className={`${this.props.className} smc-text-field-container`}>
         <Suffix>{this.props.suffix}</Suffix>
@@ -84,7 +84,7 @@ class TextFieldComponent extends PureComponent {
             this.props.options ||
             this.props.defaultOption ||
             this.state.text.length ||
-            hasValue
+            hasControlledValue
           }
         >
           {this.props.floatingLabelText || ''}
@@ -104,7 +104,7 @@ class TextFieldComponent extends PureComponent {
             this.props.options ||
             this.props.defaultOption ||
             this.state.text.length ||
-            hasValue
+            hasControlledValue
           }
         >
           {this.props.floatingAreaLabelText || null}
@@ -222,7 +222,7 @@ const hintTextColor = css`
   ${props => props.theme.textColors.hint};
 `;
 const primary = css`
-  ${props => props.theme.primary};
+  ${props => props.theme.inputColorOverrides.textField || props.theme.primary};
 `;
 const error = css`
   ${props => props.theme.textColors.error || '#d50000'};

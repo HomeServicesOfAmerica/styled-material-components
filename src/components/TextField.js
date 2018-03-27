@@ -4,6 +4,12 @@ import React, { PureComponent } from 'react';
 import DropdownMenu from './DropdownMenu';
 
 class TextFieldComponent extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.isControlled = props.value != null;
+  }
+
   state = {
     text: this.props.defaultValue || '',
     focus: false,
@@ -22,17 +28,22 @@ class TextFieldComponent extends PureComponent {
   textArea = null;
 
   onChange = (e) => {
-    this.props.onChange && this.props.onChange(e);
-    const text = e.target.value;
-    const isInvalid = this.props.validator && !this.props.validator(text);
-    const isEmptyButRequired = this.props.required ? !e.target.value : false;
-    const newHeight = this.props.textarea ? this.textArea.scrollHeight : '';
+    if (this.props.onChange) {
+      this.props.onChange(e);
+    }
 
-    this.setState({
-      text,
-      error: this.props.error || isInvalid || isEmptyButRequired,
-      height: !this.props.multiline || this.textArea.value === '' ? '100%' : newHeight,
-    });
+    if (!this.isControlled) {
+      const text = e.target.value;
+      const isInvalid = this.props.validator && !this.props.validator(text);
+      const isEmptyButRequired = this.props.required ? !e.target.value : false;
+      const newHeight = this.props.textarea ? this.textArea.scrollHeight : '';
+
+      this.setState({
+        text,
+        error: this.props.error || isInvalid || isEmptyButRequired,
+        height: !this.props.multiline || this.textArea.value === '' ? '100%' : newHeight,
+      });
+    }
   };
 
   onFocus = (e) => {
@@ -52,6 +63,9 @@ class TextFieldComponent extends PureComponent {
     );
 
     const hasError = Boolean(this.state.error || this.props.error || this.props.errorText);
+
+    // Boolean to add to floating label logic
+    const hasValue = (this.isControlled) && this.props.value.length > 0;
     return (
       <div className={`${this.props.className} smc-text-field-container`}>
         <Suffix>{this.props.suffix}</Suffix>
@@ -69,15 +83,12 @@ class TextFieldComponent extends PureComponent {
             this.props.hintText ||
             this.props.options ||
             this.props.defaultOption ||
-            this.state.text.length
+            this.state.text.length ||
+            hasValue
           }
         >
           {this.props.floatingLabelText || ''}
           {this.props.required ? ' *' : ''}
-          {/* <RequiredStar
-            hasBeenFocused={this.state.hasBeenFocused}
-            show={this.props.required}
-            requiredStarStyle={this.props.requiredStarStyle} /> */}
         </FloatingLabel>
         <FloatingAreaLabel
           aria-label={this.props.floatingAreaLabelText}
@@ -92,7 +103,8 @@ class TextFieldComponent extends PureComponent {
             this.props.hintText ||
             this.props.options ||
             this.props.defaultOption ||
-            this.state.text.length
+            this.state.text.length ||
+            hasValue
           }
         >
           {this.props.floatingAreaLabelText || null}

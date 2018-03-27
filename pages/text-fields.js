@@ -50,7 +50,7 @@ class TextFieldPage extends PureComponent {
           <TextFieldWithBottomMargin hintText={'disabled'} disabled />
           <TextFieldWithBottomMargin
             name="controlledInputValue"
-            hintText={'Controlled Input'}
+            floatingLabelText={'Controlled Input'}
             value={this.state.controlledInputValue}
             onChange={this.handleChange}
           />

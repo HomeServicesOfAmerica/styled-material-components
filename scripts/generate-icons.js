@@ -15,6 +15,7 @@ const SELECT_FILE_REGEX = new RegExp(`ic_(.*?)_${TARGET_SIZE}px.svg`);
 const SELECT_PATH_REGEX = /<path(.*?)\/>/g;
 const SNAKE_CASE_REGEX = /_./gi;
 const FILL_OPACITY_REGEX = /fill-opacity/;
+const FILL_ATTRIBUTE_REGEX = / fill=".+?"/g;
 
 const options = {
   filterFile: stats => stats.path.match(/svg\/production/) && stats.name.match(SELECT_FILE_REGEX),
@@ -31,18 +32,28 @@ const fillOpacityFix = (pathString) => {
   return pathString;
 };
 
+// removes any `fill` attributes from svg paths
+const fillAttributeFix = (pathString) => {
+  if (pathString.match(FILL_ATTRIBUTE_REGEX)) {
+    return pathString.replace(FILL_ATTRIBUTE_REGEX, '');
+  }
+  return pathString;
+};
+
 // receives a file input and returns an array of '<path />' strings
 const getSvgPaths = (input) => {
   const svgPaths = input.match(SELECT_PATH_REGEX);
 
-  // catch `fill-opacity` attribute that doesn't vibe with React
+  // catch `fill-opacity` attribute and convert to camelCase
+  // catch `fill` attribute and remove
   if (typeof svgPaths === 'string') {
-    return fillOpacityFix(svgPaths);
+    return fillOpacityFix(fillAttributeFix(svgPaths));
   }
+
   // if multiple paths, loop through and add a key for React
   if (Array.isArray(svgPaths)) {
     return svgPaths.map((svgPath, i) => {
-      const fixedPath = fillOpacityFix(svgPath);
+      const fixedPath = fillOpacityFix(fillAttributeFix(svgPath));
       return `${fixedPath.slice(0, fixedPath.length - 2)} key='path${i}' />`;
     });
   }

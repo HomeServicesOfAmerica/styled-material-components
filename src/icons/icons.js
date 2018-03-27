@@ -45,7 +45,7 @@ const iconPaths = {
   upward_arrow: ArrowUpwardPath,
 };
 
-const getChildren = ({ icon }) => {
+const getChildren = (icon) => {
   if (!icon) return null;
   const Path = iconPaths[icon];
   if (Path) return <Path />;
@@ -58,15 +58,21 @@ const getChildren = ({ icon }) => {
   return null;
 };
 
-export const Icon = styled.svg.attrs({
-  fill: DEFAULT_FILL,
-  height: DEFAULT_SIZE,
-  width: DEFAULT_SIZE,
-  viewBox: `0 0 ${DEFAULT_SIZE} ${DEFAULT_SIZE}`,
-  xmlns: 'http://www.w3.org/2000/svg',
-  children: getChildren,
-  'data-smc': 'Icon',
-})``;
+const IconComponent = props => (
+  <svg
+    className={props.className}
+    data-smc="Icon"
+    fill={props.fill || DEFAULT_FILL}
+    height={props.size || DEFAULT_SIZE}
+    viewBox=" 0 0 24 24"
+    width={props.size || DEFAULT_SIZE}
+    xlmns="http://www.w3.org/2000/svg"
+  >
+    {props.children || getChildren(props.icon)}
+  </svg>
+);
+
+export const Icon = styled(IconComponent)``;
 
 export const ArrowBackIcon = Icon.extend.attrs({
   children: ArrowBackPath,

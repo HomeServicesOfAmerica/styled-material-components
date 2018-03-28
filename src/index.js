@@ -30,7 +30,7 @@ export * from './contexts/ScreenSizeContext';
 
 export { default as withRipple } from './enhancers/withRipple';
 
-export * from './icons/icons';
+export * from './icons';
 
 export { default as rippleMixin } from './mixins/ripple';
 export { default as elevationMixin } from './mixins/elevation';

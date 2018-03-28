@@ -34,6 +34,7 @@ export * from './icons/icons';
 
 export { default as rippleMixin } from './mixins/ripple';
 export { default as elevationMixin } from './mixins/elevation';
+export * from './mixins/transition';
 export { default as typography } from './mixins/typography';
 
 export { default as ThemeProvider } from './theme/ThemeProvider';

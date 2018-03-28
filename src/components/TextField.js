@@ -65,7 +65,7 @@ class TextFieldComponent extends PureComponent {
     const hasError = Boolean(this.state.error || this.props.error || this.props.errorText);
 
     // Boolean to add to floating label logic
-    const hasControlledValue = (this.isControlled) && this.props.value.length > 0;
+    const hasControlledValue = (this.isControlled) && (typeof this.props.value === 'string') && this.props.value.length > 0;
     return (
       <div className={`${this.props.className} smc-text-field-container`}>
         <Suffix>{this.props.suffix}</Suffix>

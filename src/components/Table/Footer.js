@@ -1,7 +1,7 @@
 import React, { Fragment, PureComponent } from 'react';
 import styled from 'styled-components';
 import Button from '../Button';
-import { Icon } from '../../icons/icons';
+import { Icon } from '../../icons';
 import { Menu } from '../Menu';
 
 const FooterIcon = Icon.extend.attrs({

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Portal } from './Portal';
-import { Icon } from '../icons/icons';
+import { Icon } from '../icons';
 
 const MOBILE_MARGIN = 24;
 const DESKTOP_MARGIN = 14;

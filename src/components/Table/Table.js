@@ -10,7 +10,7 @@ import Footer from './Footer';
 import naturalSort from './naturalSort';
 import Search from './Search';
 import { Checkbox } from '../Checkbox';
-import { ArrowUpwardIcon } from '../../icons/icons';
+import { ArrowUpwardIcon } from '../../icons';
 
 /*
  * The user of the table is responsible for passing in a unique key for each

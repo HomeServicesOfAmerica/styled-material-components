@@ -178,9 +178,7 @@ class Table extends PureComponent {
   sortBy = (key) => {
     let descending = this.state.descending;
     const mutatedData = [...this.state.mutatedData];
-    if (this.props.onSort) {
-      return this.props.onSort(key);
-    }
+
     if (key === this.state.sortedBy) {
       // flip descending or ascending
       if (this.state.descending) {
@@ -192,13 +190,17 @@ class Table extends PureComponent {
       // default, new sort to descending
       descending = true;
     }
-    // init the sorter
-    const sorter = naturalSort({ desc: descending });
 
-    // sort by key!
-    mutatedData.sort(
-      (a, b) => sorter(a[key], b[key])
-    );
+    // Run either custom or built in sorter
+    if (this.props.onSort) {
+      this.props.onSort(key);
+    } else {
+      const sorter = naturalSort({ desc: descending });
+      mutatedData.sort(
+        (a, b) => sorter(a[key], b[key])
+      );
+    }
+
     this.setState({ descending, mutatedData, sortedBy: key });
   }
 

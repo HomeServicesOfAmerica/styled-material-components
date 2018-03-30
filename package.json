@@ -28,7 +28,6 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "color": "^2.0.0",
-    "create-react-context": "^0.2.1",
     "eslint-config-concierge-auctions-base": "^0.0.6",
     "lodash.debounce": "^4.0.8",
     "lodash.isequal": "^4.5.0",

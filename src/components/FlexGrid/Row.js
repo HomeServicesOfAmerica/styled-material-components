@@ -4,22 +4,11 @@
  * @description Defines a flex grid row that has props defined for
  * easily setting some common flex styles.
  */
-import React, { Component } from 'react';
+import React, { Component, createContext, forwardRef } from 'react';
 import styled from 'styled-components';
-import createReactContext from 'create-react-context';
 import { rowMixin } from '../../mixins/flex';
 
-/**
- * RowContext
- *
- * createReactContext is a polyfill for the new context api landing
- * soon in React. It creates a flux like architecture using react's
- * state instead of an external state system. the purpose of this
- * context is to be able to provide any subcomponent access to the
- * props of the parent row. This allows columns to change their styles
- * to reflect direction and positioning of the row that contains them.
- */
-const RowContext = createReactContext({
+const RowContext = createContext({
   horizontal: 'left',
   vertical: 'middle',
   distribution: null,
@@ -86,9 +75,13 @@ export const Row = styled(RowComponent)`
   ${props => rowMixin(props)}
 `;
 
-export const withRowState = fn => (props, context = {}) => (
-  <RowConsumer>
-    {rowState => fn(props, { ...context, rowState })}
-  </RowConsumer>
-);
-
+export function withRowState(WrappedComponent) {
+  const ComponentWithRowState = (props, ref) => (
+    <RowConsumer>
+      {rowState => <WrappedComponent {...props} rowState={rowState} ref={ref} />}
+    </RowConsumer>
+  );
+  const name = WrappedComponent.displayName || WrappedComponent.name;
+  ComponentWithRowState.displayName = `withRowState(${name})`;
+  return forwardRef(ComponentWithRowState);
+}

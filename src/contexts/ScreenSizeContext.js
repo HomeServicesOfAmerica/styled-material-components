@@ -6,23 +6,12 @@
  * access the current screenSize. This is implmented using respondable.
  * All breakpoints are adjustable by the end user.
  */
-import React, { Component } from 'react';
-import createReactContext from 'create-react-context';
+import React, { Component, createContext, forwardRef } from 'react';
 import { withTheme } from 'styled-components';
 import respondable from 'respondable';
 import platform from 'platform';
 
-/**
- * Context
- *
- * createReactContext is a polyfill for the new context api landing
- * soon in React. It creates a flux like architecture using react's
- * state instead of an external state system. the purpose of this
- * context is to be able to provide any subcomponent access to the
- * screenSize state. This allows any component that needs to to adjust
- * their styles based on screenSize.
- */
-const Context = createReactContext({ size: 'server' });
+const Context = createContext({ size: 'server' });
 
 /**
  * ScreenSizeConsumer
@@ -140,8 +129,15 @@ class ScreenSizeContextBase extends Component {
 // withTheme gives us access to the theme without it being a Styled Component
 export const ScreenSizeContext = withTheme(ScreenSizeContextBase);
 
-export const withScreenSize = fn => (props, context = {}) => (
-  <ScreenSizeConsumer>
-    {screenSizeState => fn(props, { ...context, screenSizeState })}
-  </ScreenSizeConsumer>
-);
+export function withScreenSize(WrappedComponent) {
+  const ScreenSizeAwareComponent = (props, ref) => (
+    <ScreenSizeConsumer>
+      {screenSizeState =>
+        <WrappedComponent {...props} screenSizeState={screenSizeState} ref={ref} />
+      }
+    </ScreenSizeConsumer>
+  );
+  const name = WrappedComponent.displayName || WrappedComponent.name;
+  ScreenSizeAwareComponent.displayName = `screenSizeAware(${name})`;
+  return forwardRef(ScreenSizeAwareComponent);
+}

@@ -209,7 +209,7 @@ const enhancer = compose(
 );
 
 const ColumnComponent = enhancer(
-  ({ className, children, ...props }, { screenSizeState, rowState }) => (
+  ({ className, children, screenSizeState, rowState, ...props }) => (
     <SizedColumn
       {...props}
       data-smc="Column"

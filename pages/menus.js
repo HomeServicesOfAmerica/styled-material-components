@@ -47,6 +47,7 @@ class MenusPage extends Component {
           <p>This component is accessible (navigable by clicks or keyboard events)
             and has an ARIA role defined as menu for screenreaders </p>
           <p>Each Option can receive a handleSelect prop that accepts a callback</p>
+          <p>A menu will open in the direction of available space, defaulting to down and to the right. If there is insufficient room below or to the right of the anchor, the menu will open to where there is room for it. This can be seen in action by resizing the window </p>
           <Button raised onClick={this.handleClick} style={{ marginRight: '15px', float: 'right' }}>Click me</Button>
           <Menu
             open={this.state.open}

@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { Portal } from './Portal';
 import { Icon } from '../icons';
 
-const MOBILE_MARGIN = 24;
-const DESKTOP_MARGIN = 14;
+const MOBILE_MARGIN = 16;
+const DESKTOP_MARGIN = 7;
 const MOBILE_FONT_SIZE = 14;
 const DESKTOP_FONT_SIZE = 10;
 const MOBILE_SIDE_PADDING = 16;
@@ -18,7 +18,8 @@ const ROBOTO_RATIO = 0.51; // This is a guess
 export const TooltipPortal = styled(Portal)`
   && {
     box-sizing: border-box;
-    background: rgba(0, 0, 0, .9);
+    background: rgba(97,97,97, 0.9);
+    border-radius: 2px;
     left: ${props => props.left || 0}px;
     top: ${props => props.top || 0}px;
     width: ${props => props.width}px;
@@ -37,9 +38,6 @@ export const TooltipLink = styled.a.attrs({
   children: props => props.children,
 })`
   display: inline-block;
-  :hover {
-    cursor: pointer;
-  }
 `;
 export const TooltipContents = styled.div`
   width: ${({ contentWidth, childStringLength, mobile }) => {
@@ -61,7 +59,7 @@ export const TooltipContents = styled.div`
   )};
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center; 
   `;
 
 export const TooltipIcon = Icon.extend`
@@ -180,6 +178,9 @@ export class Tooltip extends React.Component {
     return (
       <React.Fragment>
         <TooltipLink
+          tabIndex="0"
+          onFocus={this.showTooltip}
+          onBlur={this.hideTooltip}
           innerRef={this.getTooltipLink}
           onClick={this.handleClick}
           onMouseEnter={this.handleMouseEnter}

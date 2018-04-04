@@ -26,9 +26,8 @@ import { withRowState } from './Row';
  * @param {String} key             The subkey to return from the prop object
  */
 const getResponsiveProp = (props, layout, screenSize, lowerScreenSize, key) => {
-  const responsiveProp = props[screenSize]
-    || props[lowerScreenSize]
-    || props[layout.defaultScreenSize];
+  const responsiveProp =
+    props[screenSize] || props[lowerScreenSize] || props[layout.defaultScreenSize];
   if (!responsiveProp) return null;
   if (key) return responsiveProp[key];
   return responsiveProp;
@@ -148,20 +147,14 @@ const flexSizeMixin = ({
   theme: { layout },
   ...props
 }) => {
-  const targetSize = size || getResponsiveProp(
-    props,
-    layout,
-    screenSize,
-    lowerScreenSize,
-    'size'
-  );
+  const targetSize = size || getResponsiveProp(props, layout, screenSize, lowerScreenSize, 'size');
   if (!targetSize) return '';
   const value = calcMinus(
     computePercentage(targetSize, layout.baseGridSize),
     noGutters ? '0px' : layout.gutterSize,
-    noGutters ? '0px' : layout.gutterSize,
+    noGutters ? '0px' : layout.gutterSize
   );
-  return css `
+  return css`
     flex-basis: ${value};
     max-width: ${value};
   `;
@@ -203,24 +196,19 @@ const SizedColumn = styled.div`
  * added to the end of the generated classNames for that component. Because
  * order of classes matters in css this className takes precedent.
  */
-const enhancer = compose(
-  withScreenSize,
-  withRowState,
+const enhancer = compose(withScreenSize, withRowState);
+
+const BaseColumnComponent = ({ className, children, screenSizeState, rowState, ...props }) => (
+  <SizedColumn
+    {...props}
+    data-smc="Column"
+    row={rowState}
+    screenSize={screenSizeState.screenSize}
+    lowerScreenSize={screenSizeState.lowerScreenSize}
+    className={className}
+  >
+    {children}
+  </SizedColumn>
 );
 
-const ColumnComponent = enhancer(
-  ({ className, children, screenSizeState, rowState, ...props }) => (
-    <SizedColumn
-      {...props}
-      data-smc="Column"
-      row={rowState}
-      screenSize={screenSizeState.screenSize}
-      lowerScreenSize={screenSizeState.lowerScreenSize}
-      className={className}>
-      {children}
-    </SizedColumn>
-  )
-);
-
-export const Column = styled(ColumnComponent)`
-`;
+export const Column = styled(enhancer(BaseColumnComponent))``;

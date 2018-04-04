@@ -4,7 +4,7 @@
  * @description Defines a flex grid row that has props defined for
  * easily setting some common flex styles.
  */
-import React, { Component, createContext, forwardRef } from 'react';
+import React, { Component, createContext } from 'react';
 import styled from 'styled-components';
 import { rowMixin } from '../../mixins/flex';
 
@@ -72,16 +72,14 @@ class RowComponent extends Component {
 }
 
 export const Row = styled(RowComponent)`
-  ${props => rowMixin(props)}
+  ${props => rowMixin(props)};
 `;
 
 export function withRowState(WrappedComponent) {
-  const ComponentWithRowState = (props, ref) => (
-    <RowConsumer>
-      {rowState => <WrappedComponent {...props} rowState={rowState} ref={ref} />}
-    </RowConsumer>
+  const ComponentWithRowState = props => (
+    <RowConsumer>{rowState => <WrappedComponent {...props} rowState={rowState} />}</RowConsumer>
   );
   const name = WrappedComponent.displayName || WrappedComponent.name;
   ComponentWithRowState.displayName = `withRowState(${name})`;
-  return forwardRef(ComponentWithRowState);
+  return ComponentWithRowState;
 }

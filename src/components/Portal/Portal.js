@@ -6,7 +6,7 @@ import { Shift } from './Shift';
 let smcPortal;
 
 export class Portal extends Component {
-  defaultProps = {
+  static defaultProps = {
     shift: false,
     direction: 'left',
   };

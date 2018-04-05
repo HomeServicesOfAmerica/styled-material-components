@@ -41,7 +41,8 @@ export default class dialogsPage extends Component {
   render() {
     return (
       <ThemeProvider>
-        <div>
+        <div style={{ height: '200vh' }}>
+          <h3>Added height on this page for scrolling, should be disabled when modal is open.</h3>
           <ExampleDialog
             open={this.state.withTitle}
             closeDialog={() => this.closeDialog('withTitle')}
@@ -49,7 +50,7 @@ export default class dialogsPage extends Component {
             onClose={() => this.closeDialog('withTitle')} />
           <ExampleDialog
             open={this.state.withoutTitle}
-            closeDialog={() => this.closeDialog('withoutTitle')} 
+            closeDialog={() => this.closeDialog('withoutTitle')}
             onClose={() => this.closeDialog('withoutTitle')} />
           <ExampleDialog
             fullscreen

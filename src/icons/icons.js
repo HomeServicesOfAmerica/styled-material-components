@@ -64,6 +64,7 @@ const IconComponent = props => (
     data-smc="Icon"
     fill={props.fill || DEFAULT_FILL}
     height={props.size || DEFAULT_SIZE}
+    onClick={props.onClick}
     viewBox=" 0 0 24 24"
     width={props.size || DEFAULT_SIZE}
     xlmns="http://www.w3.org/2000/svg"
@@ -72,4 +73,6 @@ const IconComponent = props => (
   </svg>
 );
 
-export const Icon = styled(IconComponent)``;
+export const Icon = styled(IconComponent)`
+  ${props => props.onClick && 'cursor: pointer'};
+`;

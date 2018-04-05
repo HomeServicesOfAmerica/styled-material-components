@@ -11,8 +11,23 @@ export class Portal extends Component {
     direction: 'left',
   };
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.open && !prevState.open) {
+      // if user has set a body style grabbing it here
+      // so we don't override what they were using
+      const overflowStyle = document.body.style.overflowY;
+      document.body.style.overflowY = 'hidden';
+      return { open: nextProps.open, overflowY: overflowStyle };
+    } else if (!nextProps.open && prevState.open) {
+      document.body.style.overflowY = prevState.overflowY;
+      return { open: nextProps.open };
+    }
+  }
+
   state = {
     portalMounted: false,
+    open: false,
+    overflowY: '',
   };
 
   componentDidMount() {
@@ -22,6 +37,7 @@ export class Portal extends Component {
       smcPortal.className = 'smc-portal';
       document.body.appendChild(smcPortal);
     }
+
     this.el = document.createElement('div');
     this.el.className = 'smc-portal-instance';
     smcPortal.appendChild(this.el);

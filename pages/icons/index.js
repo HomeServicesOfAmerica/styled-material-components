@@ -11,7 +11,6 @@ import {
   ListItemText,
   ListSubheader,
   ThemeProvider,
-  withRipple,
 } from '../../src';
 import { iconList } from './assets';
 import { AddIcon, FileDownloadIcon, FileUploadIcon } from '../../src/icons';
@@ -20,12 +19,12 @@ const StyledButton = Button.extend`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 16px;
+  margin: 0 16px 16px;
   align-self: center;
 `;
 
 const StyledFab = FloatingActionButton.extend`
-  margin: 0 16px;
+  margin: 0 16px 16px;
 `;
 
 const StyledDivider = Divider.extend`
@@ -36,7 +35,7 @@ const IconsPage = ({ className }) => (
   <ThemeProvider>
     <section className={className}>
       <h1>Icons</h1>
-      <GridList>{iconList.map((icon, i) => <GridTile>{icon}</GridTile>)}</GridList>
+      <GridList>{iconList.map(icon => <GridTile>{icon}</GridTile>)}</GridList>
       <h1>Icon Buttons</h1>
       <GridList>
         <StyledButton primary raised>
@@ -72,6 +71,9 @@ const IconsPage = ({ className }) => (
             </ListItem>
             <ListItem>
               <ListItemText primary="size" secondary="Sets the height and width of the icon." />
+            </ListItem>
+            <ListItem>
+              <ListItemText primary="onClick" secondary="Accepts an onClick function." />
             </ListItem>
           </List>
         </GridTile>

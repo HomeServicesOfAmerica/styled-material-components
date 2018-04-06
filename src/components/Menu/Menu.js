@@ -7,13 +7,15 @@ import MenuItem from './MenuItem';
 
 class MenuComponent extends Component {
   componentDidMount() {
-    document.addEventListener('mousedown', this.handleClick, false);
+    document.addEventListener('mousedown', this.handleClick);
+    document.addEventListener('touchstart', this.handleClick);
     document.addEventListener('scroll', this.recalculatePosition);
     window.addEventListener('resize', this.recalculatePosition);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('mousedown', this.handleClick, false);
+    document.removeEventListener('mousedown', this.handleClick);
+    document.removeEventListener('touchstart', this.handleClick);
     document.removeEventListener('scroll', this.recalculatePosition);
     window.removeEventListener('resize', this.recalculatePosition);
   }
@@ -26,15 +28,15 @@ class MenuComponent extends Component {
   recalculatePosition = debounce(() => {
     const { props: { anchorEl }, menu } = this;
     if (!anchorEl || !menu) return;
-    const anchorRect = anchorEl.getBoundingClientRect();
     const menuRect = this.menu.getBoundingClientRect();
-    const left = anchorEl.getBoundingClientRect().x;
-    const top = anchorEl.getBoundingClientRect().y;
-    const overBottom = top + menuRect.height > window.innerHeight;
-    const overRight = left + menuRect.width > window.innerWidth;
-    this.menu.style.top = `${anchorRect.top -
+    const anchorRect = anchorEl.getBoundingClientRect();
+    const anchorLeft = anchorRect.x + window.scrollX;
+    const anchorTop = anchorRect.y + window.scrollY;
+    const overBottom = anchorTop + menuRect.height > window.innerHeight;
+    const overRight = anchorLeft + menuRect.width > window.innerWidth;
+    this.menu.style.top = `${anchorTop -
       (overBottom ? menuRect.height - anchorRect.height : 0)}px`;
-    this.menu.style.left = `${anchorRect.left -
+    this.menu.style.left = `${anchorLeft -
       (overRight ? menuRect.width - anchorRect.width : 0)}px`;
   }, 0);
 

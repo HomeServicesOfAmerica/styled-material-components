@@ -3,21 +3,11 @@ import { Button, Dialog, DialogTitle, DialogBody, DialogFooter, ThemeProvider } 
 
 const ExampleDialog = ({ title, closeDialog, ...dialogProps }) => (
   <Dialog {...dialogProps}>
-    {Boolean(title) && (
-      <DialogTitle>
-        {title}
-      </DialogTitle>
-    )}
-    <DialogBody>
-      Dialog body goes here
-    </DialogBody>
+    {Boolean(title) && <DialogTitle>{title}</DialogTitle>}
+    <DialogBody>Dialog body goes here</DialogBody>
     <DialogFooter>
-      <Button onClick={closeDialog}>
-        Cancel
-      </Button>
-      <Button onClick={closeDialog}>
-        Confirm
-      </Button>
+      <Button onClick={closeDialog}>Cancel</Button>
+      <Button onClick={closeDialog}>Confirm</Button>
     </DialogFooter>
   </Dialog>
 );
@@ -28,15 +18,18 @@ export default class dialogsPage extends Component {
     withoutTitle: false,
     left: false,
     right: false,
+    customSize: false,
   };
 
-  closeDialog = id => this.setState({
-    [id]: false,
-  });
+  closeDialog = id =>
+    this.setState({
+      [id]: false,
+    });
 
-  openDialog = id => this.setState({
-    [id]: true,
-  });
+  openDialog = id =>
+    this.setState({
+      [id]: true,
+    });
 
   render() {
     return (
@@ -47,24 +40,32 @@ export default class dialogsPage extends Component {
             open={this.state.withTitle}
             closeDialog={() => this.closeDialog('withTitle')}
             title="a title"
-            onClose={() => this.closeDialog('withTitle')} />
+            onClose={() => this.closeDialog('withTitle')}
+          />
           <ExampleDialog
             open={this.state.withoutTitle}
             closeDialog={() => this.closeDialog('withoutTitle')}
-            onClose={() => this.closeDialog('withoutTitle')} />
+            onClose={() => this.closeDialog('withoutTitle')}
+          />
           <ExampleDialog
             fullscreen
             attachment="left"
             open={this.state.left}
-            closeDialog={() => this.closeDialog('left')} />
+            closeDialog={() => this.closeDialog('left')}
+          />
           <ExampleDialog
             fullscreen
             attachment="right"
             open={this.state.right}
-            closeDialog={() => this.closeDialog('right')} />
-          <Button onClick={() => this.openDialog('withTitle')}>
-            Open a dialog with a title
-          </Button>
+            closeDialog={() => this.closeDialog('right')}
+          />
+          <ExampleDialog
+            open={this.state.customSize}
+            closeDialog={() => this.closeDialog('customSize')}
+            title="Pass your own width prop"
+            width={400}
+          />
+          <Button onClick={() => this.openDialog('withTitle')}>Open a dialog with a title</Button>
           <Button onClick={() => this.openDialog('withoutTitle')}>
             Open a dialog without a title
           </Button>
@@ -74,6 +75,7 @@ export default class dialogsPage extends Component {
           <Button onClick={() => this.openDialog('right')}>
             Open a full screen dialog from the right
           </Button>
+          <Button onClick={() => this.openDialog('customSize')}>Open a custom-sized Dialog.</Button>
         </div>
       </ThemeProvider>
     );

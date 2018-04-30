@@ -19,40 +19,48 @@ class DialogComponent extends React.Component {
   }
 
   handleKeyDown = (event) => {
-    if (event.keyCode === 27) { // esc
-      (this.props.onClose) && this.props.onClose();
+    if (event.keyCode === 27) {
+      // esc
+      this.props.onClose && this.props.onClose();
     }
   };
   render() {
-    const fullscreenDialogClass = classNames(
-      this.props.className, 'smc-fullscreen-dialog', {
-        open: this.props.open,
-        left: this.props.attachment === 'left',
-        right: this.props.attachment === 'right',
-      });
+    const fullscreenDialogClass = classNames(this.props.className, 'smc-fullscreen-dialog', {
+      open: this.props.open,
+      left: this.props.attachment === 'left',
+      right: this.props.attachment === 'right',
+    });
 
     return (
       <Portal
         open={this.props.open}
-        renderContents={
-          () => (
-            <div className={`${this.props.className} smc-dialog`} onClick={this.props.onClose} onKeyDown={this.handleKeyDown}>
-              <div className={`smc-dialog-surface ${this.props.fullscreen ? fullscreenDialogClass : ''}`} onClick={e => e.stopPropagation()}>
-                {this.props.children}
-              </div>
+        renderContents={() => (
+          <div
+            className={`${this.props.className} smc-dialog`}
+            onClick={this.props.onClose}
+            onKeyDown={this.handleKeyDown}
+          >
+            <div
+              className={`smc-dialog-surface ${this.props.fullscreen ? fullscreenDialogClass : ''}`}
+              onClick={e => e.stopPropagation()}
+            >
+              {this.props.children}
             </div>
-          )
-        }
+          </div>
+        )}
       />
     );
   }
 }
 
 const notFullScreenStyles = css`
-  width: 70%;
+  width: ${({ width }) => {
+    if (typeof width === 'number') return `${width}px`;
+    return width || '70%';
+  }};
   max-width: 865px;
   ${elevation(24)};
-`;
+  `;
 
 export default styled(DialogComponent)`
   width: 100%;

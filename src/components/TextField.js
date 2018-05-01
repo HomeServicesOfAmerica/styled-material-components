@@ -170,6 +170,7 @@ class TextFieldComponent extends PureComponent {
         {this.props.textarea
           ? (
             <Area
+              tabIndex={this.props.tabIndex || 0}
               rows={this.props.rows || 1}
               hasPrefix={!!this.props.prefix}
               hasSuffix={!!this.props.suffix}
@@ -191,6 +192,7 @@ class TextFieldComponent extends PureComponent {
           )
           : (
             <Input
+              tabIndex={this.props.tabIndex || 0}
               type={this.props.type || ''}
               hasPrefix={!!this.props.prefix}
               hasSuffix={!!this.props.suffix}

@@ -183,6 +183,7 @@ class TextFieldComponent extends PureComponent {
               onChange={this.onChange}
               onFocus={this.onFocus}
               onBlur={this.onBlur}
+              name={this.props.name}
               className={'smc-text-field-area'}
               innerRef={(ref) => {
                 this.textArea = ref;

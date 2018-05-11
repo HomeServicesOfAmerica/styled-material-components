@@ -205,6 +205,7 @@ class TextFieldComponent extends PureComponent {
               onFocus={this.onFocus}
               onBlur={this.onBlur}
               name={this.props.name}
+              {...(this.props.inputRef ? { innerRef: this.props.inputRef } : {})}
               className={'smc-text-field-input'}
             />
 

@@ -1,6 +1,16 @@
-import React, { PureComponent } from 'react';
-import styled from 'styled-components';
-import { ThemeProvider, Checkbox, Box, CheckMark, List, ListItem, defaultTheme } from '../src';
+// @flow
+import React, { PureComponent } from "react";
+import styled from "styled-components";
+
+import {
+  ThemeProvider,
+  Checkbox,
+  Box,
+  CheckMark,
+  List,
+  ListItem,
+  defaultTheme
+} from "../src";
 
 const StyledCheckbox = Checkbox.extend`
   ${Box} {
@@ -26,7 +36,7 @@ const StyledCheckbox2 = Checkbox.extend`
 
   ${Box} {
     ${props =>
-    props.checked &&
+      props.checked &&
       `
       border: solid 3px ${props.theme.primary};
       background-color: transparent;
@@ -34,22 +44,39 @@ const StyledCheckbox2 = Checkbox.extend`
   }
 `;
 
-class CheckboxesPage extends PureComponent {
+type CheckboxesPagePropsType = {||};
+type CheckboxesPageStateType = {|
+  checked: {
+    1: boolean,
+    2: boolean
+  }
+|};
+
+class CheckboxesPage extends PureComponent<
+  CheckboxesPagePropsType,
+  CheckboxesPageStateType
+> {
   state = {
     checked: {
       1: true,
-      2: false,
-    },
+      2: false
+    }
   };
 
-  handleChange = (n) => {
-    const checked = !this.state.checked[n];
-    this.setState({
+  handleChange = (n: number): void => {
+    this.setState(({ checked }) => ({
       checked: {
-        ...this.state.checked,
-        [n]: checked,
-      },
-    });
+        ...checked,
+        [n]: !checked[n]
+      }
+    }));
+    // const checked = !this.state.checked[n];
+    // this.setState({
+    //   checked: {
+    //     ...this.state.checked,
+    //     [n]: checked
+    //   }
+    // });
   };
 
   render() {

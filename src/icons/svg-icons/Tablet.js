@@ -1,12 +1,16 @@
-import React from 'react';
-import { Icon } from '../icons';
+import React from "react";
+
+import { Icon } from "../icons";
 
 const TabletPath = () => [
-  <path d="M21 4H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h18c1.1 0 1.99-.9 1.99-2L23 6c0-1.1-.9-2-2-2zm-2 14H5V6h14v12z" key='path0' />,
+  <path
+    d="M21 4H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h18c1.1 0 1.99-.9 1.99-2L23 6c0-1.1-.9-2-2-2zm-2 14H5V6h14v12z"
+    key="path0"
+  />
 ];
 
 const TabletIcon = Icon.extend.attrs({
-  children: TabletPath,
+  children: TabletPath
 })``;
 
 export default TabletPath;

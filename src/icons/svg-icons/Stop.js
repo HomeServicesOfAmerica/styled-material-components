@@ -1,12 +1,11 @@
-import React from 'react';
-import { Icon } from '../icons';
+import React from "react";
 
-const StopPath = () => [
-  <path d="M6 6h12v12H6z" key='path0' />,
-];
+import { Icon } from "../icons";
+
+const StopPath = () => [<path d="M6 6h12v12H6z" key="path0" />];
 
 const StopIcon = Icon.extend.attrs({
-  children: StopPath,
+  children: StopPath
 })``;
 
 export default StopPath;

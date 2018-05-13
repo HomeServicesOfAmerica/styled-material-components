@@ -1,10 +1,8 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const ListComponent = ({ className, children }) => (
-  <ul className={`${className} smc-list`}>
-    {children}
-  </ul>
+  <ul className={`${className} smc-list`}>{children}</ul>
 );
 
 const List = styled(ListComponent)`

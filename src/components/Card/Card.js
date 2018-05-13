@@ -1,8 +1,16 @@
-import React from 'react';
-import styled, { css } from 'styled-components';
-import elevation from '../../mixins/elevation';
+// @flow
+import React, { type Node } from "react";
+import styled, { css } from "styled-components";
 
-const CardComponent = ({ className, children }) => (
+import elevation from "../../mixins/elevation";
+
+type CardPropsType = {|
+  children: Node,
+  className: string,
+  hover?: boolean
+|};
+
+const CardComponent = ({ className, children }: CardPropsType) => (
   <div className={`${className} smc-card`}>{children}</div>
 );
 
@@ -23,11 +31,11 @@ const Card = styled(CardComponent)`
   overflow: hidden;
   ${elevation(2)};
   transition-duration: 0.3s;
-  ${props => props.hover && hoverStyles}
+  ${props => props.hover && hoverStyles};
 `;
 
 Card.defaultProps = {
-  hover: false,
+  hover: false
 };
 
 export default Card;

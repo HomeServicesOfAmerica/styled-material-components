@@ -1,12 +1,11 @@
-import React from 'react';
-import { Icon } from '../icons';
+import React from "react";
 
-const RemovePath = () => [
-  <path d="M19 13H5v-2h14v2z" key='path0' />,
-];
+import { Icon } from "../icons";
+
+const RemovePath = () => [<path d="M19 13H5v-2h14v2z" key="path0" />];
 
 const RemoveIcon = Icon.extend.attrs({
-  children: RemovePath,
+  children: RemovePath
 })``;
 
 export default RemovePath;

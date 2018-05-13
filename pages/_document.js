@@ -1,5 +1,7 @@
-import Document, { Head, Main, NextScript } from 'next/document';
-import { ServerStyleSheet } from 'styled-components';
+import Document, { Head, Main, NextScript } from "next/document";
+import { ServerStyleSheet } from "styled-components";
+
+/* eslint-disable react/react-in-jsx-scope */
 
 export default class MyDocument extends Document {
   render() {
@@ -9,12 +11,15 @@ export default class MyDocument extends Document {
     return (
       <html lang="en">
         <Head>
-          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
           <title>Styled Material Components</title>
           {styleTags}
         </Head>
-        <body style={{ overflow: 'visible' }}>
-          <div className="root" style={{ width: '100%' }}>
+        <body style={{ overflow: "visible" }}>
+          <div className="root" style={{ width: "100%" }}>
             {main}
           </div>
           <NextScript />

@@ -1,5 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
+// @flow
+import React from "react";
+import styled from "styled-components";
+
 import {
   Button,
   Divider,
@@ -10,10 +12,10 @@ import {
   ListItem,
   ListItemText,
   ListSubheader,
-  ThemeProvider,
-} from '../../src';
-import { iconList } from './assets';
-import { AddIcon, FileDownloadIcon, FileUploadIcon } from '../../src/icons';
+  ThemeProvider
+} from "../../src";
+import { iconList } from "./assets";
+import { AddIcon, FileDownloadIcon, FileUploadIcon } from "../../src/icons";
 
 const StyledButton = Button.extend`
   display: flex;
@@ -31,11 +33,27 @@ const StyledDivider = Divider.extend`
   margin: 30px 0;
 `;
 
-const IconsPage = ({ className }) => (
+type IconsPagePropsType = {|
+  className: string
+|};
+
+/*
+ * TODO use Icon displayName in key instead of index
+ */
+const IconsPage = ({ className }: IconsPagePropsType) => (
   <ThemeProvider>
     <section className={className}>
       <h1>Icons</h1>
-      <GridList>{iconList.map(icon => <GridTile>{icon}</GridTile>)}</GridList>
+      <GridList>
+        {/* eslint-disable react/no-array-index-key */
+        iconList.map((Icon, i) => (
+          <GridTile key={`icon-number-${i}`}>
+            <Icon fill={"skyblue"} size={40} />
+          </GridTile>
+        ))
+        /* eslint-enable */
+        }
+      </GridList>
       <h1>Icon Buttons</h1>
       <GridList>
         <StyledButton primary raised>
@@ -54,9 +72,10 @@ const IconsPage = ({ className }) => (
       <p>To Import</p>
       <ul>
         <li>
-          Find icons on <a href="https://www.material.io/icons">material.io/icons</a>
+          Find icons on{" "}
+          <a href="https://www.material.io/icons">material.io/icons</a>
         </li>
-        <li>{'convert names to camelCase'}</li>
+        <li>{"convert names to camelCase"}</li>
         <li>{`e.g.: 'file download' becomes <FileDownloadIcon />`}</li>
       </ul>
       <GridList>
@@ -70,10 +89,16 @@ const IconsPage = ({ className }) => (
               />
             </ListItem>
             <ListItem>
-              <ListItemText primary="size" secondary="Sets the height and width of the icon." />
+              <ListItemText
+                primary="size"
+                secondary="Sets the height and width of the icon."
+              />
             </ListItem>
             <ListItem>
-              <ListItemText primary="onClick" secondary="Accepts an onClick function." />
+              <ListItemText
+                primary="onClick"
+                secondary="Accepts an onClick function."
+              />
             </ListItem>
           </List>
         </GridTile>

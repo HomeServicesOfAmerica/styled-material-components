@@ -1,36 +1,37 @@
-import React, { PureComponent } from 'react';
-import styled from 'styled-components';
-import FocusRing from './FocusRing';
-import Thumb from './Thumb';
-import SliderDisabledWrapper from './SliderDisabledWrapper';
+import React, { PureComponent } from "react";
+import styled from "styled-components";
+
+import FocusRing from "./FocusRing";
+import Thumb from "./Thumb";
+import SliderDisabledWrapper from "./SliderDisabledWrapper";
 
 class SliderThumbComponent extends PureComponent {
   state = {
     navigatingWithKeys: false,
-    dragging: false,
+    dragging: false
   };
 
-  handleClick = (event) => {
+  handleClick = event => {
     event.stopPropagation();
     if (this.props.disabled) return;
     this.thumb && this.thumb.focus();
-  }
+  };
 
   onMouseDown = () => {
     if (this.props.disabled) return;
     this.setState({ dragging: true });
-    document.addEventListener('mousemove', this.props.handleMouseMove);
-    document.addEventListener('mouseup', this.onMouseUp);
-  }
+    document.addEventListener("mousemove", this.props.handleMouseMove);
+    document.addEventListener("mouseup", this.onMouseUp);
+  };
 
   onMouseUp = () => {
     if (this.props.disabled) return;
     this.setState({ dragging: false });
-    document.removeEventListener('mousemove', this.props.handleMouseMove);
-    document.removeEventListener('mouseup', this.onMouseUp);
-  }
+    document.removeEventListener("mousemove", this.props.handleMouseMove);
+    document.removeEventListener("mouseup", this.onMouseUp);
+  };
 
-  onKeyDown = (event) => {
+  onKeyDown = event => {
     if (this.props.disabled) return;
     const { keyCode } = event;
     // left or down
@@ -41,17 +42,17 @@ class SliderThumbComponent extends PureComponent {
     if (keyCode === 39 || keyCode === 38) {
       this.enableKeys(this.props.increment);
     }
-  }
+  };
 
   enableKeys = cb => this.setState({ navigatingWithKeys: true }, cb);
 
-  getThumb = (ref) => {
+  getThumb = ref => {
     this.thumb = ref;
-  }
+  };
 
   handleBlur = () => {
     this.setState({ navigatingWithKeys: false });
-  }
+  };
 
   render() {
     const { atMin, disabled } = this.props;

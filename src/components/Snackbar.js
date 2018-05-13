@@ -1,7 +1,9 @@
-import React, { PureComponent } from 'react';
-import styled, { keyframes } from 'styled-components';
-import { compose } from 'recompose';
-import { withScreenSize } from '../contexts/ScreenSizeContext';
+// @flow
+import React, { PureComponent, type Node } from "react";
+import styled, { keyframes } from "styled-components";
+import { compose } from "recompose";
+
+import { withScreenSize } from "../contexts/ScreenSizeContext";
 
 const rollUp = keyframes`
   from {
@@ -42,28 +44,51 @@ const multilineRollDown = keyframes`
 const Message = styled.div`
   position: relative;
   font-size: 14px;
-  max-height: ${props => (props.mobile ? '32px' : '16px')};
-  ${props => props.mobile && 'font-weight: 200'};
-  ${props => !props.mobile && 'text-transform: uppercase'};
+  max-height: ${props => (props.mobile ? "32px" : "16px")};
+  ${props => props.mobile && "font-weight: 200"};
+  ${props => !props.mobile && "text-transform: uppercase"};
   overflow: hidden;
 `;
 
 const SnackbarWrapper = styled.div`
-  animation: ${props => (props.animation ? `${props.animation} .3s linear` : 0)};
-  bottom: ${(props) => {
+  animation: ${props =>
+    props.animation ? `${props.animation} .3s linear` : 0};
+  bottom: ${props => {
     if (props.open && !props.animateOut) {
-      return '0px';
+      return "0px";
     }
-    return props.mobile && props.multiline ? '-80px' : '-48px';
+    return props.mobile && props.multiline ? "-80px" : "-48px";
   }};
 `;
 
-class SnackbarComponent extends PureComponent {
+export type SnackbarPropsType = {|
+  animateOut?: boolean,
+  autoHideDuration?: ?number,
+  children?: Node,
+  message?: string,
+  multiline?: boolean,
+  onRequestClose: () => any,
+  open?: boolean
+|};
+
+export type SnackbarComponentPropsType = SnackbarPropsType & {|
+  className: string,
+  mobile: boolean
+|};
+
+export type SnackbarComponentStateType = {|
+  animateOut: boolean
+|};
+
+class SnackbarComponent extends PureComponent<
+  SnackbarComponentPropsType,
+  SnackbarComponentStateType
+> {
   state = {
-    animateOut: false,
+    animateOut: false
   };
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.open && !this.props.open) {
       if (this.delayedCloseTimer) {
         clearTimeout(this.delayedCloseTimer);
@@ -84,9 +109,13 @@ class SnackbarComponent extends PureComponent {
   render() {
     let animation = null;
     if (this.props.open && !this.state.animateOut) {
-      animation = this.props.mobile && this.props.multiline ? multilineRollUp : rollUp;
+      animation =
+        this.props.mobile && this.props.multiline ? multilineRollUp : rollUp;
     } else if (this.state.animateOut) {
-      animation = this.props.mobile && this.props.multiline ? multilineRollDown : rollDown;
+      animation =
+        this.props.mobile && this.props.multiline
+          ? multilineRollDown
+          : rollDown;
     }
     return (
       <SnackbarWrapper
@@ -104,20 +133,21 @@ class SnackbarComponent extends PureComponent {
 }
 
 const Snackbar = styled(SnackbarComponent).attrs({
-  mobile: ({ screenSizeState }) => ['xs', 'sm'].includes(screenSizeState.screenSize),
+  mobile: ({ screenSizeState }) =>
+    ["xs", "sm"].includes(screenSizeState.screenSize)
 })`
-  display: ${props => (props.open && !props.animateOut ? 'flex' : 'none')};
+  display: ${props => (props.open && !props.animateOut ? "flex" : "none")};
   position: fixed;
-  left: ${props => (props.mobile ? 0 : '50%')};
-  transform: ${props => !props.mobile && 'translateX(-50%)'};
-  height: ${({ mobile, multiline }) => (mobile && multiline ? '80px' : '48px')};
-  min-width: ${props => (props.mobile ? '100%' : '288px')};
-  max-width: ${props => !props.mobile && '568px'};
+  left: ${props => (props.mobile ? 0 : "50%")};
+  transform: ${props => !props.mobile && "translateX(-50%)"};
+  height: ${({ mobile, multiline }) => (mobile && multiline ? "80px" : "48px")};
+  min-width: ${props => (props.mobile ? "100%" : "288px")};
+  max-width: ${props => !props.mobile && "568px"};
   border-radius: 2px 2px 0 0;
   font-family: lato, sans-serif;
   background-color: #323232;
   color: #fff;
-  padding: ${props => (props.mobile && props.multiline ? '24px' : '14px 24px')};
+  padding: ${props => (props.mobile && props.multiline ? "24px" : "14px 24px")};
   box-sizing: border-box;
 `;
 

@@ -1,0 +1,23 @@
+# Import Linting config
+---
+  plugins:
+    - jest
+  rules:
+    jest/valid-expect-in-promise:
+      - error
+    jest/valid-expect:
+      - error
+    jest/valid-describe:
+      - error
+    jest/prefer-to-have-length:
+      - error
+    jest/no-test-prefixes:
+      - error
+    jest/no-jest-import:
+      - error
+    jest/no-identical-title:
+      - error
+    jest/no-focused-tests:
+      - error
+    jest/consistent-test-it:
+      - error

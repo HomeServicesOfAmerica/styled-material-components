@@ -1,20 +1,22 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const RowComponent = ({ className, children }) => (
-  <tr className={`smc-table-row ${className}`}>
-    {children}
-  </tr>
+  <tr className={`smc-table-row ${className}`}>{children}</tr>
 );
 
-const Row = styled(RowComponent) `
+const Row = styled(RowComponent)`
   transition: 0.1s;
-  ${({ header }) => !header && `
+  ${({ header }) =>
+    !header &&
+    `
     &:hover {
       background-color: #eee;
     }
   `}
-  ${({ selected }) => selected && `
+  ${({ selected }) =>
+    selected &&
+    `
     background-color: #F5F5F5;
 `}
   height: ${({ header }) => (header ? 54 : 48)}px;

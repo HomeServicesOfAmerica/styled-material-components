@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
-import debounce from 'lodash.debounce';
+import React, { Component } from "react";
+import styled from "styled-components";
+import debounce from "lodash.debounce";
 
 class NavigationContainer extends Component {
   state = {
     width: 0,
-    offset: 0,
-    active: this.props.active,
+    offset: 0
+    // active: this.props.active
   };
 
   componentDidMount() {
     this.resizeInkBar();
-    window.addEventListener('resize', this.resizeInkBar);
+    window.addEventListener("resize", this.resizeInkBar);
   }
 
   componentDidUpdate(prevProps) {
@@ -21,7 +21,7 @@ class NavigationContainer extends Component {
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.resizeInkBar);
+    window.removeEventListener("resize", this.resizeInkBar);
   }
 
   resizeInkBar = debounce(() => {
@@ -31,7 +31,7 @@ class NavigationContainer extends Component {
     if (!element) return;
     this.setState(() => ({
       width: element.clientWidth,
-      offset: element.offsetLeft,
+      offset: element.offsetLeft
     }));
   }, 100);
 
@@ -46,7 +46,7 @@ class NavigationContainer extends Component {
 }
 
 export const InkBar = styled.div.attrs({
-  'aria-hidden': true,
+  "aria-hidden": true
 })`
   background-color: ${props => props.theme.accent};
   display: block;
@@ -60,7 +60,7 @@ export const InkBar = styled.div.attrs({
 `;
 
 export const NavigationItem = styled.div.attrs({
-  'data-smc': props => `AppbarNavigationItem-${props.navKey}`,
+  "data-smc": props => `AppbarNavigationItem-${props.navKey}`
 })`
   margin: 0 10px;
   display: flex;

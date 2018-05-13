@@ -1,0 +1,41 @@
+---
+  extends:
+    - eslint:recommended
+    - ./eslint/flow.yml
+    - ./eslint/react.yml
+    - ./eslint/import.yml
+    - ./eslint/a11y.yml
+    - ./eslint/jest.yml
+    - ./eslint/node.yml
+    - prettier
+    - prettier/flowtype
+    - prettier/react
+  parser: babel-eslint
+  plugins:
+    - prettier
+  env:
+    es6: true
+    node: true
+    browser: true
+    jest: true
+  rules:
+    prettier/prettier: error
+  #   no-underscore-dangle:
+  #     - error
+  #     - allowAfterThis: true
+  #       allow:
+  #         - _handleNestedListToggle
+  #         - _disableDisplay
+  #         - _DEPRECATION_NOTICE
+  #         - __IS_SMOOTH_SCROLLING
+  #         - __scroll__direction
+  #         - __CA_DELAYED_MODAL
+  #         - _wq
+  #         - __dataID__
+  #         - _fbq
+  #         - _hsq
+  #         - _data
+  #         - __REDUX_DEVTOOLS_EXTENSION__
+  #         - __typename
+  #         - __id
+  #         - __fragments

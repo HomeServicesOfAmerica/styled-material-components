@@ -1,9 +1,9 @@
-import React from 'react';
-import styled from 'styled-components';
-import withRipple from '../../enhancers/withRipple';
+import React from "react";
+import styled from "styled-components";
 
-const StyledListItem = styled.li`
-`;
+import withRipple from "../../enhancers/withRipple";
+
+const StyledListItem = styled.li``;
 const RippleListItem = withRipple(StyledListItem);
 
 const MenuItemComponent = ({ className, children, onClick, onKeyDown }) => (
@@ -11,13 +11,13 @@ const MenuItemComponent = ({ className, children, onClick, onKeyDown }) => (
     className={`${className} smc-menu-list-item`}
     onClick={onClick}
     onKeyPress={onKeyDown}
-    tabIndex="0">
+    tabIndex="0"
+  >
     {children}
   </RippleListItem>
 );
 
-
-const MenuItem = styled(MenuItemComponent) `
+const MenuItem = styled(MenuItemComponent)`
   position: relative;
   display: flex;
   align-items: center;

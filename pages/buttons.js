@@ -1,5 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
+// @flow
+import React from "react";
+import styled from "styled-components";
+
 import {
   Button,
   FloatingActionButton,
@@ -11,29 +13,45 @@ import {
   ListSubheader,
   Snackbar,
   ThemeProvider,
-  withRipple,
-} from '../src';
-import { AddIcon, MicIcon, GradeIcon, PowerSettingsNewIcon } from '../src/icons';
+  withRipple
+} from "../src";
+import {
+  AddIcon,
+  MicIcon,
+  GradeIcon,
+  PowerSettingsNewIcon
+} from "../src/icons";
 
 const RippleButton = withRipple(Button);
 const RippleFab = withRipple(FloatingActionButton);
 
-class ButtonsPage extends React.PureComponent {
+type ButtonsPagePropsType = {|
+  className: string
+|};
+
+type ButtonsPageStateType = {|
+  showSnackbar: boolean
+|};
+
+class ButtonsPage extends React.PureComponent<
+  ButtonsPagePropsType,
+  ButtonsPageStateType
+> {
   state = {
-    showSnackbar: false,
+    showSnackbar: false
   };
 
-  showSnackbar = () => {
+  showSnackbar = (): void => {
     this.setState({ showSnackbar: true });
   };
 
-  handleClose = () => {
+  handleClose = (): void => {
     this.setState({ showSnackbar: false });
   };
 
   render() {
     return (
-      <ThemeProvider theme={{ primary: '#03A9F4' }}>
+      <ThemeProvider theme={{ primary: "#03A9F4" }}>
         <div className={this.props.className}>
           <h1>Flat Buttons</h1>
           <GridList>
@@ -74,7 +92,12 @@ class ButtonsPage extends React.PureComponent {
               </Button>
             </ListItem>
             <ListItem>
-              <Button raised disabled primary onClick={() => alert('This should not fire')}>
+              <Button
+                raised
+                disabled
+                primary
+                onClick={() => alert("This should not fire")}
+              >
                 Disabled
               </Button>
             </ListItem>
@@ -112,7 +135,7 @@ class ButtonsPage extends React.PureComponent {
                 raised
                 disabled
                 primary
-                onClick={() => alert('This should not fire')}
+                onClick={() => alert("This should not fire")}
               >
                 <GradeIcon fill="white" />
               </FloatingActionButton>
@@ -123,7 +146,7 @@ class ButtonsPage extends React.PureComponent {
                 raised
                 disabled
                 primary
-                onClick={() => alert('This should not fire')}
+                onClick={() => alert("This should not fire")}
               >
                 <GradeIcon fill="white" />
               </FloatingActionButton>
@@ -157,10 +180,16 @@ class ButtonsPage extends React.PureComponent {
                   />
                 </ListItem>
                 <ListItem>
-                  <ListItemText primary="disabled" secondary="Disables the button." />
+                  <ListItemText
+                    primary="disabled"
+                    secondary="Disables the button."
+                  />
                 </ListItem>
                 <ListItem>
-                  <ListItemText primary="mini" secondary="A smaller sized FloatingActionButton." />
+                  <ListItemText
+                    primary="mini"
+                    secondary="A smaller sized FloatingActionButton."
+                  />
                 </ListItem>
               </List>
             </GridTile>

@@ -1,11 +1,19 @@
-import React, { Component } from 'react';
+// @flow
+import React, { Component, type Node } from "react";
 
-export class Shift extends Component {
+type ShiftPropsType = {|
+  children: Node,
+  className: string,
+  direction: string,
+  open?: boolean // TODO which ones?
+|};
+
+export class Shift extends Component<ShiftPropsType> {
   componentDidMount() {
-    document.body.classList.add('shift');
+    document.body.classList.add("shift");
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.open && !this.props.open) {
       document.body.classList.add(this.props.direction);
     } else if (!nextProps.open && this.props.open) {
@@ -14,14 +22,10 @@ export class Shift extends Component {
   }
 
   componentWillUnmount() {
-    document.body.classList.remove('shift');
+    document.body.classList.remove("shift");
   }
 
   render() {
-    return (
-      <div className={this.props.className}>
-        {this.props.children}
-      </div>
-    );
+    return <div className={this.props.className}>{this.props.children}</div>;
   }
 }

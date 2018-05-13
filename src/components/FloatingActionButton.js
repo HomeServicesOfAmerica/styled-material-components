@@ -1,6 +1,15 @@
-import styled, { css } from 'styled-components';
-import elevation, { elevationTransition } from '../mixins/elevation';
-import ripple from '../mixins/ripple';
+// @flow
+import styled, { css } from "styled-components";
+
+import elevation, { elevationTransition } from "../mixins/elevation";
+import ripple from "../mixins/ripple";
+
+export type FloatingActionButtonPropsType = {|
+  accent?: boolean,
+  disabled?: boolean,
+  mini?: mini,
+  primary?: boolean
+|};
 
 const primary = css`
   ${elevation(2)};
@@ -8,7 +17,7 @@ const primary = css`
     ${elevation(8)};
   }
   color: #fff;
-    background-color: ${props => props.theme.primary};
+  background-color: ${props => props.theme.primary};
 `;
 
 const accent = css`
@@ -17,7 +26,7 @@ const accent = css`
     ${elevation(8)};
   }
   color: #fff;
-    background-color: ${props => props.theme.accent};
+  background-color: ${props => props.theme.accent};
 `;
 
 const disabled = css`
@@ -25,8 +34,8 @@ const disabled = css`
   &:active {
     ${elevation(8)};
   }
-  background-color: rgba(0, 0, 0, .12);
-    pointer-events: none;
+  background-color: rgba(0, 0, 0, 0.12);
+  pointer-events: none;
 `;
 
 const mini = css`
@@ -35,7 +44,7 @@ const mini = css`
 `;
 
 const FloatingActionButton = styled.button.attrs({
-  'data-smc': 'FloatingActionButton',
+  "data-smc": "FloatingActionButton"
 })`
   color: #fff;
   width: 56px;

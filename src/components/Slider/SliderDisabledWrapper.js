@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const SliderDisabledWrapperComponent = props => (
   <div className={`${props.className} smc-slider-disabled-wrapper`}>
@@ -7,8 +7,13 @@ const SliderDisabledWrapperComponent = props => (
   </div>
 );
 
-const getSliderDisabledWrapperSize = (props) => {
-  const { disabled, theme: { slider: { sizes } } } = props;
+const getSliderDisabledWrapperSize = props => {
+  const {
+    disabled,
+    theme: {
+      slider: { sizes }
+    }
+  } = props;
   if (disabled) return sizes.thumbDisabled + sizes.thumbDisabledBorder;
   return 0;
 };

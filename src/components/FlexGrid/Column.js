@@ -1,3 +1,4 @@
+// @flow
 /**
  * @file Column
  * @author Brad Decker <bhdecker84@gmail.com|brad@merlinlabs.com>
@@ -5,11 +6,12 @@
  * of the screen to grow, shrink, reorder as described by the end
  * user via size props.
  */
-import React from 'react';
-import styled, { css } from 'styled-components';
-import { compose } from 'recompose';
-import { withScreenSize } from '../../contexts/ScreenSizeContext';
-import { withRowState } from './Row';
+import React from "react";
+import styled, { css } from "styled-components";
+import { compose } from "recompose";
+
+import { withScreenSize } from "../../contexts/ScreenSizeContext";
+import { withRowState } from "./Row";
 
 /**
  * getResponsiveProp
@@ -25,9 +27,21 @@ import { withRowState } from './Row';
  * @param {String} lowerScreenSize Screen size one lower than the current
  * @param {String} key             The subkey to return from the prop object
  */
-const getResponsiveProp = (props, layout, screenSize, lowerScreenSize, key) => {
+const getResponsiveProp = (
+  props: {
+    [key: string]: string
+  },
+  layout: {
+    defaultScreenSize: string
+  },
+  screenSize: string,
+  lowerScreenSize: string,
+  key: string // ?
+) => {
   const responsiveProp =
-    props[screenSize] || props[lowerScreenSize] || props[layout.defaultScreenSize];
+    props[screenSize] ||
+    props[lowerScreenSize] ||
+    props[layout.defaultScreenSize];
   if (!responsiveProp) return null;
   if (key) return responsiveProp[key];
   return responsiveProp;
@@ -40,7 +54,8 @@ const getResponsiveProp = (props, layout, screenSize, lowerScreenSize, key) => {
  * @param {Integer} size      size that the current column should take up
  * @param {Integer} baseSize  the baseSize of the theme
  */
-const computePercentage = (size, baseSize) => `${(size / baseSize) * 100}%`;
+const computePercentage = (size: number, baseSize: number): string =>
+  `${(size / baseSize) * 100}%`;
 
 /**
  * calcPlus
@@ -49,13 +64,13 @@ const computePercentage = (size, baseSize) => `${(size / baseSize) * 100}%`;
  * @param {string}        primaryAddend  We require a starting addend
  * @param {Array<String>} addends        Any number of additional addends
  */
-const calcPlus = (primaryAddend, ...addends) => {
+const calcPlus = (primaryAddend: string, ...addends: Array<string>): string => {
   if (addends.length === 0) return primaryAddend;
   let str = `calc(${primaryAddend} + `;
   addends.forEach((addend, i) => {
     str += addend;
-    if (i !== (addends.length - 1)) str += ' + ';
-    else str += ')';
+    if (i !== addends.length - 1) str += " + ";
+    else str += ")";
   });
   return str;
 };
@@ -68,13 +83,13 @@ const calcPlus = (primaryAddend, ...addends) => {
  * @param {string}        minuend     The starting number to subtract from
  * @param {Array<String>} subtrahend  Any number of subtrahends
  */
-const calcMinus = (minuend, ...subtrahend) => {
+const calcMinus = (minuend: string, ...subtrahend: Array<string>): string => {
   if (subtrahend.length === 0) return minuend;
   let str = `calc(${minuend} - `;
   subtrahend.forEach((sub, i) => {
     str += sub;
-    if (i !== (subtrahend.length - 1)) str += ' - ';
-    else str += ')';
+    if (i !== subtrahend.length - 1) str += " - ";
+    else str += ")";
   });
   return str;
 };
@@ -99,14 +114,22 @@ const offsetMixin = ({
   row,
   ...props
 }) => {
-  const offset = getResponsiveProp(props, layout, screenSize, lowerScreenSize, 'offset');
-  if (!offset) return '';
+  const offset = getResponsiveProp(
+    props,
+    layout,
+    screenSize,
+    lowerScreenSize,
+    "offset"
+  );
+  if (!offset) return "";
   const margin = calcPlus(
     computePercentage(offset, layout.baseGridSize),
-    noGutters ? '0px' : layout.gutterSize
+    noGutters ? "0px" : layout.gutterSize
   );
   return css`
-    ${row && row.horizontal === 'right' ? 'margin-right' : 'margin-left'}: ${margin};
+    ${row && row.horizontal === "right"
+      ? "margin-right"
+      : "margin-left"}: ${margin};
   `;
 };
 
@@ -119,8 +142,19 @@ const offsetMixin = ({
  * @param {string}  props.lowerScreenSize The next lowest screensize
  * @param {object}  props.theme.layout    The layout theme options
  */
-const orderMixin = ({ screenSize, lowerScreenSize, theme: { layout }, ...props }) => {
-  const order = getResponsiveProp(props, layout, screenSize, lowerScreenSize, 'order');
+const orderMixin = ({
+  screenSize,
+  lowerScreenSize,
+  theme: { layout },
+  ...props
+}) => {
+  const order = getResponsiveProp(
+    props,
+    layout,
+    screenSize,
+    lowerScreenSize,
+    "order"
+  );
   if (!order) return ``;
   return css`
     order: ${order};
@@ -147,12 +181,14 @@ const flexSizeMixin = ({
   theme: { layout },
   ...props
 }) => {
-  const targetSize = size || getResponsiveProp(props, layout, screenSize, lowerScreenSize, 'size');
-  if (!targetSize) return '';
+  const targetSize =
+    size ||
+    getResponsiveProp(props, layout, screenSize, lowerScreenSize, "size");
+  if (!targetSize) return "";
   const value = calcMinus(
     computePercentage(targetSize, layout.baseGridSize),
-    noGutters ? '0px' : layout.gutterSize,
-    noGutters ? '0px' : layout.gutterSize
+    noGutters ? "0px" : layout.gutterSize,
+    noGutters ? "0px" : layout.gutterSize
   );
   return css`
     flex-basis: ${value};
@@ -174,7 +210,8 @@ const flexSizeMixin = ({
 const SizedColumn = styled.div`
   display: flex;
   flex-direction: column;
-  ${props => (props.noGutters ? '' : `padding: 0 ${props.theme.layout.gutterSize}`)};
+  ${props =>
+    props.noGutters ? "" : `padding: 0 ${props.theme.layout.gutterSize}`};
   flex: 0 0 auto;
   max-width: none;
   order: 0;
@@ -196,9 +233,18 @@ const SizedColumn = styled.div`
  * added to the end of the generated classNames for that component. Because
  * order of classes matters in css this className takes precedent.
  */
-const enhancer = compose(withScreenSize, withRowState);
+const enhancer = compose(
+  withScreenSize,
+  withRowState
+);
 
-const BaseColumnComponent = ({ className, children, screenSizeState, rowState, ...props }) => (
+const BaseColumnComponent = ({
+  className,
+  children,
+  screenSizeState,
+  rowState,
+  ...props
+}) => (
   <SizedColumn
     {...props}
     data-smc="Column"

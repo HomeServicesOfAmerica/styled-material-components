@@ -1,12 +1,11 @@
-import React from 'react';
-import { Icon } from '../icons';
+import React from "react";
 
-const SignalCellular4BarPath = () => [
-  <path d="M2 22h20V2z" key='path0' />,
-];
+import { Icon } from "../icons";
+
+const SignalCellular4BarPath = () => [<path d="M2 22h20V2z" key="path0" />];
 
 const SignalCellular4BarIcon = Icon.extend.attrs({
-  children: SignalCellular4BarPath,
+  children: SignalCellular4BarPath
 })``;
 
 export default SignalCellular4BarPath;

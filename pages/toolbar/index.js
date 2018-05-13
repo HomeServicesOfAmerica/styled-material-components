@@ -1,24 +1,26 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
+// @flow
+import React, { Component } from "react";
+import styled from "styled-components";
+
 // import MaterialThemeProvider from '../src/theme/ThemeProvider';
 import {
   ThemeProvider,
-  Toolbar,
-  ToolbarTitle,
-  Drawer,
-  Button,
-  CloseIcon,
-  MenuIcon,
+  // Toolbar,
+  // ToolbarTitle,
+  // Drawer,
+  // Button,
+  // CloseIcon,
+  // MenuIcon,
   Row,
-  Column,
+  Column
   /*
   MenuIcon,
   Navigation,
   NavigationItem
   */
-} from '../../src';
+} from "../../src";
 
-import elevation from '../../src/mixins/elevation';
+import elevation from "../../src/mixins/elevation";
 
 const PageContainer = styled.div`
   width: 100vw;
@@ -34,27 +36,45 @@ const ScrollableFrame = styled.iframe`
   overflow-x: hidden;
   outline: none;
   border: none;
-  ${elevation(2)}
+  ${elevation(2)};
 `;
 
-export default class ToolbarPage extends Component {
+type ToolbarPagePropsType = {};
+
+type ToolbarPageStateType = {|
+  persistentRight: boolean,
+  temporaryRight: boolean
+|};
+
+export default class ToolbarPage extends Component<
+  ToolbarPagePropsType,
+  ToolbarPageStateType
+> {
   state = {
     persistentRight: false,
-    temporaryRight: false,
-    mainNav: 'test1',
-    denseNav: 'test4',
-    doubleNav: 'test7',
+    temporaryRight: false
+    // mainNav: "test1",
+    // denseNav: "test4",
+    // doubleNav: "test7"
   };
 
-  toggleTemporaryRight = () => this.setState(prevState => ({
-    persistentRight: !prevState.persistentRight ? true : prevState.persistentRight,
-    temporaryRight: !prevState.temporaryRight,
-  }));
+  toggleTemporaryRight = (): void =>
+    this.setState(
+      (prevState: ToolbarPageStateType): ToolbarPageStateType => ({
+        persistentRight: !prevState.persistentRight
+          ? true
+          : prevState.persistentRight,
+        temporaryRight: !prevState.temporaryRight
+      })
+    );
 
-  togglePersistentRight = () => this.setState(prevState => ({
-    persistentRight: !prevState.persistentRight,
-    temporaryRight: false,
-  }));
+  togglePersistentRight = (): void =>
+    this.setState(
+      (prevState: ToolbarPageStateType): ToolbarPageStateType => ({
+        persistentRight: !prevState.persistentRight,
+        temporaryRight: false
+      })
+    );
 
   closeIcon = () => (
     <a onClick={this.togglePersistentRight} className={`closeIcon`}>
@@ -62,9 +82,9 @@ export default class ToolbarPage extends Component {
     </a>
   );
 
-  setMainNav = mainNav => this.setState({ mainNav });
-  setDenseNav = denseNav => this.setState({ denseNav });
-  setDoubleNav = doubleNav => this.setState({ doubleNav });
+  // setMainNav = mainNav => this.setState({ mainNav });
+  // setDenseNav = denseNav => this.setState({ denseNav });
+  // setDoubleNav = doubleNav => this.setState({ doubleNav });
 
   render() {
     return (

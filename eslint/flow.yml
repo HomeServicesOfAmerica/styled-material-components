@@ -1,0 +1,46 @@
+# Flow lint setup
+---
+  plugins:
+    - flowtype
+  settings:
+    flowtype:
+      onlyFilesWithFlowAnnotation: true
+  rules:
+    flowtype/boolean-style: error
+    flowtype/define-flow-type: error
+    flowtype/no-dupe-keys: error
+    flowtype/no-flow-fix-me-comments: warn
+    flowtype/no-primitive-constructor-types: error
+    flowtype/no-types-missing-file-annotation: error
+    flowtype/no-unused-expressions: error
+    # TODO @TSC -> move this to error
+    flowtype/no-weak-types:
+      - warn
+      - any: true
+        Object: true
+        Function: true
+    # TODO: @TSC -> move this to error
+    flowtype/require-exact-type: warn
+    # TODO: @TSC -> move this to error
+    flowtype/require-parameter-type:
+      - warn
+      - excludeArrowFunctions: true
+        excludeParameterMatch: "^_|prevState|nextState|prevProps|nextProps$"
+    # TODO: @TSC -> move this to error
+    flowtype/require-return-type:
+      - warn
+      - always
+      - excludeArrowFunctions: true
+        excludeMatching:
+          - render
+          - getInitialProps
+          - getDerivedStateFromProps
+    flowtype/require-valid-file-annotation: warn
+    flowtype/sort-keys:
+      - error
+      - asc
+      - caseSensitive: true
+    flowtype/type-id-match:
+      - warn
+      - ^([A-Z][a-z]*)+Type$
+    flowtype/use-flow-type: error

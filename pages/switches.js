@@ -1,5 +1,7 @@
-import React from 'react';
-import { List, ListItem, Switch, ThemeProvider } from '../src';
+// @flow
+import React from "react";
+
+import { List, ListItem, Switch, ThemeProvider } from "../src";
 
 const Switches = () => (
   <ThemeProvider>

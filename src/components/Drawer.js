@@ -1,14 +1,16 @@
-import React from 'react';
-import styled, { injectGlobal, css } from 'styled-components';
-import classNames from 'classnames';
-import elevation from '../mixins/elevation';
-import { Portal } from '../components/Portal';
+// @flow
+import React, { type Node } from "react";
+import styled, { injectGlobal, css } from "styled-components";
+import classNames from "classnames";
+
+import elevation from "../mixins/elevation";
+import { Portal } from "./Portal";
 
 const drawerSizing = css`
   width: 240px;
 `;
 
-// eslint-disable-next-line no-unused-expressions
+// eslint-disable-next-line flowtype/no-unused-expressions
 injectGlobal`
   body {
     &.shift {
@@ -32,36 +34,32 @@ injectGlobal`
   }
 `;
 
-const BaseDrawer = (props) => {
+const BaseDrawer = props => {
   const drawerClass = classNames({
     [props.className]: true,
     open: props.open,
-    left: props.attachment === 'left',
-    right: props.attachment === 'right',
-    'smc-drawer': true,
+    left: props.attachment === "left",
+    right: props.attachment === "right",
+    "smc-drawer": true
   });
-  return (
-    <aside className={drawerClass}>
-      {props.children}
-    </aside>
-  );
+  return <aside className={drawerClass}>{props.children}</aside>;
 };
 
 const StyledDrawer = styled(BaseDrawer)`
   background-color: white;
-  ${props => props.temporary && elevation(16)}
-  bottom: 0;
+  ${props => props.temporary && elevation(16)} bottom: 0;
   top: 0;
   overflow: hidden;
   position: absolute;
-  transition: transform .195s;
-  ${drawerSizing}
-  will-change: transform;
+  transition: transform 0.195s;
+  ${drawerSizing} will-change: transform;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
   touch-action: none;
-  ${props => props.temporary && `
+  ${props =>
+    props.temporary &&
+    `
     width: 320px;
     z-index: 5
   `};
@@ -69,51 +67,58 @@ const StyledDrawer = styled(BaseDrawer)`
   &.left {
     left: 0;
     transform: translateX(-107%);
-    ${props => !props.temporary && `border-right: 1px solid rgba(0,0,0,0.35);`}
+    ${props => !props.temporary && `border-right: 1px solid rgba(0,0,0,0.35);`};
   }
 
   &.right {
     right: 0;
     transform: translateX(107%);
-    ${props => !props.temporary && `
+    ${props =>
+      !props.temporary &&
+      `
       border-left: 1px solid rgba(0,0,0,0.35);
     `};
   }
 
   &.open {
-    transition: transform .225s;
+    transition: transform 0.225s;
     transform: none;
   }
 `;
+
+export type DrawerProps = {
+  attachment: string,
+  children: Node,
+  handleRequestClose: () => void,
+  open: boolean,
+  temporary?: boolean
+};
 
 export const Drawer = ({
   open,
   children,
   handleRequestClose,
   temporary,
-  attachment,
-}) => (
+  attachment
+}: DrawerProps) => (
   <Portal
     open={open}
     shift={!temporary}
     attachment={attachment}
     onRequestClose={handleRequestClose}
     renderContents={() => (
-      <StyledDrawer
-        attachment={attachment}
-        open={open}
-        temporary={temporary}
-      >
+      <StyledDrawer attachment={attachment} open={open} temporary={temporary}>
         {children}
       </StyledDrawer>
-    )} />
+    )}
+  />
 );
 
 Drawer.defaultProps = {
   temporary: false,
   open: false,
-  attachment: 'left',
-  handleRequestClose: () => {},
+  attachment: "left",
+  handleRequestClose: () => {}
 };
 
 export default Drawer;

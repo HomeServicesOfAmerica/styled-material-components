@@ -1,8 +1,16 @@
-import React from 'react';
-import styled from 'styled-components';
+// @flow
+import React, { type Node } from "react";
+import styled from "styled-components";
 
-const HorizontalBlockComponent = props => (
-  <div className={`${props.className} card-horizontal-block`}>{props.children}</div>
+type CardHorizontalBlockPropsType = {|
+  children: Node,
+  className: string
+|};
+
+const HorizontalBlockComponent = (props: CardHorizontalBlockPropsType) => (
+  <div className={`${props.className} card-horizontal-block`}>
+    {props.children}
+  </div>
 );
 
 const HorizontalBlock = styled(HorizontalBlockComponent)`

@@ -1,9 +1,10 @@
-import React from 'react';
-import styled, { css } from 'styled-components';
-import { Row } from '../FlexGrid';
-import { contrastingColor } from '../../mixins/theme';
-import typography, { overflowEllipsis } from '../../mixins/typography';
-import elevation from '../../mixins/elevation';
+import React from "react";
+import styled, { css } from "styled-components";
+
+import { Row } from "../FlexGrid";
+import { contrastingColor } from "../../mixins/theme";
+import typography, { overflowEllipsis } from "../../mixins/typography";
+import elevation from "../../mixins/elevation";
 
 const toolbarSectionStyles = css`
   display: inline-flex;
@@ -18,8 +19,7 @@ const toolbarSectionStyles = css`
 `;
 
 const TitleContainer = styled.section`
-  ${toolbarSectionStyles}
-  justify-content: flex-start;
+  ${toolbarSectionStyles} justify-content: flex-start;
   order: -1;
   padding-left: 12px;
   padding-right: 0px;
@@ -28,15 +28,12 @@ const TitleContainer = styled.section`
 const ToolbarTitleComponent = ({ children, className, Icon }) => (
   <TitleContainer>
     {Icon && Icon}
-    <span className={className}>
-      {children}
-    </span>
+    <span className={className}>{children}</span>
   </TitleContainer>
 );
 
 export const ToolbarTitle = styled(ToolbarTitleComponent)`
-  ${typography('title')}
-  ${overflowEllipsis}
+  ${typography("title")} ${overflowEllipsis}
   align-self: center;
   padding: 12px 0;
   line-height: 1.5rem;
@@ -46,8 +43,7 @@ export const ToolbarTitle = styled(ToolbarTitleComponent)`
 `;
 
 export const ToolbarActions = styled.section`
-  ${toolbarSectionStyles}
-  justify-content: flex-end;
+  ${toolbarSectionStyles} justify-content: flex-end;
   order: 1;
   padding-left: 0px;
   padding-right: 12px;
@@ -55,15 +51,12 @@ export const ToolbarActions = styled.section`
 
 const ToolbarRedux = ({ className, children }) => (
   <header className={className} data-smc="Toolbar">
-    <Row horizontal="center">
-      {children}
-    </Row>
+    <Row horizontal="center">{children}</Row>
   </header>
 );
 
 const fixedToolbarMixin = css`
-  ${elevation(4)}
-  position: fixed;
+  ${elevation(4)} position: fixed;
   top: 0;
   left: 0;
   z-index: 4;
@@ -77,7 +70,7 @@ export const Toolbar = styled(ToolbarRedux)`
   box-sizing: border-box;
   width: 100%;
   background-color: ${({ theme }) => theme.primary};
-  ${({ theme }) => contrastingColor('color', theme.primary)}
+  ${({ theme }) => contrastingColor("color", theme.primary)}
 
   ${props => props.fixed && fixedToolbarMixin}
 

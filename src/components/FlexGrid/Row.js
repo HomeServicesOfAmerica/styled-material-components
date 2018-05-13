@@ -4,15 +4,16 @@
  * @description Defines a flex grid row that has props defined for
  * easily setting some common flex styles.
  */
-import React, { Component, createContext } from 'react';
-import styled from 'styled-components';
-import { rowMixin } from '../../mixins/flex';
+import React, { Component, createContext } from "react";
+import styled from "styled-components";
+
+import { rowMixin } from "../../mixins/flex";
 
 const RowContext = createContext({
-  horizontal: 'left',
-  vertical: 'middle',
+  horizontal: "left",
+  vertical: "middle",
   distribution: null,
-  stretch: null,
+  stretch: null
 });
 
 /**
@@ -34,14 +35,16 @@ const RowProvider = RowContext.Provider;
 
 class RowComponent extends Component {
   // Initial state is inherited from props
+  /* eslint-disable react/no-unused-state */
   state = {
     horizontal: this.props.horizontal,
     vertical: this.props.vertical,
     distribution: this.props.distribution,
-    stretch: this.props.stretch,
+    stretch: this.props.stretch
   };
+  /* eslint-enable */
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     // Anytime our props of interest change we need to update state
     // This is so that the context is kept up to date.
     const newState = {};
@@ -77,7 +80,9 @@ export const Row = styled(RowComponent)`
 
 export function withRowState(WrappedComponent) {
   const ComponentWithRowState = props => (
-    <RowConsumer>{rowState => <WrappedComponent {...props} rowState={rowState} />}</RowConsumer>
+    <RowConsumer>
+      {rowState => <WrappedComponent {...props} rowState={rowState} />}
+    </RowConsumer>
   );
   const name = WrappedComponent.displayName || WrappedComponent.name;
   ComponentWithRowState.displayName = `withRowState(${name})`;

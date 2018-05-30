@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Divider = styled.hr.attrs({
   'data-smc': 'Divider',
-})`
+}) `
   border: none;
   background-color: rgba(0, 0, 0, 0.12);
   height: 1px;
@@ -15,4 +15,4 @@ export const Divider = styled.hr.attrs({
     if (!realInset) return '0px';
     return typeof realInset === 'string' ? realInset : '16px';
   }};
-  `;
+`;

@@ -1,12 +1,11 @@
 {
+  "comments": false,
+  "plugins": [],
   "presets": [
-    ["env", { "loose": true }],
-    "react"
-  ],
-  "plugins": [
-    "add-module-exports",
-    "transform-object-rest-spread",
-    "transform-class-properties",
-    "transform-export-extensions"
+    ["@babel/preset-env", {
+      "targets": {
+        "node": "current"
+      }
+    }]
   ]
 }

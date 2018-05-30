@@ -90,9 +90,11 @@ class TabBarComponent extends React.PureComponent {
       >
         {tabs}
         {showInkbar &&
-          this.mounted && (
+          this.mounted &&
+          (
             <TabsInkBar data-smc="TabsInkBar" inkbarColor={inkbarColor} {...this.state.inkbarPosition} />
-          )}
+          )
+        }
       </TabBarContainer>
     );
   }

@@ -9,7 +9,7 @@ class MenuListComponent extends React.Component {
 
   handleKeyDown = (event) => {
     const currItem = document.activeElement;
-    
+
     event.preventDefault();
     if (!event.shiftKey && event.keyCode === 9) { // tab
       currItem.nextElementSibling.focus();
@@ -34,7 +34,9 @@ class MenuListComponent extends React.Component {
       <ul
         role="menu"
         className={`${this.props.className} smc-menu-list`}
-        ref={(ref) => {this.menuList = ref;}}
+        ref={(ref) => {
+          this.menuList = ref;
+        }}
         onKeyDown={this.handleKeyDown}>
         {this.props.children}
       </ul>
@@ -42,7 +44,7 @@ class MenuListComponent extends React.Component {
   }
 }
 
-const MenuList = styled(MenuListComponent)`
+const MenuList = styled(MenuListComponent) `
   position: relative;
   margin: 8px 0;
   padding: 0;

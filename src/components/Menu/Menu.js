@@ -25,7 +25,7 @@ class MenuComponent extends Component {
     this.props.onClose && this.props.onClose(event);
   };
 
-  recalculatePosition = debounce(() => {
+  recalculatePosition = () => {
     const { props: { anchorEl }, menu } = this;
     if (!anchorEl || !menu) return;
     const menuRect = this.menu.getBoundingClientRect();
@@ -38,7 +38,7 @@ class MenuComponent extends Component {
       (overBottom ? menuRect.height - anchorRect.height : 0)}px`;
     this.menu.style.left = `${anchorLeft -
       (overRight ? menuRect.width - anchorRect.width : 0)}px`;
-  }, 0);
+  }
 
   render() {
     const { className, children, menuItems, open, onClose } = this.props;
@@ -49,7 +49,7 @@ class MenuComponent extends Component {
         className={`${className} smc-Menu`}
         ref={(ref) => {
           this.menu = ref;
-          this.recalculatePosition();
+          debounce(this.recalculatePosition, 0);
         }}
       >
         {renderChildren && (
@@ -71,7 +71,7 @@ class MenuComponent extends Component {
   }
 }
 
-const Menu = styled(MenuComponent)`
+const Menu = styled(MenuComponent) `
   padding: 0;
   position: absolute;
   box-sizing: border-box;

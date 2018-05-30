@@ -15,7 +15,7 @@ const DESKTOP_TOP_PADDING = (DESKTOP_MIN_HEIGHT - DESKTOP_FONT_SIZE) / 2;
 const MOBILE_TOP_PADDING = (MOBILE_MIN_HEIGHT - MOBILE_FONT_SIZE) / 2;
 const ROBOTO_RATIO = 0.51; // This is a guess
 
-export const TooltipPortal = styled(Portal)`
+export const TooltipPortal = styled(Portal) `
   && {
     box-sizing: border-box;
     background: rgba(97,97,97, 0.9);
@@ -36,7 +36,7 @@ export const TooltipPortal = styled(Portal)`
 
 export const TooltipLink = styled.a.attrs({
   children: props => props.children,
-})`
+}) `
   display: inline-block;
 `;
 export const TooltipContents = styled.div`
@@ -60,11 +60,11 @@ export const TooltipContents = styled.div`
   display: flex;
   align-items: center;
   justify-content: center; 
-  `;
+`;
 
 export const TooltipIcon = Icon.extend`
   fill: rgba(0, 0, 0, .54);
-  `;
+`;
 
 export class Tooltip extends React.Component {
   state = {

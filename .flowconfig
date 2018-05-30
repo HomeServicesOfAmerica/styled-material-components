@@ -1,0 +1,8 @@
+[ignore]
+.*/node_modules/.*/\(lib\|test\).*\.json$
+.*/node_modules/.*/node_modules/.*
+
+[libs]
+flow-typed/
+
+[lints]

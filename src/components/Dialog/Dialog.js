@@ -60,9 +60,9 @@ const notFullScreenStyles = css`
   }};
   max-width: 865px;
   ${elevation(24)};
-  `;
+`;
 
-export default styled(DialogComponent)`
+export default styled(DialogComponent) `
   width: 100%;
   height: 100%;
   display: flex;

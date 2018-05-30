@@ -17,7 +17,7 @@ const MenuItemComponent = ({ className, children, onClick, onKeyDown }) => (
 );
 
 
-const MenuItem = styled(MenuItemComponent)`
+const MenuItem = styled(MenuItemComponent) `
   position: relative;
   display: flex;
   align-items: center;

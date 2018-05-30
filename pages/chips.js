@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import MaterialThemeProvider from '../src/theme/ThemeProvider';
 import { Chip, ChipAvatar, ChipLabel, ChipDeleteIcon } from '../src/components/Chip';
+import { ArrowDropDownIcon } from '../src';
 
 const demo = (area) => {
   // eslint-disable-next-line
@@ -59,6 +60,11 @@ class ChipsPage extends PureComponent {
           <Chip label="Uncontrolled Deletable chip" removable avatar="CA" />
           <Chip label="Controlled Deletable chip" onDelete={this.handleRemove} removed={removed} />
           <CustomChip label="Custom Chip" avatar="AB" removable />
+          <Chip
+            label="Custom Remove icon"
+            removeIcon={ArrowDropDownIcon}
+            onDelete={() => demo('delete icon')}
+          />
         </div>
       </MaterialThemeProvider>
     );

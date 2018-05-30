@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import typography from '../mixins/typography';
 import elevation, { elevationTransition } from '../mixins/elevation';
+import { CancelIcon } from '../icons';
 
 const ChipWrapper = styled.div`
   display: inline-flex;
@@ -25,6 +26,12 @@ const ChipWrapper = styled.div`
     ${elevationTransition};
     ${elevation(3)};
   }
+  /* Disable text highlighting of Chip labels */
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Chrome and Opera */
 `;
 
 const ChipAvatar = styled.div`
@@ -45,21 +52,12 @@ const ChipLabel = styled.span`
   margin: 0 12px;
 `;
 
-const DeleteIconSvg = styled.svg`
-  width: 24px;
-  height: 24px;
-  margin: 0 4px 0 -8px;
+const ChipDeleteIcon = styled(CancelIcon)`
   fill: ${props => props.theme.disabledCheckbox};
   :hover {
     fill: rgba(0, 0, 0, 0.4);
   }
 `;
-
-const ChipDeleteIcon = styled(({ onDelete, className }) => (
-  <DeleteIconSvg className={className} onClick={onDelete}>
-    <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z" />
-  </DeleteIconSvg>
-))``;
 
 class ChipComponent extends PureComponent {
   state = {
@@ -96,13 +94,14 @@ class ChipComponent extends PureComponent {
       label,
       onClick,
       removable,
+      removeIcon,
       onDelete,
       removed: removedProp,
     } = this.props;
     // determine if chip is managing its own removal (uncontrolled)
     // or if it's being managed by the parent (controlled)
     const removed = removedProp !== undefined ? removedProp : this.state.removed;
-
+    const RemoveIcon = removeIcon || ChipDeleteIcon;
     return (
       <ChipWrapper
         className={className}
@@ -113,11 +112,17 @@ class ChipComponent extends PureComponent {
       >
         {avatar && <ChipAvatar>{avatar}</ChipAvatar>}
         <ChipLabel onClick={onClick}>{label}</ChipLabel>
-        {(removable || onDelete) && <ChipDeleteIcon onDelete={this.handleDeleteIconClick} />}
+        {(removable || onDelete) && (
+          <RemoveIcon className="smc-chip-remove-icon" onClick={this.handleDeleteIconClick} />
+        )}
       </ChipWrapper>
     );
   }
 }
 
-const Chip = styled(ChipComponent)``;
+const Chip = styled(ChipComponent)`
+  & .smc-chip-remove-icon {
+    margin: 0 4px 0 -8px;
+  }
+`;
 export { Chip, ChipWrapper, ChipLabel, ChipAvatar, ChipDeleteIcon };

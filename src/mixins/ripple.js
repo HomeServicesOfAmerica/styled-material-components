@@ -5,7 +5,7 @@
  */
 import { css } from 'styled-components';
 
-const rippleEffect = radius => css`
+const rippleEffect = (radius, color = 'rgba(0,0,0,0.06)') => css`
   position: absolute;
   top: calc(50% - ${radius}%);
   left: calc(50% - ${radius}%);
@@ -15,26 +15,24 @@ const rippleEffect = radius => css`
   border-radius: 50%;
   opacity: 0;
   pointer-events: none;
-  background-color: rgba(0,0,0,0.06);
-  content: "";
+  background-color: ${color};
+  content: '';
 `;
 
-const rippleMixin = (radius = 100) => css`
+const rippleMixin = (radius = 100, color) => css`
   will-change: transform, opacity;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   &:after {
     transform-origin: center center;
-    ${rippleEffect(radius)}
+    ${rippleEffect(radius, color)};
   }
   &:before {
-    ${rippleEffect(radius)}
+    ${rippleEffect(radius, color)};
   }
   &:hover:before,
   &:focus:before,
   &:active:after {
     transition-duration: 85ms;
-    opacity: .6;
+    opacity: 0.6;
   }
 `;
-
 export default rippleMixin;

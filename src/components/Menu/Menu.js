@@ -21,10 +21,10 @@ class MenuComponent extends Component {
   }
 
   handleClick = (event) => {
-    if (this.menu.contains(event.target)) return;
+    if (this.menu.contains(event.target) || this.props.anchorEl === event.target) return;
     this.props.onClose && this.props.onClose(event);
   };
-  
+
   recalculatePosition = debounce(() => {
     const { props: { anchorEl }, menu } = this;
     if (!anchorEl || !menu) return;

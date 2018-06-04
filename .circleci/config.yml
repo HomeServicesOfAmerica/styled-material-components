@@ -8,11 +8,13 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - styled-material-components-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - styled-material-components-{{ checksum "yarn.lock" }}-{{ .Branch }}
             - styled-material-components-{{ checksum "yarn.lock" }}
       - run: yarn install
       - save_cache:
-          key: styled-material-components-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          key: styled-material-components-{{ checksum "yarn.lock" }}-{{ .Branch }}
           paths:
-            - "~/.yarn-cache"
+            - "/node_modules"
       - run: yarn run lint
+      - run: yarn danger ci
+

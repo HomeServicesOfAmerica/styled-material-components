@@ -1,4 +1,4 @@
-# Styled Material Components
+# [Styled Material Components](https://styled-material-components.com/)
 
 [Styled Components](https://www.styled-components.com) inspired library that implements Material Design for stress free React Application scaffolding.
 
@@ -20,7 +20,7 @@
 
 ## Getting Started
 * Fork the repo
-* Run: 
+* Run:
 ```
 yarn install
 yarn run dev
@@ -37,7 +37,7 @@ The components in this library are Styled Components and have full access to the
 ### Theme Provider
 Similar to the Styled Components ThemeProvider (its a thin wrapper around it) except that it provides a default theme that matches material design's default theme. You can provide a custom theme here with any option from src/theme/defaultTheme.js overwritten. You can nest ThemeProviers just like with StyledComponents to overwrite portions of the theme for sections of your application
 
-### Component Example 
+### Component Example
 #### Button
 This component is for creating a material design button. It has props that match the documentation from [Material Components](https://github.com/material-components/material-components-web)
 

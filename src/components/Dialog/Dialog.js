@@ -29,6 +29,8 @@ class DialogComponent extends React.Component {
       open: this.props.open,
       left: this.props.attachment === 'left',
       right: this.props.attachment === 'right',
+      top: this.props.attachment === 'top',
+      bottom: this.props.attachment === 'bottom',
     });
 
     return (
@@ -95,6 +97,16 @@ export default styled(DialogComponent) `
     &.right {
       right: 0;
       transform: translateX(107%);
+    }
+
+    &.top {
+      top: 0;
+      transform: translateY(-107%);
+    }
+
+    &.bottom {
+      bottom: 0;
+      transform: translateY(107%);
     }
 
     &.open {

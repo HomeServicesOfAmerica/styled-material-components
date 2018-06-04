@@ -18,6 +18,8 @@ export default class dialogsPage extends Component {
     withoutTitle: false,
     left: false,
     right: false,
+    top: false,
+    bottom: false,
     customSize: false,
   };
 
@@ -60,6 +62,18 @@ export default class dialogsPage extends Component {
             closeDialog={() => this.closeDialog('right')}
           />
           <ExampleDialog
+            fullscreen
+            attachment="top"
+            open={this.state.top}
+            closeDialog={() => this.closeDialog('top')}
+          />
+          <ExampleDialog
+            fullscreen
+            attachment="bottom"
+            open={this.state.bottom}
+            closeDialog={() => this.closeDialog('bottom')}
+          />
+          <ExampleDialog
             open={this.state.customSize}
             closeDialog={() => this.closeDialog('customSize')}
             title="Pass your own width prop"
@@ -69,13 +83,19 @@ export default class dialogsPage extends Component {
           <Button onClick={() => this.openDialog('withoutTitle')}>
             Open a dialog without a title
           </Button>
-          <Button onClick={() => this.openDialog('left')}>
-            Open a full screen dialog from the left
+          <Button onClick={() => this.openDialog('customSize')}>Open a custom-sized Dialog.</Button>
+          <Button onClick={() => this.openDialog('top')}>
+            Open a full screen dialog from the top
           </Button>
           <Button onClick={() => this.openDialog('right')}>
             Open a full screen dialog from the right
           </Button>
-          <Button onClick={() => this.openDialog('customSize')}>Open a custom-sized Dialog.</Button>
+          <Button onClick={() => this.openDialog('bottom')}>
+            Open a full screen dialog from the bottom
+          </Button>
+          <Button onClick={() => this.openDialog('left')}>
+            Open a full screen dialog from the left
+          </Button>
         </div>
       </ThemeProvider>
     );

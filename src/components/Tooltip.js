@@ -59,7 +59,7 @@ export const TooltipContents = styled.div`
   )};
   display: flex;
   align-items: center;
-  justify-content: center; 
+  justify-content: center;
 `;
 
 export const TooltipIcon = Icon.extend`

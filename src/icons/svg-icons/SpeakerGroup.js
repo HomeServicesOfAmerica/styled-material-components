@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Icon } from '../icons';
 
 const SpeakerGroupPath = () => [
@@ -6,9 +7,9 @@ const SpeakerGroupPath = () => [
   <path d="M6 5H4v16c0 1.1.89 2 2 2h10v-2H6V5z" key='path1' />,
 ];
 
-const SpeakerGroupIcon = Icon.extend.attrs({
+const SpeakerGroupIcon = styled(Icon).attrs({
   children: SpeakerGroupPath,
-})``;
+});
 
 export default SpeakerGroupPath;
 export { SpeakerGroupIcon };

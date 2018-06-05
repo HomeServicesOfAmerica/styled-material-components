@@ -8,13 +8,22 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - styled-material-components-{{ checksum "yarn.lock" }}-{{ .Branch }}
-            - styled-material-components-{{ checksum "yarn.lock" }}
-      - run: yarn install
+            - smc-{{ checksum "yarn.lock" }}-{{ .Branch }}
+            - smc-{{ checksum "yarn.lock" }}
+      - run:
+          name: install dependencies
+          command: yarn install
       - save_cache:
-          key: styled-material-components-{{ checksum "yarn.lock" }}-{{ .Branch }}
+          key: smc-{{ checksum "yarn.lock" }}-{{ .Branch }}
           paths:
-            - "/node_modules"
-      - run: yarn run lint
-      - run: yarn danger ci
+            - node_modules
+      - run:
+          name: 'lint'
+          command: yarn run lint
+      - run:
+          name: 'danger'
+          command: yarn danger ci
+      - run:
+          name: 'deploy master'
+          command: node scripts/deploy-site.js
 

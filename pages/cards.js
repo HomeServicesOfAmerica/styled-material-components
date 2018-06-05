@@ -13,7 +13,7 @@ import {
   CardMediaItem,
 } from '../src';
 
-const DemoCard = Card.extend`
+const DemoCard = styled(Card)`
   max-width: 21.875rem;
   margin-bottom: 48px;
 

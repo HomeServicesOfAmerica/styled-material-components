@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Icon } from '../icons';
 
 const BorderColorPath = () => [
@@ -6,9 +7,9 @@ const BorderColorPath = () => [
   <path fillOpacity=".36" d="M0 20h24v4H0z" key='path1' />,
 ];
 
-const BorderColorIcon = Icon.extend.attrs({
+const BorderColorIcon = styled(Icon).attrs({
   children: BorderColorPath,
-})``;
+});
 
 export default BorderColorPath;
 export { BorderColorIcon };

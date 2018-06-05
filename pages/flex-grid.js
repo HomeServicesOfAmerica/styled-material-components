@@ -1,7 +1,8 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Row, Column, ThemeProvider } from '../src';
 
-const BlueColumn = Column.extend`
+const BlueColumn = styled(Column)`
   background-color: teal;
   height: 24px;
   color: white;
@@ -9,7 +10,7 @@ const BlueColumn = Column.extend`
   justify-content: center;
 `;
 
-const CustomRow = Row.extend`
+const CustomRow = styled(Row)`
   margin-top: 0;
 `;
 

@@ -62,7 +62,7 @@ export const TooltipContents = styled.div`
   justify-content: center;
 `;
 
-export const TooltipIcon = Icon.extend`
+export const TooltipIcon = styled(Icon)`
   fill: rgba(0, 0, 0, .54);
 `;
 

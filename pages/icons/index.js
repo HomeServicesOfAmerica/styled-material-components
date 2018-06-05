@@ -15,7 +15,7 @@ import {
 import { iconList } from './assets';
 import { AddIcon, FileDownloadIcon, FileUploadIcon } from '../../src/icons';
 
-const StyledButton = Button.extend`
+const StyledButton = styled(Button)`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -23,11 +23,11 @@ const StyledButton = Button.extend`
   align-self: center;
 `;
 
-const StyledFab = FloatingActionButton.extend`
+const StyledFab = styled(FloatingActionButton)`
   margin: 0 16px 16px;
 `;
 
-const StyledDivider = Divider.extend`
+const StyledDivider = styled(Divider)`
   margin: 30px 0;
 `;
 

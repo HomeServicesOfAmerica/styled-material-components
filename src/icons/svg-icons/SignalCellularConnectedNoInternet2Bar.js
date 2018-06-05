@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Icon } from '../icons';
 
 const SignalCellularConnectedNoInternet2BarPath = () => [
@@ -6,9 +7,9 @@ const SignalCellularConnectedNoInternet2BarPath = () => [
   <path d="M14 22V10L2 22h12zm6-12v8h2v-8h-2zm0 12h2v-2h-2v2z" key='path1' />,
 ];
 
-const SignalCellularConnectedNoInternet2BarIcon = Icon.extend.attrs({
+const SignalCellularConnectedNoInternet2BarIcon = styled(Icon).attrs({
   children: SignalCellularConnectedNoInternet2BarPath,
-})``;
+});
 
 export default SignalCellularConnectedNoInternet2BarPath;
 export { SignalCellularConnectedNoInternet2BarIcon };

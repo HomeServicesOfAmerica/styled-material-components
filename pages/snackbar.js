@@ -56,7 +56,7 @@ const StyledSnackbarPage = styled(SnackbarPage)`
   margin: 0 10%;
 `;
 
-const StyledButton = Button.extend`
+const StyledButton = styled(Button)`
   margin: 0 24px 24px 0;
 `;
 

@@ -4,17 +4,17 @@ import Button from '../Button';
 import { Icon } from '../../icons';
 import { Menu } from '../Menu';
 
-const FooterIcon = Icon.extend.attrs({
+const FooterIcon = styled(Icon).attrs({
   cursor: 'pointer',
   fill: 'rgba(0, 0, 0, .54)',
 }) ``;
 
-const StandAloneMenu = Menu.extend`
+const StandAloneMenu = styled(Menu)`
   position: absolute;
 `;
 
 
-const PaginationButton = Button.extend`
+const PaginationButton = styled(Button)`
   svg {
     ${props => props.disabled && `fill: #eee`};
   }

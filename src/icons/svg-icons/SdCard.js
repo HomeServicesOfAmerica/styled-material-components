@@ -1,13 +1,14 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Icon } from '../icons';
 
 const SdCardPath = () => [
   <path d="M18 2h-8L4.02 8 4 20c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-6 6h-2V4h2v4zm3 0h-2V4h2v4zm3 0h-2V4h2v4z" key='path0' />,
 ];
 
-const SdCardIcon = Icon.extend.attrs({
+const SdCardIcon = styled(Icon).attrs({
   children: SdCardPath,
-})``;
+});
 
 export default SdCardPath;
 export { SdCardIcon };

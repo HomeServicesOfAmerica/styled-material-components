@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import { ThemeProvider, Checkbox, Box, CheckMark, List, ListItem, defaultTheme } from '../src';
 
-const StyledCheckbox = Checkbox.extend`
+const StyledCheckbox = styled(Checkbox)`
   ${Box} {
     background-color: transparent;
     border-color: skyblue;
@@ -19,7 +19,7 @@ const Square = styled.div`
   width: 8px;
 `;
 
-const StyledCheckbox2 = Checkbox.extend`
+const StyledCheckbox2 = styled(Checkbox)`
   :hover::before {
     opacity: 0;
   }

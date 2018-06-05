@@ -33,7 +33,7 @@ const deployApplication = (options, message = console.log) => {
     exec(`yarn now alias ${deployURL} ${appName} -t ${process.env.NOW_TOKEN}`);
   }
 
-  message(`***Application URL**: [${appName}](${link})`);
+  message(`**Application URL**: [${appName}](${link})`);
 };
 
 module.exports = {

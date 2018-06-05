@@ -1,6 +1,9 @@
-const { message, danger } = require('danger');
+const { message, fail, danger } = require('danger');
 const R = require('ramda');
 const { deployApplication } = require('./utils/deploy');
+const checkForExtend = require('./utils/checkForExtend');
+
+checkForExtend(danger.git, fail);
 
 const branch = process.env.CIRCLE_BRANCH || danger.github.pr.head.label;
 const prNumber = danger.github.pr.number || 0;

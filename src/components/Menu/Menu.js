@@ -30,8 +30,9 @@ class MenuComponent extends Component {
     if (!anchorEl || !menu) return;
     const menuRect = this.menu.getBoundingClientRect();
     const anchorRect = anchorEl.getBoundingClientRect();
-    const anchorLeft = anchorRect.x + window.scrollX;
-    const anchorTop = anchorRect.y + window.scrollY;
+    const offsetRect = anchorEl.offsetParent.getBoundClientRect();
+    const anchorLeft = anchorRect.x + window.scrollX - offsetRect.x;
+    const anchorTop = anchorRect.y + window.scrollY - offsetRect.y;
     const overBottom = anchorTop + menuRect.height > window.innerHeight;
     const overRight = anchorLeft + menuRect.width > window.innerWidth;
     this.menu.style.top = `${anchorTop -

@@ -28,12 +28,13 @@ const MenuItem = styled(MenuItemComponent) `
   &:hover {
     background-color: rgba(232, 232, 232, 1);
     cursor: pointer;
-  } 
+  }
 
   &:focus {
     background-color: rgba(232, 232, 232, 1);
     outline: none;
   }
+  background-color: pink !important;
 `;
 
 export default MenuItem;

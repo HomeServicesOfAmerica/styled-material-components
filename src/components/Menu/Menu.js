@@ -4,6 +4,7 @@ import debounce from 'lodash.debounce';
 import elevation from '../../mixins/elevation';
 import MenuList from './MenuList';
 import MenuItem from './MenuItem';
+import { isDescendant } from '../../helpers';
 
 class MenuComponent extends Component {
   componentDidMount() {
@@ -21,7 +22,7 @@ class MenuComponent extends Component {
   }
 
   handleClick = (event) => {
-    if (this.menu.contains(event.target) || this.props.anchorEl === event.target) return;
+    if (this.menu.contains(event.target) || isDescendant(this.props.anchorEl, event.target)) return;
     this.props.onClose && this.props.onClose(event);
   };
 
@@ -30,8 +31,11 @@ class MenuComponent extends Component {
     if (!anchorEl || !menu) return;
     const menuRect = this.menu.getBoundingClientRect();
     const anchorRect = anchorEl.getBoundingClientRect();
-    const anchorLeft = anchorRect.x + window.scrollX;
-    const anchorTop = anchorRect.y + window.scrollY;
+    const offsetRect = anchorEl.offsetParent.getBoundingClientRect();
+    /* eslint-disable no-mixed-operators */
+    const anchorLeft = anchorRect.x + window.scrollX - offsetRect.x;
+    const anchorTop = anchorRect.y + window.scrollY + anchorRect.height - offsetRect.y;
+    /* eslint-enable no-mixed-operators */
     const overBottom = anchorTop + menuRect.height > window.innerHeight;
     const overRight = anchorLeft + menuRect.width > window.innerWidth;
     this.menu.style.top = `${anchorTop -

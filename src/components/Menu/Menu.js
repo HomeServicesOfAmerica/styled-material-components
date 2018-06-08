@@ -8,40 +8,69 @@ import { isDescendant } from '../../helpers';
 
 class MenuComponent extends Component {
   componentDidMount() {
-    document.addEventListener('mousedown', this.handleClick);
-    document.addEventListener('touchstart', this.handleClick);
-    document.addEventListener('scroll', this.recalculatePosition);
+    document.addEventListener('mousedown', this.handleOutsideClick);
+    document.addEventListener('touchstart', this.handleOutsideClick);
     window.addEventListener('resize', this.recalculatePosition);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('mousedown', this.handleClick);
-    document.removeEventListener('touchstart', this.handleClick);
-    document.removeEventListener('scroll', this.recalculatePosition);
+    document.removeEventListener('mousedown', this.handleOutsideClick);
+    document.removeEventListener('touchstart', this.handleOutsideClick);
     window.removeEventListener('resize', this.recalculatePosition);
   }
 
-  handleClick = (event) => {
-    if (this.menu.contains(event.target) || isDescendant(this.props.anchorEl, event.target)) return;
+  handleOutsideClick = (event) => {
+    if (
+      this.menu.contains(event.target) ||
+      this.props.anchorEl === event.target ||
+      isDescendant(this.props.anchorEl, event.target)
+    ) return;
     this.props.onClose && this.props.onClose(event);
   };
 
   recalculatePosition = debounce(() => {
-    const { props: { anchorEl }, menu } = this;
+    const {
+      props: { anchorEl },
+      menu,
+    } = this;
+    const {
+      props: { attachBottom, openUp, openLeft, noFit },
+    } = this;
     if (!anchorEl || !menu) return;
-    const menuRect = this.menu.getBoundingClientRect();
-    const anchorRect = anchorEl.getBoundingClientRect();
-    const offsetRect = anchorEl.offsetParent.getBoundingClientRect();
+    // menu is the ref for the menu element
+    const { height: menuHeight, width: menuWidth } = menu.getBoundingClientRect();
+    // anchorEl is the anchor element
+    const {
+      x: anchorX,
+      y: anchorY,
+      height: anchorHeight,
+      width: anchorWidth,
+    } = anchorEl.getBoundingClientRect();
+    // offsetParent is the nearest absolute/fixed position ancestor
+    const { x: offsetX, y: offsetY } = anchorEl.offsetParent.getBoundingClientRect();
+    // to adjust attachment, move down or to the right by the height / width of the anchor
+    const bottomAttachmentAdjustment = attachBottom ? anchorHeight : 0;
+    // to adjust opening direction, move down or to the right by the difference in height / width
+    // between the anchor and menu
+    const openUpAdjustment = anchorHeight - menuHeight - bottomAttachmentAdjustment;
+    const openLeftAdjustment = anchorWidth - menuWidth;
+    // to account for being over one side of the page, we reverse the open direction
+    // calculate new position with adjustments
     /* eslint-disable no-mixed-operators */
-    const anchorLeft = anchorRect.x + window.scrollX - offsetRect.x;
-    const anchorTop = anchorRect.y + window.scrollY - offsetRect.y;
-    /* eslint-enable no-mixed-operators */
-    const overBottom = anchorTop + menuRect.height > window.innerHeight;
-    const overRight = anchorLeft + menuRect.width > window.innerWidth;
-    this.menu.style.top = `${anchorTop -
-      (overBottom ? menuRect.height - anchorRect.height : 0)}px`;
-    this.menu.style.left = `${anchorLeft -
-      (overRight ? menuRect.width - anchorRect.width : 0)}px`;
+    let newTop = anchorY - offsetY + bottomAttachmentAdjustment;
+    let newLeft = anchorX - offsetX;
+    // check for overflow and adjust opening directions
+    const overBottom = !noFit && newTop + menuHeight > window.innerHeight;
+    const overRight = !noFit && newLeft + menuWidth > window.innerWidth;
+    if (overBottom || openUp) newTop += openUpAdjustment;
+    if (overRight || openLeft) newLeft += openLeftAdjustment;
+    const overTop = !noFit && newTop - (openUp ? menuHeight : 0) < 0;
+    const overLeft = !noFit && newLeft - (openLeft ? menuWidth : 0) < 0;
+    if (overTop) newTop -= openUpAdjustment;
+    if (overLeft) newLeft -= openLeftAdjustment;
+    // apply new styles inline to menu element
+    this.menu.style.top = `${newTop}px`;
+    this.menu.style.left = `${newLeft}px`;
   }, 0);
 
   render() {
@@ -75,7 +104,7 @@ class MenuComponent extends Component {
   }
 }
 
-const Menu = styled(MenuComponent) `
+const Menu = styled(MenuComponent)`
   padding: 0;
   position: absolute;
   box-sizing: border-box;
@@ -90,3 +119,4 @@ const Menu = styled(MenuComponent) `
 `;
 
 export default Menu;
+

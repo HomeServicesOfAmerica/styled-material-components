@@ -26,7 +26,7 @@ class MenuComponent extends Component {
     this.props.onClose && this.props.onClose(event);
   };
 
-  recalculatePosition = () => {
+  recalculatePosition = debounce(() => {
     const { props: { anchorEl }, menu } = this;
     if (!anchorEl || !menu) return;
     const menuRect = this.menu.getBoundingClientRect();
@@ -34,7 +34,7 @@ class MenuComponent extends Component {
     const offsetRect = anchorEl.offsetParent.getBoundingClientRect();
     /* eslint-disable no-mixed-operators */
     const anchorLeft = anchorRect.x + window.scrollX - offsetRect.x;
-    const anchorTop = anchorRect.y + window.scrollY + anchorRect.height - offsetRect.y;
+    const anchorTop = anchorRect.y + window.scrollY - offsetRect.y;
     /* eslint-enable no-mixed-operators */
     const overBottom = anchorTop + menuRect.height > window.innerHeight;
     const overRight = anchorLeft + menuRect.width > window.innerWidth;
@@ -42,7 +42,7 @@ class MenuComponent extends Component {
       (overBottom ? menuRect.height - anchorRect.height : 0)}px`;
     this.menu.style.left = `${anchorLeft -
       (overRight ? menuRect.width - anchorRect.width : 0)}px`;
-  }
+  }, 0);
 
   render() {
     const { className, children, menuItems, open, onClose } = this.props;
@@ -53,7 +53,7 @@ class MenuComponent extends Component {
         className={`${className} smc-Menu`}
         ref={(ref) => {
           this.menu = ref;
-          debounce(this.recalculatePosition, 0);
+          this.recalculatePosition();
         }}
       >
         {renderChildren && (

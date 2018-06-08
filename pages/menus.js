@@ -1,8 +1,29 @@
 import React, { Component } from 'react';
-import { ThemeProvider, Button, MenuItem, Menu } from '../src';
+import { ThemeProvider, Button, MenuItem, Menu, Switch } from '../src';
+import styled from 'styled-components';
 
-const StandAloneMenu = Menu.extend`
+const Controls = styled.div`
+  width: 100%;
+  ul {
+    list-style-type: none;
+  }
+`;
+
+const StandAloneMenu = styled(Menu)`
   position: relative;
+`;
+
+const PageWithBottomPadding = styled.div`
+  margin-bottom: 200px;
+`;
+
+const PositionedButton = styled(Button)`
+  margin: 0 20px;
+  ${({ buttonPosition }) => {
+    if (buttonPosition === 'center') return 'margin-left: calc(50% - 54px)';
+    else if (buttonPosition === 'left') return 'float: left';
+    return 'float:right';
+  }}
 `;
 
 class MenusPage extends Component {
@@ -10,6 +31,10 @@ class MenusPage extends Component {
     open: false,
     value: '',
     anchorEl: null,
+    buttonPosition: 'left',
+    attachBottom: false,
+    openUp: false,
+    openLeft: false,
   };
 
   handleClick = (event) => {
@@ -24,7 +49,9 @@ class MenusPage extends Component {
   handleClose = () => {
     this.setState({ open: false });
   };
-
+  handleButtonMove = (e) => {
+    this.setState({ buttonPosition: e.target.name });
+  }
   render() {
     const { anchorEl } = this.state;
 
@@ -37,7 +64,7 @@ class MenusPage extends Component {
 
     return (
       <ThemeProvider theme={{ primary: '#03A9F4' }}>
-        <div style={{ margin: '60px 16px' }}>
+        <PageWithBottomPadding>
           <h1>Menus</h1>
           <h2>Standalone Menu</h2>
           <p>Menus can accept MenuSelect and MenuOption SMC components as children,
@@ -47,9 +74,48 @@ class MenusPage extends Component {
           <p>This component is accessible (navigable by clicks or keyboard events)
             and has an ARIA role defined as menu for screenreaders </p>
           <p>Each Option can receive a handleSelect prop that accepts a callback</p>
-          <p>A menu will open in the direction of available space, defaulting to down and to the right. If there is insufficient room below or to the right of the anchor, the menu will open to where there is room for it. This can be seen in action by resizing the window </p>
-          <Button raised onClick={this.handleClick} style={{ marginRight: '15px', float: 'right' }}>Click me</Button>
+          <p>{ 'Use the switches below to toggle props that control where the menu attaches to the button, and to which direction the menu opens' }</p>
+          <p>{ "Menus will open to the available space. You can experiment with this by toggling the button's position and/or resizing the window. This behavior can be disabled by passing in a prop of noFit" }</p>
+          <Controls>
+            <ul>
+              <li>
+                <label htmlFor="floatRight">Float Button Right</label>
+                <input name="right" id="floatRight" checked={this.state.buttonPosition === 'right'} onChange={this.handleButtonMove} type="radio" />
+              </li>
+              <li>
+                <label htmlFor="floatLeft">Float Button Left</label>
+                <input name="left" id="floatLeft" checked={this.state.buttonPosition === 'left'} onChange={this.handleButtonMove} type="radio" />
+              </li>
+              <li>
+                <label htmlFor="center">Center Button</label>
+                <input name="center" id="center" checked={this.state.buttonPosition === 'center'} onChange={this.handleButtonMove} type="radio" />
+              </li>
+              <li>
+                <label htmlFor="attachBottom">Toggle bottom attachment</label>
+                <Switch id="attachBottom" onChange={() => this.setState(ps => ({ attachBottom: !ps.attachBottom }))} />
+              </li>
+              <li>
+                <label htmlFor="openUp">Toggle menu opens upwards</label>
+                <Switch id="openUp" onChange={() => this.setState(ps => ({ openUp: !ps.openUp }))} />
+              </li>
+              <li>
+                <label htmlFor="openLeft">Toggle menu opens to the left</label>
+                <Switch id="openLeft" onChange={() => this.setState(ps => ({ openLeft: !ps.openLeft }))} />
+              </li>
+              <li>
+                <label htmlFor="noFit">Toggle menu noFit</label>
+                <Switch id="noFit" onChange={() => this.setState(ps => ({ noFit: !ps.noFit }))} />
+              </li>
+            </ul>
+          </Controls>
+          <PositionedButton buttonPosition={this.state.buttonPosition} raised onClick={this.handleClick}>
+            {this.state.value || 'open'}
+          </PositionedButton>
           <Menu
+            openUp={this.state.openUp}
+            openLeft={this.state.openLeft}
+            noFit={this.state.noFit}
+            attachBottom={this.state.attachBottom}
             open={this.state.open}
             anchorEl={anchorEl}
             value={this.state.value}
@@ -58,11 +124,11 @@ class MenusPage extends Component {
             <MenuItem onClick={() => this.handleSelect('Harry')}>Harry</MenuItem>
             <MenuItem onClick={() => this.handleSelect('Hermione')}>Hermione</MenuItem>
           </Menu>
-          <h3>You selected: <span style={{ color: 'tomato' }}>{this.state.value}</span></h3>
-        </div>
+        </PageWithBottomPadding>
       </ThemeProvider>
     );
   }
 }
+
 
 export default MenusPage;

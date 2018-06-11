@@ -216,9 +216,6 @@ class TextFieldComponent extends PureComponent {
   }
 }
 
-const primaryTextColor = css`
-  ${props => props.theme.textColors.primary};
-`;
 const secondaryTextColor = css`
   ${props => props.theme.textColors.secondary};
 `;
@@ -354,7 +351,7 @@ const UnderlineFocus = styled.div`
 /*
  * Styles that will be shared between textfield and text area
  */
-const inputStyles = `
+const inputStyles = baseWidth => css`
   position: relative;
   border: none;
   outline: none;
@@ -367,25 +364,19 @@ const inputStyles = `
   font-size: inherit;
   line-height: inherit;
   font-family: inherit;
-`;
-
-/*
- * Since these styles depend on props, they can't live in the template literal
- * above
- */
-const Input = styled.input`${inputStyles}`.extend`
-  width: calc(100% - ${({ hasSuffix }) => hasSuffix ? 1 : 0}em);
-  color: ${primaryTextColor};
+  width: calc(${baseWidth} - ${({ hasSuffix }) => hasSuffix ? 1 : 0}em);
+  color: ${props => props.theme.textColors.primary};
   padding-left: ${props => (props.hasPrefix ? '1em' : '0')};
   ${props => props.inputStyle};
 `;
 
-const Area = styled.textarea`${inputStyles}`.extend`
-  width: calc(80% - ${({ hasSuffix }) => hasSuffix ? 1 : 0}em);
+const Input = styled.input`
+  ${inputStyles('100%')}
+`;
+
+const Area = styled.textarea`
+  ${inputStyles('80%')}
   height:  ${props => props.height - 4}px;
-  color: ${primaryTextColor};
-  padding-left: ${props => (props.hasPrefix ? '1em' : '0')};
-  ${props => props.inputStyle};
   border-style: ${props => (props.hasBorder ? 'solid' : 'none')};
   border-width: ${props => (props.hasBorder ? '1px' : 'none')};
   border-radius: ${props => (props.hasBorder ? '4px' : 'none')};
@@ -395,7 +386,7 @@ const Area = styled.textarea`${inputStyles}`.extend`
 
   &:focus {
     border-color: ${primary};
-}
+  }
 `;
 
 const TextField = styled(TextFieldComponent) `

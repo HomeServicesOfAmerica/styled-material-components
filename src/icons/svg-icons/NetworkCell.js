@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Icon } from '../icons';
 
 const NetworkCellPath = () => [
@@ -6,9 +7,9 @@ const NetworkCellPath = () => [
   <path d="M17 7L2 22h15z" key='path1' />,
 ];
 
-const NetworkCellIcon = Icon.extend.attrs({
+const NetworkCellIcon = styled(Icon).attrs({
   children: NetworkCellPath,
-})``;
+});
 
 export default NetworkCellPath;
 export { NetworkCellIcon };

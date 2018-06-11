@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Icon } from '../icons';
 
 const FormatColorFillPath = () => [
@@ -6,9 +7,9 @@ const FormatColorFillPath = () => [
   <path fillOpacity=".36" d="M0 20h24v4H0z" key='path1' />,
 ];
 
-const FormatColorFillIcon = Icon.extend.attrs({
+const FormatColorFillIcon = styled(Icon).attrs({
   children: FormatColorFillPath,
-})``;
+});
 
 export default FormatColorFillPath;
 export { FormatColorFillIcon };

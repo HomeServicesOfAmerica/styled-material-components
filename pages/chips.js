@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import styled from 'styled-components';
 import MaterialThemeProvider from '../src/theme/ThemeProvider';
 import { Chip, ChipAvatar, ChipLabel, ChipDeleteIcon } from '../src/components/Chip';
 import { ArrowDropDownIcon } from '../src';
@@ -8,7 +9,7 @@ const demo = (area) => {
   alert(`You clicked on the ${area}`);
 };
 
-const CustomChip = Chip.extend`
+const CustomChip = styled(Chip)`
   ${ChipAvatar} {
     background-color: skyblue;
   }

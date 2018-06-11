@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Icon } from '../icons';
 
 const SignalCellular1BarPath = () => [
@@ -6,9 +7,9 @@ const SignalCellular1BarPath = () => [
   <path d="M12 12L2 22h10z" key='path1' />,
 ];
 
-const SignalCellular1BarIcon = Icon.extend.attrs({
+const SignalCellular1BarIcon = styled(Icon).attrs({
   children: SignalCellular1BarPath,
-})``;
+});
 
 export default SignalCellular1BarPath;
 export { SignalCellular1BarIcon };

@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Icon } from '../icons';
 
 const Battery20Path = () => [
@@ -6,9 +7,9 @@ const Battery20Path = () => [
   <path fillOpacity=".3" d="M17 5.33C17 4.6 16.4 4 15.67 4H14V2h-4v2H8.33C7.6 4 7 4.6 7 5.33V17h10V5.33z" key='path1' />,
 ];
 
-const Battery20Icon = Icon.extend.attrs({
+const Battery20Icon = styled(Icon).attrs({
   children: Battery20Path,
-})``;
+});
 
 export default Battery20Path;
 export { Battery20Icon };

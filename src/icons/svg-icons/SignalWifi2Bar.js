@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Icon } from '../icons';
 
 const SignalWifi2BarPath = () => [
@@ -6,9 +7,9 @@ const SignalWifi2BarPath = () => [
   <path d="M4.79 12.52l7.2 8.98H12l.01-.01 7.2-8.98C18.85 12.24 16.1 10 12 10s-6.85 2.24-7.21 2.52z" key='path1' />,
 ];
 
-const SignalWifi2BarIcon = Icon.extend.attrs({
+const SignalWifi2BarIcon = styled(Icon).attrs({
   children: SignalWifi2BarPath,
-})``;
+});
 
 export default SignalWifi2BarPath;
 export { SignalWifi2BarIcon };

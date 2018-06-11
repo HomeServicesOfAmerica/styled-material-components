@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Icon } from '../icons';
 
 const NetworkWifiPath = () => [
@@ -6,9 +7,9 @@ const NetworkWifiPath = () => [
   <path d="M3.53 10.95l8.46 10.54.01.01.01-.01 8.46-10.54C20.04 10.62 16.81 8 12 8c-4.81 0-8.04 2.62-8.47 2.95z" key='path1' />,
 ];
 
-const NetworkWifiIcon = Icon.extend.attrs({
+const NetworkWifiIcon = styled(Icon).attrs({
   children: NetworkWifiPath,
-})``;
+});
 
 export default NetworkWifiPath;
 export { NetworkWifiIcon };

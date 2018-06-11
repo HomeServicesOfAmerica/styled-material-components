@@ -23,7 +23,7 @@ class ControlledSlider extends PureComponent {
   }
 }
 
-const SliderNoFill = Slider.extend`
+const SliderNoFill = styled(Slider)`
   & .styled-material-thumb {
     background: #fff;
   }

@@ -4,11 +4,11 @@ import { ThemeProvider, TextField, Button } from '../src';
 
 const validateLength = str => str.length > 7;
 
-const TextFieldWithBottomMargin = TextField.extend`
+const TextFieldWithBottomMargin = styled(TextField)`
   margin-bottom: 20px;
 `;
 
-const TextFieldWithStyledPrefixAndSuffix = TextFieldWithBottomMargin.extend`
+const TextFieldWithStyledPrefixAndSuffix = styled(TextFieldWithBottomMargin)`
   > .smc-textfield-suffix {
     color: purple;
   }

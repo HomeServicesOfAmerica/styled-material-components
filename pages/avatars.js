@@ -5,10 +5,10 @@ import {
   ThemeProvider,
 } from '../src';
 
-const StyledAvatar = Avatar.extend`
+const StyledAvatar = styled(Avatar)`
   color: tomato;
   font-size: 24px;
-  background: linear-gradient(to right, #71B280, #134E5E); 
+  background: linear-gradient(to right, #71B280, #134E5E);
 `;
 
 const CodeBlock = styled.div`

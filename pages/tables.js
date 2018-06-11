@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import styled from 'styled-components';
 import { Table, ThemeProvider } from '../src';
 
 import naturalSort from '../src/components/Table/naturalSort';
@@ -68,7 +69,7 @@ const data = [
   },
 ];
 
-const StyledTable = Table.extend`
+const StyledTable = styled(Table)`
   .smc-table-datum-price {
     color: red;
   }

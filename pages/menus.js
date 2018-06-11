@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import { ThemeProvider, Button, MenuItem, Menu } from '../src';
 
-const StandAloneMenu = Menu.extend`
+const StandAloneMenu = styled(Menu)`
   position: relative;
 `;
 

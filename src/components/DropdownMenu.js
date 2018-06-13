@@ -36,7 +36,6 @@ const Symbol = styled(ArrowDropDownIcon) `
 export default class DropdownMenu extends Component {
   state = {
     isOpen: false,
-    options: this.props.options || [],
     selected: this.props.defaultOption || 'select one',
     isChrome: undefined,
   };
@@ -82,7 +81,8 @@ export default class DropdownMenu extends Component {
   };
 
   render() {
-    const { options, isOpen, selected, isChrome } = this.state;
+    const { isOpen, selected, isChrome } = this.state;
+    const { options } = this.props;
     return (
       <div onClick={this.toggleSelect} onFocus={this.handleOpen} tabIndex="0">
         {!isChrome && (

@@ -1,31 +1,61 @@
 import React, { PureComponent } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import typography from '../mixins/typography';
 import elevation, { elevationTransition } from '../mixins/elevation';
 import { CancelIcon } from '../icons';
 
+const clickableStyles = css`
+  :hover {
+    ::before {
+      opacity: 0.08;
+    }
+  }
+  :focus {
+    ::before {
+      opacity: 0.12;
+    }
+    :active {
+      ${elevationTransition};
+      ${elevation(3)};
+    }
+  }
+`;
+
+const removableStyles = css`
+  :focus {
+    ::before {
+      opacity: 0.12;
+    }
+  }
+`;
+
 const ChipWrapper = styled.div`
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.87);
+    opacity: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    pointer-events: none;
+  }
+  outline: none;
   display: inline-flex;
   justify-content: space-between;
   align-items: center;
   margin: 8px;
-  background-color: rgba(0, 0, 0, 0.08);
+  background-color: #e0e0e0;
   height: 32px;
   border-radius: 16px;
   font-size: 13px;
   color: ${props => props.theme.textColors.primary};
-  ${props =>
-    props.clickable &&
-    `
-    :hover {
-      background-color: #CECECE
-    }`};
   ${props => props.removed && 'display: none'};
-  :focus {
-    outline: none;
-    ${elevationTransition};
-    ${elevation(3)};
-  }
+  ${({ removable }) => removable && removableStyles};
+  ${({ clickable }) => clickable && clickableStyles};
   /* Disable text highlighting of Chip labels */
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
@@ -108,6 +138,7 @@ class ChipComponent extends PureComponent {
         onKeyDown={this.handleKeyDown}
         tabIndex={0}
         clickable={onClick}
+        removable={removable || onDelete}
         removed={removed}
       >
         {avatar && <ChipAvatar>{avatar}</ChipAvatar>}

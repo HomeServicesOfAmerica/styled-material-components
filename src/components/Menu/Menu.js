@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import debounce from 'lodash.debounce';
 import elevation from '../../mixins/elevation';
 import MenuList from './MenuList';
 import MenuItem from './MenuItem';
 import { isDescendant } from '../../helpers';
 
 class MenuComponent extends Component {
+  state = {
+    renderReady: false,
+  }
+
   componentDidMount() {
     document.addEventListener('mousedown', this.handleOutsideClick);
     document.addEventListener('touchstart', this.handleOutsideClick);
@@ -28,7 +31,7 @@ class MenuComponent extends Component {
     this.props.onClose && this.props.onClose(event);
   };
 
-  recalculatePosition = debounce(() => {
+  recalculatePosition = () => {
     const {
       props: { anchorEl },
       menu,
@@ -71,7 +74,8 @@ class MenuComponent extends Component {
     // apply new styles inline to menu element
     this.menu.style.top = `${newTop}px`;
     this.menu.style.left = `${newLeft}px`;
-  }, 0);
+    if (this.state.renderReady === false) this.setState({ renderReady: true });
+  };
 
   render() {
     const { className, children, menuItems, open, onClose } = this.props;
@@ -79,6 +83,7 @@ class MenuComponent extends Component {
     const renderChildren = open && !menuItems;
     return (
       <div
+        style={{ display: this.state.renderReady ? 'block' : 'none' }}
         className={`${className} smc-Menu`}
         ref={(ref) => {
           this.menu = ref;

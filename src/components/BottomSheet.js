@@ -29,7 +29,7 @@ const StyledBottomSheet = styled(BaseBottomSheet)`
   left: 0;
   right: 0;
   overflow: hidden;
-  position: absolute;
+  position: fixed;
   transition: transform .195s;
   ${bottomSheetSizing}
   will-change: transform;

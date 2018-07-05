@@ -59,6 +59,7 @@ const StyledBottomSheet = styled(BaseBottomSheet)`
 `;
 
 export const BottomSheet = ({
+  className,
   open,
   children,
   handleRequestClose,
@@ -71,7 +72,7 @@ export const BottomSheet = ({
     attachment={attachment}
     onRequestClose={handleRequestClose}
     renderContents={() => (
-      <StyledBottomSheet attachment={attachment} open={open}>
+      <StyledBottomSheet className={className} attachment={attachment} open={open}>
         {children}
       </StyledBottomSheet>
     )} />

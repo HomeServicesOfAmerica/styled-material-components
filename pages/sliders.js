@@ -1,17 +1,23 @@
 // @flow
 /* eslint-disable react/react-in-jsx-scope */
-import { PureComponent } from "react";
+import React, { PureComponent } from "react";
 import styled from "styled-components";
 
 import { ThemeProvider, Slider, Button } from "../src";
 
 type ControlledSliderPropsType = {|
-  initialValue: number
+  continuous?: boolean,
+  disabled?: boolean,
+  initialValue: number,
+  max?: number,
+  min?: number,
+  step?: number
 |};
 
 type ControlledSliderStateType = {|
   value: number
 |};
+
 /* eslint-disable react/no-multi-comp */
 class ControlledSlider extends PureComponent<
   ControlledSliderPropsType,

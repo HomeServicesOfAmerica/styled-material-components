@@ -11,14 +11,15 @@ import { Portal } from "../Portal";
  * the user clicks out of it. Because of that, the dialog's open/shut status is
  * actually controlled in the DialogComponent's state
  */
-type DialogComponentPropsType = {
-  attachment: "left" | "right",
+
+export type DialogComponentPropsType = {|
+  attachment: "left" | "right" | "top" | "bottom",
   children: Node,
   className: string,
   fullscreen?: boolean,
-  onClose: () => any,
+  onClose: () => void,
   open: boolean
-};
+|};
 
 type DialogComponentStateType = {
   attachment: string,
@@ -147,9 +148,3 @@ export default styled(DialogComponent)`
     }
   }
 `;
-
-// DialogComponent.defaultProps = {
-//   open: false,
-//   attachment: "left",
-//   fullscreen: false
-// };

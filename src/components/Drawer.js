@@ -89,7 +89,7 @@ const StyledDrawer = styled(BaseDrawer)`
 export type DrawerProps = {
   attachment: string,
   children: Node,
-  handleRequestClose: () => void,
+  handleRequestClose: (e: SyntheticMouseEvent<HTMLDivElement>) => void,
   open: boolean,
   temporary?: boolean
 };
@@ -117,8 +117,7 @@ export const Drawer = ({
 Drawer.defaultProps = {
   temporary: false,
   open: false,
-  attachment: "left",
-  handleRequestClose: () => {}
+  attachment: "left"
 };
 
 export default Drawer;

@@ -60,14 +60,15 @@ export class Portal extends Component {
 
   render() {
     if (!this.state.portalMounted) return null;
-    const PortalContainer = this.props.shift ? Shift : Overlay;
-
+    const { shift } = this.props;
+    const PortalContainer = shift ? Shift : Overlay;
     return createPortal(
       <PortalContainer
         className={this.props.className}
         direction={this.props.attachment}
         open={this.props.open}
-        onClick={this.props.onRequestClose}>
+        onClick={this.props.onRequestClose}
+      >
         {this.props.renderContents()}
       </PortalContainer>,
       this.el,

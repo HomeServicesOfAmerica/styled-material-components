@@ -10,9 +10,17 @@ class SnackbarPage extends PureComponent {
 
   handleClose = type => this.setState({ [type]: false });
 
+  openMultiLineSnackBar = (): void => {
+    this.setState({ multi: true });
+  };
+
+  openSingleSnackBar = (): void => {
+    this.setState({ single: true });
+  };
+
   render() {
     return (
-      <ThemeProvider theme={{ primary: '#03A9F4' }}>
+      <ThemeProvider>
         <div className={this.props.className}>
           <h1>Snackbar</h1>
           <ul>
@@ -27,10 +35,10 @@ class SnackbarPage extends PureComponent {
               the device is using a mobile-sized viewport
             </li>
           </ul>
-          <StyledButton primary raised onClick={() => this.setState({ single: true })}>
+          <StyledButton primary raised onClick={this.openSingleSnackBar}>
             Open a basic snackbar
           </StyledButton>
-          <StyledButton primary raised onClick={() => this.setState({ multi: true })}>
+          <StyledButton primary raised onClick={this.openMultiLineSnackBar}>
             Open a multi-line snackbar
           </StyledButton>
           <Snackbar

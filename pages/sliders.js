@@ -41,7 +41,7 @@ class SlidersPageComponent extends PureComponent {
   render() {
     const { disabled } = this.state;
     return (
-      <ThemeProvider theme={{ primary: '#03A9F4' }}>
+      <ThemeProvider>
         <div className={this.props.className}>
           <div>
             <h1>Sliders</h1>

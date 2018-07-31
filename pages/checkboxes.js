@@ -52,6 +52,17 @@ class CheckboxesPage extends PureComponent {
     });
   };
 
+  // TODO, check this VVV
+  // handleChange = ({
+  //   target: { id }
+  // }: SyntheticInputEvent<EventTarget>): void => {
+  //   this.setState(({ checked }: CheckboxesPageStateType) => ({
+  //     checked: {
+  //       ...checked,
+  //       [id]: !checked[id]
+  //     }
+  //   }));
+
   render() {
     const { checked } = this.state;
     return (
@@ -80,10 +91,8 @@ class CheckboxesPage extends PureComponent {
           </ListItem>
           <ListItem>
             <Checkbox
-              checked={checked[1]}
-              onChange={() => {
-                this.handleChange(1);
-              }}
+              checked={checked["checkbox6"]}
+              onChange={this.handleChange}
               id="checkbox6"
             />
             <label htmlFor="checkbox6">Controlled Checkbox</label>
@@ -98,12 +107,10 @@ class CheckboxesPage extends PureComponent {
           </ListItem>
           <ListItem>
             <StyledCheckbox2
-              checked={checked[2]}
-              onChange={() => {
-                this.handleChange(2);
-              }}
               id="checkbox9"
-              checkMark={Square}
+              checked={checked["checkbox9"]}
+              onChange={this.handleChange}
+              CheckMark={Square}
             />
             <label htmlFor="checkbox9">Custom Checkbox</label>
           </ListItem>

@@ -23,12 +23,12 @@ export default class dialogsPage extends Component {
     customSize: false,
   };
 
-  closeDialog = id =>
+  closeDialog = (id: string): void =>
     this.setState({
       [id]: false,
     });
 
-  openDialog = id =>
+  openDialog = (id: string): void =>
     this.setState({
       [id]: true,
     });
@@ -75,7 +75,8 @@ export default class dialogsPage extends Component {
           />
           <ExampleDialog
             open={this.state.customSize}
-            closeDialog={() => this.closeDialog('customSize')}
+            closeDialog={() => this.closeDialog("customSize")}
+            onClose={() => this.closeDialog("customSize")}
             title="Pass your own width prop"
             width={400}
           />

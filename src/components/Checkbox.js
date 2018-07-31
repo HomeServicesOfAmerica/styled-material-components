@@ -93,6 +93,14 @@ class CheckboxComponent extends PureComponent {
     // check for CheckMark or IndeterminateMark icons passed as props
     const CheckMarkComponent = checkMarkProp || CheckMark;
     const IndeterminateMarkComponent = indeterminateMarkProp || IndeterminateMark;
+    // TODO check dis VVV
+    //   indeterminateProp !== undefined
+    //     ? indeterminateProp
+    //     : this.state.indeterminate;
+    // // swap default checkmark for custom checkmarks if they exist
+    // const CheckMarkComponent = CheckMarkProp || CheckMark;
+    // const IndeterminateMarkComponent =
+    //   indeterminateMarkProp || IndeterminateMark;
 
     return (
       <div className={className}>

@@ -27,37 +27,29 @@ export default class PortalPage extends Component<
   };
 
   toggleTemporaryLeft = (): void => {
-    this.setState(
-      (prevState: PortalPageStateType): PortalPageStateType => ({
-        temporaryLeft: !prevState.temporaryLeft
-      })
-    );
+    this.setState(({ temporaryLeft }: PortalPageStateType) => ({
+      temporaryLeft: !temporaryLeft
+    }));
   };
 
   toggleTemporaryRight = (): void => {
-    this.setState(
-      (prevState: PortalPageStateType): PortalPageStateType => ({
-        temporaryRight: !prevState.temporaryRight
-      })
-    );
+    this.setState(({ temporaryRight }: PortalPageStateType) => ({
+      temporaryRight: !temporaryRight
+    }));
   };
 
   togglePersistentLeft = (): void => {
-    this.setState(
-      (prevState: PortalPageStateType): PortalPageStateType => ({
-        persistentLeft: !prevState.persistentLeft,
-        persistentRight: false
-      })
-    );
+    this.setState(({ persistentLeft }: PortalPageStateType) => ({
+      persistentLeft: !persistentLeft,
+      persistentRight: false
+    }));
   };
 
   togglePersistentRight = (): void => {
-    this.setState(
-      (prevState: PortalPageStateType): PortalPageStateType => ({
-        persistentRight: !prevState.persistentRight,
-        persistentLeft: false
-      })
-    );
+    this.setState(({ persistentRight }: PortalPageStateType) => ({
+      persistentRight: !persistentRight,
+      persistentLeft: false
+    }));
   };
 
   render() {

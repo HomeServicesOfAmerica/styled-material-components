@@ -47,8 +47,8 @@ const StyledCheckbox2 = Checkbox.extend`
 type CheckboxesPagePropsType = {||};
 type CheckboxesPageStateType = {|
   checked: {
-    1: boolean,
-    2: boolean
+    checkbox6: boolean,
+    checkbox9: boolean
   }
 |};
 
@@ -58,25 +58,20 @@ class CheckboxesPage extends PureComponent<
 > {
   state = {
     checked: {
-      1: true,
-      2: false
+      checkbox6: false,
+      checkbox9: false
     }
   };
 
-  handleChange = (n: number): void => {
-    this.setState(({ checked }) => ({
+  handleChange = ({
+    target: { id }
+  }: SyntheticInputEvent<EventTarget>): void => {
+    this.setState(({ checked }: CheckboxesPageStateType) => ({
       checked: {
         ...checked,
-        [n]: !checked[n]
+        [id]: !checked[id]
       }
     }));
-    // const checked = !this.state.checked[n];
-    // this.setState({
-    //   checked: {
-    //     ...this.state.checked,
-    //     [n]: checked
-    //   }
-    // });
   };
 
   render() {
@@ -107,10 +102,8 @@ class CheckboxesPage extends PureComponent<
           </ListItem>
           <ListItem>
             <Checkbox
-              checked={checked[1]}
-              onChange={() => {
-                this.handleChange(1);
-              }}
+              checked={checked["checkbox6"]}
+              onChange={this.handleChange}
               id="checkbox6"
             />
             <label htmlFor="checkbox6">Controlled Checkbox</label>
@@ -125,12 +118,10 @@ class CheckboxesPage extends PureComponent<
           </ListItem>
           <ListItem>
             <StyledCheckbox2
-              checked={checked[2]}
-              onChange={() => {
-                this.handleChange(2);
-              }}
               id="checkbox9"
-              checkMark={Square}
+              checked={checked["checkbox9"]}
+              onChange={this.handleChange}
+              CheckMark={Square}
             />
             <label htmlFor="checkbox9">Custom Checkbox</label>
           </ListItem>

@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from "react";
 
+import { type DialogComponentPropsType } from "../src/components/Dialog/Dialog";
 import {
   Button,
   Dialog,
@@ -12,6 +13,7 @@ import {
 
 type ExampleDialogPropsType = {|
   closeDialog: () => void,
+  dialogProps: DialogComponentPropsType,
   title?: string
 |};
 
@@ -30,14 +32,17 @@ const ExampleDialog = ({
   </Dialog>
 );
 
-type DialogsPagePropsType = {};
-type DialogsPageStateType = {
+type DialogsPagePropsType = {||};
+
+type DialogsPageStateType = {|
+  bottom: boolean,
   customSize: boolean,
   left: boolean,
   right: boolean,
+  top: boolean,
   withTitle: boolean,
   withoutTitle: boolean
-};
+|};
 
 export default class DialogsPage extends Component<
   DialogsPagePropsType,
@@ -53,12 +58,12 @@ export default class DialogsPage extends Component<
     customSize: false
   };
 
-  closeDialog = id =>
+  closeDialog = (id: string): void =>
     this.setState({
       [id]: false
     });
 
-  openDialog = id =>
+  openDialog = (id: string): void =>
     this.setState({
       [id]: true
     });
@@ -109,6 +114,7 @@ export default class DialogsPage extends Component<
           <ExampleDialog
             open={this.state.customSize}
             closeDialog={() => this.closeDialog("customSize")}
+            onClose={() => this.closeDialog("customSize")}
             title="Pass your own width prop"
             width={400}
           />

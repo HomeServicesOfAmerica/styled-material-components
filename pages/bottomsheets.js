@@ -24,19 +24,17 @@ export default class PortalPage extends Component<
     persistent: false
   };
 
-  toggleModal = (): void =>
-    this.setState(
-      (prevState: PortalPageStateType): PortalPageStateType => ({
-        modal: !prevState.modal
-      })
-    );
+  toggleModal = (): void => {
+    this.setState(({ modal }: PortalPageStateType) => ({
+      modal: !modal
+    }));
+  };
 
-  togglePersistent = (): void =>
-    this.setState(
-      (prevState: PortalPageStateType): PortalPageStateType => ({
-        persistent: !prevState.persistent
-      })
-    );
+  togglePersistent = (): void => {
+    this.setState(({ persistent }: PortalPageStateType) => ({
+      persistent: !persistent
+    }));
+  };
 
   render() {
     return (

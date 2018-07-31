@@ -5,11 +5,11 @@ import styled from "styled-components";
 type OverlayPropsType = {|
   children: Node,
   className: string,
-  onClick: (e: SyntheticMouseEvent<div>) => void
+  onClick: (e: SyntheticMouseEvent<HTMLDivElement>) => void
 |};
 
 // This prevents clicks on the contents of the portal from dismissing the portal
-const stopPropagation = (e: SyntheticMouseEvent<div>): void =>
+const stopPropagation = (e: SyntheticMouseEvent<HTMLDivElement>): void =>
   e.stopPropagation();
 
 export const BaseOverlay = (props: OverlayPropsType) => (

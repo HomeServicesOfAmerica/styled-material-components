@@ -5,6 +5,7 @@ type ShiftPropsType = {|
   children: Node,
   className: string,
   direction: string,
+  onClick: (e: SyntheticMouseEvent<HTMLDivElement>) => void,
   open?: boolean // TODO which ones?
 |};
 

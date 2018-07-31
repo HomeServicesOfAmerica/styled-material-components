@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from "react";
-
+import { type DialogComponentPropsType } from '../src/components/Dialog/Dialog' 
 import {
   Button,
   Dialog,
@@ -11,15 +11,12 @@ import {
 } from "../src";
 
 type ExampleDialogPropsType = {|
+  title?: string,
   closeDialog: () => void,
-  title?: string
-|};
+  dialogProps: DialogComponentPropsType
+|}
 
-const ExampleDialog = ({
-  title,
-  closeDialog,
-  ...dialogProps
-}): ExampleDialogPropsType => (
+const ExampleDialog = ({ title, closeDialog, ...dialogProps}): ExampleDialogPropsType  => (
   <Dialog {...dialogProps}>
     {Boolean(title) && <DialogTitle>{title}</DialogTitle>}
     <DialogBody>Dialog body goes here</DialogBody>
@@ -30,14 +27,17 @@ const ExampleDialog = ({
   </Dialog>
 );
 
-type DialogsPagePropsType = {};
-type DialogsPageStateType = {
+type DialogsPagePropsType = {||};
+
+type DialogsPageStateType = {|
   customSize: boolean,
   left: boolean,
   right: boolean,
+  top: boolean,
+  bottom: boolean,
   withTitle: boolean,
   withoutTitle: boolean
-};
+|};
 
 export default class DialogsPage extends Component<
   DialogsPagePropsType,
@@ -53,12 +53,12 @@ export default class DialogsPage extends Component<
     customSize: false
   };
 
-  closeDialog = id =>
+  closeDialog = (id: string) =>
     this.setState({
       [id]: false
     });
 
-  openDialog = id =>
+  openDialog = (id: string) =>
     this.setState({
       [id]: true
     });

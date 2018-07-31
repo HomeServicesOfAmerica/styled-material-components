@@ -47,8 +47,8 @@ const StyledCheckbox2 = Checkbox.extend`
 type CheckboxesPagePropsType = {||};
 type CheckboxesPageStateType = {|
   checked: {
-    1: boolean,
-    2: boolean
+    '1': boolean,
+    '2': boolean
   }
 |};
 
@@ -58,8 +58,8 @@ class CheckboxesPage extends PureComponent<
 > {
   state = {
     checked: {
-      1: true,
-      2: false
+      '1': true,
+      '2': false
     }
   };
 

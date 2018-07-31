@@ -1,6 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
-
+import { type ProvidedThemeType } from "../src/theme/types";
 import MaterialThemeProvider from "../src/theme/ThemeProvider";
 import {
   Chip,
@@ -33,7 +33,8 @@ const CustomChip = Chip.extend`
 `;
 
 type ChipsPagePropsType = {|
-  className: string
+  className: string,
+  theme: ProvidedThemeType
 |};
 
 type ChipsPageStateType = {|
@@ -50,11 +51,11 @@ class ChipsPage extends PureComponent<ChipsPagePropsType, ChipsPageStateType> {
   };
 
   render() {
-    const { className } = this.props;
+    const { className, theme } = this.props;
     const { removed } = this.state;
 
     return (
-      <MaterialThemeProvider>
+      <MaterialThemeProvider theme={theme}>
         <div className={className}>
           <h1>Chips</h1>
           <Chip primary label="Normal Chip" />

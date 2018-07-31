@@ -27,6 +27,7 @@ export default class PortalPage extends Component<
   toggleModal = (): void =>
     this.setState(
       (prevState: PortalPageStateType): PortalPageStateType => ({
+        ...prevState,
         modal: !prevState.modal
       })
     );
@@ -34,6 +35,7 @@ export default class PortalPage extends Component<
   togglePersistent = (): void =>
     this.setState(
       (prevState: PortalPageStateType): PortalPageStateType => ({
+        ...prevState,
         persistent: !prevState.persistent
       })
     );

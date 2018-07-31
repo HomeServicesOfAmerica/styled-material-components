@@ -1,6 +1,6 @@
 // @flow
-/* eslint-disable react/react-in-jsx-scope */
 import styled from "styled-components";
+import React from "react";
 
 import { ThemeProvider, Tooltip } from "../src";
 

@@ -5,16 +5,6 @@ import styled from "styled-components";
 
 import { ThemeProvider, Button, MenuItem, Menu, Switch } from "../src";
 
-type MenusPageStateType = {|
-  anchorEl: ?Node,
-  attachBottom: boolean,
-  buttonPosition: "center" | "left" | "right",
-  open: boolean,
-  openLeft: boolean,
-  openUp: boolean,
-  value: string
-|};
-
 const Controls = styled.div`
   width: 100%;
   ul {
@@ -35,11 +25,23 @@ const PositionedButton = styled(Button)`
   ${({ buttonPosition }) => {
     if (buttonPosition === "center") return "margin-left: calc(50% - 54px)";
     else if (buttonPosition === "left") return "float: left";
-    return "float:right";
+    return "float: right";
   }};
 `;
 
-class MenusPage extends Component {
+type MenusPagePropsType = {||}
+
+type MenusPageStateType = {|
+  anchorEl: ?Node,
+  attachBottom: boolean,
+  buttonPosition: string,
+  open: boolean,
+  openLeft: boolean,
+  openUp: boolean,
+  value: string,
+  noFit: boolean,
+|};
+class MenusPage extends Component<MenusPagePropsType, MenusPageStateType> {
   state = {
     open: false,
     value: "",
@@ -47,26 +49,26 @@ class MenusPage extends Component {
     buttonPosition: "left",
     attachBottom: false,
     openUp: false,
-    openLeft: false
+    openLeft: false,
+    noFit: false
   };
 
   handleClick = (event: Object): void => {
     this.setState(
-      ({ open }: MenusPageStateType): MenusPageStateType => ({
-        open: !open,
+      (prevState: MenusPageStateType): MenusPageStateType => ({
+        ...prevState,
+        open: !prevState.open,
         anchorEl: event.currentTarget
       })
     );
-    // this.setState({ open: !this.state.open, anchorEl: event.currentTarget });
   };
 
-  handleSelect = (selectedItem: string): void => {
-    // const item = selectedItem;
-    // this.setState({ open: false, value: item || this.state.value });
+  handleSelect = (selectedItem?: string): void => {
     this.setState(
-      ({ value }: MenusPageStateType): MenusPageStateType => ({
+      (prevState: MenusPageStateType): MenusPageStateType => ({
+        ...prevState,
         open: false,
-        value: selectedItem || value
+        value: selectedItem || prevState.value
       })
     );
   };
@@ -74,9 +76,15 @@ class MenusPage extends Component {
   handleClose = (): void => {
     this.setState({ open: false });
   };
-  handleButtonMove = e => {
-    this.setState({ buttonPosition: e.target.name });
+
+  handleButtonMove = ({ target }: SyntheticInputEvent<EventTarget>): void => {
+    this.setState({ buttonPosition: target.name });
   };
+
+  toggleNoFitMenu = (): void => {
+    this.setState(prevState => ({ noFit: !prevState.noFit }));
+  }
+
   render() {
     const { anchorEl } = this.state;
 
@@ -176,7 +184,7 @@ class MenusPage extends Component {
                 <label htmlFor="noFit">Toggle menu noFit</label>
                 <Switch
                   id="noFit"
-                  onChange={() => this.setState(ps => ({ noFit: !ps.noFit }))}
+                  onChange={this.toggleNoFitMenu}
                 />
               </li>
             </ul>

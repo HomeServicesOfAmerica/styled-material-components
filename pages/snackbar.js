@@ -9,7 +9,7 @@ type SnackbarPagePropsType = {|
 |};
 
 type SnackbarPageStateType = {|
-  multi: false,
+  multi: boolean,
   single: boolean
 |};
 
@@ -25,6 +25,14 @@ class SnackbarPage extends PureComponent<
   handleClose = (type: "single" | "multi"): void => {
     this.setState({ [type]: false });
   };
+
+  openMultiLineSnackBar = () :void => {
+    this.setState(prevState => ({ multi: true }));
+  }
+
+  openSingleSnackBar = () :void => {
+    this.setState(prevState => ({ single: true }));
+  }
 
   render() {
     return (
@@ -50,14 +58,14 @@ class SnackbarPage extends PureComponent<
           <StyledButton
             primary
             raised
-            onClick={() => this.setState({ single: true })}
+            onClick={this.openSingleSnackBar}
           >
             Open a basic snackbar
           </StyledButton>
           <StyledButton
             primary
             raised
-            onClick={() => this.setState({ multi: true })}
+            onClick={this.openMultiLineSnackBar}
           >
             Open a multi-line snackbar
           </StyledButton>

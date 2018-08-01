@@ -78,20 +78,31 @@ const StyledTable = Table.extend`
 `;
 
 type ControlledTablePropsType = {|
-  dontSort?: ?boolean
+  dontSort?: ?boolean,
 |};
 
-type ControlledTableStateType = {||};
+type DataType = {|
+  key: string,
+  date: string,
+  event: string,
+  price: string, 
+|};
 
-const incrementCurrentPage = ({
-  currentPage
-}: ControlledTableStateType): ControlledTableStateType => ({
-  currentPage: currentPage + 1
+type ControlledTableStateType = {|
+  currentPage: number,
+  descending: boolean,
+  mutatedData: Array<DataType>,
+  sortedBy: string,
+|};
+
+const incrementCurrentPage = (prevState: ControlledTableStateType): ControlledTableStateType => ({
+  ...prevState,
+  currentPage: prevState.currentPage + 1
 });
-const decrementCurrentPage = ({
-  currentPage
-}: ControlledTableStateType): ControlledTableStateType => ({
-  currentPage: currentPage - 1
+
+const decrementCurrentPage = (prevState: ControlledTableStateType): ControlledTableStateType => ({
+  ...prevState,
+  currentPage: prevState.currentPage - 1
 });
 
 class ControlledTable extends PureComponent<
@@ -106,29 +117,11 @@ class ControlledTable extends PureComponent<
   };
 
   handleSort = (key): void => {
-    // let descending = this.state.descending;
-    // const mutatedData = [...this.state.mutatedData];
-    // if (key === this.state.sortedBy) {
-    //   if (this.state.descending) {
-    //     descending = false;
-    //   } else {
-    //     descending = true;
-    //   }
-    // } else {
-    //   descending = true;
-    // }
-    // const sorter = naturalSort({ desc: descending });
-    // mutatedData.sort((a, b) => sorter(a[key], b[key]));
-    // this.setState({ descending, mutatedData, sortedBy: key });
     this.setState(
-      ({
-        descending,
-        mutatedData,
-        sortedBy
-      }: ControlledTableStateType): ControlledTableStateType => {
-        let nextDescending = descending;
-        if (key === sortedBy) {
-          if (descending) {
+      (prevState: ControlledTableStateType): ControlledTableStateType => {
+        let nextDescending = prevState.descending;
+        if (key === prevState.sortedBy) {
+          if (prevState.descending) {
             nextDescending = false;
           } else {
             nextDescending = true;
@@ -138,9 +131,10 @@ class ControlledTable extends PureComponent<
         }
         const sorter = naturalSort({ desc: nextDescending });
         return {
+          ...prevState,
           descending: nextDescending,
           mutatedData: []
-            .concat(mutatedData)
+            .concat(prevState.mutatedData)
             .sort((a, b) => sorter(a[key], b[key])),
           sortedBy: key
         };

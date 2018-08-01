@@ -19,7 +19,16 @@ const TextFieldWithStyledPrefixAndSuffix = TextFieldWithBottomMargin.extend`
   }
 `;
 
-class TextFieldPage extends PureComponent {
+type TextFieldPropsType = {|
+  className: string,
+|};
+
+type TextFieldPageStateType = {|
+  controlledInputValue: string,
+  shouldReset: boolean,
+|};
+
+class TextFieldPage extends PureComponent<TextFieldPropsType, TextFieldPageStateType> {
   state = {
     controlledInputValue: "",
     shouldReset: false

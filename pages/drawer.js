@@ -29,6 +29,7 @@ export default class PortalPage extends Component<
   toggleTemporaryLeft = (): void => {
     this.setState(
       (prevState: PortalPageStateType): PortalPageStateType => ({
+        ...prevState,
         temporaryLeft: !prevState.temporaryLeft
       })
     );
@@ -37,6 +38,7 @@ export default class PortalPage extends Component<
   toggleTemporaryRight = (): void => {
     this.setState(
       (prevState: PortalPageStateType): PortalPageStateType => ({
+        ...prevState,
         temporaryRight: !prevState.temporaryRight
       })
     );
@@ -45,6 +47,7 @@ export default class PortalPage extends Component<
   togglePersistentLeft = (): void => {
     this.setState(
       (prevState: PortalPageStateType): PortalPageStateType => ({
+        ...prevState,
         persistentLeft: !prevState.persistentLeft,
         persistentRight: false
       })
@@ -54,6 +57,7 @@ export default class PortalPage extends Component<
   togglePersistentRight = (): void => {
     this.setState(
       (prevState: PortalPageStateType): PortalPageStateType => ({
+        ...prevState,
         persistentRight: !prevState.persistentRight,
         persistentLeft: false
       })

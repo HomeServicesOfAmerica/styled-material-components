@@ -105,6 +105,7 @@ export class Tooltip extends React.Component<
   };
 
   componentDidMount() {
+    console.log('This is a TEST DONT PANIC');
     window.addEventListener("scroll", this.getTooltipLinkPosition);
     window.addEventListener("resize", this.getTooltipLinkPosition);
     window.addEventListener("resize", this.calculatePortalContents);

@@ -1,18 +1,18 @@
 // @flow
-import React, { Component, type Node } from "react";
+import React, { Component, type Node } from 'react';
 
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import { ThemeProvider, Button, MenuItem, Menu, Switch } from "../src";
+import { ThemeProvider, Button, MenuItem, Menu, Switch } from '../src';
 
 type MenusPageStateType = {|
   anchorEl: ?Node,
   attachBottom: boolean,
-  buttonPosition: "center" | "left" | "right",
+  buttonPosition: 'center' | 'left' | 'right',
   open: boolean,
   openLeft: boolean,
   openUp: boolean,
-  value: string
+  value: string,
 |};
 
 const Controls = styled.div`
@@ -33,31 +33,38 @@ const PageWithBottomPadding = styled.div`
 const PositionedButton = styled(Button)`
   margin: 0 20px;
   ${({ buttonPosition }) => {
-    if (buttonPosition === "center") return "margin-left: calc(50% - 54px)";
-    else if (buttonPosition === "left") return "float: left";
-    return "float:right";
+    if (buttonPosition === 'center') return 'margin-left: calc(50% - 54px)';
+    else if (buttonPosition === 'left') return 'float: left';
+    return 'float:right';
   }};
 `;
 
 class MenusPage extends Component {
   state = {
     open: false,
-    value: "",
+    value: '',
     anchorEl: null,
-    buttonPosition: "left",
+    buttonPosition: 'left',
     attachBottom: false,
     openUp: false,
-    openLeft: false
+    openLeft: false,
   };
 
   handleClick = (event: Object): void => {
+    // Have to add persist to event, and extract what we want
+    // to pass it to setState that uses a function instead of
+    // an object
+    event.persist();
+    const currentTarget = event.currentTarget;
+
     this.setState(
-      ({ open }: MenusPageStateType): MenusPageStateType => ({
-        open: !open,
-        anchorEl: event.currentTarget
-      })
+      ({ open }: MenusPageStateType): MenusPageStateType => {
+        return {
+          open: !open,
+          anchorEl: currentTarget,
+        };
+      },
     );
-    // this.setState({ open: !this.state.open, anchorEl: event.currentTarget });
   };
 
   handleSelect = (selectedItem: string): void => {
@@ -66,8 +73,8 @@ class MenusPage extends Component {
     this.setState(
       ({ value }: MenusPageStateType): MenusPageStateType => ({
         open: false,
-        value: selectedItem || value
-      })
+        value: selectedItem || value,
+      }),
     );
   };
 
@@ -81,33 +88,33 @@ class MenusPage extends Component {
     const { anchorEl } = this.state;
 
     const menuItems = [
-      { text: "Un", onClick: () => this.handleSelect() },
-      { text: "Deux", onClick: () => this.handleSelect() },
-      { text: "Trois", onClick: () => this.handleSelect() },
-      { text: "Quatre", onClick: () => this.handleSelect() }
+      { text: 'Un', onClick: () => this.handleSelect() },
+      { text: 'Deux', onClick: () => this.handleSelect() },
+      { text: 'Trois', onClick: () => this.handleSelect() },
+      { text: 'Quatre', onClick: () => this.handleSelect() },
     ];
 
     return (
-      <ThemeProvider theme={{ primary: "#03A9F4" }}>
+      <ThemeProvider theme={{ primary: '#03A9F4' }}>
         <PageWithBottomPadding>
           <h1>Menus</h1>
           <h2>Standalone Menu</h2>
           <p>
             Menus can accept MenuSelect and MenuOption SMC components as
-            children, or can accept an array of objects as seen here -{" "}
+            children, or can accept an array of objects as seen here -{' '}
           </p>
           <StandAloneMenu open menuItems={menuItems} />
           <h2>Button Menu</h2>
           <p>
             This component is accessible (navigable by clicks or keyboard
-            events) and has an ARIA role defined as menu for screenreaders{" "}
+            events) and has an ARIA role defined as menu for screenreaders{' '}
           </p>
           <p>
             Each Option can receive a handleSelect prop that accepts a callback
           </p>
           <p>
             {
-              "Use the switches below to toggle props that control where the menu attaches to the button, and to which direction the menu opens"
+              'Use the switches below to toggle props that control where the menu attaches to the button, and to which direction the menu opens'
             }
           </p>
           <p>
@@ -122,7 +129,7 @@ class MenusPage extends Component {
                 <input
                   name="right"
                   id="floatRight"
-                  checked={this.state.buttonPosition === "right"}
+                  checked={this.state.buttonPosition === 'right'}
                   onChange={this.handleButtonMove}
                   type="radio"
                 />
@@ -132,7 +139,7 @@ class MenusPage extends Component {
                 <input
                   name="left"
                   id="floatLeft"
-                  checked={this.state.buttonPosition === "left"}
+                  checked={this.state.buttonPosition === 'left'}
                   onChange={this.handleButtonMove}
                   type="radio"
                 />
@@ -142,7 +149,7 @@ class MenusPage extends Component {
                 <input
                   name="center"
                   id="center"
-                  checked={this.state.buttonPosition === "center"}
+                  checked={this.state.buttonPosition === 'center'}
                   onChange={this.handleButtonMove}
                   type="radio"
                 />
@@ -186,7 +193,7 @@ class MenusPage extends Component {
             raised
             onClick={this.handleClick}
           >
-            {this.state.value || "open"}
+            {this.state.value || 'open'}
           </PositionedButton>
           <Menu
             openUp={this.state.openUp}
@@ -198,11 +205,11 @@ class MenusPage extends Component {
             value={this.state.value}
             onClose={() => this.handleClose()}
           >
-            <MenuItem onClick={() => this.handleSelect("Ron")}>Ron</MenuItem>
-            <MenuItem onClick={() => this.handleSelect("Harry")}>
+            <MenuItem onClick={() => this.handleSelect('Ron')}>Ron</MenuItem>
+            <MenuItem onClick={() => this.handleSelect('Harry')}>
               Harry
             </MenuItem>
-            <MenuItem onClick={() => this.handleSelect("Hermione")}>
+            <MenuItem onClick={() => this.handleSelect('Hermione')}>
               Hermione
             </MenuItem>
           </Menu>

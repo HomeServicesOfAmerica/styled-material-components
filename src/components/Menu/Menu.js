@@ -1,26 +1,26 @@
-import React, { Component } from "react";
-import styled from "styled-components";
+import React, { Component } from 'react';
+import styled from 'styled-components';
 
-import elevation from "../../mixins/elevation";
-import MenuList from "./MenuList";
-import MenuItem from "./MenuItem";
-import { isDescendant } from "../../helpers";
+import elevation from '../../mixins/elevation';
+import MenuList from './MenuList';
+import MenuItem from './MenuItem';
+import { isDescendant } from '../../helpers';
 
 class MenuComponent extends Component {
   state = {
-    renderReady: false
+    renderReady: false,
   };
 
   componentDidMount() {
-    document.addEventListener("mousedown", this.handleOutsideClick);
-    document.addEventListener("touchstart", this.handleOutsideClick);
-    window.addEventListener("resize", this.recalculatePosition);
+    document.addEventListener('mousedown', this.handleOutsideClick);
+    document.addEventListener('touchstart', this.handleOutsideClick);
+    window.addEventListener('resize', this.recalculatePosition);
   }
 
   componentWillUnmount() {
-    document.removeEventListener("mousedown", this.handleOutsideClick);
-    document.removeEventListener("touchstart", this.handleOutsideClick);
-    window.removeEventListener("resize", this.recalculatePosition);
+    document.removeEventListener('mousedown', this.handleOutsideClick);
+    document.removeEventListener('touchstart', this.handleOutsideClick);
+    window.removeEventListener('resize', this.recalculatePosition);
   }
 
   handleOutsideClick = event => {
@@ -35,29 +35,27 @@ class MenuComponent extends Component {
 
   recalculatePosition = () => {
     const {
-      props: { anchorEl },
-      menu
+      props: { anchorEl, attachBottom, openUp, openLeft, noFit },
+      menu,
     } = this;
-    const {
-      props: { attachBottom, openUp, openLeft, noFit }
-    } = this;
+
     if (!anchorEl || !menu) return;
     // menu is the ref for the menu element
     const {
       height: menuHeight,
-      width: menuWidth
+      width: menuWidth,
     } = menu.getBoundingClientRect();
     // anchorEl is the anchor element
     const {
       x: anchorX,
       y: anchorY,
       height: anchorHeight,
-      width: anchorWidth
+      width: anchorWidth,
     } = anchorEl.getBoundingClientRect();
     // offsetParent is the nearest absolute/fixed position ancestor
     const {
       x: offsetX,
-      y: offsetY
+      y: offsetY,
     } = anchorEl.offsetParent.getBoundingClientRect();
     // to adjust attachment, move down or to the right by the height / width of the anchor
     const bottomAttachmentAdjustment = attachBottom ? anchorHeight : 0;
@@ -90,9 +88,10 @@ class MenuComponent extends Component {
     const { className, children, menuItems, open, onClose } = this.props;
     const renderMenuItems = open && menuItems && menuItems.length > 0;
     const renderChildren = open && !menuItems;
+
     return (
       <div
-        style={{ display: this.state.renderReady ? "block" : "none" }}
+        style={{ display: this.state.renderReady ? 'block' : 'none' }}
         className={`${className} smc-Menu`}
         ref={ref => {
           this.menu = ref;

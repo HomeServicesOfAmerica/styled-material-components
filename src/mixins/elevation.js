@@ -100,6 +100,7 @@ export const elevationTransition = css`
 const addDepth = (type, z) => css`
   ${props => `${depth[type][z]} ${props.theme.elevation.colors[type]}`}
 `;
+/* eslint-enable */
 
 const elevationMixin = z => css`
   ${props => props.theme.elevation.property}: ${addDepth('umbra', z)},

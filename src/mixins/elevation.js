@@ -98,24 +98,12 @@ export const elevationTransition = css`
     cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
-// helper to generate box shadow setting
-const addDepth = (
-  type: "ambient" | "penumbra" | "umbra",
-  z: number
-): string => css`
-  ${props => {
-    const lastValidDepth = depth[type].length - 1;
-    let effectiveZ = z;
-    if (lastValidDepth < z) {
-      // eslint-disable-next-line no-console
-      console.warn(
-        `${type} of depth ${z} is invalid and will resolve to the maximum value of ${lastValidDepth}`
-      );
-      effectiveZ = lastValidDepth;
-    }
-    return `${depth[type][effectiveZ]} ${props.theme.elevation.colors[type]}`;
-  }};
+// prettier wants to add a semicolon inside the css, which causes it to not work
+/* eslint-disable prettier/prettier */
+const addDepth = (type: "ambient" | "penumbra" | "umbra", z: number) => css`
+  ${props => `${depth[type][z]} ${props.theme.elevation.colors[type]}`}
 `;
+/* eslint-enable */
 
 const elevationMixin = (z: number): string => css`
   ${props => props.theme.elevation.property}: ${addDepth("umbra", z)},

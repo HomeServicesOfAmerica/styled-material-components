@@ -1,39 +1,17 @@
 {
-  "plugins": [],
-  "passPerPreset": true,
   "presets": [
-    ["env", {
-      "targets": {
-        "node": "current"
-      }
-    }]
+    "next/babel",
+    "@babel/preset-flow"
+  ],
+  "plugins": [
+    "@babel/plugin-transform-flow-strip-types",
+    ["styled-components", { "ssr": true, "displayName": true, "preprocess": false }]
   ],
   "env": {
-    "development": {
-      "presets": [
-        ["env"],
-        "next/babel",
-      ],
-      "plugins": [
-        ["babel-plugin-styled-components", { "ssr": true, "displayName": true, "preprocess": false }]
-      ]
-    },
     "test": {
       "presets": [
-        ["env"],
-        "next/babel",
-      ],
-      "plugins": [
-        ["babel-plugin-styled-components"]
+        ["next/babel", { "preset-env": { "modules": "commonjs" } }]
       ]
-    },
-    "production": {
-      "presets": [
-        "next/babel",
-      ],
-      "plugins": [
-        ["babel-plugin-styled-components", { "ssr": true, "displayName": true, "preprocess": false}]
-      ]
-    },
+    }
   }
 }

@@ -6,14 +6,14 @@
 // The goal is to create an opaque color value that closely matches
 // an rgba color value with < 1 opacity over a white background.
 
-import Color from "color";
+import Color from 'color';
 
 export const deriveLightColor = (
   color: string,
-  opacity: number = 0.5
+  opacity: number = 0.5,
 ): string => {
   // calculate based on white background
-  const BG_COLOR = Color("#fff");
+  const BG_COLOR = Color('#fff');
   const baseColor = Color(color).alpha(opacity);
   const lightColor = baseColor.color.reduce((acc, ele, i) => {
     const newValue =

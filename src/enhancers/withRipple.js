@@ -1,6 +1,6 @@
 // @flow
-import React, { Component, type ComponentType } from "react";
-import styled, { keyframes } from "styled-components";
+import React, { Component, type ComponentType } from 'react';
+import styled, { keyframes } from 'styled-components';
 
 const rippleAnimation = keyframes`
   to {
@@ -44,12 +44,12 @@ const withRipple = (ComposedComponent: ComponentType<*>): ComponentType<*> => {
       const size = ripple.offsetWidth;
       // $FlowFixMe
       const pos = ripple.getBoundingClientRect();
-      const rippler = document.createElement("span");
+      const rippler = document.createElement('span');
       const x = event.pageX - pos.left - size / 2;
       const y = event.pageY - pos.top - size / 2;
       const style = `top: ${y}px; left: ${x}px; height: ${size}px; width: ${size}px;`;
       if (this.rippleContainer) this.rippleContainer.appendChild(rippler);
-      rippler.setAttribute("style", style);
+      rippler.setAttribute('style', style);
     };
 
     /**

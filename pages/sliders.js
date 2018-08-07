@@ -1,9 +1,9 @@
 // @flow
 /* eslint-disable react/react-in-jsx-scope */
-import React, { PureComponent } from "react";
-import styled from "styled-components";
+import React, { PureComponent } from 'react';
+import styled from 'styled-components';
 
-import { ThemeProvider, Slider, Button } from "../src";
+import { ThemeProvider, Slider, Button } from '../src';
 
 type ControlledSliderPropsType = {|
   continuous?: boolean,
@@ -11,20 +11,20 @@ type ControlledSliderPropsType = {|
   initialValue: number,
   max?: number,
   min?: number,
-  step?: number
+  step?: number,
 |};
 
 type ControlledSliderStateType = {|
-  value: number
+  value: number,
 |};
 
 /* eslint-disable react/no-multi-comp */
 class ControlledSlider extends PureComponent<
   ControlledSliderPropsType,
-  ControlledSliderStateType
+  ControlledSliderStateType,
 > {
   state = {
-    value: this.props.initialValue
+    value: this.props.initialValue,
   };
 
   handleValueChange = (value: number): void => this.setState({ value });
@@ -50,25 +50,25 @@ class ControlledSlider extends PureComponent<
 // `;
 
 type SlidersPageBasePropsType = {|
-  className: string
+  className: string,
 |};
 type SlidersPageBaseStateType = {|
-  disabled: boolean
+  disabled: boolean,
 |};
 
 class SlidersPageBase extends PureComponent<
   SlidersPageBasePropsType,
-  SlidersPageBaseStateType
+  SlidersPageBaseStateType,
 > {
   state = {
-    disabled: false
+    disabled: false,
   };
 
   toggleDisabled = (): void => {
     this.setState(
       ({ disabled }: SlidersPageBaseStateType): SlidersPageBaseStateType => ({
-        disabled: !disabled
-      })
+        disabled: !disabled,
+      }),
     );
   };
 
@@ -85,7 +85,7 @@ class SlidersPageBase extends PureComponent<
                 <h3>Continuous</h3>
                 <div
                   className={this.props.className}
-                  style={{ width: "250px" }}
+                  style={{ width: '250px' }}
                 >
                   <Slider continuous disabled={disabled} />
                 </div>
@@ -94,7 +94,7 @@ class SlidersPageBase extends PureComponent<
                 <h3>Discrete</h3>
                 <div
                   className={this.props.className}
-                  style={{ width: "250px" }}
+                  style={{ width: '250px' }}
                 >
                   <Slider
                     min={0}
@@ -112,7 +112,7 @@ class SlidersPageBase extends PureComponent<
                 <h3>Continuous</h3>
                 <div
                   className={this.props.className}
-                  style={{ width: "250px", marginLeft: 400 }}
+                  style={{ width: '250px', marginLeft: 400 }}
                 >
                   <ControlledSlider
                     min={-40}
@@ -126,7 +126,7 @@ class SlidersPageBase extends PureComponent<
               </div>
               <div>
                 <h3>Discrete</h3>
-                <div className={this.props.className} style={{ width: "75%" }}>
+                <div className={this.props.className} style={{ width: '75%' }}>
                   <ControlledSlider
                     min={-40}
                     max={40}
@@ -141,7 +141,7 @@ class SlidersPageBase extends PureComponent<
           <div>
             <h1>Options</h1>
             <Button onClick={this.toggleDisabled}>
-              {`Click me to ${disabled ? "enable" : "disable"} sliders`}
+              {`Click me to ${disabled ? 'enable' : 'disable'} sliders`}
             </Button>
           </div>
         </div>

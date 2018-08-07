@@ -1,11 +1,11 @@
 // @flow
-import React, { type Node } from "react";
-import { ThemeProvider, injectGlobal } from "styled-components";
-import merge from "lodash.merge";
+import React, { type Node } from 'react';
+import { ThemeProvider, injectGlobal } from 'styled-components';
+import merge from 'lodash.merge';
 
-import { ScreenSizeContext } from "../contexts/ScreenSizeContext";
-import { defaultTheme } from "./defaultTheme";
-import { type ProvidedThemeType } from "./types";
+import { ScreenSizeContext } from '../contexts/ScreenSizeContext';
+import { defaultTheme } from './defaultTheme';
+import { type ProvidedThemeType } from './types';
 
 /* eslint-disable no-unused-expressions */
 /* eslint-disable flowtype/no-unused-expressions */
@@ -24,12 +24,12 @@ injectGlobal`
 
 type MaterialThemeProviderPropsType = {
   children: Node,
-  theme: ProvidedThemeType
+  theme: ProvidedThemeType,
 };
 
 const MaterialThemeProvider = ({
   children,
-  theme = {}
+  theme = {},
 }: MaterialThemeProviderPropsType) => (
   <ThemeProvider theme={merge(defaultTheme, theme)}>
     <ScreenSizeContext>{children}</ScreenSizeContext>

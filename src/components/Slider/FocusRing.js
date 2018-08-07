@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const FocusRingComponent = props => (
   <div className={`${props.className} smc-slider-focus-ring`}>
@@ -13,8 +13,8 @@ const getFocusSize = props =>
 const getFocusColor = ({
   atMin,
   theme: {
-    slider: { colors }
-  }
+    slider: { colors },
+  },
 }) => (atMin ? colors.track : colors.focusHalo);
 
 const FocusRing = styled(FocusRingComponent)`

@@ -15,7 +15,7 @@ export type MaterialSliderColorThemeOverridesType = {
   mainOpacity?: string,
   pageColor?: string,
   trackColor?: string,
-  trackOpacity?: string
+  trackOpacity?: string,
 };
 
 export type MaterialSliderColorThemeType = {|
@@ -25,17 +25,17 @@ export type MaterialSliderColorThemeType = {|
   main: string,
   mainAtZero: string,
   pageColor: string,
-  track: string
+  track: string,
 |};
 
 export type MaterialSliderTransitionsThemeOverridesType = {
   main?: string,
-  slider?: string
+  slider?: string,
 };
 
 export type MaterialSliderTransitionsThemeType = {|
   main: string,
-  slider: string
+  slider: string,
 |};
 
 export type MaterialSliderSizesThemeOverridesType = {
@@ -46,7 +46,7 @@ export type MaterialSliderSizesThemeOverridesType = {
   thumbClicked?: number,
   thumbDisabled?: number,
   thumbDisabledBorder?: number,
-  trackHeight?: number
+  trackHeight?: number,
 };
 
 export type MaterialSliderSizesThemeType = {|
@@ -57,19 +57,19 @@ export type MaterialSliderSizesThemeType = {|
   thumbClicked: number,
   thumbDisabled: number,
   thumbDisabledBorder: number,
-  trackHeight: number
+  trackHeight: number,
 |};
 
 export type MaterialSliderThemeOverridesType = {
   colors?: MaterialSliderColorThemeOverridesType,
   sizes?: MaterialSliderSizesThemeOverridesType,
-  transitions?: MaterialSliderTransitionsThemeOverridesType
+  transitions?: MaterialSliderTransitionsThemeOverridesType,
 };
 
 export type MaterialSliderThemeType = {|
   colors: MaterialSliderColorThemeType,
   sizes: MaterialSliderSizesThemeType,
-  transitions: MaterialSliderTransitionsThemeType
+  transitions: MaterialSliderTransitionsThemeType,
 |};
 
 /*
@@ -84,24 +84,24 @@ export type StyledMaterialComponentsThemeType = {|
     colors: {
       ambient: string,
       penumbra: string,
-      umbra: string
+      umbra: string,
     },
     property: string,
     transition: {
       duration: string,
-      effect: string
-    }
+      effect: string,
+    },
   },
   inputColorOverrides: {
-    textField: ?string
+    textField: ?string,
   },
   layout: {
     baseGridSize: number,
     gutterSize: string,
     screenSizePriority: Array<string>,
     screenSizes: {
-      [breakpoint: string]: string
-    }
+      [breakpoint: string]: string,
+    },
   },
   primary: string,
   slider: MaterialSliderThemeType,
@@ -110,15 +110,15 @@ export type StyledMaterialComponentsThemeType = {|
     hint: string,
     icon: string,
     primary: string,
-    secondary: string
+    secondary: string,
   },
   toolbar: {
     horizontalPaddingDesktop: string,
     horizontalPaddingMobile: string,
     iconPadding: string,
-    iconSize: string
+    iconSize: string,
   },
-  white: string
+  white: string,
 |};
 
 export type ProvidedThemeType = {|
@@ -128,24 +128,24 @@ export type ProvidedThemeType = {|
     colors?: {
       ambient?: string,
       penumbra?: string,
-      umbra?: string
+      umbra?: string,
     },
     property?: string,
     transition?: {
       duration?: string,
-      effect?: string
-    }
+      effect?: string,
+    },
   },
   inputColorOverrides?: {
-    textField?: ?string
+    textField?: ?string,
   },
   layout?: {
     baseGridSize?: number,
     gutterSize?: string,
     screenSizePriority?: Array<string>,
     screenSizes?: {
-      [breakpoint: string]: string
-    }
+      [breakpoint: string]: string,
+    },
   },
   primary?: string,
   slider?: MaterialSliderThemeOverridesType,
@@ -154,23 +154,23 @@ export type ProvidedThemeType = {|
     hint?: string,
     icon?: string,
     primary?: string,
-    secondary?: string
+    secondary?: string,
   },
   toolbar?: {
     horizontalPaddingDesktop?: string,
     horizontalPaddingMobile?: string,
     iconPadding?: string,
-    iconSize?: string
+    iconSize?: string,
   },
-  white?: string
+  white?: string,
 |};
 
 export type StyledComponentPropsType = {|
-  className: string
+  className: string,
 |};
 
 export type StyledComponentsContextPropsType = {|
-  theme: StyledMaterialComponentsThemeType
+  theme: StyledMaterialComponentsThemeType,
 |};
 
-export type ScreenSizeType = "xl" | "lg" | "md" | "sm" | "xs" | "server";
+export type ScreenSizeType = 'xl' | 'lg' | 'md' | 'sm' | 'xs' | 'server';

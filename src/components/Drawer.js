@@ -1,10 +1,10 @@
 // @flow
-import React, { type Node } from "react";
-import styled, { injectGlobal, css } from "styled-components";
-import classNames from "classnames";
+import React, { type Node } from 'react';
+import styled, { injectGlobal, css } from 'styled-components';
+import classNames from 'classnames';
 
-import elevation from "../mixins/elevation";
-import { Portal } from "./Portal";
+import elevation from '../mixins/elevation';
+import { Portal } from './Portal';
 
 const drawerSizing = css`
   width: 240px;
@@ -38,9 +38,9 @@ const BaseDrawer = props => {
   const drawerClass = classNames({
     [props.className]: true,
     open: props.open,
-    left: props.attachment === "left",
-    right: props.attachment === "right",
-    "smc-drawer": true
+    left: props.attachment === 'left',
+    right: props.attachment === 'right',
+    'smc-drawer': true,
   });
   return <aside className={drawerClass}>{props.children}</aside>;
 };
@@ -91,7 +91,7 @@ export type DrawerProps = {
   children: Node,
   handleRequestClose: (e: SyntheticMouseEvent<HTMLDivElement>) => void,
   open: boolean,
-  temporary?: boolean
+  temporary?: boolean,
 };
 
 export const Drawer = ({
@@ -99,7 +99,7 @@ export const Drawer = ({
   children,
   handleRequestClose,
   temporary,
-  attachment
+  attachment,
 }: DrawerProps) => (
   <Portal
     open={open}
@@ -117,7 +117,7 @@ export const Drawer = ({
 Drawer.defaultProps = {
   temporary: false,
   open: false,
-  attachment: "left"
+  attachment: 'left',
 };
 
 export default Drawer;

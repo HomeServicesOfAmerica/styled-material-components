@@ -1,14 +1,14 @@
 // @flow
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components';
 
-import elevation, { elevationTransition } from "../mixins/elevation";
-import ripple from "../mixins/ripple";
+import elevation, { elevationTransition } from '../mixins/elevation';
+import ripple from '../mixins/ripple';
 
 export type FloatingActionButtonPropsType = {|
   accent?: boolean,
   disabled?: boolean,
   mini?: mini,
-  primary?: boolean
+  primary?: boolean,
 |};
 
 const primary = css`
@@ -44,7 +44,7 @@ const mini = css`
 `;
 
 const FloatingActionButton = styled.button.attrs({
-  "data-smc": "FloatingActionButton"
+  'data-smc': 'FloatingActionButton',
 })`
   color: #fff;
   width: 56px;

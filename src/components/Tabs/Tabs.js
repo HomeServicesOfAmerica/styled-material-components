@@ -1,8 +1,8 @@
-import * as React from "react";
-import debounce from "lodash.debounce";
-import styled from "styled-components";
+import * as React from 'react';
+import debounce from 'lodash.debounce';
+import styled from 'styled-components';
 
-import { contrastingColor } from "../../mixins/theme";
+import { contrastingColor } from '../../mixins/theme';
 
 export const TabsInkBar = styled.div`
   bottom: 0;
@@ -28,17 +28,17 @@ class TabBarComponent extends React.PureComponent {
   static defaultProps = {
     fixed: false,
     selectedIndex: 0,
-    showInkbar: true
+    showInkbar: true,
   };
 
   state = {
-    inkbarPosition: {}
+    inkbarPosition: {},
   };
 
   componentDidMount() {
     this.mounted = true;
 
-    window.addEventListener("resize", this.resizeInkbar);
+    window.addEventListener('resize', this.resizeInkbar);
     this.resizeInkbar();
   }
 
@@ -53,7 +53,7 @@ class TabBarComponent extends React.PureComponent {
   componentWillUnmount() {
     this.mounted = false;
 
-    window.removeEventListener("resize", this.resizeInkbar);
+    window.removeEventListener('resize', this.resizeInkbar);
   }
 
   nav = null;
@@ -68,8 +68,8 @@ class TabBarComponent extends React.PureComponent {
     this.setState({
       inkbarPosition: {
         left: left - navLeft,
-        width
-      }
+        width,
+      },
     });
   });
 
@@ -80,8 +80,8 @@ class TabBarComponent extends React.PureComponent {
       React.cloneElement(child, {
         index,
         selected: this.props.selectedIndex === index,
-        onClick
-      })
+        onClick,
+      }),
     );
 
     return (
@@ -121,18 +121,18 @@ export const Tabs = styled(TabsComponent)`
   position: relative;
   width: 100%;
 
-  & [data-smc~="Icon"] {
+  & [data-smc~='Icon'] {
     background-color: transparent;
     color: inherit;
     fill: currentColor;
   }
 
-  & [data-smc~="Tab"] {
-    flex: ${props => (props.fixed ? 1 : "none")};
+  & [data-smc~='Tab'] {
+    flex: ${props => (props.fixed ? 1 : 'none')};
   }
 
-  & [data-smc="TabBar"] {
+  & [data-smc='TabBar'] {
     background-color: ${({ theme }) => theme.primary};
-    ${({ theme }) => contrastingColor("color", theme.primary)};
+    ${({ theme }) => contrastingColor('color', theme.primary)};
   }
 `;

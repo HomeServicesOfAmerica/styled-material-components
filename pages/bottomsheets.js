@@ -1,8 +1,8 @@
 // @flow
-import React, { Component } from "react";
-import styled from "styled-components";
+import React, { Component } from 'react';
+import styled from 'styled-components';
 
-import { ThemeProvider, BottomSheet, Button } from "../src";
+import { ThemeProvider, BottomSheet, Button } from '../src';
 
 const PageContainer = styled.div`
   padding: 10px;
@@ -12,27 +12,27 @@ type PortalPagePropsType = {};
 
 type PortalPageStateType = {|
   modal: boolean,
-  persistent: boolean
+  persistent: boolean,
 |};
 
 export default class PortalPage extends Component<
   PortalPagePropsType,
-  PortalPageStateType
+  PortalPageStateType,
 > {
   state = {
     modal: false,
-    persistent: false
+    persistent: false,
   };
 
   toggleModal = (): void => {
     this.setState(({ modal }: PortalPageStateType) => ({
-      modal: !modal
+      modal: !modal,
     }));
   };
 
   togglePersistent = (): void => {
     this.setState(({ persistent }: PortalPageStateType) => ({
-      persistent: !persistent
+      persistent: !persistent,
     }));
   };
 

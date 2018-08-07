@@ -1,13 +1,13 @@
 // @flow
-import React, { type Node } from "react";
-import styled from "styled-components";
+import React, { type Node } from 'react';
+import styled from 'styled-components';
 
 type CardMediaItemPropsType = {|
   alt: string,
   children: Node,
   className: string,
   scale?: number,
-  src: string
+  src: string,
 |};
 
 const MediaItemComponent = (props: CardMediaItemPropsType) => (

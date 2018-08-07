@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import { Icon } from "../icons";
+import { Icon } from '../icons';
 
 const BatteryCharging20Path = () => [
   <path
@@ -11,11 +11,11 @@ const BatteryCharging20Path = () => [
     fillOpacity=".3"
     d="M15.67 4H14V2h-4v2H8.33C7.6 4 7 4.6 7 5.33V17h4v-2.5H9L13 7v5.5h2L12.6 17H17V5.33C17 4.6 16.4 4 15.67 4z"
     key="path1"
-  />
+  />,
 ];
 
 const BatteryCharging20Icon = Icon.extend.attrs({
-  children: BatteryCharging20Path
+  children: BatteryCharging20Path,
 })``;
 
 export default BatteryCharging20Path;

@@ -6,12 +6,12 @@
  * of the screen to grow, shrink, reorder as described by the end
  * user via size props.
  */
-import React from "react";
-import styled, { css } from "styled-components";
-import { compose } from "recompose";
+import React from 'react';
+import styled, { css } from 'styled-components';
+import { compose } from 'recompose';
 
-import { withScreenSize } from "../../contexts/ScreenSizeContext";
-import { withRowState } from "./Row";
+import { withScreenSize } from '../../contexts/ScreenSizeContext';
+import { withRowState } from './Row';
 
 /**
  * getResponsiveProp
@@ -29,14 +29,14 @@ import { withRowState } from "./Row";
  */
 const getResponsiveProp = (
   props: {
-    [key: string]: string
+    [key: string]: string,
   },
   layout: {
-    defaultScreenSize: string
+    defaultScreenSize: string,
   },
   screenSize: string,
   lowerScreenSize: string,
-  key: string // ?
+  key: string, // ?
 ) => {
   const responsiveProp =
     props[screenSize] ||
@@ -69,8 +69,8 @@ const calcPlus = (primaryAddend: string, ...addends: Array<string>): string => {
   let str = `calc(${primaryAddend} + `;
   addends.forEach((addend, i) => {
     str += addend;
-    if (i !== addends.length - 1) str += " + ";
-    else str += ")";
+    if (i !== addends.length - 1) str += ' + ';
+    else str += ')';
   });
   return str;
 };
@@ -88,8 +88,8 @@ const calcMinus = (minuend: string, ...subtrahend: Array<string>): string => {
   let str = `calc(${minuend} - `;
   subtrahend.forEach((sub, i) => {
     str += sub;
-    if (i !== subtrahend.length - 1) str += " - ";
-    else str += ")";
+    if (i !== subtrahend.length - 1) str += ' - ';
+    else str += ')';
   });
   return str;
 };
@@ -119,17 +119,17 @@ const offsetMixin = ({
     layout,
     screenSize,
     lowerScreenSize,
-    "offset"
+    'offset',
   );
-  if (!offset) return "";
+  if (!offset) return '';
   const margin = calcPlus(
     computePercentage(offset, layout.baseGridSize),
-    noGutters ? "0px" : layout.gutterSize
+    noGutters ? '0px' : layout.gutterSize,
   );
   return css`
-    ${row && row.horizontal === "right"
-      ? "margin-right"
-      : "margin-left"}: ${margin};
+    ${row && row.horizontal === 'right'
+      ? 'margin-right'
+      : 'margin-left'}: ${margin};
   `;
 };
 
@@ -153,7 +153,7 @@ const orderMixin = ({
     layout,
     screenSize,
     lowerScreenSize,
-    "order"
+    'order',
   );
   if (!order) return ``;
   return css`
@@ -183,12 +183,12 @@ const flexSizeMixin = ({
 }) => {
   const targetSize =
     size ||
-    getResponsiveProp(props, layout, screenSize, lowerScreenSize, "size");
-  if (!targetSize) return "";
+    getResponsiveProp(props, layout, screenSize, lowerScreenSize, 'size');
+  if (!targetSize) return '';
   const value = calcMinus(
     computePercentage(targetSize, layout.baseGridSize),
-    noGutters ? "0px" : layout.gutterSize,
-    noGutters ? "0px" : layout.gutterSize
+    noGutters ? '0px' : layout.gutterSize,
+    noGutters ? '0px' : layout.gutterSize,
   );
   return css`
     flex-basis: ${value};
@@ -211,7 +211,7 @@ const SizedColumn = styled.div`
   display: flex;
   flex-direction: column;
   ${props =>
-    props.noGutters ? "" : `padding: 0 ${props.theme.layout.gutterSize}`};
+    props.noGutters ? '' : `padding: 0 ${props.theme.layout.gutterSize}`};
   flex: 0 0 auto;
   max-width: none;
   order: 0;
@@ -235,7 +235,7 @@ const SizedColumn = styled.div`
  */
 const enhancer = compose(
   withScreenSize,
-  withRowState
+  withRowState,
 );
 
 const BaseColumnComponent = ({

@@ -1,10 +1,10 @@
 // @flow
-import React, { type Node } from "react";
-import styled, { css } from "styled-components";
-import classNames from "classnames";
+import React, { type Node } from 'react';
+import styled, { css } from 'styled-components';
+import classNames from 'classnames';
 
-import elevation from "../mixins/elevation";
-import { Portal } from "./Portal";
+import elevation from '../mixins/elevation';
+import { Portal } from './Portal';
 
 export type BottomSheetProps = {|
   attachment: string,
@@ -12,7 +12,7 @@ export type BottomSheetProps = {|
   className: string, // TODO enum
   handleRequestClose: () => any,
   modal: boolean,
-  open: boolean
+  open: boolean,
 |};
 
 const bottomSheetSizing = css`
@@ -24,9 +24,10 @@ const BaseBottomSheet = (props: BottomSheetProps & { className: string }) => {
   const bottomSheetClass = classNames({
     [props.className]: true,
     open: props.open,
-    bottom: props.attachment === "bottom",
-    "smc-bottomsheet": true
+    bottom: props.attachment === 'bottom',
+    'smc-bottomsheet': true,
   });
+
   return <aside className={bottomSheetClass}>{props.children}</aside>;
 };
 
@@ -67,7 +68,7 @@ export const BottomSheet = ({
   children,
   handleRequestClose,
   modal,
-  attachment
+  attachment,
 }: BottomSheetProps) => (
   <Portal
     open={open}
@@ -89,8 +90,8 @@ export const BottomSheet = ({
 BottomSheet.defaultProps = {
   modal: false,
   open: false,
-  attachment: "bottom",
-  handleRequestClose: () => {}
+  attachment: 'bottom',
+  handleRequestClose: () => {},
 };
 
 export default BottomSheet;

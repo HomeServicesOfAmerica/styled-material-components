@@ -1,12 +1,12 @@
-import React, { PureComponent } from "react";
-import styled from "styled-components";
+import React, { PureComponent } from 'react';
+import styled from 'styled-components';
 
-import SliderTrack from "./SliderTrack";
+import SliderTrack from './SliderTrack';
 
 const getAverage = (min, max) => Math.round((min + max) / 2);
 
 const valueIsValid = (value, min, max) =>
-  typeof value === "number" && value >= min && value <= max;
+  typeof value === 'number' && value >= min && value <= max;
 
 const DEFAULT_MIN = 0;
 const DEFAULT_MAX = 100;
@@ -16,37 +16,37 @@ class SliderComponent extends PureComponent {
   constructor(props) {
     super(props);
     const { min, max, initialValue, step } = props;
-    const actualMin = typeof min === "number" ? min : DEFAULT_MIN;
-    const actualMax = typeof max === "number" ? max : DEFAULT_MAX;
+    const actualMin = typeof min === 'number' ? min : DEFAULT_MIN;
+    const actualMax = typeof max === 'number' ? max : DEFAULT_MAX;
     if (actualMax <= actualMin)
       throw new Error(
-        `Slider minimum ${actualMin} exceeds maximum ${actualMax}`
+        `Slider minimum ${actualMin} exceeds maximum ${actualMax}`,
       );
     const value =
-      typeof initialValue === "number"
+      typeof initialValue === 'number'
         ? initialValue
         : getAverage(actualMin, actualMax);
     if (value < actualMin)
       throw new Error(
-        `Slider value ${value} is less than minimum ${actualMin}`
+        `Slider value ${value} is less than minimum ${actualMin}`,
       );
     if (value > actualMax)
       throw new Error(`Slider value ${value} exceeds maximum ${actualMax}`);
-    if (step === 0) throw new Error("Slider step cannot be 0");
+    if (step === 0) throw new Error('Slider step cannot be 0');
     const actualStep = step || DEFAULT_STEP;
-    if (typeof actualStep !== "number")
+    if (typeof actualStep !== 'number')
       throw new Error(`Provided step ${step} is not a number`);
     this.state = {
       min: actualMin,
       max: actualMax,
       step: Math.abs(actualStep),
-      value
+      value,
     };
   }
 
   increment = () => {
     const value =
-      typeof this.props.value === "number"
+      typeof this.props.value === 'number'
         ? this.props.value
         : this.state.value;
     const { step } = this.state;
@@ -55,7 +55,7 @@ class SliderComponent extends PureComponent {
 
   decrement = () => {
     const value =
-      typeof this.props.value === "number"
+      typeof this.props.value === 'number'
         ? this.props.value
         : this.state.value;
     const { step } = this.state;

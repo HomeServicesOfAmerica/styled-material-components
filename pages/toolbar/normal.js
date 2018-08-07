@@ -1,6 +1,6 @@
 // @flow
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 import {
   ThemeProvider,
@@ -10,9 +10,9 @@ import {
   BookmarkIcon,
   FileDownloadIcon,
   MenuIcon,
-  PrintIcon
-} from "../../src";
-import { generateParagraphs } from "../../utilities";
+  PrintIcon,
+} from '../../src';
+import { generateParagraphs } from '../../utilities';
 
 const PageContainer = styled.div`
   width: 100vw;
@@ -37,6 +37,6 @@ const Normal = () => (
     </ThemeProvider>
   </PageContainer>
 );
-Normal.displayName = "NormalToolbar";
+Normal.displayName = 'NormalToolbar';
 
 export default Normal;

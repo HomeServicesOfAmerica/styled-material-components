@@ -1,18 +1,10 @@
-// @flow
-import React, { type Node } from "react";
-import styled from "styled-components";
-
-type OverlayPropsType = {|
-  children: Node,
-  className: string,
-  onClick: (e: SyntheticMouseEvent<HTMLDivElement>) => void
-|};
+import React from 'react';
+import styled from 'styled-components';
 
 // This prevents clicks on the contents of the portal from dismissing the portal
-const stopPropagation = (e: SyntheticMouseEvent<HTMLDivElement>): void =>
-  e.stopPropagation();
+const stopPropagation = e => e.stopPropagation();
 
-export const BaseOverlay = (props: OverlayPropsType) => (
+export const BaseOverlay = props => (
   <div className={`${props.className} smc-overlay`} onClick={props.onClick}>
     <div className="smc-portal-content" onClick={stopPropagation}>
       {props.children}
@@ -30,7 +22,7 @@ export const Overlay = styled(BaseOverlay)`
   opacity: ${props => (props.open ? 1 : 0)};
   transition: opacity 0.3s 0ms cubic-bezier(0, 0, 0.2, 1);
   will-change: opacity;
-  pointer-events: ${props => (props.open ? "inherit" : "none")};
+  pointer-events: ${props => (props.open ? 'inherit' : 'none')};
   contain: strict;
   overflow: hidden;
   z-index: 4;

@@ -1,14 +1,14 @@
 // @flow
-import React, { type Node } from "react";
-import styled from "styled-components";
+import React, { type Node } from 'react';
+import styled from 'styled-components';
 
 type DialogBodyComponentPropsType = {
   children: Node,
-  className: string
+  className: string,
 };
 const DialogBodyComponent = ({
   className,
-  children
+  children,
 }: DialogBodyComponentPropsType) => (
   <div className={`smc-dialog-dialog-body ${className}`}>{children}</div>
 );

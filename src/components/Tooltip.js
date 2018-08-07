@@ -1,9 +1,8 @@
-// @flow
-import React, { type Node } from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-import { Portal } from "./Portal";
-import { Icon } from "../icons";
+import { Portal } from './Portal';
+import { Icon } from '../icons';
 
 const MOBILE_MARGIN = 16;
 const DESKTOP_MARGIN = 7;
@@ -16,23 +15,6 @@ const MOBILE_MIN_HEIGHT = 32;
 const DESKTOP_TOP_PADDING = (DESKTOP_MIN_HEIGHT - DESKTOP_FONT_SIZE) / 2;
 const MOBILE_TOP_PADDING = (MOBILE_MIN_HEIGHT - MOBILE_FONT_SIZE) / 2;
 const ROBOTO_RATIO = 0.51; // This is a guess
-
-type TooltipPropsType = {
-  children: Node,
-  contentWidth: number, // TODO component
-  link: Object,
-  mobile?: boolean
-};
-
-type TooltipStateType = {
-  countedInitialClick: boolean,
-  linkBottom: number,
-  linkLeft: number,
-  linkWidth: number,
-  open: boolean,
-  portalContentsHeight: number,
-  portalContentsWidth: number
-};
 
 export const TooltipPortal = styled(Portal)`
   && {
@@ -56,14 +38,14 @@ export const TooltipPortal = styled(Portal)`
 `;
 
 export const TooltipLink = styled.a.attrs({
-  children: props => props.children
+  children: props => props.children,
 })`
   display: inline-block;
 `;
 export const TooltipContents = styled.div`
   width: ${({ contentWidth, childStringLength, mobile }) => {
     let contentSize = 30;
-    if (typeof contentWidth === "number") contentSize = contentWidth;
+    if (typeof contentWidth === 'number') contentSize = contentWidth;
     else if (childStringLength !== null) {
       contentSize =
         (mobile ? MOBILE_FONT_SIZE : DESKTOP_FONT_SIZE) *
@@ -87,13 +69,7 @@ export const TooltipIcon = Icon.extend`
   fill: rgba(0, 0, 0, 0.54);
 `;
 
-export class Tooltip extends React.Component<
-  TooltipPropsType,
-  TooltipStateType
-> {
-  tooltipLink: ?HTMLElement;
-  portalContents: ?HTMLDivElement;
-
+export class Tooltip extends React.Component {
   state = {
     portalContentsHeight: 0,
     portalContentsWidth: 0,
@@ -101,75 +77,75 @@ export class Tooltip extends React.Component<
     linkLeft: 0,
     linkWidth: 0,
     open: false,
-    countedInitialClick: true
+    countedInitialClick: true,
   };
 
   componentDidMount() {
-    window.addEventListener("scroll", this.getTooltipLinkPosition);
-    window.addEventListener("resize", this.getTooltipLinkPosition);
-    window.addEventListener("resize", this.calculatePortalContents);
+    window.addEventListener('scroll', this.getTooltipLinkPosition);
+    window.addEventListener('resize', this.getTooltipLinkPosition);
+    window.addEventListener('resize', this.calculatePortalContents);
   }
 
   componentWillUnmount() {
-    window.removeEventListener("scroll", this.getTooltipLinkPosition);
-    window.removeEventListener("resize", this.getTooltipLinkPosition);
-    window.removeEventListener("resize", this.calculatePortalContents);
+    window.removeEventListener('scroll', this.getTooltipLinkPosition);
+    window.removeEventListener('resize', this.getTooltipLinkPosition);
+    window.removeEventListener('resize', this.calculatePortalContents);
   }
 
-  getTooltipLink = (el: HTMLElement): void => {
+  getTooltipLink = el => {
     if (this.tooltipLink) return;
     this.tooltipLink = el;
     this.getTooltipLinkPosition();
   };
 
-  getTooltipContents = (el: HTMLDivElement): void => {
+  getTooltipContents = el => {
     if (this.portalContents) return;
     this.portalContents = el;
     this.calculatePortalContents();
   };
 
-  getTooltipLinkPosition = (): void => {
+  getTooltipLinkPosition = () => {
     if (!this.tooltipLink) return;
     const { pageYOffset, pageXOffset } = window;
     const { left, width, bottom } = this.tooltipLink.getBoundingClientRect();
     this.setState({
       linkBottom: bottom + pageYOffset,
       linkLeft: left + pageXOffset,
-      linkWidth: width
+      linkWidth: width,
     });
   };
 
-  calculatePortalContents = (): void => {
+  calculatePortalContents = () => {
     if (!this.portalContents) return;
     const { height, width } = this.portalContents.getBoundingClientRect();
     this.setState({
       portalContentsHeight: height,
-      portalContentsWidth: width
+      portalContentsWidth: width,
     });
   };
 
-  showTooltip = (): void => {
+  showTooltip = () => {
     this.setState({ open: true });
-    window.addEventListener("scroll", this.hideTooltip);
+    window.addEventListener('scroll', this.hideTooltip);
   };
 
-  hideTooltip = (): void => {
+  hideTooltip = () => {
     this.setState({ open: false });
-    window.removeEventListener("scroll", this.hideTooltip);
+    window.removeEventListener('scroll', this.hideTooltip);
     if (this.props.mobile) {
-      window.removeEventListener("click", this.handleClickAnywhere);
+      window.removeEventListener('click', this.handleClickAnywhere);
     }
   };
 
-  handleMouseEnter = (): void => {
+  handleMouseEnter = () => {
     if (!this.props.mobile) this.showTooltip();
   };
 
-  handleMouseLeave = (): void => {
+  handleMouseLeave = () => {
     if (!this.props.mobile) this.hideTooltip();
   };
 
-  handleClickAnywhere = (): void => {
+  handleClickAnywhere = () => {
     if (this.state.countedInitialClick) {
       this.hideTooltip();
     } else {
@@ -177,14 +153,14 @@ export class Tooltip extends React.Component<
     }
   };
 
-  handleClick = (): void => {
+  handleClick = () => {
     if (!this.props.mobile) return;
     if (this.state.open) {
       this.hideTooltip();
     } else {
       this.setState({ countedInitialClick: false }, () => {
         this.showTooltip();
-        window.addEventListener("click", this.handleClickAnywhere);
+        window.addEventListener('click', this.handleClickAnywhere);
       });
     }
   };
@@ -197,11 +173,11 @@ export class Tooltip extends React.Component<
       portalContentsWidth,
       linkBottom,
       linkLeft,
-      linkWidth
+      linkWidth,
     } = this.state;
     const left = linkLeft + (linkWidth / 2 - portalContentsWidth / 2);
     const top = linkBottom + (mobile ? MOBILE_MARGIN : DESKTOP_MARGIN);
-    const customIconPassedIn = Boolean(Link) && typeof Link !== "string";
+    const customIconPassedIn = Boolean(Link) && typeof Link !== 'string';
     return (
       <React.Fragment>
         <TooltipLink
@@ -216,7 +192,7 @@ export class Tooltip extends React.Component<
           {customIconPassedIn ? (
             <Link />
           ) : (
-            <Icon icon={Link || "info_outline"} />
+            <Icon icon={Link || 'info_outline'} />
           )}
         </TooltipLink>
         <TooltipPortal
@@ -231,7 +207,7 @@ export class Tooltip extends React.Component<
               contentWidth={this.props.contentWidth}
               innerRef={this.getTooltipContents}
               childStringLength={
-                typeof this.props.children === "string"
+                typeof this.props.children === 'string'
                   ? this.props.children.length
                   : null
               }

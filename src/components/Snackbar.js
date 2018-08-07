@@ -1,9 +1,9 @@
 // @flow
-import React, { PureComponent, type Node } from "react";
-import styled, { keyframes } from "styled-components";
-import { compose } from "recompose";
+import React, { PureComponent, type Node } from 'react';
+import styled, { keyframes } from 'styled-components';
+import { compose } from 'recompose';
 
-import { withScreenSize } from "../contexts/ScreenSizeContext";
+import { withScreenSize } from '../contexts/ScreenSizeContext';
 
 const rollUp = keyframes`
   from {
@@ -44,9 +44,9 @@ const multilineRollDown = keyframes`
 const Message = styled.div`
   position: relative;
   font-size: 14px;
-  max-height: ${props => (props.mobile ? "32px" : "16px")};
-  ${props => props.mobile && "font-weight: 200"};
-  ${props => !props.mobile && "text-transform: uppercase"};
+  max-height: ${props => (props.mobile ? '32px' : '16px')};
+  ${props => props.mobile && 'font-weight: 200'};
+  ${props => !props.mobile && 'text-transform: uppercase'};
   overflow: hidden;
 `;
 
@@ -55,9 +55,9 @@ const SnackbarWrapper = styled.div`
     props.animation ? `${props.animation} .3s linear` : 0};
   bottom: ${props => {
     if (props.open && !props.animateOut) {
-      return "0px";
+      return '0px';
     }
-    return props.mobile && props.multiline ? "-80px" : "-48px";
+    return props.mobile && props.multiline ? '-80px' : '-48px';
   }};
 `;
 
@@ -68,24 +68,24 @@ export type SnackbarPropsType = {|
   message?: string,
   multiline?: boolean,
   onRequestClose: () => any,
-  open?: boolean
+  open?: boolean,
 |};
 
 export type SnackbarComponentPropsType = SnackbarPropsType & {|
   className: string,
-  mobile: boolean
+  mobile: boolean,
 |};
 
 export type SnackbarComponentStateType = {|
-  animateOut: boolean
+  animateOut: boolean,
 |};
 
 class SnackbarComponent extends PureComponent<
   SnackbarComponentPropsType,
-  SnackbarComponentStateType
+  SnackbarComponentStateType,
 > {
   state = {
-    animateOut: false
+    animateOut: false,
   };
 
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -134,20 +134,20 @@ class SnackbarComponent extends PureComponent<
 
 const Snackbar = styled(SnackbarComponent).attrs({
   mobile: ({ screenSizeState }) =>
-    ["xs", "sm"].includes(screenSizeState.screenSize)
+    ['xs', 'sm'].includes(screenSizeState.screenSize),
 })`
-  display: ${props => (props.open && !props.animateOut ? "flex" : "none")};
+  display: ${props => (props.open && !props.animateOut ? 'flex' : 'none')};
   position: fixed;
-  left: ${props => (props.mobile ? 0 : "50%")};
-  transform: ${props => !props.mobile && "translateX(-50%)"};
-  height: ${({ mobile, multiline }) => (mobile && multiline ? "80px" : "48px")};
-  min-width: ${props => (props.mobile ? "100%" : "288px")};
-  max-width: ${props => !props.mobile && "568px"};
+  left: ${props => (props.mobile ? 0 : '50%')};
+  transform: ${props => !props.mobile && 'translateX(-50%)'};
+  height: ${({ mobile, multiline }) => (mobile && multiline ? '80px' : '48px')};
+  min-width: ${props => (props.mobile ? '100%' : '288px')};
+  max-width: ${props => !props.mobile && '568px'};
   border-radius: 2px 2px 0 0;
   font-family: lato, sans-serif;
   background-color: #323232;
   color: #fff;
-  padding: ${props => (props.mobile && props.multiline ? "24px" : "14px 24px")};
+  padding: ${props => (props.mobile && props.multiline ? '24px' : '14px 24px')};
   box-sizing: border-box;
 `;
 

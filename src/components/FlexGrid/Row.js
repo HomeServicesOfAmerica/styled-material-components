@@ -4,16 +4,16 @@
  * @description Defines a flex grid row that has props defined for
  * easily setting some common flex styles.
  */
-import React, { Component, createContext } from "react";
-import styled from "styled-components";
+import React, { Component, createContext } from 'react';
+import styled from 'styled-components';
 
-import { rowMixin } from "../../mixins/flex";
+import { rowMixin } from '../../mixins/flex';
 
 const RowContext = createContext({
-  horizontal: "left",
-  vertical: "middle",
+  horizontal: 'left',
+  vertical: 'middle',
   distribution: null,
-  stretch: null
+  stretch: null,
 });
 
 /**
@@ -40,7 +40,7 @@ class RowComponent extends Component {
     horizontal: this.props.horizontal,
     vertical: this.props.vertical,
     distribution: this.props.distribution,
-    stretch: this.props.stretch
+    stretch: this.props.stretch,
   };
   /* eslint-enable */
 

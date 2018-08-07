@@ -11,15 +11,15 @@ import React, {
   Component,
   createContext,
   type Node,
-  type ComponentType
-} from "react";
-import { withTheme } from "styled-components";
-import respondable from "respondable";
-import platform from "platform";
+  type ComponentType,
+} from 'react';
+import { withTheme } from 'styled-components';
+import respondable from 'respondable';
+import platform from 'platform';
 
-import { type StyledComponentsContextPropsType } from "../theme/types";
+import { type StyledComponentsContextPropsType } from '../theme/types';
 
-const Context = createContext({ size: "server" });
+const Context = createContext({ size: 'server' });
 
 /**
  * ScreenSizeConsumer
@@ -31,7 +31,7 @@ const Context = createContext({ size: "server" });
 export const ScreenSizeConsumer = Context.Consumer;
 
 type ScreenSizeContextBasePropsType = StyledComponentsContextPropsType & {|
-  children: Node
+  children: Node,
 |};
 
 type ScreenSizeContextBaseStateType = {|
@@ -39,26 +39,26 @@ type ScreenSizeContextBaseStateType = {|
     majorOsVersion: number,
     majorVersion: number,
     osFamily: ?string,
-    product: ?string
+    product: ?string,
   },
-  screenSize: string
+  screenSize: string,
 |};
 
 /* eslint-disable react/no-unused-state */
 class ScreenSizeContextBase extends Component<
   ScreenSizeContextBasePropsType,
-  ScreenSizeContextBaseStateType
+  ScreenSizeContextBaseStateType,
 > {
   destroy: () => void;
 
   state = {
-    screenSize: "server",
+    screenSize: 'server',
     platformData: {
       product: null,
       osFamily: null,
       majorVersion: -1,
-      majorOsVersion: -1
-    }
+      majorOsVersion: -1,
+    },
   };
 
   componentDidMount() {
@@ -71,13 +71,13 @@ class ScreenSizeContextBase extends Component<
         product: platform.product,
         osFamily: platform.os ? platform.os.family : null,
         majorVersion: platform.version
-          ? parseInt(platform.version.split(".")[0], 10)
+          ? parseInt(platform.version.split('.')[0], 10)
           : -1,
         majorOsVersion:
           platform.os && platform.os.version
-            ? parseInt(platform.os.version.split(".")[0], 10)
-            : -1
-      }
+            ? parseInt(platform.os.version.split('.')[0], 10)
+            : -1,
+      },
     });
     // Initialize Respondable
     // first prop is a map in the form of [mediaQuery]: 'string'
@@ -87,7 +87,7 @@ class ScreenSizeContextBase extends Component<
     this.destroy = respondable(
       this.props.theme.layout.screenSizes,
       this.setScreenSize,
-      this.props.theme.layout.screenSizePriority
+      this.props.theme.layout.screenSizePriority,
     );
   }
 
@@ -149,7 +149,7 @@ class ScreenSizeContextBase extends Component<
    */
   setScreenSize = (active: string, largest: string): void =>
     this.setState({
-      screenSize: largest
+      screenSize: largest,
     });
 
   render() {

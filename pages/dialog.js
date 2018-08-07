@@ -1,20 +1,20 @@
 // @flow
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import { type DialogComponentPropsType } from "../src/components/Dialog/Dialog";
+import { type DialogComponentPropsType } from '../src/components/Dialog/Dialog';
 import {
   Button,
   Dialog,
   DialogTitle,
   DialogBody,
   DialogFooter,
-  ThemeProvider
-} from "../src";
+  ThemeProvider,
+} from '../src';
 
 type ExampleDialogPropsType = {|
   closeDialog: () => void,
   dialogProps: DialogComponentPropsType,
-  title?: string
+  title?: string,
 |};
 
 const ExampleDialog = ({
@@ -41,12 +41,12 @@ type DialogsPageStateType = {|
   right: boolean,
   top: boolean,
   withTitle: boolean,
-  withoutTitle: boolean
+  withoutTitle: boolean,
 |};
 
 export default class DialogsPage extends Component<
   DialogsPagePropsType,
-  DialogsPageStateType
+  DialogsPageStateType,
 > {
   state = {
     withTitle: false,
@@ -55,88 +55,88 @@ export default class DialogsPage extends Component<
     right: false,
     top: false,
     bottom: false,
-    customSize: false
+    customSize: false,
   };
 
   closeDialog = (id: string): void =>
     this.setState({
-      [id]: false
+      [id]: false,
     });
 
   openDialog = (id: string): void =>
     this.setState({
-      [id]: true
+      [id]: true,
     });
 
   render() {
     return (
       <ThemeProvider>
-        <div style={{ height: "200vh" }}>
+        <div style={{ height: '200vh' }}>
           <h3>
             Added height on this page for scrolling, should be disabled when
             modal is open.
           </h3>
           <ExampleDialog
             open={this.state.withTitle}
-            closeDialog={() => this.closeDialog("withTitle")}
+            closeDialog={() => this.closeDialog('withTitle')}
             title="a title"
-            onClose={() => this.closeDialog("withTitle")}
+            onClose={() => this.closeDialog('withTitle')}
           />
           <ExampleDialog
             open={this.state.withoutTitle}
-            closeDialog={() => this.closeDialog("withoutTitle")}
-            onClose={() => this.closeDialog("withoutTitle")}
+            closeDialog={() => this.closeDialog('withoutTitle')}
+            onClose={() => this.closeDialog('withoutTitle')}
           />
           <ExampleDialog
             fullscreen
             attachment="left"
             open={this.state.left}
-            closeDialog={() => this.closeDialog("left")}
+            closeDialog={() => this.closeDialog('left')}
           />
           <ExampleDialog
             fullscreen
             attachment="right"
             open={this.state.right}
-            closeDialog={() => this.closeDialog("right")}
+            closeDialog={() => this.closeDialog('right')}
           />
           <ExampleDialog
             fullscreen
             attachment="top"
             open={this.state.top}
-            closeDialog={() => this.closeDialog("top")}
+            closeDialog={() => this.closeDialog('top')}
           />
           <ExampleDialog
             fullscreen
             attachment="bottom"
             open={this.state.bottom}
-            closeDialog={() => this.closeDialog("bottom")}
+            closeDialog={() => this.closeDialog('bottom')}
           />
           <ExampleDialog
             open={this.state.customSize}
-            closeDialog={() => this.closeDialog("customSize")}
-            onClose={() => this.closeDialog("customSize")}
+            closeDialog={() => this.closeDialog('customSize')}
+            onClose={() => this.closeDialog('customSize')}
             title="Pass your own width prop"
             width={400}
           />
-          <Button onClick={() => this.openDialog("withTitle")}>
+          <Button onClick={() => this.openDialog('withTitle')}>
             Open a dialog with a title
           </Button>
-          <Button onClick={() => this.openDialog("withoutTitle")}>
+          <Button onClick={() => this.openDialog('withoutTitle')}>
             Open a dialog without a title
           </Button>
-          <Button onClick={() => this.openDialog("customSize")}>
+          <Button onClick={() => this.openDialog('customSize')}>
             Open a custom-sized Dialog.
           </Button>
-          <Button onClick={() => this.openDialog("top")}>
+          <Button onClick={() => this.openDialog('top')}>
             Open a full screen dialog from the top
           </Button>
-          <Button onClick={() => this.openDialog("right")}>
+          <Button onClick={() => this.openDialog('right')}>
             Open a full screen dialog from the right
           </Button>
-          <Button onClick={() => this.openDialog("bottom")}>
+          <Button onClick={() => this.openDialog('bottom')}>
             Open a full screen dialog from the bottom
           </Button>
-          <Button onClick={() => this.openDialog("left")}>
+          <Button onClick={() => this.openDialog('left')}>
             Open a full screen dialog from the left
           </Button>
         </div>

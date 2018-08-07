@@ -1,6 +1,6 @@
 // @flow
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 import {
   Button,
@@ -12,10 +12,10 @@ import {
   ListItem,
   ListItemText,
   ListSubheader,
-  ThemeProvider
-} from "../../src";
-import { iconList } from "./assets";
-import { AddIcon, FileDownloadIcon, FileUploadIcon } from "../../src/icons";
+  ThemeProvider,
+} from '../../src';
+import { iconList } from './assets';
+import { AddIcon, FileDownloadIcon, FileUploadIcon } from '../../src/icons';
 
 const StyledButton = Button.extend`
   display: flex;
@@ -34,7 +34,7 @@ const StyledDivider = Divider.extend`
 `;
 
 type IconsPagePropsType = {|
-  className: string
+  className: string,
 |};
 
 /*
@@ -48,7 +48,7 @@ const IconsPage = ({ className }: IconsPagePropsType) => (
         {/* eslint-disable react/no-array-index-key */
         iconList.map((Icon, i) => (
           <GridTile key={`icon-number-${i}`}>
-            <Icon fill={"skyblue"} size={40} />
+            <Icon fill={'skyblue'} size={40} />
           </GridTile>
         ))
         /* eslint-enable */
@@ -72,10 +72,10 @@ const IconsPage = ({ className }: IconsPagePropsType) => (
       <p>To Import</p>
       <ul>
         <li>
-          Find icons on{" "}
+          Find icons on{' '}
           <a href="https://www.material.io/icons">material.io/icons</a>
         </li>
-        <li>{"convert names to camelCase"}</li>
+        <li>{'convert names to camelCase'}</li>
         <li>{`e.g.: 'file download' becomes <FileDownloadIcon />`}</li>
       </ul>
       <GridList>

@@ -1,74 +1,74 @@
 // @flow
 /* eslint-disable no-console */
-import React, { PureComponent } from "react";
+import React, { PureComponent } from 'react';
 
-import { Table, ThemeProvider } from "../src";
+import { Table, ThemeProvider } from '../src';
 
-import naturalSort from "../src/components/Table/naturalSort";
+import naturalSort from '../src/components/Table/naturalSort';
 
 const fields = [
   {
-    key: "date",
-    label: "Date",
+    key: 'date',
+    label: 'Date',
     numerical: false,
-    sortable: true
+    sortable: true,
   },
   {
-    key: "event",
-    label: "Event",
-    numerical: false
+    key: 'event',
+    label: 'Event',
+    numerical: false,
   },
   {
-    key: "price",
-    label: "Price",
+    key: 'price',
+    label: 'Price',
     numerical: true,
-    sortable: true
-  }
+    sortable: true,
+  },
 ];
 
 const data = [
   {
-    key: "3oirj923o",
-    date: "02/01/17",
-    event: "Price Change",
-    price: "$24,500,000"
+    key: '3oirj923o',
+    date: '02/01/17',
+    event: 'Price Change',
+    price: '$24,500,000',
   },
   {
-    key: "xzvxzcv",
-    date: "02/01/17",
-    event: "Open House",
-    price: "$5,500,000"
+    key: 'xzvxzcv',
+    date: '02/01/17',
+    event: 'Open House',
+    price: '$5,500,000',
   },
   {
-    key: "ssssdas",
-    date: "02/01/17",
-    event: "Showing",
-    price: "$14,500,000"
+    key: 'ssssdas',
+    date: '02/01/17',
+    event: 'Showing',
+    price: '$14,500,000',
   },
   {
-    key: "efsadf",
-    date: "02/01/17",
-    event: "Price Change",
-    price: "$774,500,000"
+    key: 'efsadf',
+    date: '02/01/17',
+    event: 'Price Change',
+    price: '$774,500,000',
   },
   {
-    key: "2398ro829j",
-    date: "03/14/16",
-    event: "Price Change",
-    price: "$28,500,000"
+    key: '2398ro829j',
+    date: '03/14/16',
+    event: 'Price Change',
+    price: '$28,500,000',
   },
   {
-    key: "3289rj92r",
-    date: "05/10/14",
-    event: "Listed for sale",
-    price: "$37,500,000"
+    key: '3289rj92r',
+    date: '05/10/14',
+    event: 'Listed for sale',
+    price: '$37,500,000',
   },
   {
-    key: "r43r3443",
-    date: "02/05/16",
-    event: "Something else",
-    price: "$34,232,544"
-  }
+    key: 'r43r3443',
+    date: '02/05/16',
+    event: 'Something else',
+    price: '$34,232,544',
+  },
 ];
 
 const StyledTable = Table.extend`
@@ -78,31 +78,31 @@ const StyledTable = Table.extend`
 `;
 
 type ControlledTablePropsType = {|
-  dontSort?: ?boolean
+  dontSort?: ?boolean,
 |};
 
 type ControlledTableStateType = {||};
 
 const incrementCurrentPage = ({
-  currentPage
+  currentPage,
 }: ControlledTableStateType): ControlledTableStateType => ({
-  currentPage: currentPage + 1
+  currentPage: currentPage + 1,
 });
 const decrementCurrentPage = ({
-  currentPage
+  currentPage,
 }: ControlledTableStateType): ControlledTableStateType => ({
-  currentPage: currentPage - 1
+  currentPage: currentPage - 1,
 });
 
 class ControlledTable extends PureComponent<
   ControlledTablePropsType,
-  ControlledTableStateType
+  ControlledTableStateType,
 > {
   state = {
     mutatedData: [...data],
     currentPage: 1,
     descending: false,
-    sortedBy: ""
+    sortedBy: '',
   };
 
   handleSort = (key): void => {
@@ -124,7 +124,7 @@ class ControlledTable extends PureComponent<
       ({
         descending,
         mutatedData,
-        sortedBy
+        sortedBy,
       }: ControlledTableStateType): ControlledTableStateType => {
         let nextDescending = descending;
         if (key === sortedBy) {
@@ -142,9 +142,9 @@ class ControlledTable extends PureComponent<
           mutatedData: []
             .concat(mutatedData)
             .sort((a, b) => sorter(a[key], b[key])),
-          sortedBy: key
+          sortedBy: key,
         };
-      }
+      },
     );
   };
 
@@ -161,7 +161,7 @@ class ControlledTable extends PureComponent<
     return (
       <Table
         onSearch={e => {
-          console.log("search!", e.target.value);
+          console.log('search!', e.target.value);
         }}
         onSort={
           this.props.dontSort
@@ -173,10 +173,10 @@ class ControlledTable extends PureComponent<
         sortedBy={sortedBy}
         hasCheckboxes
         onCheck={e => {
-          console.log("select", e.key);
+          console.log('select', e.key);
         }}
         onUncheck={e => {
-          console.log("deselect", e.key);
+          console.log('deselect', e.key);
         }}
         descending={descending}
         fields={fields}
@@ -277,7 +277,7 @@ const Tables = () => (
               that page. as that is all it was given.`}
             </li>
             <li>
-              The sorting default method is called NaturalSort. Credits to:{" "}
+              The sorting default method is called NaturalSort. Credits to:{' '}
               <a href="https://github.com/bubkoo/natsort" target="none">
                 https://github.com/bubkoo/natsort
               </a>
@@ -347,10 +347,10 @@ const Tables = () => (
       <Table
         hasCheckboxes
         onCheck={() => {
-          console.log("select");
+          console.log('select');
         }}
         onUncheck={() => {
-          console.log("deselect");
+          console.log('deselect');
         }}
         fields={fields}
         data={data}
@@ -361,10 +361,10 @@ const Tables = () => (
         fullWidth
         hasCheckboxes
         onCheck={() => {
-          console.log("select");
+          console.log('select');
         }}
         onUncheck={() => {
-          console.log("deselect");
+          console.log('deselect');
         }}
         fields={fields}
         data={data}
@@ -375,10 +375,10 @@ const Tables = () => (
         hasCheckboxes
         rowsPerPage={2}
         onCheck={e => {
-          console.log("select", e.key);
+          console.log('select', e.key);
         }}
         onUncheck={e => {
-          console.log("deselect", e.key);
+          console.log('deselect', e.key);
         }}
         fields={fields}
         data={data}
@@ -387,14 +387,14 @@ const Tables = () => (
       <h2>Table checkboxes, with sorting, WITH SEARCH!?!!?</h2>
       <Table
         onSearch={e => {
-          console.log("search!", e.target.value);
+          console.log('search!', e.target.value);
         }}
         hasCheckboxes
         onCheck={e => {
-          console.log("select", e.key);
+          console.log('select', e.key);
         }}
         onUncheck={e => {
-          console.log("deselect", e.key);
+          console.log('deselect', e.key);
         }}
         fields={fields}
         data={data}

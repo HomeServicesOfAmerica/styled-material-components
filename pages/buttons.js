@@ -1,6 +1,6 @@
 // @flow
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 import {
   Button,
@@ -13,32 +13,32 @@ import {
   ListSubheader,
   Snackbar,
   ThemeProvider,
-  withRipple
-} from "../src";
+  withRipple,
+} from '../src';
 import {
   AddIcon,
   MicIcon,
   GradeIcon,
-  PowerSettingsNewIcon
-} from "../src/icons";
+  PowerSettingsNewIcon,
+} from '../src/icons';
 
 const RippleButton = withRipple(Button);
 const RippleFab = withRipple(FloatingActionButton);
 
 type ButtonsPagePropsType = {|
-  className: string
+  className: string,
 |};
 
 type ButtonsPageStateType = {|
-  showSnackbar: boolean
+  showSnackbar: boolean,
 |};
 
 class ButtonsPage extends React.PureComponent<
   ButtonsPagePropsType,
-  ButtonsPageStateType
+  ButtonsPageStateType,
 > {
   state = {
-    showSnackbar: false
+    showSnackbar: false,
   };
 
   showSnackbar = (): void => {
@@ -96,7 +96,7 @@ class ButtonsPage extends React.PureComponent<
                 raised
                 disabled
                 primary
-                onClick={() => alert("This should not fire")}
+                onClick={() => alert('This should not fire')}
               >
                 Disabled
               </Button>
@@ -135,7 +135,7 @@ class ButtonsPage extends React.PureComponent<
                 raised
                 disabled
                 primary
-                onClick={() => alert("This should not fire")}
+                onClick={() => alert('This should not fire')}
               >
                 <GradeIcon fill="white" />
               </FloatingActionButton>
@@ -146,7 +146,7 @@ class ButtonsPage extends React.PureComponent<
                 raised
                 disabled
                 primary
-                onClick={() => alert("This should not fire")}
+                onClick={() => alert('This should not fire')}
               >
                 <GradeIcon fill="white" />
               </FloatingActionButton>

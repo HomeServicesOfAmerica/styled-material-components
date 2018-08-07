@@ -1,14 +1,14 @@
-import React, { PureComponent } from "react";
-import styled from "styled-components";
+import React, { PureComponent } from 'react';
+import styled from 'styled-components';
 
-import FocusRing from "./FocusRing";
-import Thumb from "./Thumb";
-import SliderDisabledWrapper from "./SliderDisabledWrapper";
+import FocusRing from './FocusRing';
+import Thumb from './Thumb';
+import SliderDisabledWrapper from './SliderDisabledWrapper';
 
 class SliderThumbComponent extends PureComponent {
   state = {
     navigatingWithKeys: false,
-    dragging: false
+    dragging: false,
   };
 
   handleClick = event => {
@@ -20,15 +20,15 @@ class SliderThumbComponent extends PureComponent {
   onMouseDown = () => {
     if (this.props.disabled) return;
     this.setState({ dragging: true });
-    document.addEventListener("mousemove", this.props.handleMouseMove);
-    document.addEventListener("mouseup", this.onMouseUp);
+    document.addEventListener('mousemove', this.props.handleMouseMove);
+    document.addEventListener('mouseup', this.onMouseUp);
   };
 
   onMouseUp = () => {
     if (this.props.disabled) return;
     this.setState({ dragging: false });
-    document.removeEventListener("mousemove", this.props.handleMouseMove);
-    document.removeEventListener("mouseup", this.onMouseUp);
+    document.removeEventListener('mousemove', this.props.handleMouseMove);
+    document.removeEventListener('mouseup', this.onMouseUp);
   };
 
   onKeyDown = event => {

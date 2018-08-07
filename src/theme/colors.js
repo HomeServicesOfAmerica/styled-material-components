@@ -1,4 +1,4 @@
-import Color from "color";
+import Color from 'color';
 
-export const black = Color("#000");
-export const white = Color("#fff");
+export const black = Color('#000');
+export const white = Color('#fff');

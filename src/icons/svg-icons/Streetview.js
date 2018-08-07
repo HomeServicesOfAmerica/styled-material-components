@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import { Icon } from "../icons";
+import { Icon } from '../icons';
 
 const StreetviewPath = () => [
   <path
@@ -10,11 +10,11 @@ const StreetviewPath = () => [
   <path
     d="M11.5 6c0-1.08.27-2.1.74-3H5c-1.1 0-2 .9-2 2v14c0 .55.23 1.05.59 1.41l9.82-9.82C12.23 9.42 11.5 7.8 11.5 6z"
     key="path1"
-  />
+  />,
 ];
 
 const StreetviewIcon = Icon.extend.attrs({
-  children: StreetviewPath
+  children: StreetviewPath,
 })``;
 
 export default StreetviewPath;

@@ -1,16 +1,16 @@
-import React, { PureComponent } from "react";
-import styled from "styled-components";
-import isEqual from "lodash.isequal";
+import React, { PureComponent } from 'react';
+import styled from 'styled-components';
+import isEqual from 'lodash.isequal';
 
-import Row from "./Row";
-import Datum from "./Datum";
-import Title from "./Title";
-import Header from "./Header";
-import Footer from "./Footer";
-import naturalSort from "./naturalSort";
-import Search from "./Search";
-import { Checkbox } from "../Checkbox";
-import { ArrowUpwardIcon } from "../../icons";
+import Row from './Row';
+import Datum from './Datum';
+import Title from './Title';
+import Header from './Header';
+import Footer from './Footer';
+import naturalSort from './naturalSort';
+import Search from './Search';
+import { Checkbox } from '../Checkbox';
+import { ArrowUpwardIcon } from '../../icons';
 
 /*
  * The user of the table is responsible for passing in a unique key for each
@@ -29,7 +29,7 @@ const TitleSortContainer = styled.div`
   height: 15px;
   display: flex;
   justify-content: ${({ numerical }) =>
-    numerical ? "flex-end" : "flex-start"};
+    numerical ? 'flex-end' : 'flex-start'};
 
   > .sortButton {
     vertical-align: center;
@@ -53,10 +53,10 @@ const TitleSortContainer = styled.div`
 `;
 
 const incrementCurrentPage = ({ currentPage }) => ({
-  currentPage: currentPage + 1
+  currentPage: currentPage + 1,
 });
 const decrementCurrentPage = ({ currentPage }) => ({
-  currentPage: currentPage - 1
+  currentPage: currentPage - 1,
 });
 
 class Table extends PureComponent {
@@ -68,7 +68,7 @@ class Table extends PureComponent {
       sortedBy: null,
       descending: false,
       currentPage: this.props.currentPage || 1,
-      rowsPerPage: this.props.rowsPerPage || 10
+      rowsPerPage: this.props.rowsPerPage || 10,
     };
   }
 
@@ -102,7 +102,7 @@ class Table extends PureComponent {
       } else {
         data = prevState.mutatedData.slice(
           (currentPage - 1) * prevState.rowsPerPage,
-          currentPage * prevState.rowsPerPage
+          currentPage * prevState.rowsPerPage,
         );
       }
       const itemsToSet = { ...prevState.selectedItems };
@@ -114,7 +114,7 @@ class Table extends PureComponent {
         itemsToSet[item.key] = true;
       }
       return {
-        selectedItems: itemsToSet
+        selectedItems: itemsToSet,
       };
     });
   };
@@ -130,7 +130,7 @@ class Table extends PureComponent {
         itemsToSet[datum.key] = true;
       }
       return {
-        selectedItems: itemsToSet
+        selectedItems: itemsToSet,
       };
     });
   };
@@ -146,7 +146,7 @@ class Table extends PureComponent {
         const sorter = naturalSort({ desc: prevState.descending });
         // clone
         mutatedData = newData.sort((a, b) =>
-          sorter(a[currentSort], b[currentSort])
+          sorter(a[currentSort], b[currentSort]),
         );
       } else {
         // else update with new data, unsorted
@@ -172,7 +172,7 @@ class Table extends PureComponent {
       } else {
         data = prevState.mutatedData.slice(
           (currentPage - 1) * prevState.rowsPerPage,
-          currentPage * prevState.rowsPerPage
+          currentPage * prevState.rowsPerPage,
         );
       }
       const itemsToSet = { ...prevState.selectedItems };
@@ -182,7 +182,7 @@ class Table extends PureComponent {
         delete itemsToSet[item.key];
       }
       return {
-        selectedItems: itemsToSet
+        selectedItems: itemsToSet,
       };
     });
   };
@@ -214,7 +214,7 @@ class Table extends PureComponent {
       return {
         descending,
         mutatedData,
-        sortedBy: key
+        sortedBy: key,
       };
     });
   };
@@ -256,7 +256,7 @@ class Table extends PureComponent {
       ? mutatedData
       : mutatedData.slice(
           (currentPage - 1) * rowsPerPage,
-          currentPage * rowsPerPage
+          currentPage * rowsPerPage,
         );
     let extraRows = 0;
     if (!showAllData || fakingPagination) {
@@ -269,7 +269,7 @@ class Table extends PureComponent {
     const currentPageKeys = rowsToShow.map(item => item.key);
     const selectedAllActive = this.determineSelected(
       currentSelectionKeys,
-      currentPageKeys
+      currentPageKeys,
     );
 
     return (
@@ -308,8 +308,8 @@ class Table extends PureComponent {
                         className={
                           // sorry for this mess
                           sort === key && descending
-                            ? "sortButton rotate"
-                            : "sortButton"
+                            ? 'sortButton rotate'
+                            : 'sortButton'
                         }
                         onClick={() => this.sortBy(key)}
                       />
@@ -325,7 +325,7 @@ class Table extends PureComponent {
               ? mutatedData
               : mutatedData.slice(
                   (currentPage - 1) * rowsPerPage,
-                  currentPage * rowsPerPage
+                  currentPage * rowsPerPage,
                 )
             ).map(datum => (
               <Row
@@ -354,7 +354,7 @@ class Table extends PureComponent {
               </Row>
             ))}
             {Array(extraRows)
-              .fill("")
+              .fill('')
               .map((val, j) => (
                 // eslint-disable-next-line react/no-array-index-key
                 <Row key={`faux-data-${j}`}>
@@ -386,7 +386,7 @@ class Table extends PureComponent {
 }
 
 export default styled(Table)`
-  ${props => (props.fullWidth ? "width: 100%" : "")};
+  ${props => (props.fullWidth ? 'width: 100%' : '')};
   display: inline-block;
   overflow: hidden;
   background-color: #fff;
@@ -415,7 +415,7 @@ export default styled(Table)`
       border-bottom: 1px solid rgba(225, 225, 225, 1);
     }
 
-    ${props => (props.fullWidth ? "width: 100%" : "width: auto")};
+    ${props => (props.fullWidth ? 'width: 100%' : 'width: auto')};
     border-spacing: 0;
   }
 `;

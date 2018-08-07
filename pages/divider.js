@@ -1,12 +1,12 @@
 // @flow
-import React from "react";
-import styled from "styled-components";
-import Link from "next/link";
+import React from 'react';
+import styled from 'styled-components';
+import Link from 'next/link';
 
-import { ThemeProvider, Divider } from "../src";
+import { ThemeProvider, Divider } from '../src';
 
 type DividerPageBasePropsType = {|
-  className: string
+  className: string,
 |};
 
 const DividerPageBase = ({ className }: DividerPageBasePropsType) => (
@@ -29,10 +29,10 @@ const DividerPageBase = ({ className }: DividerPageBasePropsType) => (
       <section>
         <h2>Dividers in lists</h2>
         <p>
-          See{" "}
+          See{' '}
           <Link href="/lists">
             <a>the lists page</a>
-          </Link>{" "}
+          </Link>{' '}
           for examples of dividers used in lists
         </p>
       </section>

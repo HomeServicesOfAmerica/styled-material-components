@@ -1,15 +1,15 @@
 // @flow
-import React, { type Node } from "react";
-import styled from "styled-components";
+import React, { type Node } from 'react';
+import styled from 'styled-components';
 
 type DialogTitleComponentPropsType = {
   children: Node,
-  className: string
+  className: string,
 };
 
 const DialogTitleComponent = ({
   className,
-  children
+  children,
 }: DialogTitleComponentPropsType) => (
   <h2 className={`smc-dialog-dialog-title ${className}`}>{children}</h2>
 );

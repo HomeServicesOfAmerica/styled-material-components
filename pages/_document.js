@@ -1,5 +1,5 @@
-import Document, { Head, Main, NextScript } from "next/document";
-import { ServerStyleSheet } from "styled-components";
+import Document, { Head, Main, NextScript } from 'next/document';
+import { ServerStyleSheet } from 'styled-components';
 
 /* eslint-disable react/react-in-jsx-scope */
 
@@ -18,8 +18,8 @@ export default class MyDocument extends Document {
           <title>Styled Material Components</title>
           {styleTags}
         </Head>
-        <body style={{ overflow: "visible" }}>
-          <div className="root" style={{ width: "100%" }}>
+        <body style={{ overflow: 'visible' }}>
+          <div className="root" style={{ width: '100%' }}>
             {main}
           </div>
           <NextScript />

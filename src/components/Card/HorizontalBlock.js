@@ -1,10 +1,10 @@
 // @flow
-import React, { type Node } from "react";
-import styled from "styled-components";
+import React, { type Node } from 'react';
+import styled from 'styled-components';
 
 type CardHorizontalBlockPropsType = {|
   children: Node,
-  className: string
+  className: string,
 |};
 
 const HorizontalBlockComponent = (props: CardHorizontalBlockPropsType) => (

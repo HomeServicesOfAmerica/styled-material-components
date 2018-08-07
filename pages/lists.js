@@ -1,17 +1,17 @@
 // @flow
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 import {
   ThemeProvider,
   List,
   ListItem,
   ListItemText,
-  ListSubheader
-} from "../src";
+  ListSubheader,
+} from '../src';
 
 type ListsPagePropsType = {|
-  className: string
+  className: string,
 |};
 
 const ListsPage = ({ className }: ListsPagePropsType) => (

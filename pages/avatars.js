@@ -1,8 +1,8 @@
 // @flow
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-import { Avatar, ThemeProvider } from "../src";
+import { Avatar, ThemeProvider } from '../src';
 
 const StyledAvatar = Avatar.extend`
   color: tomato;
@@ -42,7 +42,7 @@ const AvatarsPage = () => (
     <StyledAvatar size={64} name="HI" />
     Or accept an image src
     <CodeBlock>
-      {" "}
+      {' '}
       {'<Avatar size={128} src="https://bit.ly/2GErNQL" />'}
     </CodeBlock>
     <Avatar size={128} src="https://bit.ly/2GErNQL" />

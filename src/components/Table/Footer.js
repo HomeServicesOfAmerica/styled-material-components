@@ -1,13 +1,13 @@
-import React, { Fragment, PureComponent } from "react";
-import styled from "styled-components";
+import React, { Fragment, PureComponent } from 'react';
+import styled from 'styled-components';
 
-import Button from "../Button";
-import { Icon } from "../../icons";
-import { Menu } from "../Menu";
+import Button from '../Button';
+import { Icon } from '../../icons';
+import { Menu } from '../Menu';
 
 const FooterIcon = Icon.extend.attrs({
-  cursor: "pointer",
-  fill: "rgba(0, 0, 0, .54)"
+  cursor: 'pointer',
+  fill: 'rgba(0, 0, 0, .54)',
 })``;
 
 const StandAloneMenu = Menu.extend`
@@ -33,7 +33,7 @@ class FooterComponent extends PureComponent {
     menuOpen: false,
     // why is this in state?
     // because it changes and we want a reference of the first value, rather than the change
-    rowsPerPage: this.props.rowsPerPage
+    rowsPerPage: this.props.rowsPerPage,
   };
 
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -50,25 +50,25 @@ class FooterComponent extends PureComponent {
   rowSelection = this.props.rowsDropDown
     ? this.props.rowsDropDown.map(item => ({
         text: item,
-        onClick: () => this.handleSelect(item)
+        onClick: () => this.handleSelect(item),
       }))
     : [
         {
           text: this.state.rowsPerPage,
-          onClick: () => this.handleSelect(this.state.rowsPerPage)
+          onClick: () => this.handleSelect(this.state.rowsPerPage),
         },
         {
           text: this.state.rowsPerPage * 3,
-          onClick: () => this.handleSelect(this.state.rowsPerPage * 3)
+          onClick: () => this.handleSelect(this.state.rowsPerPage * 3),
         }, // Fibonacci?
         {
           text: this.state.rowsPerPage * 5,
-          onClick: () => this.handleSelect(this.state.rowsPerPage * 5)
+          onClick: () => this.handleSelect(this.state.rowsPerPage * 5),
         },
         {
           text: this.state.rowsPerPage * 8,
-          onClick: () => this.handleSelect(this.state.rowsPerPage * 8)
-        }
+          onClick: () => this.handleSelect(this.state.rowsPerPage * 8),
+        },
       ];
 
   handleClick = () => {
@@ -91,7 +91,7 @@ class FooterComponent extends PureComponent {
       rowsPerPage,
       totalDataPoints,
       handleBackwardsPagination,
-      handleForwardPagination
+      handleForwardPagination,
     } = this.props;
 
     const onFirstPage = currentPage === 1;

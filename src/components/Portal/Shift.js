@@ -1,17 +1,17 @@
 // @flow
-import React, { Component, type Node } from "react";
+import React, { Component, type Node } from 'react';
 
 type ShiftPropsType = {|
   children: Node,
   className: string,
   direction: string,
   onClick: (e: SyntheticMouseEvent<HTMLDivElement>) => void,
-  open?: boolean // TODO which ones?
+  open?: boolean, // TODO which ones?
 |};
 
 export class Shift extends Component<ShiftPropsType> {
   componentDidMount() {
-    document.body.classList.add("shift");
+    document.body.classList.add('shift');
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -23,7 +23,7 @@ export class Shift extends Component<ShiftPropsType> {
   }
 
   componentWillUnmount() {
-    document.body.classList.remove("shift");
+    document.body.classList.remove('shift');
   }
 
   render() {

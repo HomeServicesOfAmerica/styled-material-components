@@ -51,7 +51,7 @@ class ButtonsPage extends React.PureComponent<
 
   render() {
     return (
-      <ThemeProvider theme={{ primary: "#03A9F4" }}>
+      <ThemeProvider>
         <div className={this.props.className}>
           <h1>Flat Buttons</h1>
           <GridList>

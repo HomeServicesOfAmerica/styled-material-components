@@ -41,7 +41,7 @@ class TextFieldPage extends PureComponent<
 
   render() {
     return (
-      <ThemeProvider theme={{ primary: "#03A9F4" }}>
+      <ThemeProvider>
         <div className={this.props.className}>
           <h1>Text Fields</h1>
 

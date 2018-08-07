@@ -95,7 +95,7 @@ class MenusPage extends Component {
     ];
 
     return (
-      <ThemeProvider theme={{ primary: '#03A9F4' }}>
+      <ThemeProvider>
         <PageWithBottomPadding>
           <h1>Menus</h1>
           <h2>Standalone Menu</h2>

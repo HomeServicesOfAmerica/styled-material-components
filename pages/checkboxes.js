@@ -8,8 +8,7 @@ import {
   Box,
   CheckMark,
   List,
-  ListItem,
-  defaultTheme
+  ListItem
 } from "../src";
 
 const StyledCheckbox = Checkbox.extend`
@@ -77,7 +76,7 @@ class CheckboxesPage extends PureComponent<
   render() {
     const { checked } = this.state;
     return (
-      <ThemeProvider theme={defaultTheme}>
+      <ThemeProvider>
         <List>
           <h1 style={{ marginLeft: 25 }}>Checkboxes</h1>
           <ListItem>

@@ -8,7 +8,7 @@ import List from "../src/components/List/List";
 import ListItem from "../src/components/List/ListItem";
 
 const HomePage = ({ className }) => (
-  <MaterialThemeProvider theme={{ primary: "#03A9F4" }}>
+  <MaterialThemeProvider>
     <List className={className}>
       <h1>Styled Material Components</h1>
       <ListItem>

@@ -19,7 +19,7 @@ const CodeBlock = styled.div`
 `;
 
 const AvatarsPage = () => (
-  <ThemeProvider theme={{ primary: "#03A9F4" }}>
+  <ThemeProvider>
     <h1>Avatars</h1>
     Avatars can accept first and last name and return initials
     <CodeBlock> {'<Avatar name="Bruce Wayne" />'}</CodeBlock>

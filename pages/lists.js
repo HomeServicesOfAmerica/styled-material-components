@@ -15,7 +15,7 @@ type ListsPagePropsType = {|
 |};
 
 const ListsPage = ({ className }: ListsPagePropsType) => (
-  <ThemeProvider theme={{ primary: "#03A9F4" }}>
+  <ThemeProvider>
     <div className={className}>
       <h1>List with Avatar</h1>
       <div className="list">

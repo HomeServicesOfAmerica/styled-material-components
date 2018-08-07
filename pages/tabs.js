@@ -75,7 +75,7 @@ class ControlledTabs extends React.Component<
 }
 
 const TabsPage = () => (
-  <ThemeProvider theme={{ primary: "#03A9F4" }}>
+  <ThemeProvider>
     <PageContainer>
       <Content>
         <h1>Tabs</h1>

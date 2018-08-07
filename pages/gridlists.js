@@ -49,7 +49,7 @@ type GridListsPagePropsType = {|
 |};
 
 const GridListsPage = ({ className }: GridListsPagePropsType) => (
-  <ThemeProvider theme={{ primary: "#03A9F4" }}>
+  <ThemeProvider>
     <div className={className}>
       <h1>Grid list</h1>
       <h3>Row</h3>

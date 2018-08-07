@@ -29,7 +29,7 @@ type CardsPagePropsType = {|
 |};
 
 const CardsPage = ({ className }: CardsPagePropsType) => (
-  <ThemeProvider theme={{ primary: "#03A9F4" }}>
+  <ThemeProvider>
     <div className={className}>
       <h1>Card</h1>
       <h5>This card will elevate more on hover</h5>

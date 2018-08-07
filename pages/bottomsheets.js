@@ -38,7 +38,7 @@ export default class PortalPage extends Component<
 
   render() {
     return (
-      <ThemeProvider theme={{ primary: "#03A9F4" }}>
+      <ThemeProvider>
         <PageContainer>
           <h1>Modal Bottomsheet!</h1>
           <BottomSheet

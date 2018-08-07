@@ -1,9 +1,9 @@
 // @flow
-import * as React from "react";
-import styled, { css } from "styled-components";
+import * as React from 'react';
+import styled, { css } from 'styled-components';
 
-import elevation, { elevationTransition } from "../mixins/elevation";
-import ripple from "../mixins/ripple";
+import elevation, { elevationTransition } from '../mixins/elevation';
+import ripple from '../mixins/ripple';
 
 const primary = css`
   color: ${props => props.theme.primary};
@@ -51,11 +51,11 @@ export type ButtonPropsType = {|
   compact?: boolean,
   dense?: boolean,
   disabled?: boolean,
-  raised?: boolean
+  raised?: boolean,
 |};
 
 const Button = styled.button.attrs({
-  "data-smc": "Button"
+  'data-smc': 'Button',
 })`
   color: black;
   display: inline-block;

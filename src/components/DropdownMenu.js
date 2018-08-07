@@ -1,10 +1,10 @@
 // @flow
-import styled from "styled-components";
-import React, { Component, Fragment } from "react";
+import styled from 'styled-components';
+import React, { Component, Fragment } from 'react';
 
-import MenuItem from "./Menu/MenuItem";
-import Menu from "./Menu/Menu";
-import { ArrowDropDownIcon } from "../icons";
+import MenuItem from './Menu/MenuItem';
+import Menu from './Menu/Menu';
+import { ArrowDropDownIcon } from '../icons';
 
 const Dropdown = styled.select`
   border-color: transparent;
@@ -38,24 +38,24 @@ const Symbol = styled(ArrowDropDownIcon)`
 type DropdownMenuPropsType = {
   defaultOption?: string,
   onItemClick: (e: Object) => any,
-  options: Array<string>
+  options: Array<string>,
 };
 
 type DropdownMenuStateType = {
   isChrome: ?boolean,
   isOpen: boolean,
   options: Array<string>,
-  selected: string
+  selected: string,
 };
 
 export default class DropdownMenu extends Component<
   DropdownMenuPropsType,
-  DropdownMenuStateType
+  DropdownMenuStateType,
 > {
   state = {
     isOpen: false,
-    selected: this.props.defaultOption || "select one",
-    isChrome: undefined
+    selected: this.props.defaultOption || 'select one',
+    isChrome: undefined,
   };
 
   /* eslint-disable react/no-did-mount-set-state */
@@ -73,7 +73,7 @@ export default class DropdownMenu extends Component<
     if (navigator) {
       const isChrome = Boolean(
         /Chrome/.test(navigator.userAgent) &&
-          /Google Inc/.test(navigator.vendor)
+          /Google Inc/.test(navigator.vendor),
       );
       this.setState({ isChrome });
     }

@@ -1,8 +1,8 @@
 // @flow
 /* eslint-disable react/react-in-jsx-scope */
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import { ThemeProvider, Tooltip } from "../src";
+import { ThemeProvider, Tooltip } from '../src';
 
 const SpacerToCheckScrollBehavior = styled.div`
   height: 400px;

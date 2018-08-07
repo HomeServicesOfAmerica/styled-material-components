@@ -1,8 +1,8 @@
 // @flow
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-import { GridList, GridTile, ThemeProvider } from "../src";
+import { GridList, GridTile, ThemeProvider } from '../src';
 
 const Img = styled.img`
   object-fit: cover;
@@ -13,39 +13,39 @@ const Img = styled.img`
 const tilesData: Array<{ img: string }> = [
   {
     img:
-      "https://media2.popsugar-assets.com/files/2016/02/08/898/n/1922398/4c2124bfd07afeca_heart-shaped-pizza-2016.xxxlarge_2x.jpg"
+      'https://media2.popsugar-assets.com/files/2016/02/08/898/n/1922398/4c2124bfd07afeca_heart-shaped-pizza-2016.xxxlarge_2x.jpg',
   },
   {
     img:
-      "https://www.livekindly.co/wp-content/uploads/2017/08/pizza-vegan-1280x640.jpg"
+      'https://www.livekindly.co/wp-content/uploads/2017/08/pizza-vegan-1280x640.jpg',
   },
   {
     img:
-      "https://www.the-girl-who-ate-everything.com/wp-content/uploads/2014/07/best-baked-beans-6.jpg"
+      'https://www.the-girl-who-ate-everything.com/wp-content/uploads/2014/07/best-baked-beans-6.jpg',
   },
   {
     img:
-      "http://www.yaelyspizza.com/wp-content/uploads/2017/06/buffets-familiares-en-cdmx-carne-pizza-y-videojuegos-02.jpg"
+      'http://www.yaelyspizza.com/wp-content/uploads/2017/06/buffets-familiares-en-cdmx-carne-pizza-y-videojuegos-02.jpg',
   },
   {
     img:
-      "http://www.seriouseats.com/recipes/images/2017/02/20170216-detroit-style-pizza-43-1500x1125.jpg"
+      'http://www.seriouseats.com/recipes/images/2017/02/20170216-detroit-style-pizza-43-1500x1125.jpg',
   },
   {
     img:
-      "https://www.landolakes.com/RecipeManagementSystem/media/Recipe-Media-Files/Recipes/Retail/x17/18691-ice-cream-cookie-pizza-600x600.jpg?ext=.jpg"
+      'https://www.landolakes.com/RecipeManagementSystem/media/Recipe-Media-Files/Recipes/Retail/x17/18691-ice-cream-cookie-pizza-600x600.jpg?ext=.jpg',
   },
   {
     img:
-      "https://www.pizzaparma.us/wp-content/uploads/2017/07/Pizza_Parma_Pittsburgh_Pizza_Dinner__Lunch_Caterin.jpg"
+      'https://www.pizzaparma.us/wp-content/uploads/2017/07/Pizza_Parma_Pittsburgh_Pizza_Dinner__Lunch_Caterin.jpg',
   },
   {
-    img: "https://nickpassey.com/wp-content/uploads/2016/10/Featured.jpg"
-  }
+    img: 'https://nickpassey.com/wp-content/uploads/2016/10/Featured.jpg',
+  },
 ];
 
 type GridListsPagePropsType = {|
-  className: string
+  className: string,
 |};
 
 const GridListsPage = ({ className }: GridListsPagePropsType) => (

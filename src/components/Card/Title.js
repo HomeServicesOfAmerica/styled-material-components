@@ -1,13 +1,13 @@
 // @flow
-import React, { type Node } from "react";
-import styled, { css } from "styled-components";
+import React, { type Node } from 'react';
+import styled, { css } from 'styled-components';
 
-import typography from "../../mixins/typography";
+import typography from '../../mixins/typography';
 
 type CardTitlePropsType = {|
   children: Node,
   className: string,
-  large?: boolean
+  large?: boolean,
 |};
 
 const TitleComponent = (props: CardTitlePropsType) => (
@@ -15,13 +15,13 @@ const TitleComponent = (props: CardTitlePropsType) => (
 );
 
 const Title = styled(TitleComponent)`
-  ${typography("body2")} margin: -.063rem 0;
+  ${typography('body2')} margin: -.063rem 0;
   color: ${props => props.theme.textColors.primary};
 
   ${props =>
     props.large &&
     css`
-      ${typography("headline")} margin: 0;
+      ${typography('headline')} margin: 0;
     `} .primary & {
     ${props =>
       props.large &&

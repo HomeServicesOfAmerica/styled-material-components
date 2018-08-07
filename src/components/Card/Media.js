@@ -1,11 +1,11 @@
 // @flow
-import React, { type Node } from "react";
-import styled, { css } from "styled-components";
+import React, { type Node } from 'react';
+import styled, { css } from 'styled-components';
 
 type CardMediaPropsType = {|
   children: Node,
   className: string,
-  src: string
+  src: string,
 |};
 
 const MediaComponent = (props: CardMediaPropsType) => (

@@ -1,10 +1,10 @@
 // @flow
-import React, { PureComponent } from "react";
-import styled, { css } from "styled-components";
+import React, { PureComponent } from 'react';
+import styled, { css } from 'styled-components';
 
-import typography from "../mixins/typography";
-import elevation, { elevationTransition } from "../mixins/elevation";
-import { CancelIcon } from "../icons";
+import typography from '../mixins/typography';
+import elevation, { elevationTransition } from '../mixins/elevation';
+import { CancelIcon } from '../icons';
 
 const clickableStyles = css`
   :hover {
@@ -34,7 +34,7 @@ const removableStyles = css`
 const ChipWrapper = styled.div`
   position: relative;
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     background-color: rgba(0, 0, 0, 0.87);
     opacity: 0;
@@ -55,7 +55,7 @@ const ChipWrapper = styled.div`
   border-radius: 16px;
   font-size: 13px;
   color: ${props => props.theme.textColors.primary};
-  ${props => props.removed && "display: none"};
+  ${props => props.removed && 'display: none'};
   ${({ removable }) => removable && removableStyles};
   ${({ clickable }) => clickable && clickableStyles};
   /* Disable text highlighting of Chip labels */
@@ -76,7 +76,7 @@ const ChipAvatar = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  ${typography("body")};
+  ${typography('body')};
   font-size: 16px;
 `;
 
@@ -93,7 +93,7 @@ const ChipDeleteIcon = styled(CancelIcon)`
 
 class ChipComponent extends PureComponent {
   state = {
-    removed: false
+    removed: false,
   };
 
   handleDeleteIconClick = (e: Object): void => {
@@ -131,7 +131,7 @@ class ChipComponent extends PureComponent {
       removable,
       removeIcon,
       onDelete,
-      removed: removedProp
+      removed: removedProp,
     } = this.props;
     // determine if chip is managing its own removal (uncontrolled)
     // or if it's being managed by the parent (controlled)

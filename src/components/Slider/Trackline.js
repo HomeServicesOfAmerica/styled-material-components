@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const TracklineComponent = props => (
   <div className={`${props.className} smc-slider-track-line`}>

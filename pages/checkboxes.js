@@ -1,6 +1,6 @@
 // @flow
-import React, { PureComponent } from "react";
-import styled from "styled-components";
+import React, { PureComponent } from 'react';
+import styled from 'styled-components';
 
 import {
   ThemeProvider,
@@ -8,8 +8,8 @@ import {
   Box,
   CheckMark,
   List,
-  ListItem
-} from "../src";
+  ListItem,
+} from '../src';
 
 const StyledCheckbox = Checkbox.extend`
   ${Box} {
@@ -47,29 +47,29 @@ type CheckboxesPagePropsType = {||};
 type CheckboxesPageStateType = {|
   checked: {
     checkbox6: boolean,
-    checkbox9: boolean
-  }
+    checkbox9: boolean,
+  },
 |};
 
 class CheckboxesPage extends PureComponent<
   CheckboxesPagePropsType,
-  CheckboxesPageStateType
+  CheckboxesPageStateType,
 > {
   state = {
     checked: {
       checkbox6: false,
-      checkbox9: false
-    }
+      checkbox9: false,
+    },
   };
 
   handleChange = ({
-    target: { id }
+    target: { id },
   }: SyntheticInputEvent<EventTarget>): void => {
     this.setState(({ checked }: CheckboxesPageStateType) => ({
       checked: {
         ...checked,
-        [id]: !checked[id]
-      }
+        [id]: !checked[id],
+      },
     }));
   };
 
@@ -101,7 +101,7 @@ class CheckboxesPage extends PureComponent<
           </ListItem>
           <ListItem>
             <Checkbox
-              checked={checked["checkbox6"]}
+              checked={checked['checkbox6']}
               onChange={this.handleChange}
               id="checkbox6"
             />
@@ -118,7 +118,7 @@ class CheckboxesPage extends PureComponent<
           <ListItem>
             <StyledCheckbox2
               id="checkbox9"
-              checked={checked["checkbox9"]}
+              checked={checked['checkbox9']}
               onChange={this.handleChange}
               CheckMark={Square}
             />

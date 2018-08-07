@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const ValueTrackComponent = props => (
   <div className={`${props.className} smc-slider-value-size`}>

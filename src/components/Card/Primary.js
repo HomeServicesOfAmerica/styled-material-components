@@ -1,25 +1,25 @@
 // @flow
-import React from "react";
-import styled, { css } from "styled-components";
+import React from 'react';
+import styled, { css } from 'styled-components';
 
-import { Avatar } from "../Avatar";
-import typography from "../../mixins/typography";
+import { Avatar } from '../Avatar';
+import typography from '../../mixins/typography';
 
 type CardPrimaryPropsType = {|
   avatar?: string,
   className: string,
   large?: boolean,
   subheader?: string,
-  title?: string
+  title?: string,
 |};
 
 const Title = styled.h1`
-  ${typography("body2")} margin: -.063rem 0;
+  ${typography('body2')} margin: -.063rem 0;
 
   ${props =>
     props.large &&
     css`
-      ${typography("headline")} margin: 0;
+      ${typography('headline')} margin: 0;
     `} .primary & {
     ${props =>
       props.large &&
@@ -30,7 +30,7 @@ const Title = styled.h1`
 `;
 
 const Subheader = styled.h2`
-  ${typography("body1")} margin: -.063rem 0;
+  ${typography('body1')} margin: -.063rem 0;
   color: ${props => props.theme.textColors.primary};
 `;
 
@@ -39,7 +39,7 @@ const PrimaryComponent = ({
   title,
   subheader,
   className,
-  large
+  large,
 }: CardPrimaryPropsType) => (
   <section className={`${className} card-primary`}>
     {avatar && <Avatar src={avatar} />}
@@ -65,7 +65,7 @@ const Primary = styled(PrimaryComponent)`
   }
 
   > .smc-card-title-container {
-    margin-left: ${props => (props.avatar ? "56px" : "0px")};
+    margin-left: ${props => (props.avatar ? '56px' : '0px')};
   }
 
   &:last-child {

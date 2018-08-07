@@ -1,28 +1,28 @@
 // @flow
-import React, { PureComponent } from "react";
-import styled from "styled-components";
+import React, { PureComponent } from 'react';
+import styled from 'styled-components';
 
-import { ThemeProvider, Button, Snackbar } from "../src";
+import { ThemeProvider, Button, Snackbar } from '../src';
 
 type SnackbarPagePropsType = {|
-  className: string
+  className: string,
 |};
 
 type SnackbarPageStateType = {|
   multi: boolean,
-  single: boolean
+  single: boolean,
 |};
 
 class SnackbarPage extends PureComponent<
   SnackbarPagePropsType,
-  SnackbarPageStateType
+  SnackbarPageStateType,
 > {
   state = {
     single: false,
-    multi: false
+    multi: false,
   };
 
-  handleClose = (type: "single" | "multi"): void => {
+  handleClose = (type: 'single' | 'multi'): void => {
     this.setState({ [type]: false });
   };
 
@@ -63,14 +63,14 @@ class SnackbarPage extends PureComponent<
           </StyledButton>
           <Snackbar
             open={this.state.single}
-            onRequestClose={() => this.handleClose("single")}
+            onRequestClose={() => this.handleClose('single')}
             autoHideDuration={1500}
             message="this is a foodless snackbar :("
           />
           <Snackbar
             open={this.state.multi}
             multiline
-            onRequestClose={() => this.handleClose("multi")}
+            onRequestClose={() => this.handleClose('multi')}
             autoHideDuration={1500}
             message="This snackbar will display multiple lines on a mobile device, provided that the snackbar message is of a certain length. Multi-line snackbars are triggered with the 'multiline' prop."
           />

@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import { Icon } from "../icons";
+import { Icon } from '../icons';
 
 const LinkedCameraPath = () => [
   <path
@@ -10,11 +10,11 @@ const LinkedCameraPath = () => [
   <path
     d="M17 9c0-1.11-.89-2-2-2V4H9L7.17 6H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V9h-5zm-5 10c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"
     key="path1"
-  />
+  />,
 ];
 
 const LinkedCameraIcon = Icon.extend.attrs({
-  children: LinkedCameraPath
+  children: LinkedCameraPath,
 })``;
 
 export default LinkedCameraPath;

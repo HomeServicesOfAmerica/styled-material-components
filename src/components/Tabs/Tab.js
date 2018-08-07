@@ -1,8 +1,8 @@
-import * as React from "react";
-import styled from "styled-components";
+import * as React from 'react';
+import styled from 'styled-components';
 
-import typography from "../../mixins/typography";
-import withRipple from "../../enhancers/withRipple";
+import typography from '../../mixins/typography';
+import withRipple from '../../enhancers/withRipple';
 
 const TabButton = styled.button`
   align-items: center;
@@ -30,7 +30,7 @@ const RippleTab = withRipple(TabButton);
 
 const TabLabel = styled.span`
   padding: 4px 12px;
-  ${typography("body2")};
+  ${typography('body2')};
 `;
 
 const TabComponent = ({ children, className, Icon, index, onClick }) => (

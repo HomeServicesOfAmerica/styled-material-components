@@ -82,8 +82,8 @@ import {
   SentimentVerySatisfiedIcon,
   ShareIcon,
   WhatshotIcon,
-  StarIcon
-} from "../../src/icons";
+  StarIcon,
+} from '../../src/icons';
 
 export const iconList = [
   NetworkCellIcon,
@@ -167,7 +167,7 @@ export const iconList = [
   SentimentVerySatisfiedIcon,
   ShareIcon,
   WhatshotIcon,
-  StarIcon
+  StarIcon,
 ];
 
 // export const iconList: Array<Object> = [

@@ -1,8 +1,8 @@
 // @flow
-import React, { PureComponent } from "react";
-import styled from "styled-components";
+import React, { PureComponent } from 'react';
+import styled from 'styled-components';
 
-import { ThemeProvider, TextField, Button } from "../src";
+import { ThemeProvider, TextField, Button } from '../src';
 
 const validateLength = str => str.length > 7;
 
@@ -20,21 +20,21 @@ const TextFieldWithStyledPrefixAndSuffix = TextFieldWithBottomMargin.extend`
 `;
 
 type TextFieldPropsType = {|
-  className: string
+  className: string,
 |};
 
 type TextFieldPageStateType = {|
   controlledInputValue: string,
-  shouldReset: boolean
+  shouldReset: boolean,
 |};
 
 class TextFieldPage extends PureComponent<
   TextFieldPropsType,
-  TextFieldPageStateType
+  TextFieldPageStateType,
 > {
   state = {
-    controlledInputValue: "",
-    shouldReset: false
+    controlledInputValue: '',
+    shouldReset: false,
   };
 
   handleChange = e => this.setState({ [e.target.name]: e.target.value });
@@ -46,58 +46,58 @@ class TextFieldPage extends PureComponent<
           <h1>Text Fields</h1>
 
           <h2>Simple Examples</h2>
-          <TextFieldWithBottomMargin hintText={"autofocus"} autoFocus />
-          <TextFieldWithBottomMargin hintText={"Hint Text"} />
-          <TextFieldWithBottomMargin defaultValue={"Default Value"} />
-          <TextFieldWithBottomMargin floatingLabelText={"floating label"} />
+          <TextFieldWithBottomMargin hintText={'autofocus'} autoFocus />
+          <TextFieldWithBottomMargin hintText={'Hint Text'} />
+          <TextFieldWithBottomMargin defaultValue={'Default Value'} />
+          <TextFieldWithBottomMargin floatingLabelText={'floating label'} />
           <TextFieldWithBottomMargin
-            hintText={"with hint text"}
-            floatingLabelText={"floating label"}
+            hintText={'with hint text'}
+            floatingLabelText={'floating label'}
           />
           <TextFieldWithBottomMargin
-            helperText={"persistent helper text"}
+            helperText={'persistent helper text'}
             helperTextPersistent
           />
-          <TextFieldWithBottomMargin helperText={"default helper text"} />
-          <TextFieldWithBottomMargin hintText={"disabled"} disabled />
+          <TextFieldWithBottomMargin helperText={'default helper text'} />
+          <TextFieldWithBottomMargin hintText={'disabled'} disabled />
           <TextFieldWithBottomMargin
             name="controlledInputValue"
-            floatingLabelText={"Controlled Input"}
+            floatingLabelText={'Controlled Input'}
             value={this.state.controlledInputValue}
             onChange={this.handleChange}
           />
           <TextFieldWithBottomMargin
-            hintText={"Focus disabled"}
+            hintText={'Focus disabled'}
             focusDisabled
           />
-          <TextFieldWithBottomMargin hintText={"Full Width"} fullWidth />
+          <TextFieldWithBottomMargin hintText={'Full Width'} fullWidth />
           <br />
 
           <h2>Error Examples</h2>
           <TextFieldWithBottomMargin
-            hintText={"Controlled error"}
-            errorText={"This error was passed in"}
+            hintText={'Controlled error'}
+            errorText={'This error was passed in'}
             error
           />
           <TextFieldWithBottomMargin
-            hintText={"with validation"}
-            helperText={"helper text and validation"}
+            hintText={'with validation'}
+            helperText={'helper text and validation'}
             validator={validateLength}
-            errorText={"This should be at least 8 chars"}
+            errorText={'This should be at least 8 chars'}
           />
           <TextFieldWithBottomMargin
-            floatingLabelText={"A required field"}
+            floatingLabelText={'A required field'}
             required
           />
-          <TextFieldWithBottomMargin prefix={"$"} />
-          <TextFieldWithBottomMargin suffix={"lb"} />
+          <TextFieldWithBottomMargin prefix={'$'} />
+          <TextFieldWithBottomMargin suffix={'lb'} />
           <TextFieldWithStyledPrefixAndSuffix prefix="$" suffix="/mo." />
           <TextFieldWithBottomMargin
             floatingLabelText={
               <div>
                 React component
                 <img
-                  style={{ height: "18px" }}
+                  style={{ height: '18px' }}
                   src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Ei-sc-github.svg/768px-Ei-sc-github.svg.png"
                 />
               </div>
@@ -147,7 +147,7 @@ class TextFieldPage extends PureComponent<
           <h2>Dropdown Menu</h2>
           <TextFieldWithBottomMargin
             floatingLabelText="Dropdown Menu"
-            options={["option1", "option2"]}
+            options={['option1', 'option2']}
             onItemClick={({ target: { value } }) =>
               alert(`Can handle callbacks, ${value}`)
             }
@@ -155,19 +155,19 @@ class TextFieldPage extends PureComponent<
           <h4>No Selected Default Option</h4>
           <TextFieldWithBottomMargin
             floatingLabelText="Dropdown Menu"
-            options={["option1", "option2"]}
-            defaultOption={"select an option"}
+            options={['option1', 'option2']}
+            defaultOption={'select an option'}
           />
           <h4>Selected Default Option</h4>
           <TextFieldWithBottomMargin
             floatingLabelText="Dropdown Menu"
-            options={["option0", "option1", "option2"]}
-            defaultOption={"option2"}
+            options={['option0', 'option1', 'option2']}
+            defaultOption={'option2'}
           />
           <h4>Invalid Options Passed In</h4>
           <TextFieldWithBottomMargin
             floatingLabelText="Dropdown Menu"
-            options={"invalid option"}
+            options={'invalid option'}
           />
         </div>
       </ThemeProvider>

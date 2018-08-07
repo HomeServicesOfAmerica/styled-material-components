@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import { Icon } from "../icons";
+import { Icon } from '../icons';
 
 const Battery30Path = () => [
   <path
@@ -11,11 +11,11 @@ const Battery30Path = () => [
   <path
     d="M7 15v5.67C7 21.4 7.6 22 8.33 22h7.33c.74 0 1.34-.6 1.34-1.33V15H7z"
     key="path1"
-  />
+  />,
 ];
 
 const Battery30Icon = Icon.extend.attrs({
-  children: Battery30Path
+  children: Battery30Path,
 })``;
 
 export default Battery30Path;

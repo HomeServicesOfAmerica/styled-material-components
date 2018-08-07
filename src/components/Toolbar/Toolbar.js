@@ -1,10 +1,10 @@
-import React from "react";
-import styled, { css } from "styled-components";
+import React from 'react';
+import styled, { css } from 'styled-components';
 
-import { Row } from "../FlexGrid";
-import { contrastingColor } from "../../mixins/theme";
-import typography, { overflowEllipsis } from "../../mixins/typography";
-import elevation from "../../mixins/elevation";
+import { Row } from '../FlexGrid';
+import { contrastingColor } from '../../mixins/theme';
+import typography, { overflowEllipsis } from '../../mixins/typography';
+import elevation from '../../mixins/elevation';
 
 const toolbarSectionStyles = css`
   display: inline-flex;
@@ -33,7 +33,7 @@ const ToolbarTitleComponent = ({ children, className, Icon }) => (
 );
 
 export const ToolbarTitle = styled(ToolbarTitleComponent)`
-  ${typography("title")} ${overflowEllipsis}
+  ${typography('title')} ${overflowEllipsis}
   align-self: center;
   padding: 12px 0;
   line-height: 1.5rem;
@@ -70,7 +70,7 @@ export const Toolbar = styled(ToolbarRedux)`
   box-sizing: border-box;
   width: 100%;
   background-color: ${({ theme }) => theme.primary};
-  ${({ theme }) => contrastingColor("color", theme.primary)}
+  ${({ theme }) => contrastingColor('color', theme.primary)}
 
   ${props => props.fixed && fixedToolbarMixin}
 

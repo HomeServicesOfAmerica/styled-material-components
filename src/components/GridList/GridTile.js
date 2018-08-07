@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const GridTileComponent = ({ className, children }) => (
   <div className={`${className} smc-grid-tile-content`}>{children}</div>

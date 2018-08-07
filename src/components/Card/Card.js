@@ -1,13 +1,13 @@
 // @flow
-import React, { type Node } from "react";
-import styled, { css } from "styled-components";
+import React, { type Node } from 'react';
+import styled, { css } from 'styled-components';
 
-import elevation from "../../mixins/elevation";
+import elevation from '../../mixins/elevation';
 
 type CardPropsType = {|
   children: Node,
   className: string,
-  hover?: boolean
+  hover?: boolean,
 |};
 
 const CardComponent = ({ className, children }: CardPropsType) => (
@@ -35,7 +35,7 @@ const Card = styled(CardComponent)`
 `;
 
 Card.defaultProps = {
-  hover: false
+  hover: false,
 };
 
 export default Card;

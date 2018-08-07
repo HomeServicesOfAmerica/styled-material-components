@@ -1,6 +1,6 @@
-import React from "react";
-import { findDOMNode } from "react-dom";
-import styled from "styled-components";
+import React from 'react';
+import { findDOMNode } from 'react-dom';
+import styled from 'styled-components';
 
 class MenuListComponent extends React.Component {
   componentDidMount() {

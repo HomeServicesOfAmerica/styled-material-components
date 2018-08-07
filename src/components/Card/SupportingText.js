@@ -1,12 +1,12 @@
 // @flow
-import React, { type Node } from "react";
-import styled from "styled-components";
+import React, { type Node } from 'react';
+import styled from 'styled-components';
 
-import typography from "../../mixins/typography";
+import typography from '../../mixins/typography';
 
 type CardSupportingTextPropsType = {|
   children: Node,
-  className: string
+  className: string,
 |};
 
 const SupportingTextComponent = (props: CardSupportingTextPropsType) => (
@@ -16,7 +16,7 @@ const SupportingTextComponent = (props: CardSupportingTextPropsType) => (
 );
 
 const SupportingText = styled(SupportingTextComponent)`
-  ${typography("body1")} padding: 8px 16px;
+  ${typography('body1')} padding: 8px 16px;
   box-sizing: border-box;
   color: ${props => props.theme.textColors.primary};
 

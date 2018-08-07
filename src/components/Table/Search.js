@@ -1,8 +1,8 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-import TextField from "../TextField";
-import { SearchIcon } from "../../icons";
+import TextField from '../TextField';
+import { SearchIcon } from '../../icons';
 
 const SearchComponent = ({ className, onSearch }) => (
   <div className={`smc-search-container ${className}`}>
@@ -11,7 +11,7 @@ const SearchComponent = ({ className, onSearch }) => (
     </div>
     <TextField
       type="search"
-      hintText={"Search Term"}
+      hintText={'Search Term'}
       fullWidth
       onChange={onSearch}
     />

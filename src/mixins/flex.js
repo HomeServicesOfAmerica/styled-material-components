@@ -1,11 +1,11 @@
 // @flow
-import { css } from "styled-components";
+import { css } from 'styled-components';
 
 type RowMixinConfigType = {
-  distribution?: "around" | "between",
-  horizontal: "left" | "center" | "right",
+  distribution?: 'around' | 'between',
+  horizontal: 'left' | 'center' | 'right',
   stretch?: boolean,
-  vertical: "top" | "middle" | "bottom"
+  vertical: 'top' | 'middle' | 'bottom',
 };
 
 /**
@@ -22,49 +22,49 @@ const computeDirection = ({
   horizontal,
   distribution,
   vertical,
-  stretch
+  stretch,
 }: RowMixinConfigType): string => {
-  let justifyContent = "flex-start";
-  let alignItems = "flex-start";
+  let justifyContent = 'flex-start';
+  let alignItems = 'flex-start';
 
   switch (horizontal) {
-    case "center":
-      justifyContent = "center";
+    case 'center':
+      justifyContent = 'center';
       break;
-    case "right":
-      justifyContent = "flex-end";
+    case 'right':
+      justifyContent = 'flex-end';
       break;
     default:
       break;
   }
 
   switch (distribution) {
-    case "around":
-      justifyContent = "space-around";
+    case 'around':
+      justifyContent = 'space-around';
       break;
-    case "between":
-      justifyContent = "space-between";
+    case 'between':
+      justifyContent = 'space-between';
       break;
     default:
       break;
   }
 
   switch (vertical) {
-    case "top":
-      alignItems = "flex-start";
+    case 'top':
+      alignItems = 'flex-start';
       break;
-    case "bottom":
-      alignItems = "flex-end";
+    case 'bottom':
+      alignItems = 'flex-end';
       break;
-    case "middle":
-      alignItems = "center";
+    case 'middle':
+      alignItems = 'center';
       break;
     default:
       break;
   }
 
   if (stretch) {
-    alignItems = "stretch";
+    alignItems = 'stretch';
   }
 
   return css`
@@ -74,12 +74,12 @@ const computeDirection = ({
 };
 
 const defaultRow = {
-  horizontal: "left",
-  vertical: "top"
+  horizontal: 'left',
+  vertical: 'top',
 };
 
 export const rowMixin = (
-  configuration: RowMixinConfigType = defaultRow
+  configuration: RowMixinConfigType = defaultRow,
 ): string => css`
   display: flex;
   flex: 1;

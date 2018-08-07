@@ -1,6 +1,6 @@
 // @flow
-import React, { Component } from "react";
-import styled from "styled-components";
+import React, { Component } from 'react';
+import styled from 'styled-components';
 
 // import MaterialThemeProvider from '../src/theme/ThemeProvider';
 import {
@@ -12,15 +12,15 @@ import {
   // CloseIcon,
   // MenuIcon,
   Row,
-  Column
+  Column,
   /*
   MenuIcon,
   Navigation,
   NavigationItem
   */
-} from "../../src";
+} from '../../src';
 
-import elevation from "../../src/mixins/elevation";
+import elevation from '../../src/mixins/elevation';
 
 const PageContainer = styled.div`
   width: 100vw;
@@ -43,16 +43,16 @@ type ToolbarPagePropsType = {};
 
 type ToolbarPageStateType = {|
   persistentRight: boolean,
-  temporaryRight: boolean
+  temporaryRight: boolean,
 |};
 
 export default class ToolbarPage extends Component<
   ToolbarPagePropsType,
-  ToolbarPageStateType
+  ToolbarPageStateType,
 > {
   state = {
     persistentRight: false,
-    temporaryRight: false
+    temporaryRight: false,
     // mainNav: "test1",
     // denseNav: "test4",
     // doubleNav: "test7"
@@ -64,16 +64,16 @@ export default class ToolbarPage extends Component<
         persistentRight: !prevState.persistentRight
           ? true
           : prevState.persistentRight,
-        temporaryRight: !prevState.temporaryRight
-      })
+        temporaryRight: !prevState.temporaryRight,
+      }),
     );
 
   togglePersistentRight = (): void =>
     this.setState(
       (prevState: ToolbarPageStateType): ToolbarPageStateType => ({
         persistentRight: !prevState.persistentRight,
-        temporaryRight: false
-      })
+        temporaryRight: false,
+      }),
     );
 
   closeIcon = () => (

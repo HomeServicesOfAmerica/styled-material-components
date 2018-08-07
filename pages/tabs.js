@@ -1,8 +1,8 @@
 // @flow
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-import { TabBar, TabContent, Tab, Tabs, ThemeProvider, Icon } from "../src";
+import { TabBar, TabContent, Tab, Tabs, ThemeProvider, Icon } from '../src';
 
 // TODO: (future) scrollable tabs
 
@@ -23,19 +23,19 @@ const Container = styled.div`
 
 type ControlledTabsPropsType = {
   fixed?: boolean,
-  showIcon?: boolean
+  showIcon?: boolean,
 };
 
 type ControlledTabsStateType = {|
-  selectedIndex: number
+  selectedIndex: number,
 |};
 
 class ControlledTabs extends React.Component<
   ControlledTabsPropsType,
-  ControlledTabsStateType
+  ControlledTabsStateType,
 > {
   state = {
-    selectedIndex: 0
+    selectedIndex: 0,
   };
 
   handleTabClick = (event, selectedIndex: number): void => {

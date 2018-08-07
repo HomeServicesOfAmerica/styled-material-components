@@ -1,7 +1,7 @@
 // @flow
-import React from "react";
+import React from 'react';
 
-import { Row, Column, ThemeProvider } from "../src";
+import { Row, Column, ThemeProvider } from '../src';
 
 const BlueColumn = Column.extend`
   background-color: teal;
@@ -293,6 +293,6 @@ const FlexGridPage = () => (
     </section>
   </ThemeProvider>
 );
-FlexGridPage.displayName = "FlexGridPage";
+FlexGridPage.displayName = 'FlexGridPage';
 
 export default FlexGridPage;

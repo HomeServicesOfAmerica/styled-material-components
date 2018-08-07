@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-import withRipple from "../../enhancers/withRipple";
+import withRipple from '../../enhancers/withRipple';
 
 const StyledListItem = styled.li``;
 const RippleListItem = withRipple(StyledListItem);

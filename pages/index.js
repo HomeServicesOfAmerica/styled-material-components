@@ -1,11 +1,11 @@
-import React from "react";
-import styled from "styled-components";
-import Link from "next/link";
+import React from 'react';
+import styled from 'styled-components';
+import Link from 'next/link';
 
-import MaterialThemeProvider from "../src/theme/ThemeProvider";
+import MaterialThemeProvider from '../src/theme/ThemeProvider';
 
-import List from "../src/components/List/List";
-import ListItem from "../src/components/List/ListItem";
+import List from '../src/components/List/List';
+import ListItem from '../src/components/List/ListItem';
 
 const HomePage = ({ className }) => (
   <MaterialThemeProvider>

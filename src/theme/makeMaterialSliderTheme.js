@@ -1,7 +1,7 @@
 // @flow
-import Color from "color";
+import Color from 'color';
 
-import { black, white } from "./colors";
+import { black, white } from './colors';
 import {
   type MaterialSliderColorThemeOverridesType,
   type MaterialSliderColorThemeType,
@@ -9,10 +9,10 @@ import {
   type MaterialSliderTransitionsThemeType,
   type MaterialSliderSizesThemeOverridesType,
   type MaterialSliderSizesThemeType,
-  type MaterialSliderThemeOverridesType
-} from "./types";
+  type MaterialSliderThemeOverridesType,
+} from './types';
 
-const DEFAULT_MAIN_COLOR = Color("#479c10");
+const DEFAULT_MAIN_COLOR = Color('#479c10');
 const DEFAULT_MAIN_OPACITY = 1;
 const DEFAULT_FOCUS_HALO_OPACITY = 0.12;
 
@@ -28,7 +28,7 @@ const DEFAULT_DARK_FOCUSED_TRACK_OPACITY = DEFAULT_DARK_TRACK_OPACITY;
 
 export const makeMaterialSliderColorTheme = (
   overrides: MaterialSliderColorThemeOverridesType = {},
-  isLight: boolean = true
+  isLight: boolean = true,
 ): MaterialSliderColorThemeType => {
   const mainColorOverride = overrides.mainColor;
   const mainColorAtZeroOverride = overrides.mainColorAtZero;
@@ -87,23 +87,23 @@ export const makeMaterialSliderColorTheme = (
     focusHalo: focusHaloColor.alpha(focusHaloOpacity).toString(),
     focusTrack: trackColor.alpha(focusTrackOpacity).toString(),
     disabled: disabledColor.alpha(disabledOpacity).toString(),
-    pageColor: pageColor.toString()
+    pageColor: pageColor.toString(),
   };
 };
 
 export const makeMaterialSliderTransitions = (
-  overrides: MaterialSliderTransitionsThemeOverridesType = {}
+  overrides: MaterialSliderTransitionsThemeOverridesType = {},
 ): MaterialSliderTransitionsThemeType => {
-  const main = overrides.main || "50ms";
-  const slider = overrides.slider || "50ms";
+  const main = overrides.main || '50ms';
+  const slider = overrides.slider || '50ms';
   return {
     main,
-    slider
+    slider,
   };
 };
 
 export const makeMaterialSliderSizes = (
-  overrides: MaterialSliderSizesThemeOverridesType = {}
+  overrides: MaterialSliderSizesThemeOverridesType = {},
 ): MaterialSliderSizesThemeType => {
   const thumb = overrides.thumb || 10;
   const thumbBorder = overrides.thumbBorder || 2;
@@ -121,15 +121,15 @@ export const makeMaterialSliderSizes = (
     thumbDisabledBorder,
     focusHalo,
     trackHeight,
-    clickableHeight
+    clickableHeight,
   };
 };
 
 export const makeMaterialSliderTheme = (
   overrides: MaterialSliderThemeOverridesType = {},
-  isLight: boolean = true
+  isLight: boolean = true,
 ) => ({
   colors: makeMaterialSliderColorTheme(overrides.colors, isLight),
   transitions: makeMaterialSliderTransitions(overrides.transitions),
-  sizes: makeMaterialSliderSizes(overrides.sizes)
+  sizes: makeMaterialSliderSizes(overrides.sizes),
 });

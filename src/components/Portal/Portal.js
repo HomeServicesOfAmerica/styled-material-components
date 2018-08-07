@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { createPortal } from 'react-dom';
+
 import { Overlay } from './Overlay';
 import { Shift } from './Shift';
 
@@ -67,7 +68,8 @@ export class Portal extends Component {
         className={this.props.className}
         direction={this.props.attachment}
         open={this.props.open}
-        onClick={this.props.onRequestClose}>
+        onClick={this.props.onRequestClose}
+      >
         {this.props.renderContents()}
       </PortalContainer>,
       this.el,

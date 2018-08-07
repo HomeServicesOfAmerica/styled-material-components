@@ -1,8 +1,8 @@
 // @flow
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-import Button from "../src/components/Button";
+import Button from '../src/components/Button';
 import {
   ThemeProvider,
   Card,
@@ -12,8 +12,8 @@ import {
   CardMedia,
   CardActions,
   CardHorizontalBlock,
-  CardMediaItem
-} from "../src";
+  CardMediaItem,
+} from '../src';
 
 const DemoCard = Card.extend`
   max-width: 21.875rem;
@@ -25,7 +25,7 @@ const DemoCard = Card.extend`
 `;
 
 type CardsPagePropsType = {|
-  className: string
+  className: string,
 |};
 
 const CardsPage = ({ className }: CardsPagePropsType) => (

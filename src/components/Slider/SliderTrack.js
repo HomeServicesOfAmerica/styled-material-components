@@ -1,11 +1,11 @@
-import React, { PureComponent } from "react";
-import ReactDOM from "react-dom";
-import styled from "styled-components";
+import React, { PureComponent } from 'react';
+import ReactDOM from 'react-dom';
+import styled from 'styled-components';
 
-import SliderThumb from "./SliderThumb";
-import Trackline from "./Trackline";
-import TrackValue from "./TrackValue";
-import ValueTrack from "./ValueTrack";
+import SliderThumb from './SliderThumb';
+import Trackline from './Trackline';
+import TrackValue from './TrackValue';
+import ValueTrack from './ValueTrack';
 
 const getValuePerPixel = (min, max, width) => {
   if (width === 0) return 1;
@@ -25,15 +25,15 @@ class SliderTrackComponent extends PureComponent {
     cursorXAtMin: null,
     // useTransitions: false,
     focused: false,
-    width: null
+    width: null,
   };
 
   componentDidMount = () => {
-    window.addEventListener("resize", this.getTrackWidth);
+    window.addEventListener('resize', this.getTrackWidth);
   };
 
   componentWillUnmount = () => {
-    window.removeEventListener("resize", this.getTrackWidth);
+    window.removeEventListener('resize', this.getTrackWidth);
   };
 
   setTrack = el => {
@@ -46,7 +46,7 @@ class SliderTrackComponent extends PureComponent {
     const { max, min } = this.props;
     /* eslint-disable react/no-find-dom-node */
     const { width, left } = ReactDOM.findDOMNode(
-      this.track
+      this.track,
     ).getBoundingClientRect();
     /* eslint-enable */
     const pixelsPerValue = getPixelPerValue(min, max, width);
@@ -55,7 +55,7 @@ class SliderTrackComponent extends PureComponent {
       width,
       pixelsPerValue,
       valuePerPixel,
-      cursorXAtMin: left
+      cursorXAtMin: left,
     });
   };
 
@@ -106,7 +106,7 @@ class SliderTrackComponent extends PureComponent {
     const { value, min, disabled } = this.props;
     const { pixelsPerValue, valuePerPixel, focused, width } = this.state;
     const haveMeasuredWidth =
-      typeof pixelsPerValue === "number" && typeof valuePerPixel === "number";
+      typeof pixelsPerValue === 'number' && typeof valuePerPixel === 'number';
     const pixelsFromMin = (value - min) * (pixelsPerValue || 0);
     const atMin = min === value;
     return (
@@ -127,7 +127,7 @@ class SliderTrackComponent extends PureComponent {
               disabled={this.props.disabled}
               atMin={atMin}
               key="slider-track-slider-thumb"
-            />
+            />,
           ]}
         </Trackline>
       </div>
@@ -137,7 +137,7 @@ class SliderTrackComponent extends PureComponent {
 
 const SliderTrack = styled(SliderTrackComponent)`
   height: ${props => props.theme.slider.sizes.clickableHeight}px;
-  cursor: ${props => (props.disabled ? "auto" : "pointer")};
+  cursor: ${props => (props.disabled ? 'auto' : 'pointer')};
   width: 100%;
 `;
 

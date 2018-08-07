@@ -1,11 +1,11 @@
 // @flow
-import React, { type Node } from "react";
-import styled from "styled-components";
+import React, { type Node } from 'react';
+import styled from 'styled-components';
 
 type CardActionsPropsType = {|
   children: Node,
   className: string,
-  vertical?: boolean
+  vertical?: boolean,
 |};
 
 const ActionsComponent = (props: CardActionsPropsType) => (

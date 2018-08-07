@@ -1,11 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const getThumbColor = props => {
   const {
     disabled,
     theme: {
-      slider: { colors }
-    }
+      slider: { colors },
+    },
   } = props;
   if (disabled) return colors.disabled;
   return props.atMin ? colors.pageColor : colors.main;
@@ -21,8 +21,8 @@ const getThumbBorderColor = props => {
   const {
     atMin,
     theme: {
-      slider: { colors }
-    }
+      slider: { colors },
+    },
   } = props;
   return atMin ? colors.track : getThumbColor(props);
 };

@@ -1,0 +1,12 @@
+---
+  extends:
+    - concierge-auctions-react
+  parser: babel-eslint
+  rules:
+    react/require-default-props: "off"
+    jsx-a11y/href-no-hash: "off"
+    jsx-a11y/img-has-alt: "off"
+    react/no-find-dom-node: "off"
+    no-underscore-dangle:
+      - error
+      - allowAfterThis: true

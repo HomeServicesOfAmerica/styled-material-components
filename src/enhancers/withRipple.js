@@ -1,6 +1,5 @@
-// @flow
-import React, { Component, type ComponentType } from "react";
-import styled, { keyframes } from "styled-components";
+import React, { Component } from 'react';
+import { keyframes } from 'styled-components';
 
 const rippleAnimation = keyframes`
   to {
@@ -9,8 +8,8 @@ const rippleAnimation = keyframes`
   }
 `;
 
-const withRipple = (ComposedComponent: ComponentType<*>): ComponentType<*> => {
-  const RippledComponent = styled(ComposedComponent)`
+const withRipple = (ComposedComponent) => {
+  const RippledComponent = ComposedComponent.extend`
     position: relative;
     overflow: hidden;
 
@@ -30,26 +29,22 @@ const withRipple = (ComposedComponent: ComponentType<*>): ComponentType<*> => {
       animation: ${rippleAnimation} 1000ms;
     }
   `;
-  return class RippleEnabledComponent extends Component<*, {||}> {
-    rippleContainer: ?HTMLDivElement;
-    clear: ?TimeoutID;
+  return class RippleEnabledComponent extends Component {
     /**
      * When a button click occurs, add a span element that will receive
      * the styling to create the 'ripple' effect and animate it moving
      * across the parent container.
      */
-    handleClick = (event: SyntheticMouseEvent<RippledComponent>): void => {
+    handleClick = (event) => {
       const ripple = event.target;
-      // $FlowFixMe
       const size = ripple.offsetWidth;
-      // $FlowFixMe
       const pos = ripple.getBoundingClientRect();
-      const rippler = document.createElement("span");
-      const x = event.pageX - pos.left - size / 2;
-      const y = event.pageY - pos.top - size / 2;
+      const rippler = document.createElement('span');
+      const x = event.pageX - pos.left - (size / 2);
+      const y = event.pageY - pos.top - (size / 2);
       const style = `top: ${y}px; left: ${x}px; height: ${size}px; width: ${size}px;`;
-      if (this.rippleContainer) this.rippleContainer.appendChild(rippler);
-      rippler.setAttribute("style", style);
+      this.rippleContainer.appendChild(rippler);
+      rippler.setAttribute('style', style);
     };
 
     /**
@@ -57,7 +52,7 @@ const withRipple = (ComposedComponent: ComponentType<*>): ComponentType<*> => {
      * container. This is to prevent build up of span elements after they
      * have been animated out of view.
      */
-    reset = (): void => {
+    reset = () => {
       if (this.clear) clearTimeout(this.clear);
       this.clear = setTimeout(() => {
         while (this.rippleContainer && this.rippleContainer.firstChild) {
@@ -68,18 +63,9 @@ const withRipple = (ComposedComponent: ComponentType<*>): ComponentType<*> => {
 
     render() {
       return (
-        <RippledComponent
-          {...this.props}
-          onMouseDown={this.handleClick}
-          onMouseUp={this.reset}
-        >
+        <RippledComponent {...this.props} onMouseDown={this.handleClick} onMouseUp={this.reset}>
           {this.props.children}
-          <div
-            ref={rippleContainer => {
-              this.rippleContainer = rippleContainer;
-            }}
-            className="ripple-container"
-          />
+          <div ref={(rippleContainer) => {this.rippleContainer = rippleContainer;}} className="ripple-container" />
         </RippledComponent>
       );
     }

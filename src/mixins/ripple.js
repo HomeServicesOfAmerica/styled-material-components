@@ -1,15 +1,11 @@
-// @flow
 /**
  * @file declares mixins for the CSS only version of the
  * ripple effect. We will rely on a HOC to provide true
  * ripple effects with javascript.
  */
-import { css } from "styled-components";
+import { css } from 'styled-components';
 
-const rippleEffect = (
-  radius: number,
-  color: string = "rgba(0,0,0,0.06)"
-): string => css`
+const rippleEffect = (radius, color = 'rgba(0,0,0,0.06)') => css`
   position: absolute;
   top: calc(50% - ${radius}%);
   left: calc(50% - ${radius}%);
@@ -20,10 +16,10 @@ const rippleEffect = (
   opacity: 0;
   pointer-events: none;
   background-color: ${color};
-  content: "";
+  content: '';
 `;
 
-const rippleMixin = (radius: number = 100, color: string) => css`
+const rippleMixin = (radius = 100, color) => css`
   will-change: transform, opacity;
   &:after {
     transform-origin: center center;

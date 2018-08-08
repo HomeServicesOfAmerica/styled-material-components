@@ -1,25 +1,5 @@
-// @flow
-import React, { PureComponent } from "react";
-import styled from "styled-components";
-
-export type CheckboxPropsType = {|
-  CheckMark?: ?Object,
-  checked?: boolean,
-  className: string,
-  default?: "indeterminate" | "checked",
-  disabled?: boolean,
-  id: any, // TODO react component
-  indeterminate?: ?boolean, // TODO react component
-  indeterminateMark?: Object,
-  onChange?: (event: Object) => any,
-  primary?: boolean,
-  value: any
-|};
-
-type CheckboxStateType = {
-  checked: boolean,
-  indeterminate: boolean
-};
+import React, { PureComponent } from 'react';
+import styled from 'styled-components';
 
 const Box = styled.div`
   transition: 0.3s;
@@ -30,13 +10,13 @@ const Box = styled.div`
   bottom: 11px;
   right: 11px;
   border: solid 2px
-    ${props => {
-      if (props.checked || props.indeterminate) return "transparent";
-      else if (props.disabled) return props.theme.disabledCheckbox;
-      return props.theme.textColors.secondary;
-    }};
+    ${(props) => {
+    if (props.checked || props.indeterminate) return 'transparent';
+    else if (props.disabled) return props.theme.disabledCheckbox;
+    return props.theme.textColors.secondary;
+  }};
   border-radius: 2px;
-  background-color: ${props => {
+  background-color: ${(props) => {
     if (props.checked || props.indeterminate) {
       if (props.disabled) return props.theme.disabledCheckbox;
       else if (props.primary) return props.theme.primary;
@@ -48,8 +28,8 @@ const Box = styled.div`
 `;
 
 const Input = styled.input.attrs({
-  type: "checkbox",
-  disabled: props => props.disabled
+  type: 'checkbox',
+  disabled: props => props.disabled,
 })`
   position: absolute;
   opacity: 0;
@@ -62,8 +42,8 @@ const Input = styled.input.attrs({
 `;
 
 const CheckMark = styled.svg.attrs({
-  viewBox: "0 0 24 24",
-  children: <path d="M1.73,12.91 8.1,19.28 22.79,4.59" />
+  viewBox: '0 0 24 24',
+  children: <path d="M1.73,12.91 8.1,19.28 22.79,4.59" />,
 })`
   fill: none;
   stroke: ${props => props.theme.white};
@@ -79,16 +59,13 @@ const IndeterminateMark = styled.div`
   background-color: ${props => props.theme.white};
 `;
 
-class CheckboxComponent extends PureComponent<
-  CheckboxPropsType,
-  CheckboxStateType
-> {
+class CheckboxComponent extends PureComponent {
   state = {
-    checked: this.props.checked || this.props.default === "checked" || false,
-    indeterminate: this.props.default === "indeterminate" || false
+    checked: this.props.checked || this.props.default === 'checked' || false,
+    indeterminate: this.props.default === 'indeterminate' || false,
   };
 
-  handleInputChange = e => {
+  handleInputChange = (e) => {
     const checked = e.target.checked;
     this.setState({ indeterminate: false, checked });
 
@@ -102,33 +79,25 @@ class CheckboxComponent extends PureComponent<
       primary,
       disabled,
       checked: checkedProp,
-      CheckMark: CheckMarkProp,
+      checkMark: CheckMarkProp,
       className,
       indeterminate: indeterminateProp,
-      indeterminateMark: indeterminateMarkProp,
+      indeterminateMark: IndeterminateMarkProp,
       value,
-      id
+      id,
     } = this.props;
     // determine if checkbox is controlled or uncontrolled
-    const checked =
-      checkedProp !== undefined ? checkedProp : this.state.checked;
+    const checked = checkedProp !== undefined ? checkedProp : this.state.checked;
     const indeterminate =
-      indeterminateProp !== undefined
-        ? indeterminateProp
-        : this.state.indeterminate;
-    // swap default checkmark for custom checkmarks if they exist
+      indeterminateProp !== undefined ? indeterminateProp : this.state.indeterminate;
+    // check for CheckMark or IndeterminateMark icons passed as props
+
     const CheckMarkComponent = CheckMarkProp || CheckMark;
-    const IndeterminateMarkComponent =
-      indeterminateMarkProp || IndeterminateMark;
+    const IndeterminateMarkComponent = IndeterminateMarkProp || IndeterminateMark;
 
     return (
       <div className={className}>
-        <Box
-          primary={primary}
-          checked={checked}
-          disabled={disabled}
-          indeterminate={indeterminate}
-        >
+        <Box primary={primary} checked={checked} disabled={disabled} indeterminate={indeterminate}>
           {indeterminate && <IndeterminateMarkComponent />}
           {checked && !indeterminate && <CheckMarkComponent />}
         </Box>
@@ -151,7 +120,7 @@ const Checkbox = styled(CheckboxComponent)`
   width: 18px;
   height: 18px;
   vertical-align: middle;
-  cursor: ${props => !props.disabled && "pointer"};
+  cursor: ${props => !props.disabled && 'pointer'};
   :hover::before {
     transition: 0.3s;
     opacity: 0.04;
@@ -163,14 +132,14 @@ const Checkbox = styled(CheckboxComponent)`
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background-color: ${props => {
-      if (props.disabled) return "transparent";
-      else if (!props.checked) return props.theme.textColors.secondary;
-      else if (props.primary) return props.theme.primary;
-      return props.theme.accent;
-    }};
+    background-color: ${(props) => {
+    if (props.disabled) return 'transparent';
+    else if (!props.checked) return props.theme.textColors.secondary;
+    else if (props.primary) return props.theme.primary;
+    return props.theme.accent;
+  }};
     opacity: 0;
-    content: "";
+    content: '';
   }
 `;
 

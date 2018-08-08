@@ -1,33 +1,13 @@
-// @flow
-/* eslint-disable react/react-in-jsx-scope */
-import React, { PureComponent } from "react";
-import styled from "styled-components";
+import { PureComponent } from 'react';
+import styled from 'styled-components';
+import { ThemeProvider, Slider, Button } from '../src';
 
-import { ThemeProvider, Slider, Button } from "../src";
-
-type ControlledSliderPropsType = {|
-  continuous?: boolean,
-  disabled?: boolean,
-  initialValue: number,
-  max?: number,
-  min?: number,
-  step?: number
-|};
-
-type ControlledSliderStateType = {|
-  value: number
-|};
-
-/* eslint-disable react/no-multi-comp */
-class ControlledSlider extends PureComponent<
-  ControlledSliderPropsType,
-  ControlledSliderStateType
-> {
+class ControlledSlider extends PureComponent {
   state = {
-    value: this.props.initialValue
+    value: this.props.initialValue,
   };
 
-  handleValueChange = (value: number): void => this.setState({ value });
+  handleValueChange = value => this.setState({ value });
 
   render() {
     return (
@@ -43,34 +23,20 @@ class ControlledSlider extends PureComponent<
   }
 }
 
-// const SliderNoFill = Slider.extend`
-//   & .styled-material-thumb {
-//     background: #fff;
-//   }
-// `;
+const SliderNoFill = Slider.extend`
+  & .styled-material-thumb {
+    background: #fff;
+  }
+`;
 
-type SlidersPageBasePropsType = {|
-  className: string
-|};
-type SlidersPageBaseStateType = {|
-  disabled: boolean
-|};
-
-class SlidersPageBase extends PureComponent<
-  SlidersPageBasePropsType,
-  SlidersPageBaseStateType
-> {
+class SlidersPageComponent extends PureComponent {
   state = {
-    disabled: false
+    disabled: false,
   };
 
-  toggleDisabled = (): void => {
-    this.setState(
-      ({ disabled }: SlidersPageBaseStateType): SlidersPageBaseStateType => ({
-        disabled: !disabled
-      })
-    );
-  };
+  toggleDisabled = () => {
+    this.setState(({ disabled }) => ({ disabled: !disabled }));
+  }
 
   render() {
     const { disabled } = this.state;
@@ -83,19 +49,13 @@ class SlidersPageBase extends PureComponent<
               <h2>Uncontrolled Sliders</h2>
               <div>
                 <h3>Continuous</h3>
-                <div
-                  className={this.props.className}
-                  style={{ width: "250px" }}
-                >
+                <div className={this.props.className} style={{ width: '250px' }}>
                   <Slider continuous disabled={disabled} />
                 </div>
               </div>
               <div>
                 <h3>Discrete</h3>
-                <div
-                  className={this.props.className}
-                  style={{ width: "250px" }}
-                >
+                <div className={this.props.className} style={{ width: '250px' }}>
                   <Slider
                     min={0}
                     max={10}
@@ -110,10 +70,7 @@ class SlidersPageBase extends PureComponent<
               <h2>Controlled Sliders</h2>
               <div>
                 <h3>Continuous</h3>
-                <div
-                  className={this.props.className}
-                  style={{ width: "250px", marginLeft: 400 }}
-                >
+                <div className={this.props.className} style={{ width: '250px', marginLeft: 400 }}>
                   <ControlledSlider
                     min={-40}
                     max={80}
@@ -126,7 +83,7 @@ class SlidersPageBase extends PureComponent<
               </div>
               <div>
                 <h3>Discrete</h3>
-                <div className={this.props.className} style={{ width: "75%" }}>
+                <div className={this.props.className} style={{ width: '75%' }}>
                   <ControlledSlider
                     min={-40}
                     max={40}
@@ -141,15 +98,16 @@ class SlidersPageBase extends PureComponent<
           <div>
             <h1>Options</h1>
             <Button onClick={this.toggleDisabled}>
-              {`Click me to ${disabled ? "enable" : "disable"} sliders`}
+              {`Click me to ${disabled ? 'enable' : 'disable'} sliders`}
             </Button>
           </div>
         </div>
       </ThemeProvider>
-    );
+    )
   }
 }
 
-const SlidersPage = styled(SlidersPageBase)``;
+const SlidersPage = styled(SlidersPageComponent)`
+`;
 
 export default SlidersPage;

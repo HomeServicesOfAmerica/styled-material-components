@@ -1,42 +1,21 @@
-// @flow
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
+import { ThemeProvider, List, ListItem, ListItemText, ListSubheader } from '../src';
 
-import {
-  ThemeProvider,
-  List,
-  ListItem,
-  ListItemText,
-  ListSubheader
-} from "../src";
-
-type ListsPagePropsType = {|
-  className: string
-|};
-
-const ListsPage = ({ className }: ListsPagePropsType) => (
+const ListsPage = ({ className }) => (
   <ThemeProvider>
     <div className={className}>
       <h1>List with Avatar</h1>
       <div className="list">
         <List>
           <ListItem leftAvatar="http://www.wasiofaces.com/wp-content/uploads/San-Diego-Headshots-Photography-041.jpg">
-            <ListItemText
-              primary="Primary Title"
-              secondary="This is the secondary line"
-            />
+            <ListItemText primary="Primary Title" secondary="This is the secondary line" />
           </ListItem>
           <ListItem leftAvatar="http://www.wasiofaces.com/wp-content/uploads/San-Diego-Headshots-Photography-041.jpg">
-            <ListItemText
-              primary="Primary Title"
-              secondary="This is the secondary line"
-            />
+            <ListItemText primary="Primary Title" secondary="This is the secondary line" />
           </ListItem>
           <ListItem leftAvatar="http://www.wasiofaces.com/wp-content/uploads/San-Diego-Headshots-Photography-041.jpg">
-            <ListItemText
-              primary="Primary Title"
-              secondary="This is the secondary line"
-            />
+            <ListItemText primary="Primary Title" secondary="This is the secondary line" />
           </ListItem>
         </List>
       </div>
@@ -44,22 +23,13 @@ const ListsPage = ({ className }: ListsPagePropsType) => (
       <div className="list">
         <List>
           <ListItem>
-            <ListItemText
-              primary="Primary Title"
-              secondary="This is the secondary line"
-            />
+            <ListItemText primary="Primary Title" secondary="This is the secondary line" />
           </ListItem>
           <ListItem>
-            <ListItemText
-              primary="Primary Title"
-              secondary="This is the secondary line"
-            />
+            <ListItemText primary="Primary Title" secondary="This is the secondary line" />
           </ListItem>
           <ListItem>
-            <ListItemText
-              primary="Primary Title"
-              secondary="This is the secondary line"
-            />
+            <ListItemText primary="Primary Title" secondary="This is the secondary line" />
           </ListItem>
         </List>
       </div>
@@ -120,28 +90,19 @@ const ListsPage = ({ className }: ListsPagePropsType) => (
             withDivider
             leftAvatar="http://www.wasiofaces.com/wp-content/uploads/San-Diego-Headshots-Photography-041.jpg"
           >
-            <ListItemText
-              primary="Primary Title"
-              secondary="This is the secondary line"
-            />
+            <ListItemText primary="Primary Title" secondary="This is the secondary line" />
           </ListItem>
           <ListItem
             withDivider
             leftAvatar="http://www.wasiofaces.com/wp-content/uploads/San-Diego-Headshots-Photography-041.jpg"
           >
-            <ListItemText
-              primary="Primary Title"
-              secondary="This is the secondary line"
-            />
+            <ListItemText primary="Primary Title" secondary="This is the secondary line" />
           </ListItem>
           <ListItem
             withDivider
             leftAvatar="http://www.wasiofaces.com/wp-content/uploads/San-Diego-Headshots-Photography-041.jpg"
           >
-            <ListItemText
-              primary="Primary Title"
-              secondary="This is the secondary line"
-            />
+            <ListItemText primary="Primary Title" secondary="This is the secondary line" />
           </ListItem>
         </List>
       </div>
@@ -149,22 +110,13 @@ const ListsPage = ({ className }: ListsPagePropsType) => (
       <div className="list">
         <List>
           <ListItem withDivider>
-            <ListItemText
-              primary="Primary Title"
-              secondary="This is the secondary line"
-            />
+            <ListItemText primary="Primary Title" secondary="This is the secondary line" />
           </ListItem>
           <ListItem withDivider>
-            <ListItemText
-              primary="Primary Title"
-              secondary="This is the secondary line"
-            />
+            <ListItemText primary="Primary Title" secondary="This is the secondary line" />
           </ListItem>
           <ListItem withDivider>
-            <ListItemText
-              primary="Primary Title"
-              secondary="This is the secondary line"
-            />
+            <ListItemText primary="Primary Title" secondary="This is the secondary line" />
           </ListItem>
         </List>
       </div>
@@ -173,22 +125,13 @@ const ListsPage = ({ className }: ListsPagePropsType) => (
         <List>
           <ListSubheader>Subheader</ListSubheader>
           <ListItem withDivider>
-            <ListItemText
-              primary="Primary Title"
-              secondary="This is the secondary line"
-            />
+            <ListItemText primary="Primary Title" secondary="This is the secondary line" />
           </ListItem>
           <ListItem withDivider>
-            <ListItemText
-              primary="Primary Title"
-              secondary="This is the secondary line"
-            />
+            <ListItemText primary="Primary Title" secondary="This is the secondary line" />
           </ListItem>
           <ListItem withDivider>
-            <ListItemText
-              primary="Primary Title"
-              secondary="This is the secondary line"
-            />
+            <ListItemText primary="Primary Title" secondary="This is the secondary line" />
           </ListItem>
         </List>
       </div>
@@ -197,22 +140,13 @@ const ListsPage = ({ className }: ListsPagePropsType) => (
         <List>
           <ListSubheader primary>Subheader</ListSubheader>
           <ListItem withDivider>
-            <ListItemText
-              primary="Primary Title"
-              secondary="This is the secondary line"
-            />
+            <ListItemText primary="Primary Title" secondary="This is the secondary line" />
           </ListItem>
           <ListItem withDivider>
-            <ListItemText
-              primary="Primary Title"
-              secondary="This is the secondary line"
-            />
+            <ListItemText primary="Primary Title" secondary="This is the secondary line" />
           </ListItem>
           <ListItem withDivider>
-            <ListItemText
-              primary="Primary Title"
-              secondary="This is the secondary line"
-            />
+            <ListItemText primary="Primary Title" secondary="This is the secondary line" />
           </ListItem>
         </List>
       </div>

@@ -1,21 +1,9 @@
-// @flow
-import platform from "platform";
-import { css } from "styled-components";
+import platform from 'platform';
+import { css } from 'styled-components';
 
-const isMobile = (): ?boolean => {
-  const { family } = platform.os;
-  if (!family) return null;
-  return Boolean(family.match(/^(Android|iOS|Windows Phone)$/));
-};
+const isMobile = platform.os.family.match(/^(Android|iOS|Windows Phone)$/);
 
-type DurationsType =
-  | "complex"
-  | "standard"
-  | "enteringScreen"
-  | "leavingScreen";
-type EasingType = "standard" | "deceleration" | "acceleration" | "sharp";
-
-export const durations: { [typeName: DurationsType]: string } = {
+export const durations = {
   complex: css`
     transition-duration: ${isMobile ? 375 : 200}ms;
   `,
@@ -27,10 +15,10 @@ export const durations: { [typeName: DurationsType]: string } = {
   `,
   leavingScreen: css`
     transition-duration: 195ms;
-  `
+  `,
 };
 
-export const easingCurves: { [typeName: EasingType]: string } = {
+export const easingCurves = {
   standard: css`
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   `,
@@ -42,13 +30,10 @@ export const easingCurves: { [typeName: EasingType]: string } = {
   `,
   sharp: css`
     transition-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
-  `
+  `,
 };
 
-export const transition = (
-  duration: DurationsType = "standard",
-  easing: EasingType = "standard"
-): string => css`
+export const transition = (duration = 'standard', easing = 'standard') => css`
   ${durations[duration]};
   ${easingCurves[easing]};
 `;

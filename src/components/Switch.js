@@ -1,14 +1,13 @@
-import React, { PureComponent } from "react";
-import styled, { css } from "styled-components";
-import Color from "color";
-
-import elevation from "../mixins/elevation";
-import ripple from "../mixins/ripple";
-import { deriveLightColor } from "../mixins/deriveLightColor";
+import React, { PureComponent } from 'react';
+import styled, { css } from 'styled-components';
+import Color from 'color';
+import elevation from '../mixins/elevation';
+import ripple from '../mixins/ripple';
+import { deriveLightColor } from '../mixins/deriveLightColor';
 
 class SwitchComponent extends PureComponent {
   state = {
-    on: false
+    on: false,
   };
 
   /**
@@ -22,7 +21,7 @@ class SwitchComponent extends PureComponent {
     if (!this.props.disabled) {
       if (!this.isControlled()) {
         this.setState(prevState => ({
-          on: !prevState.on
+          on: !prevState.on,
         }));
       }
       this.props.onChange && this.props.onChange();
@@ -32,10 +31,7 @@ class SwitchComponent extends PureComponent {
   render() {
     const on = this.isControlled() ? this.props.on : this.state.on;
     return (
-      <div
-        className={`${this.props.className} smc-switch-wrapper`}
-        onClick={this.handleOnClick}
-      >
+      <div className={`${this.props.className} smc-switch-wrapper`} onClick={this.handleOnClick}>
         <SwitchTrack {...this.props} on={on}>
           <SwitchThumb {...this.props} on={on} />
         </SwitchTrack>
@@ -45,10 +41,10 @@ class SwitchComponent extends PureComponent {
 }
 
 SwitchComponent.defaultProps = {
-  radialReaction: true
+  radialReaction: true,
 };
 
-const DISABLED_COLOR = "rgb(189, 189, 189)";
+const DISABLED_COLOR = 'rgb(189, 189, 189)';
 
 const getBaseColor = ({ color, theme, primary }) => {
   if (color) return color;
@@ -57,27 +53,25 @@ const getBaseColor = ({ color, theme, primary }) => {
 };
 
 const disabledTrackStyle = css`
-  background-color: ${props => {
+  background-color: ${(props) => {
     if (!props.disabled) return;
-    return props.on
-      ? deriveLightColor(getBaseColor(props), 0.2)
-      : deriveLightColor(DISABLED_COLOR);
+    return props.on ? deriveLightColor(getBaseColor(props), 0.2) : deriveLightColor(DISABLED_COLOR);
   }};
 `;
 
 const disabledThumbStyle = css`
-  background-color: ${props => {
+  background-color: ${(props) => {
     if (!props.disabled) return;
     return props.on
       ? deriveLightColor(getBaseColor(props))
-      : Color("#fff")
-          .darken(0.1)
-          .string();
+      : Color('#fff')
+        .darken(0.1)
+        .string();
   }};
 `;
 
 export const SwitchTrack = styled.div.attrs({
-  className: "smc-switch-track"
+  className: 'smc-switch-track',
 })`
   width: 36px;
   height: 14px;
@@ -86,13 +80,12 @@ export const SwitchTrack = styled.div.attrs({
   display: inline-flex;
   margin-right: 15px;
   align-items: center;
-  background-color: ${props =>
-    props.on ? deriveLightColor(getBaseColor(props)) : DISABLED_COLOR};
+  background-color: ${props => (props.on ? deriveLightColor(getBaseColor(props)) : DISABLED_COLOR)};
   ${disabledTrackStyle};
 `;
 
 export const SwitchThumb = styled.div.attrs({
-  className: "smc-switch-thumb"
+  className: 'smc-switch-thumb',
 })`
   width: 20px;
   height: 20px;
@@ -103,12 +96,9 @@ export const SwitchThumb = styled.div.attrs({
   &:active {
     ${elevation(8)};
   }
-  ${props => (props.on ? "left: 16px" : "right: 16px")};
-  background-color: ${props => (props.on ? getBaseColor(props) : "#fff")};
-  ${props =>
-    !props.disabled &&
-    props.radialReaction &&
-    ripple(100, deriveLightColor(getBaseColor(props)))};
+  ${props => (props.on ? 'left: 16px' : 'right: 16px')};
+  background-color: ${props => (props.on ? getBaseColor(props) : '#fff')};
+  ${props => (!props.disabled && props.radialReaction) && ripple(100, deriveLightColor(getBaseColor(props)))};
   ${disabledThumbStyle};
 `;
 
@@ -116,6 +106,6 @@ export const Switch = styled(SwitchComponent)`
   display: inline-flex;
   align-items: center;
   :hover {
-    ${props => !props.disabled && "cursor: pointer"};
+    ${props => !props.disabled && 'cursor: pointer'};
   }
 `;

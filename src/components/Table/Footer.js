@@ -1,18 +1,18 @@
-import React, { Fragment, PureComponent } from "react";
-import styled from "styled-components";
-
-import Button from "../Button";
-import { Icon } from "../../icons";
-import { Menu } from "../Menu";
+import React, { Fragment, PureComponent } from 'react';
+import styled from 'styled-components';
+import Button from '../Button';
+import { Icon } from '../../icons';
+import { Menu } from '../Menu';
 
 const FooterIcon = Icon.extend.attrs({
-  cursor: "pointer",
-  fill: "rgba(0, 0, 0, .54)"
-})``;
+  cursor: 'pointer',
+  fill: 'rgba(0, 0, 0, .54)',
+}) ``;
 
 const StandAloneMenu = Menu.extend`
   position: absolute;
 `;
+
 
 const PaginationButton = Button.extend`
   svg {
@@ -33,49 +33,46 @@ class FooterComponent extends PureComponent {
     menuOpen: false,
     // why is this in state?
     // because it changes and we want a reference of the first value, rather than the change
-    rowsPerPage: this.props.rowsPerPage
+    rowsPerPage: this.props.rowsPerPage,
   };
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps) {
     // go back a page if all the items can be contained.
-    if (
-      Math.ceil(nextProps.totalDataPoints / nextProps.rowsPerPage) <
-      nextProps.currentPage
-    ) {
+    if (Math.ceil(nextProps.totalDataPoints / nextProps.rowsPerPage) < nextProps.currentPage) {
       nextProps.handleBackwardsPagination();
     }
   }
 
   // rather than on render
-  rowSelection = this.props.rowsDropDown
-    ? this.props.rowsDropDown.map(item => ({
-        text: item,
-        onClick: () => this.handleSelect(item)
-      }))
-    : [
-        {
-          text: this.state.rowsPerPage,
-          onClick: () => this.handleSelect(this.state.rowsPerPage)
-        },
-        {
-          text: this.state.rowsPerPage * 3,
-          onClick: () => this.handleSelect(this.state.rowsPerPage * 3)
-        }, // Fibonacci?
-        {
-          text: this.state.rowsPerPage * 5,
-          onClick: () => this.handleSelect(this.state.rowsPerPage * 5)
-        },
-        {
-          text: this.state.rowsPerPage * 8,
-          onClick: () => this.handleSelect(this.state.rowsPerPage * 8)
-        }
-      ];
+  rowSelection = this.props.rowsDropDown ?
+    this.props.rowsDropDown.map(
+      item => (
+        { text: item, onClick: () => this.handleSelect(item) })
+    ) : [
+      {
+        text: this.state.rowsPerPage,
+        onClick: () => this.handleSelect(this.state.rowsPerPage),
+      },
+      {
+        text: this.state.rowsPerPage * 3,
+        onClick: () => this.handleSelect(this.state.rowsPerPage * 3),
+      }, // Fibonacci?
+      {
+        text: this.state.rowsPerPage * 5,
+        onClick: () => this.handleSelect(this.state.rowsPerPage * 5),
+      },
+      {
+        text: this.state.rowsPerPage * 8,
+        onClick: () => this.handleSelect(this.state.rowsPerPage * 8),
+      },
+    ]
+
 
   handleClick = () => {
-    this.setState(({ menuOpen }) => ({ menuOpen: !menuOpen }));
+    this.setState({ menuOpen: !this.state.menuOpen });
   };
 
-  handleSelect = selectedItem => {
+  handleSelect = (selectedItem) => {
     this.props.handleRowsPerPageChange(selectedItem);
     this.setState({ menuOpen: false });
   };
@@ -84,6 +81,7 @@ class FooterComponent extends PureComponent {
     this.setState({ menuOpen: false });
   };
 
+
   render() {
     const {
       className,
@@ -91,18 +89,18 @@ class FooterComponent extends PureComponent {
       rowsPerPage,
       totalDataPoints,
       handleBackwardsPagination,
-      handleForwardPagination
+      handleForwardPagination,
     } = this.props;
 
     const onFirstPage = currentPage === 1;
     const totalPages = Math.ceil(totalDataPoints / rowsPerPage);
     const onLastPage = currentPage === totalPages;
-    const lastValueFittingOnPage = currentPage * rowsPerPage;
-    const firstSeen = lastValueFittingOnPage - rowsPerPage + 1;
+    const lastValueFittingOnPage = (currentPage) * rowsPerPage;
+    const firstSeen = (lastValueFittingOnPage - rowsPerPage) + 1;
     const lastSeen = onLastPage ? totalDataPoints : lastValueFittingOnPage;
     return (
       <div className={`smc-table-footer ${className}`}>
-        {this.rowSelection.length > 0 && (
+        {this.rowSelection.length > 0 &&
           <Fragment>
             Rows per page:
             <StandAloneMenu
@@ -112,9 +110,12 @@ class FooterComponent extends PureComponent {
             <div onClick={this.handleClick} className="rowsPerPage">
               {`${rowsPerPage}`}
             </div>
-            <FooterIcon onClick={this.handleClick} icon="arrow_drop_down" />
+            <FooterIcon
+              onClick={this.handleClick}
+              icon="arrow_drop_down"
+            />
           </Fragment>
-        )}
+        }
         <div className="current-page">
           {`${firstSeen}-${lastSeen} of ${totalDataPoints}`}
         </div>
@@ -135,21 +136,21 @@ class FooterComponent extends PureComponent {
   }
 }
 
-const Footer = styled(FooterComponent)`
+const Footer = styled(FooterComponent) `
   height: 48px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   font-size: 12px;
-  color: rgba(0, 0, 0, 0.54);
+  color: rgba(0, 0, 0, .54);
   padding-right: 14px;
 
-  > .current-page {
+  >.current-page {
     margin-right: 8px;
     margin-left: 32px;
   }
 
-  > .rowsPerPage {
+  >.rowsPerPage {
     cursor: pointer;
     width: 40px;
     text-align: right;

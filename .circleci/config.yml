@@ -15,7 +15,6 @@ jobs:
           key: styled-material-components-{{ checksum "yarn.lock" }}-{{ .Branch }}
           paths:
             - "/node_modules"
-      - run: yarn danger ci
       - run: yarn run lint
-      - run: yarn run flow
-      - run: yarn run test
+      - run: yarn danger ci
+

@@ -1,16 +1,9 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
+import { Avatar } from '../Avatar';
+import { Divider } from '../Divider';
 
-import { Avatar } from "../Avatar";
-import { Divider } from "../Divider";
-
-const ListItemComponent = ({
-  className,
-  children,
-  leftAvatar,
-  avatarSize,
-  withDivider
-}) => (
+const ListItemComponent = ({ className, children, leftAvatar, avatarSize, withDivider }) => (
   <li className={className}>
     {leftAvatar && (
       <div className="smc-list-avatar">

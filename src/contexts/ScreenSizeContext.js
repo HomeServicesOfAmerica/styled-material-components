@@ -44,7 +44,6 @@ type ScreenSizeContextBaseStateType = {|
   screenSize: string
 |};
 
-/* eslint-disable react/no-unused-state */
 class ScreenSizeContextBase extends Component<
   ScreenSizeContextBasePropsType,
   ScreenSizeContextBaseStateType

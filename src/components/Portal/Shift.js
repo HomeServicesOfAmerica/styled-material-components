@@ -1,20 +1,11 @@
-// @flow
-import React, { Component, type Node } from "react";
+import React, { Component } from 'react';
 
-type ShiftPropsType = {|
-  children: Node,
-  className: string,
-  direction: string,
-  onClick: (e: SyntheticMouseEvent<HTMLDivElement>) => void,
-  open?: boolean // TODO which ones?
-|};
-
-export class Shift extends Component<ShiftPropsType> {
+export class Shift extends Component {
   componentDidMount() {
-    document.body.classList.add("shift");
+    document.body.classList.add('shift');
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.open && !this.props.open) {
       document.body.classList.add(this.props.direction);
     } else if (!nextProps.open && this.props.open) {
@@ -23,10 +14,14 @@ export class Shift extends Component<ShiftPropsType> {
   }
 
   componentWillUnmount() {
-    document.body.classList.remove("shift");
+    document.body.classList.remove('shift');
   }
 
   render() {
-    return <div className={this.props.className}>{this.props.children}</div>;
+    return (
+      <div className={this.props.className}>
+        {this.props.children}
+      </div>
+    );
   }
 }

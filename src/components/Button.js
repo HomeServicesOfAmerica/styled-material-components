@@ -1,9 +1,6 @@
-// @flow
-import * as React from "react";
-import styled, { css } from "styled-components";
-
-import elevation, { elevationTransition } from "../mixins/elevation";
-import ripple from "../mixins/ripple";
+import styled, { css } from 'styled-components';
+import elevation, { elevationTransition } from '../mixins/elevation';
+import ripple from '../mixins/ripple';
 
 const primary = css`
   color: ${props => props.theme.primary};
@@ -18,44 +15,29 @@ const raised = css`
   &:active {
     ${elevation(8)};
   }
-  ${props =>
-    props.accent &&
-    `
+  ${props => props.accent && `
     color: white;
     background-color: ${props.theme.accent};
     &:before {
       color: black;
     }
   `}
-  ${props =>
-    props.primary &&
-    `
+  ${props => props.primary && `
     color: white;
     background-color: ${props.theme.primary};
     &:before {
       color: black;
     }
   `}
-  ${props =>
-    props.disabled &&
-    `
+  ${props => props.disabled && `
     ${elevation(0)};
     background-color: rgba(0, 0, 0, .12);
     pointer-events: none;
   `}
 `;
 
-export type ButtonPropsType = {|
-  accent?: boolean,
-  children: React.Node,
-  compact?: boolean,
-  dense?: boolean,
-  disabled?: boolean,
-  raised?: boolean
-|};
-
 const Button = styled.button.attrs({
-  "data-smc": "Button"
+  'data-smc': 'Button',
 })`
   color: black;
   display: inline-block;
@@ -99,16 +81,12 @@ const Button = styled.button.attrs({
   ${props => props.primary && primary}
   ${props => props.raised && raised}
   ${props => props.compact && `padding: 0 8px;`}
-  ${props =>
-    props.disabled &&
-    `
+  ${props => props.disabled && `
     color: rgba(0, 0, 0, .26);
     cursor: default;
     pointer-events: none;
   `}
-  ${props =>
-    props.dense &&
-    `
+  ${props => props.dense && `
     height: 32px;
     font-size: .8125rem;
     line-height: 32px;

@@ -1,17 +1,10 @@
-// @flow
-import React, { type Node } from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-type DialogFooterComponentPropsType = {
-  children: Node,
-  className: string
-};
-
-const DialogFooterComponent = ({
-  className,
-  children
-}: DialogFooterComponentPropsType) => (
-  <div className={`smc-dialog-dialog-footer ${className}`}>{children}</div>
+const DialogFooterComponent = ({ className, children }) => (
+  <div className={`smc-dialog-dialog-footer ${className}`}>
+    {children}
+  </div>
 );
 
 const DialogFooter = styled(DialogFooterComponent)`

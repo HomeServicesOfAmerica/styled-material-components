@@ -1,9 +1,4 @@
-// @flow
-import styled from "styled-components";
-
-export type CircularProps = {
-  size?: number
-};
+import styled from 'styled-components';
 
 export const Circular = styled.div`
   position: relative;

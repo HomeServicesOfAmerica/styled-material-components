@@ -1,40 +1,24 @@
-// @flow
-import React, { Component } from "react";
-import styled from "styled-components";
-
-import { ThemeProvider, BottomSheet, Button } from "../src";
+import React, { Component } from 'react';
+import styled from 'styled-components';
+import { ThemeProvider, BottomSheet, Button } from '../src';
 
 const PageContainer = styled.div`
   padding: 10px;
 `;
 
-type PortalPagePropsType = {};
-
-type PortalPageStateType = {|
-  modal: boolean,
-  persistent: boolean
-|};
-
-export default class PortalPage extends Component<
-  PortalPagePropsType,
-  PortalPageStateType
-> {
+export default class PortalPage extends Component {
   state = {
     modal: false,
     persistent: false
   };
 
-  toggleModal = (): void => {
-    this.setState(({ modal }: PortalPageStateType) => ({
-      modal: !modal
-    }));
-  };
+  toggleModal = () => this.setState(prevState => ({
+    modal: !prevState.modal
+  }));
 
-  togglePersistent = (): void => {
-    this.setState(({ persistent }: PortalPageStateType) => ({
-      persistent: !persistent
-    }));
-  };
+  togglePersistent = () => this.setState(prevState => ({
+    persistent: !prevState.persistent
+  }));
 
   render() {
     return (
@@ -45,26 +29,20 @@ export default class PortalPage extends Component<
             modal
             attachment="bottom"
             open={this.state.modal}
-            handleRequestClose={this.toggleModal}
-          >
-            <p>{"Hi, I'm a modal bottomsheet!"}</p>
+            handleRequestClose={this.toggleModal}>
+            <p>{'Hi, I\'m a modal bottomsheet!'}</p>
           </BottomSheet>
 
-          <Button raised primary onClick={this.toggleModal}>
-            Toggle Modal
-          </Button>
+          <Button raised primary onClick={this.toggleModal}>Toggle Modal</Button>
 
           <h1>Persistent Bottomsheet!</h1>
           <BottomSheet
             attachment="bottom"
             open={this.state.persistent}
-            handleRequestClose={this.togglePersistent}
-          >
-            <p>{"Hi, I'm a persistent bottomsheet!"}</p>
+            handleRequestClose={this.togglePersistent}>
+            <p>{'Hi, I\'m a persistent bottomsheet!'}</p>
           </BottomSheet>
-          <Button raised primary onClick={this.togglePersistent}>
-            Toggle Persistent
-          </Button>
+          <Button raised primary onClick={this.togglePersistent}>Toggle Persistent</Button>
         </PageContainer>
       </ThemeProvider>
     );

@@ -1,10 +1,8 @@
-// @flow
-import React, { PureComponent } from "react";
-import styled, { css } from "styled-components";
-
-import typography from "../mixins/typography";
-import elevation, { elevationTransition } from "../mixins/elevation";
-import { CancelIcon } from "../icons";
+import React, { PureComponent } from 'react';
+import styled, { css } from 'styled-components';
+import typography from '../mixins/typography';
+import elevation, { elevationTransition } from '../mixins/elevation';
+import { CancelIcon } from '../icons';
 
 const clickableStyles = css`
   :hover {
@@ -34,7 +32,7 @@ const removableStyles = css`
 const ChipWrapper = styled.div`
   position: relative;
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     background-color: rgba(0, 0, 0, 0.87);
     opacity: 0;
@@ -55,7 +53,7 @@ const ChipWrapper = styled.div`
   border-radius: 16px;
   font-size: 13px;
   color: ${props => props.theme.textColors.primary};
-  ${props => props.removed && "display: none"};
+  ${props => props.removed && 'display: none'};
   ${({ removable }) => removable && removableStyles};
   ${({ clickable }) => clickable && clickableStyles};
   /* Disable text highlighting of Chip labels */
@@ -76,7 +74,7 @@ const ChipAvatar = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  ${typography("body")};
+  ${typography('body')};
   font-size: 16px;
 `;
 
@@ -93,10 +91,10 @@ const ChipDeleteIcon = styled(CancelIcon)`
 
 class ChipComponent extends PureComponent {
   state = {
-    removed: false
+    removed: false,
   };
 
-  handleDeleteIconClick = (e: Object): void => {
+  handleDeleteIconClick = (e) => {
     const { onDelete, removable } = this.props;
     if (onDelete) {
       onDelete(e);
@@ -106,17 +104,14 @@ class ChipComponent extends PureComponent {
     }
   };
 
-  handleKeyDown = (e: Object) => {
+  handleKeyDown = (e) => {
     const { onClick, onDelete, removable } = this.props;
     // fire onClick when Enter or Spacebar pressed
     if (onClick && (e.keyCode === 13 || e.keyCode === 32)) {
       e.preventDefault();
       onClick(e);
       // fire onDelete when Backspace or Delete pressed
-    } else if (
-      (onDelete || removable) &&
-      (e.keyCode === 8 || e.Keycode === 46)
-    ) {
+    } else if ((onDelete || removable) && (e.keyCode === 8 || e.Keycode === 46)) {
       e.preventDefault();
       this.handleDeleteIconClick(e);
     }
@@ -131,12 +126,11 @@ class ChipComponent extends PureComponent {
       removable,
       removeIcon,
       onDelete,
-      removed: removedProp
+      removed: removedProp,
     } = this.props;
     // determine if chip is managing its own removal (uncontrolled)
     // or if it's being managed by the parent (controlled)
-    const removed =
-      removedProp !== undefined ? removedProp : this.state.removed;
+    const removed = removedProp !== undefined ? removedProp : this.state.removed;
     const RemoveIcon = removeIcon || ChipDeleteIcon;
     return (
       <ChipWrapper
@@ -150,10 +144,7 @@ class ChipComponent extends PureComponent {
         {avatar && <ChipAvatar>{avatar}</ChipAvatar>}
         <ChipLabel onClick={onClick}>{label}</ChipLabel>
         {(removable || onDelete) && (
-          <RemoveIcon
-            className="smc-chip-remove-icon"
-            onClick={this.handleDeleteIconClick}
-          />
+          <RemoveIcon className="smc-chip-remove-icon" onClick={this.handleDeleteIconClick} />
         )}
       </ChipWrapper>
     );

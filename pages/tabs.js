@@ -1,8 +1,6 @@
-// @flow
-import React from "react";
-import styled from "styled-components";
-
-import { TabBar, TabContent, Tab, Tabs, ThemeProvider, Icon } from "../src";
+import React from 'react';
+import styled from 'styled-components';
+import { TabBar, TabContent, Tab, Tabs, ThemeProvider, Icon } from '../src';
 
 // TODO: (future) scrollable tabs
 
@@ -21,24 +19,12 @@ const Container = styled.div`
   width: 700px;
 `;
 
-type ControlledTabsPropsType = {
-  fixed?: boolean,
-  showIcon?: boolean
-};
-
-type ControlledTabsStateType = {|
-  selectedIndex: number
-|};
-
-class ControlledTabs extends React.Component<
-  ControlledTabsPropsType,
-  ControlledTabsStateType
-> {
+class ControlledTabs extends React.Component {
   state = {
-    selectedIndex: 0
+    selectedIndex: 0,
   };
 
-  handleTabClick = (event, selectedIndex: number): void => {
+  handleTabClick = (event, selectedIndex) => {
     this.setState({ selectedIndex });
   };
 
@@ -49,24 +35,12 @@ class ControlledTabs extends React.Component<
       <React.Fragment>
         <Tabs fixed={this.props.fixed}>
           <TabBar onClick={this.handleTabClick} selectedIndex={selectedIndex}>
-            <Tab Icon={this.props.showIcon ? <Icon icon="star" /> : null}>
-              Tab One
-            </Tab>
-            <Tab
-              Icon={this.props.showIcon ? <Icon icon="info_outline" /> : null}
-            >
-              Tab Two
-            </Tab>
-            <Tab Icon={this.props.showIcon ? <Icon icon="pin_drop" /> : null}>
-              Tab Three
-            </Tab>
+            <Tab Icon={this.props.showIcon ? <Icon icon="star" /> : null}>Tab One</Tab>
+            <Tab Icon={this.props.showIcon ? <Icon icon="info_outline" /> : null}>Tab Two</Tab>
+            <Tab Icon={this.props.showIcon ? <Icon icon="pin_drop" /> : null}>Tab Three</Tab>
           </TabBar>
-          {selectedIndex === 0 && (
-            <TabContent>First tab content is great</TabContent>
-          )}
-          {selectedIndex === 1 && (
-            <TabContent>Tab two has content as well</TabContent>
-          )}
+          {selectedIndex === 0 && <TabContent>First tab content is great</TabContent>}
+          {selectedIndex === 1 && <TabContent>Tab two has content as well</TabContent>}
           {selectedIndex === 2 && <TabContent>Totally tabular</TabContent>}
         </Tabs>
       </React.Fragment>

@@ -1,56 +1,37 @@
-// @flow
-import React, { Component } from "react";
-import styled from "styled-components";
-
-import { Drawer, ThemeProvider, Button } from "../src";
+import React, { Component } from 'react';
+import styled from 'styled-components';
+import { Drawer, ThemeProvider, Button } from '../src';
 
 const PageContainer = styled.div`
   padding: 10px;
 `;
 
-type PortalPagePropsType = {||};
-type PortalPageStateType = {|
-  persistentLeft: boolean,
-  persistentRight: boolean,
-  temporaryLeft: boolean,
-  temporaryRight: boolean
-|};
-export default class PortalPage extends Component<
-  PortalPagePropsType,
-  PortalPageStateType
-> {
+export default class PortalPage extends Component {
   state = {
     temporaryLeft: false,
     temporaryRight: false,
     persistentLeft: false,
-    persistentRight: false
+    persistentRight: false,
   };
 
-  toggleTemporaryLeft = (): void => {
-    this.setState(({ temporaryLeft }: PortalPageStateType) => ({
-      temporaryLeft: !temporaryLeft
-    }));
-  };
+  toggleTemporaryLeft = () => this.setState(prevState => ({
+    temporaryLeft: !prevState.temporaryLeft,
+  }));
 
-  toggleTemporaryRight = (): void => {
-    this.setState(({ temporaryRight }: PortalPageStateType) => ({
-      temporaryRight: !temporaryRight
-    }));
-  };
+  toggleTemporaryRight = () => this.setState(prevState => ({
+    temporaryRight: !prevState.temporaryRight,
+  }));
 
-  togglePersistentLeft = (): void => {
-    this.setState(({ persistentLeft }: PortalPageStateType) => ({
-      persistentLeft: !persistentLeft,
-      persistentRight: false
-    }));
-  };
+  togglePersistentLeft = () => this.setState(prevState => ({
+    persistentLeft: !prevState.persistentLeft,
+    persistentRight: false,
+  }));
 
-  togglePersistentRight = (): void => {
-    this.setState(({ persistentRight }: PortalPageStateType) => ({
-      persistentRight: !persistentRight,
-      persistentLeft: false
-    }));
-  };
+  togglePersistentRight = () => this.setState(prevState => ({
+    persistentRight: !prevState.persistentRight,
+    persistentLeft: false,
+  }));
+
 
   render() {
     return (
@@ -61,45 +42,33 @@ export default class PortalPage extends Component<
             temporary
             attachment="left"
             open={this.state.temporaryLeft}
-            handleRequestClose={this.toggleTemporaryLeft}
-          >
-            <p>{"Hi, im a temporary left attached drawer"}</p>
+            handleRequestClose={this.toggleTemporaryLeft}>
+            <p>{'Hi, im a temporary left attached drawer'}</p>
           </Drawer>
           <Drawer
             temporary
             attachment="right"
             open={this.state.temporaryRight}
-            handleRequestClose={this.toggleTemporaryRight}
-          >
-            <p>{"Hi, im a temporary right attached drawer"}</p>
+            handleRequestClose={this.toggleTemporaryRight}>
+            <p>{'Hi, im a temporary right attached drawer'}</p>
           </Drawer>
-          <Button raised primary onClick={this.toggleTemporaryRight}>
-            Right Temporary
-          </Button>
-          <Button raised accent onClick={this.toggleTemporaryLeft}>
-            Left Temporary
-          </Button>
+          <Button raised primary onClick={this.toggleTemporaryRight}>Right Temporary</Button>
+          <Button raised accent onClick={this.toggleTemporaryLeft}>Left Temporary</Button>
           <h1>Persistent Drawers!</h1>
           <Drawer
             attachment="left"
             open={this.state.persistentLeft}
-            handleRequestClose={this.togglePersistentLeft}
-          >
-            <p>{"Hi, im a persistent left attached drawer"}</p>
+            handleRequestClose={this.togglePersistentLeft}>
+            <p>{'Hi, im a persistent left attached drawer'}</p>
           </Drawer>
           <Drawer
             attachment="right"
             open={this.state.persistentRight}
-            handleRequestClose={this.togglePersistentRight}
-          >
-            <p>{"Hi, im a persistent right attached drawer"}</p>
+            handleRequestClose={this.togglePersistentRight}>
+            <p>{'Hi, im a persistent right attached drawer'}</p>
           </Drawer>
-          <Button raised primary onClick={this.togglePersistentRight}>
-            Right Persistent
-          </Button>
-          <Button raised accent onClick={this.togglePersistentLeft}>
-            Left Persistent
-          </Button>
+          <Button raised primary onClick={this.togglePersistentRight}>Right Persistent</Button>
+          <Button raised accent onClick={this.togglePersistentLeft}>Left Persistent</Button>
         </PageContainer>
       </ThemeProvider>
     );

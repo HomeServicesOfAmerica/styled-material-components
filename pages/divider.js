@@ -1,26 +1,24 @@
-// @flow
-import React from "react";
-import styled from "styled-components";
-import Link from "next/link";
+import React from 'react';
+import styled from 'styled-components';
+import Link from 'next/link';
+import { ThemeProvider, Divider } from '../src';
 
-import { ThemeProvider, Divider } from "../src";
-
-type DividerPageBasePropsType = {|
-  className: string
-|};
-
-const DividerPageBase = ({ className }: DividerPageBasePropsType) => (
+const DividerPageComponent = ({
+  className,
+}) => (
   <ThemeProvider>
     <div className={className}>
       <h1>Divider</h1>
       <section>
-        <h2>Provides visual space between two areas</h2>
+        <h2>
+          Provides visual space between two areas
+        </h2>
         <div>
           Dividers are full-width by default
           <Divider />
-          {`Passing the optional "inset" prop will add a left margin (defaulting to 16px)`}
+          Passing the optional "inset" prop will add a left margin (defaulting to 16px)
           <Divider inset />
-          {`Passing a string value such as "30px" will create an inset at that value`}
+          Passing a string value such as "30px" will create an inset at that value
           <Divider inset="30px" />
           It works with percentages too
           <Divider inset="30%" />
@@ -29,15 +27,14 @@ const DividerPageBase = ({ className }: DividerPageBasePropsType) => (
       <section>
         <h2>Dividers in lists</h2>
         <p>
-          See{" "}
-          <Link href="/lists">
-            <a>the lists page</a>
-          </Link>{" "}
-          for examples of dividers used in lists
+          See <Link href="/lists"><a>the lists page</a></Link> for examples
+            of dividers used in lists
         </p>
       </section>
     </div>
   </ThemeProvider>
 );
 
-export default styled(DividerPageBase)``;
+export default styled(DividerPageComponent)`
+
+`;

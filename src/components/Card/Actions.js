@@ -1,17 +1,8 @@
-// @flow
-import React, { type Node } from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-type CardActionsPropsType = {|
-  children: Node,
-  className: string,
-  vertical?: boolean
-|};
-
-const ActionsComponent = (props: CardActionsPropsType) => (
-  <section className={`${props.className} card-actions`}>
-    {props.children}
-  </section>
+const ActionsComponent = props => (
+  <section className={`${props.className} card-actions`}>{props.children}</section>
 );
 
 const Actions = styled(ActionsComponent)`
@@ -22,9 +13,7 @@ const Actions = styled(ActionsComponent)`
   & button {
     margin: 0 8px 0 0;
   }
-  ${props =>
-    props.vertical &&
-    `
+  ${props => props.vertical && `
     flex-flow: column;
     align-items: flex-start;
     & button {
@@ -33,7 +22,7 @@ const Actions = styled(ActionsComponent)`
         margin-bottom: 0;
       }
     }
-  `};
+  `}
 `;
 
 export default Actions;

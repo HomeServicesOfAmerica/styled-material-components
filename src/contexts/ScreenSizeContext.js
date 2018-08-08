@@ -1,4 +1,3 @@
-// @flow
 /**
  * @file ScreenSizeContext
  * @author Brad Decker <bhdecker84@gmail.com|brad@merlinlabs.com>
@@ -7,19 +6,12 @@
  * access the current screenSize. This is implmented using respondable.
  * All breakpoints are adjustable by the end user.
  */
-import React, {
-  Component,
-  createContext,
-  type Node,
-  type ComponentType
-} from "react";
-import { withTheme } from "styled-components";
-import respondable from "respondable";
-import platform from "platform";
+import React, { Component, createContext } from 'react';
+import { withTheme } from 'styled-components';
+import respondable from 'respondable';
+import platform from 'platform';
 
-import { type StyledComponentsContextPropsType } from "../theme/types";
-
-const Context = createContext({ size: "server" });
+const Context = createContext({ size: 'server' });
 
 /**
  * ScreenSizeConsumer
@@ -30,34 +22,10 @@ const Context = createContext({ size: "server" });
  */
 export const ScreenSizeConsumer = Context.Consumer;
 
-type ScreenSizeContextBasePropsType = StyledComponentsContextPropsType & {|
-  children: Node
-|};
-
-type ScreenSizeContextBaseStateType = {|
-  platformData: {
-    majorOsVersion: number,
-    majorVersion: number,
-    osFamily: ?string,
-    product: ?string
-  },
-  screenSize: string
-|};
-
-class ScreenSizeContextBase extends Component<
-  ScreenSizeContextBasePropsType,
-  ScreenSizeContextBaseStateType
-> {
-  destroy: () => void;
-
+class ScreenSizeContextBase extends Component {
   state = {
-    screenSize: "server",
-    platformData: {
-      product: null,
-      osFamily: null,
-      majorVersion: -1,
-      majorOsVersion: -1
-    }
+    screenSize: 'server',
+    platformData: {},
   };
 
   componentDidMount() {
@@ -69,14 +37,10 @@ class ScreenSizeContextBase extends Component<
       platformData: {
         product: platform.product,
         osFamily: platform.os ? platform.os.family : null,
-        majorVersion: platform.version
-          ? parseInt(platform.version.split(".")[0], 10)
-          : -1,
+        majorVersion: platform.version ? parseInt(platform.version.split('.')[0], 10) : -1,
         majorOsVersion:
-          platform.os && platform.os.version
-            ? parseInt(platform.os.version.split(".")[0], 10)
-            : -1
-      }
+          platform.os && platform.os.version ? parseInt(platform.os.version.split('.')[0], 10) : -1,
+      },
     });
     // Initialize Respondable
     // first prop is a map in the form of [mediaQuery]: 'string'
@@ -92,7 +56,7 @@ class ScreenSizeContextBase extends Component<
 
   componentWillUnmount() {
     // Destroy the respondable listener
-    if (this.destroy) this.destroy();
+    this.destroy && this.destroy();
   }
 
   /**
@@ -105,10 +69,9 @@ class ScreenSizeContextBase extends Component<
    *
    * @param {String} active current active screenSize
    */
-  getNextHighestScreenSize = (active: string): string => {
+  getNextHighestScreenSize = (active) => {
     const index = this.props.theme.layout.screenSizePriority.indexOf(active);
-    if (index !== 0)
-      return this.props.theme.layout.screenSizePriority[index - 1];
+    if (index !== 0) return this.props.theme.layout.screenSizePriority[index - 1];
     return active;
   };
 
@@ -122,11 +85,10 @@ class ScreenSizeContextBase extends Component<
    *
    * @param {String} active current active screenSize
    */
-  getNextLowestScreenSize = (active: string): string => {
+  getNextLowestScreenSize = (active) => {
     const index = this.props.theme.layout.screenSizePriority.indexOf(active);
     const length = this.props.theme.layout.screenSizePriority.length;
-    if (index !== length - 1)
-      return this.props.theme.layout.screenSizePriority[index + 1];
+    if (index !== length - 1) return this.props.theme.layout.screenSizePriority[index + 1];
     return active;
   };
 
@@ -146,9 +108,11 @@ class ScreenSizeContextBase extends Component<
    * @param {String} active  current active screenSize
    * @param {String} largest largest of active screenSizes if any compete
    */
-  setScreenSize = (active: string, largest: string): void =>
+  setScreenSize = (active, largest) =>
     this.setState({
-      screenSize: largest
+      screenSize: largest,
+      lowerScreenSize: this.getNextLowestScreenSize(largest),
+      higherScreenSize: this.getNextHighestScreenSize(largest),
     });
 
   render() {
@@ -163,12 +127,10 @@ class ScreenSizeContextBase extends Component<
 // withTheme gives us access to the theme without it being a Styled Component
 export const ScreenSizeContext = withTheme(ScreenSizeContextBase);
 
-export function withScreenSize<T>(WrappedComponent: ComponentType<T>) {
-  const ScreenSizeAwareComponent = (props: T): Node => (
+export function withScreenSize(WrappedComponent) {
+  const ScreenSizeAwareComponent = props => (
     <ScreenSizeConsumer>
-      {screenSizeState => (
-        <WrappedComponent {...props} screenSizeState={screenSizeState} />
-      )}
+      {screenSizeState => <WrappedComponent {...props} screenSizeState={screenSizeState} />}
     </ScreenSizeConsumer>
   );
   const name = WrappedComponent.displayName || WrappedComponent.name;

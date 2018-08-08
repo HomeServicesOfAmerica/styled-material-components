@@ -1,16 +1,11 @@
-// @flow
-import React, { PureComponent } from "react";
-import styled from "styled-components";
+import React, { PureComponent } from 'react';
+import styled from 'styled-components';
+import { ThemeProvider, Checkbox, Box, CheckMark, List, ListItem } from '../src';
 
-import {
-  ThemeProvider,
-  Checkbox,
-  Box,
-  CheckMark,
-  List,
-  ListItem
-} from "../src";
-
+// TODO: Things are being applied in different orders, and sometimes
+// the styles are being applied, and other times they are not. The custom
+// styles are only being applied when I save this file, but reloading the
+// page reverts them back to the default styles.
 const StyledCheckbox = Checkbox.extend`
   ${Box} {
     background-color: transparent;
@@ -35,26 +30,14 @@ const StyledCheckbox2 = Checkbox.extend`
 
   ${Box} {
     ${props =>
-      props.checked &&
+    props.checked &&
       `
       border: solid 3px ${props.theme.primary};
       background-color: transparent;
     `};
   }
 `;
-
-type CheckboxesPagePropsType = {||};
-type CheckboxesPageStateType = {|
-  checked: {
-    checkbox6: boolean,
-    checkbox9: boolean
-  }
-|};
-
-class CheckboxesPage extends PureComponent<
-  CheckboxesPagePropsType,
-  CheckboxesPageStateType
-> {
+class CheckboxesPage extends PureComponent {
   state = {
     checked: {
       checkbox6: false,
@@ -64,8 +47,8 @@ class CheckboxesPage extends PureComponent<
 
   handleChange = ({
     target: { id }
-  }: SyntheticInputEvent<EventTarget>): void => {
-    this.setState(({ checked }: CheckboxesPageStateType) => ({
+  }) => {
+    this.setState(({ checked }) => ({
       checked: {
         ...checked,
         [id]: !checked[id]
@@ -120,7 +103,7 @@ class CheckboxesPage extends PureComponent<
               id="checkbox9"
               checked={checked["checkbox9"]}
               onChange={this.handleChange}
-              CheckMark={Square}
+              checkMark={Square}
             />
             <label htmlFor="checkbox9">Custom Checkbox</label>
           </ListItem>

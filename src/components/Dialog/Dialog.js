@@ -1,68 +1,37 @@
-// @flow
-import React, { type Node } from "react";
-import styled, { css } from "styled-components";
-import classNames from "classnames";
-
-import elevation from "../../mixins/elevation";
-import { Portal } from "../Portal";
+import React from 'react';
+import styled, { css } from 'styled-components';
+import classNames from 'classnames';
+import elevation from '../../mixins/elevation';
+import { Portal } from '../Portal';
 
 /*
  * The dialog is controlled by this.props.open, *but* the dialog also closes when
  * the user clicks out of it. Because of that, the dialog's open/shut status is
  * actually controlled in the DialogComponent's state
  */
-
-export type DialogComponentPropsType = {|
-  attachment: "left" | "right" | "top" | "bottom",
-  children: Node,
-  className: string,
-  fullscreen?: boolean,
-  onClose: () => void,
-  open: boolean
-|};
-
-type DialogComponentStateType = {
-  attachment: string,
-  fullscreen: boolean,
-  open: boolean
-};
-
-class DialogComponent extends React.Component<
-  DialogComponentPropsType,
-  DialogComponentStateType
-> {
-  static defaultProps = {
-    open: false,
-    attachment: "left",
-    fullscreen: false
-  };
-
+class DialogComponent extends React.Component {
   componentDidMount() {
-    document.addEventListener("keydown", this.handleKeyDown);
+    document.addEventListener('keydown', this.handleKeyDown);
   }
 
   componentWillUnmount() {
-    document.removeEventListener("keydown", this.handleKeyDown);
+    document.removeEventListener('keydown', this.handleKeyDown);
   }
 
-  handleKeyDown = (event: Object): void => {
+  handleKeyDown = (event) => {
     if (event.keyCode === 27) {
-      if (this.props.onClose) this.props.onClose();
+      // esc
+      this.props.onClose && this.props.onClose();
     }
   };
-
   render() {
-    const fullscreenDialogClass = classNames(
-      this.props.className,
-      "smc-fullscreen-dialog",
-      {
-        open: this.props.open,
-        left: this.props.attachment === "left",
-        right: this.props.attachment === "right",
-        top: this.props.attachment === "top",
-        bottom: this.props.attachment === "bottom"
-      }
-    );
+    const fullscreenDialogClass = classNames(this.props.className, 'smc-fullscreen-dialog', {
+      open: this.props.open,
+      left: this.props.attachment === 'left',
+      right: this.props.attachment === 'right',
+      top: this.props.attachment === 'top',
+      bottom: this.props.attachment === 'bottom',
+    });
 
     return (
       <Portal
@@ -74,9 +43,7 @@ class DialogComponent extends React.Component<
             onKeyDown={this.handleKeyDown}
           >
             <div
-              className={`smc-dialog-surface ${
-                this.props.fullscreen ? fullscreenDialogClass : ""
-              }`}
+              className={`smc-dialog-surface ${this.props.fullscreen ? fullscreenDialogClass : ''}`}
               onClick={e => e.stopPropagation()}
             >
               {this.props.children}
@@ -90,14 +57,14 @@ class DialogComponent extends React.Component<
 
 const notFullScreenStyles = css`
   width: ${({ width }) => {
-    if (typeof width === "number") return `${width}px`;
-    return width || "70%";
+    if (typeof width === 'number') return `${width}px`;
+    return width || '70%';
   }};
   max-width: 865px;
   ${elevation(24)};
 `;
 
-export default styled(DialogComponent)`
+export default styled(DialogComponent) `
   width: 100%;
   height: 100%;
   display: flex;
@@ -148,3 +115,9 @@ export default styled(DialogComponent)`
     }
   }
 `;
+
+DialogComponent.defaultProps = {
+  open: false,
+  attachment: 'left',
+  fullscreen: false,
+};

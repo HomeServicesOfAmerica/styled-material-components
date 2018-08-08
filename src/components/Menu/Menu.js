@@ -23,13 +23,12 @@ class MenuComponent extends Component {
     window.removeEventListener('resize', this.recalculatePosition);
   }
 
-  handleOutsideClick = event => {
+  handleOutsideClick = (event) => {
     if (
       this.menu.contains(event.target) ||
       this.props.anchorEl === event.target ||
       isDescendant(this.props.anchorEl, event.target)
-    )
-      return;
+    ) return;
     this.props.onClose && this.props.onClose(event);
   };
 
@@ -61,8 +60,7 @@ class MenuComponent extends Component {
     const bottomAttachmentAdjustment = attachBottom ? anchorHeight : 0;
     // to adjust opening direction, move down or to the right by the difference in height / width
     // between the anchor and menu
-    const openUpAdjustment =
-      anchorHeight - menuHeight - bottomAttachmentAdjustment;
+    const openUpAdjustment = anchorHeight - menuHeight - bottomAttachmentAdjustment;
     const openLeftAdjustment = anchorWidth - menuWidth;
     // to account for being over one side of the page, we reverse the open direction
     // calculate new position with adjustments
@@ -93,7 +91,7 @@ class MenuComponent extends Component {
       <div
         style={{ display: this.state.renderReady ? 'block' : 'none' }}
         className={`${className} smc-Menu`}
-        ref={ref => {
+        ref={(ref) => {
           this.menu = ref;
           this.recalculatePosition();
         }}
@@ -132,3 +130,4 @@ const Menu = styled(MenuComponent)`
 `;
 
 export default Menu;
+

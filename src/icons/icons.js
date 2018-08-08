@@ -1,55 +1,26 @@
-// @flow
-import * as React from "react";
-import styled from "styled-components";
+import * as React from 'react';
+import styled from 'styled-components';
+import { ArrowBackPath } from './ArrowBackPath';
+import { ArrowDropDownPath } from './ArrowDropDownPath';
+import { ArrowForwardPath } from './ArrowForwardPath';
+import { ArrowUpwardPath } from './ArrowUpwardPath';
+import { BookmarkPath } from './BookmarkPath';
+import { ClosePath } from './ClosePath';
+import { FileDownloadPath } from './FileDownloadPath';
+import { InfoOutlinePath } from './InfoOutlinePath';
+import { KeyboardArrowDownPath } from './KeyboardArrowDownPath';
+import { KeyboardArrowLeftPath } from './KeyboardArrowLeftPath';
+import { KeyboardArrowRightPath } from './KeyboardArrowRightPath';
+import { KeyboardArrowUpPath } from './KeyboardArrowUpPath';
+import { PinDropPath } from './PinDropPath';
+import { PrintPath } from './PrintPath';
+import { MenuPath } from './MenuPath';
+import { SearchPath } from './SearchPath';
+import { StarBorderPath } from './StarBorderPath';
+import { StarHalfPath } from './StarHalfPath';
+import { StarPath } from './StarPath';
 
-import { ArrowBackPath } from "./ArrowBackPath";
-import { ArrowDropDownPath } from "./ArrowDropDownPath";
-import { ArrowForwardPath } from "./ArrowForwardPath";
-import { ArrowUpwardPath } from "./ArrowUpwardPath";
-import { BookmarkPath } from "./BookmarkPath";
-import { ClosePath } from "./ClosePath";
-import { FileDownloadPath } from "./FileDownloadPath";
-import { InfoOutlinePath } from "./InfoOutlinePath";
-import { KeyboardArrowDownPath } from "./KeyboardArrowDownPath";
-import { KeyboardArrowLeftPath } from "./KeyboardArrowLeftPath";
-import { KeyboardArrowRightPath } from "./KeyboardArrowRightPath";
-import { KeyboardArrowUpPath } from "./KeyboardArrowUpPath";
-import { PinDropPath } from "./PinDropPath";
-import { PrintPath } from "./PrintPath";
-import { MenuPath } from "./MenuPath";
-import { SearchPath } from "./SearchPath";
-import { StarBorderPath } from "./StarBorderPath";
-import { StarHalfPath } from "./StarHalfPath";
-import { StarPath } from "./StarPath";
-
-type IconBasePropsType = {|
-  children: React.Node,
-  className: string,
-  fill?: ?string,
-  onClick?: ?(clickEvent: Object) => any,
-  size?: ?number
-|};
-
-type IconBaseUsingStringPropsType = {|
-  className: string,
-  fill?: ?string,
-  icon: string,
-  onClick?: ?(clickEvent: Object) => any,
-  size?: ?number
-|};
-// type IconSpecifierType = {| children: React.Node |} | {| icon: string |};
-
-// type IconBasePropsUsingChildren = SharedIconBaseProps & {|
-//   children: React.Node
-// |};
-//
-// type IconBasePropsUsingString = SharedIconBaseProps & {|
-//   icon: string
-// |};
-
-// type IconBaseProps = SharedIconBaseProps & IconSpecifierType;
-
-const DEFAULT_FILL = "rgb(0, 0, 0)";
+const DEFAULT_FILL = 'rgb(0, 0, 0)';
 const DEFAULT_SIZE = 24;
 
 const iconPaths = {
@@ -71,10 +42,11 @@ const iconPaths = {
   star_border: StarBorderPath,
   star_half: StarHalfPath,
   star: StarPath,
-  upward_arrow: ArrowUpwardPath
+  upward_arrow: ArrowUpwardPath,
 };
 
-const getChildren = (icon: string): ?React.Node => {
+const getChildren = (icon) => {
+  if (!icon) return null;
   const Path = iconPaths[icon];
   if (Path) return <Path />;
   // eslint-disable-next-line no-console
@@ -86,52 +58,21 @@ const getChildren = (icon: string): ?React.Node => {
   return null;
 };
 
-const noop = (): void => {};
-
-const IconBase = (props: IconBasePropsType) => (
+const IconComponent = props => (
   <svg
     className={props.className}
     data-smc="Icon"
     fill={props.fill || DEFAULT_FILL}
     height={props.size || DEFAULT_SIZE}
-    onClick={props.onClick || noop}
+    onClick={props.onClick}
     viewBox=" 0 0 24 24"
     width={props.size || DEFAULT_SIZE}
     xlmns="http://www.w3.org/2000/svg"
   >
-    {props.children}
+    {props.children || getChildren(props.icon)}
   </svg>
 );
 
-const IconBaseWithOptions = (
-  props: IconBaseUsingStringPropsType | IconBasePropsType
-) => {
-  if (props.children) {
-    return <IconBase {...props} />;
-  } else if (props.icon) {
-    return (
-      <IconBase
-        className={props.className}
-        fill={props.fill}
-        onClick={props.onClick}
-        size={props.size}
-      >
-        {getChildren(props.icon)}
-      </IconBase>
-    );
-  }
-  return (
-    <IconBase
-      className={props.className}
-      fill={props.fill}
-      onClick={props.onClick}
-      size={props.size}
-    >
-      {null}
-    </IconBase>
-  );
-};
-
-export const Icon = styled(IconBaseWithOptions)`
-  ${props => props.onClick && "cursor: pointer"};
+export const Icon = styled(IconComponent)`
+  ${props => props.onClick && 'cursor: pointer'};
 `;

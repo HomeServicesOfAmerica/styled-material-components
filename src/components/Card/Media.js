@@ -1,17 +1,8 @@
-// @flow
-import React, { type Node } from "react";
-import styled, { css } from "styled-components";
+import React from 'react';
+import styled, { css } from 'styled-components';
 
-type CardMediaPropsType = {|
-  children: Node,
-  className: string,
-  src: string
-|};
-
-const MediaComponent = (props: CardMediaPropsType) => (
-  <section className={`${props.className} card-media`}>
-    {props.children}
-  </section>
+const MediaComponent = props => (
+  <section className={`${props.className} card-media`}>{props.children}</section>
 );
 
 const Media = styled(MediaComponent)`
@@ -21,14 +12,12 @@ const Media = styled(MediaComponent)`
   box-sizing: border-box;
   padding: 16px;
 
-  ${props =>
-    props.wide &&
-    css`
+  ${props => props.wide && css`
     background-image: url("${props.src}");
     background-size: cover;
     background-repeat: no-repeat;
     height: 12.313rem;
-  `};
+  `}
 `;
 
 export default Media;

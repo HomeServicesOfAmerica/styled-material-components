@@ -1,37 +1,15 @@
-// @flow
-import { css } from "styled-components";
+import { css } from 'styled-components';
 
-type FontWeightsType =
-  | "thin"
-  | "light"
-  | "regular"
-  | "medium"
-  | "bold"
-  | "black";
-type MarginStylesType =
-  | "display4"
-  | "display3"
-  | "display2"
-  | "display1"
-  | "headline"
-  | "title"
-  | "subheading2"
-  | "subheading1"
-  | "body2"
-  | "body1"
-  | "caption";
-type TypographyStylesType = MarginStylesType | "button";
-
-const fontWeightStyles: { [fontWeightName: FontWeightsType]: number } = {
+const fontWeightStyles = {
   thin: 100,
   light: 300,
   regular: 400,
   medium: 500,
   bold: 700,
-  black: 900
+  black: 900,
 };
 
-const marginStyles: { [elementType: MarginStylesType]: string } = {
+const marginStyles = {
   display4: css`
     margin: -1rem 0 3.5rem -0.085em;
   `,
@@ -64,10 +42,10 @@ const marginStyles: { [elementType: MarginStylesType]: string } = {
   `,
   caption: css`
     margin: -0.5rem 0 1rem -0.04em;
-  `
+  `,
 };
 
-const typographyStyles: { [elementType: TypographyStylesType]: string } = {
+const typographyStyles = {
   display4: css`
     font-size: 7rem;
     line-height: 7rem;
@@ -140,20 +118,19 @@ const typographyStyles: { [elementType: TypographyStylesType]: string } = {
     font-weight: ${fontWeightStyles.medium};
     letter-spacing: 0.04em;
     text-transform: uppercase;
-  `
+  `,
 };
 
-const DEFAULT_FONT_FAMILY = "Roboto, sans-serif";
+const DEFAULT_FONT_FAMILY = 'Roboto, sans-serif';
 
-const typography = (style: TypographyStylesType): (() => string) => () => css`
-  font-family: ${({ theme: { fontFamilyOverride } }) =>
-    fontFamilyOverride || DEFAULT_FONT_FAMILY};
+const typography = style => () => css`
+  font-family: ${({ theme: { fontFamilyOverride } }) => fontFamilyOverride || DEFAULT_FONT_FAMILY};
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   ${typographyStyles[style]};
 `;
 
-export const typographyAdjustMargin = (style: MarginStylesType): string => css`
+export const typographyAdjustMargin = style => css`
   ${marginStyles[style]};
 `;
 

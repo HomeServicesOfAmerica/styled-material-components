@@ -1,10 +1,8 @@
-// @flow
-import styled from "styled-components";
-import React, { Component, Fragment } from "react";
-
-import MenuItem from "./Menu/MenuItem";
-import Menu from "./Menu/Menu";
-import { ArrowDropDownIcon } from "../icons";
+import styled from 'styled-components';
+import React, { Component, Fragment } from 'react';
+import MenuItem from './Menu/MenuItem';
+import Menu from './Menu/Menu';
+import { ArrowDropDownIcon } from '../icons';
 
 const Dropdown = styled.select`
   border-color: transparent;
@@ -26,7 +24,7 @@ const HiddenOption = styled.option`
   display: none;
 `;
 
-const Symbol = styled(ArrowDropDownIcon)`
+const Symbol = styled(ArrowDropDownIcon) `
   width: 20px;
   height: 20px;
   position: absolute;
@@ -35,27 +33,11 @@ const Symbol = styled(ArrowDropDownIcon)`
   fill: #726969;
 `;
 
-type DropdownMenuPropsType = {
-  defaultOption?: string,
-  onItemClick: (e: Object) => any,
-  options: Array<string>
-};
-
-type DropdownMenuStateType = {
-  isChrome: ?boolean,
-  isOpen: boolean,
-  options: Array<string>,
-  selected: string
-};
-
-export default class DropdownMenu extends Component<
-  DropdownMenuPropsType,
-  DropdownMenuStateType
-> {
+export default class DropdownMenu extends Component {
   state = {
     isOpen: false,
-    selected: this.props.defaultOption || "select one",
-    isChrome: undefined
+    selected: this.props.defaultOption || 'select one',
+    isChrome: undefined,
   };
 
   /* eslint-disable react/no-did-mount-set-state */
@@ -72,32 +54,30 @@ export default class DropdownMenu extends Component<
   componentDidMount() {
     if (navigator) {
       const isChrome = Boolean(
-        /Chrome/.test(navigator.userAgent) &&
-          /Google Inc/.test(navigator.vendor)
+        /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor)
       );
       this.setState({ isChrome });
     }
   }
 
-  handleClose = (): void => {
+  handleClose = () => {
     this.setState({ isOpen: false });
   };
 
-  handleOpen = (): void => {
+  handleOpen = () => {
     this.setState({ isOpen: true });
   };
 
-  onSelectMenuItem = e => {
+  onSelectMenuItem = (e) => {
     if (this.props.onItemClick) {
       this.props.onItemClick(e);
     }
     this.setState({ selected: e.target.value });
   };
 
-  toggleSelect = e => {
+  toggleSelect = (e) => {
     e.preventDefault();
-    this.setState(({ isOpen }) => ({ isOpen: !isOpen }));
-    // this.setState({ isOpen: !this.state.isOpen });
+    this.setState({ isOpen: !this.state.isOpen });
   };
 
   render() {
@@ -106,32 +86,20 @@ export default class DropdownMenu extends Component<
     return (
       <div onClick={this.toggleSelect} onFocus={this.handleOpen} tabIndex="0">
         {!isChrome && (
-          <Dropdown
-            defaultValue={selected}
-            onChange={e => this.onSelectMenuItem(e)}
-          >
+          <Dropdown defaultValue={selected} onChange={e => this.onSelectMenuItem(e)}>
             {options.map(option => <option key={option}>{option}</option>)}
           </Dropdown>
         )}
         {isChrome && (
           <Fragment>
             <Dropdown value={selected} hidden={isOpen}>
-              {options.map(option => (
-                <HiddenOption key={option}>{option}</HiddenOption>
-              ))}
+              {options.map(option => <HiddenOption key={option}>{option}</HiddenOption>)}
             </Dropdown>
-            <Menu
-              aria-hidden="true"
-              value={selected}
-              open={isOpen}
-              onClose={this.handleClose}
-            >
+            <Menu aria-hidden="true" value={selected} open={isOpen} onClose={this.handleClose}>
               {options.map(option => (
                 <MenuItem
                   key={option}
-                  onClick={() =>
-                    this.onSelectMenuItem({ target: { value: option } })
-                  }
+                  onClick={() => this.onSelectMenuItem({ target: { value: option } })}
                 >
                   {option}
                 </MenuItem>

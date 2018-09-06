@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { is } from 'ramda';
 import styled, { css } from 'styled-components';
 import typography from '../mixins/typography';
 import elevation, { elevationTransition } from '../mixins/elevation';
@@ -121,7 +122,7 @@ class ChipComponent extends PureComponent {
     const {
       className,
       avatar,
-      label,
+      label: Label,
       onClick,
       removable,
       removeIcon,
@@ -142,7 +143,7 @@ class ChipComponent extends PureComponent {
         removed={removed}
       >
         {avatar && <ChipAvatar>{avatar}</ChipAvatar>}
-        <ChipLabel onClick={onClick}>{label}</ChipLabel>
+        {is(Function, Label) ? Label() : <ChipLabel onClick={onClick}>{Label}</ChipLabel>}
         {(removable || onDelete) && (
           <RemoveIcon className="smc-chip-remove-icon" onClick={this.handleDeleteIconClick} />
         )}

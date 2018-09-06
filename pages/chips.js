@@ -24,6 +24,23 @@ const CustomChip = styled(Chip)`
   }
 `;
 
+const CustomRenderProp = styled.div`
+  display: flex;
+  flex-direction: row;
+  padding-top: 2px;
+  margin: auto 10px;
+  div {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background-color: red;
+    margin: -2px 0 0 5px;
+  }
+`;
+
+const ChipRenderProp = () =>
+  <CustomRenderProp>With Render Prop For Label <div /></CustomRenderProp>;
+
 export default class ChipsPage extends PureComponent {
   state = {
     removed: false,
@@ -59,6 +76,7 @@ export default class ChipsPage extends PureComponent {
           <Chip label="Uncontrolled Deletable chip" removable avatar="CA" />
           <Chip label="Controlled Deletable chip" onDelete={this.handleRemove} removed={removed} />
           <CustomChip label="Custom Chip" avatar="AB" removable />
+          <Chip label={ChipRenderProp} />
           <Chip
             label="Custom Remove icon"
             removeIcon={ArrowDropDownIcon}

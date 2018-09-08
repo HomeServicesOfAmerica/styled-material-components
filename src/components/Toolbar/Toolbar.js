@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { Row } from '../FlexGrid';
+import { Row } from '../FlexGrid/index.js';
 import { contrastingColor } from '../../mixins/theme';
 import typography, { overflowEllipsis } from '../../mixins/typography';
 import elevation from '../../mixins/elevation';

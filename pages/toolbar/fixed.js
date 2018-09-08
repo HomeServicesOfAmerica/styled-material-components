@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import {
-  ThemeProvider,
+  MaterialThemeProvider,
   Toolbar,
   ToolbarTitle,
   ToolbarActions,
@@ -9,7 +9,7 @@ import {
   FileDownloadIcon,
   MenuIcon,
   PrintIcon,
-} from '../../src';
+} from '../../.build/styled-material-components.esm.js';
 import { generateParagraphs } from '../../utilities';
 
 const PageContainer = styled.div`
@@ -23,7 +23,7 @@ const Content = styled.div`
 
 export default () => (
   <PageContainer>
-    <ThemeProvider>
+    <MaterialThemeProvider>
       <Toolbar fixed>
         <ToolbarTitle Icon={<MenuIcon />}>Title</ToolbarTitle>
         <ToolbarActions>
@@ -35,6 +35,6 @@ export default () => (
       <Content>
         {generateParagraphs(8)}
       </Content>
-    </ThemeProvider>
+    </MaterialThemeProvider>
   </PageContainer>
 );

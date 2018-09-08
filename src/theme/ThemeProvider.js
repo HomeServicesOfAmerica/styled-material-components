@@ -1,11 +1,11 @@
 import React from 'react';
-import { ThemeProvider, injectGlobal } from 'styled-components';
+import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import merge from 'lodash.merge';
 import { ScreenSizeContext } from '../contexts/ScreenSizeContext';
 import { defaultTheme } from './defaultTheme';
 
 /* eslint-disable no-unused-expressions */
-injectGlobal`
+export const StyledMaterialComponentsGlobals = createGlobalStyle`
   body {
     background-color: #f4f4f4;
     margin: 0;
@@ -18,11 +18,14 @@ injectGlobal`
 `;
 /* eslint-enable */
 
-const MaterialThemeProvider = ({ children, theme = {} }) => (
+const MaterialThemeProvider = ({ children, theme = {}, includeSMCGlobals = true }) => (
   <ThemeProvider theme={merge(defaultTheme, theme)}>
-    <ScreenSizeContext>
-      {children}
-    </ScreenSizeContext>
+    <>
+      {includeSMCGlobals && <StyledMaterialComponentsGlobals />}
+      <ScreenSizeContext>
+        {children}
+      </ScreenSizeContext>
+    </>
   </ThemeProvider>
 );
 

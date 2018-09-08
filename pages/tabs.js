@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { TabBar, TabContent, Tab, Tabs, ThemeProvider, Icon } from '../src';
+import { TabBar, TabContent, TabsInkBar, Tab, Tabs, MaterialThemeProvider, Icon } from '../.build/styled-material-components.esm.js';
 
 // TODO: (future) scrollable tabs
 
@@ -33,6 +33,7 @@ class ControlledTabs extends React.Component {
 
     return (
       <React.Fragment>
+        {/* <TabsInkBar /> */}
         <Tabs fixed={this.props.fixed}>
           <TabBar onClick={this.handleTabClick} selectedIndex={selectedIndex}>
             <Tab Icon={this.props.showIcon ? <Icon icon="star" /> : null}>Tab One</Tab>
@@ -49,7 +50,7 @@ class ControlledTabs extends React.Component {
 }
 
 const TabsPage = () => (
-  <ThemeProvider>
+  <MaterialThemeProvider>
     <PageContainer>
       <Content>
         <h1>Tabs</h1>
@@ -70,7 +71,7 @@ const TabsPage = () => (
         </Container>
       </Content>
     </PageContainer>
-  </ThemeProvider>
+  </MaterialThemeProvider>
 );
 
 export default TabsPage;

@@ -10,29 +10,31 @@ import {
   ListItem,
   ListItemText,
   ListSubheader,
-  ThemeProvider,
-} from '../../src';
-import { iconList } from './assets';
-import { AddIcon, FileDownloadIcon, FileUploadIcon } from '../../src/icons';
+  MaterialThemeProvider,
+  AddIcon,
+  FileDownloadIcon,
+  FileUploadIcon,
+} from '../../.build/styled-material-components.esm.js';
 
-const StyledButton = Button.extend`
-  display: flex;
+import { iconList } from './assets';
+
+const StyledButton = styled(Button)`
   justify-content: space-between;
   align-items: center;
   margin: 0 16px 16px;
   align-self: center;
 `;
 
-const StyledFab = FloatingActionButton.extend`
+const StyledFab = styled(FloatingActionButton)`
   margin: 0 16px 16px;
 `;
 
-const StyledDivider = Divider.extend`
+const StyledDivider = styled(Divider)`
   margin: 30px 0;
 `;
 
 const IconsPage = ({ className }) => (
-  <ThemeProvider>
+  <MaterialThemeProvider>
     <section className={className}>
       <h1>Icons</h1>
       <GridList>{iconList.map(icon => <GridTile>{icon}</GridTile>)}</GridList>
@@ -79,11 +81,13 @@ const IconsPage = ({ className }) => (
         </GridTile>
       </GridList>
     </section>
-  </ThemeProvider>
+  </MaterialThemeProvider>
 );
 
 const Icons = styled(IconsPage)`
   padding: 0 30px;
 `;
 
-export default Icons;
+export default () => (
+  <Icons />
+);

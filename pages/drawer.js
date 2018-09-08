@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { Drawer, ThemeProvider, Button } from '../src';
+import { Drawer, DrawerGlobalStyles, MaterialThemeProvider, Button } from '../.build/styled-material-components.esm.js';
 
 const PageContainer = styled.div`
   padding: 10px;
@@ -35,7 +35,8 @@ export default class PortalPage extends Component {
 
   render() {
     return (
-      <ThemeProvider>
+      <MaterialThemeProvider>
+        <DrawerGlobalStyles />
         <PageContainer>
           <h1>Temporary Drawers!</h1>
           <Drawer
@@ -70,7 +71,7 @@ export default class PortalPage extends Component {
           <Button raised primary onClick={this.togglePersistentRight}>Right Persistent</Button>
           <Button raised accent onClick={this.togglePersistentLeft}>Left Persistent</Button>
         </PageContainer>
-      </ThemeProvider>
+      </MaterialThemeProvider>
     );
   }
 }

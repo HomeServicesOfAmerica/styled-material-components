@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Circular } from './Circular';
 import { Image } from './Image';
 
@@ -15,7 +16,7 @@ const formatProps = ({ name, children }) => {
   return initials.toUpperCase();
 };
 
-export const Avatar = Circular.extend.attrs({
+export const Avatar = styled(Circular).attrs({
   children: props =>
     (props.src ? <Image src={props.src} /> : formatProps(props)),
 }) `

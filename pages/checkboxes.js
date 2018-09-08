@@ -1,12 +1,12 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
-import { ThemeProvider, Checkbox, Box, CheckMark, List, ListItem } from '../src';
+import { MaterialThemeProvider, Checkbox, Box, CheckMark, List, ListItem } from '../.build/styled-material-components.esm.js';
 
 // TODO: Things are being applied in different orders, and sometimes
 // the styles are being applied, and other times they are not. The custom
 // styles are only being applied when I save this file, but reloading the
 // page reverts them back to the default styles.
-const StyledCheckbox = Checkbox.extend`
+const StyledCheckbox = styled(Checkbox)`
   ${Box} {
     background-color: transparent;
     border-color: skyblue;
@@ -23,7 +23,7 @@ const Square = styled.div`
   width: 8px;
 `;
 
-const StyledCheckbox2 = Checkbox.extend`
+const StyledCheckbox2 = styled(Checkbox)`
   :hover::before {
     opacity: 0;
   }
@@ -37,7 +37,7 @@ const StyledCheckbox2 = Checkbox.extend`
     `};
   }
 `;
-class CheckboxesPage extends PureComponent {
+export default class CheckboxesPage extends PureComponent {
   state = {
     checked: {
       checkbox6: false,
@@ -59,7 +59,7 @@ class CheckboxesPage extends PureComponent {
   render() {
     const { checked } = this.state;
     return (
-      <ThemeProvider>
+      <MaterialThemeProvider>
         <List>
           <h1 style={{ marginLeft: 25 }}>Checkboxes</h1>
           <ListItem>
@@ -108,9 +108,7 @@ class CheckboxesPage extends PureComponent {
             <label htmlFor="checkbox9">Custom Checkbox</label>
           </ListItem>
         </List>
-      </ThemeProvider>
+      </MaterialThemeProvider>
     );
   }
 }
-
-export default CheckboxesPage;

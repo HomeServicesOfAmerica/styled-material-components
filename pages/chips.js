@@ -1,14 +1,13 @@
 import React, { PureComponent } from 'react';
-import MaterialThemeProvider from '../src/theme/ThemeProvider';
-import { Chip, ChipAvatar, ChipLabel, ChipDeleteIcon } from '../src/components/Chip';
-import { ArrowDropDownIcon } from '../src';
+import styled from 'styled-components';
+import { MaterialThemeProvider, Chip, ChipAvatar, ChipLabel, ChipDeleteIcon, ArrowDropDownIcon } from '../.build/styled-material-components.esm.js';
 
 const demo = (area) => {
   // eslint-disable-next-line
   alert(`You clicked on the ${area}`);
 };
 
-const CustomChip = Chip.extend`
+const CustomChip = styled(Chip)`
   ${ChipAvatar} {
     background-color: skyblue;
   }
@@ -25,7 +24,7 @@ const CustomChip = Chip.extend`
   }
 `;
 
-class ChipsPage extends PureComponent {
+export default class ChipsPage extends PureComponent {
   state = {
     removed: false,
   };
@@ -70,5 +69,3 @@ class ChipsPage extends PureComponent {
     );
   }
 }
-
-export default ChipsPage;

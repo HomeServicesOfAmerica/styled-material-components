@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import TextField from '../TextField';
-import { SearchIcon } from '../../icons';
+import { SearchIcon } from '../../icons/index.js';
 
 const SearchComponent = ({ className, onSearch }) => (
   <div className={`smc-search-container ${className}`}>

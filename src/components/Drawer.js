@@ -1,21 +1,21 @@
 import React from 'react';
-import styled, { injectGlobal, css } from 'styled-components';
+import styled, { createGlobalStyle, css } from 'styled-components';
 import classNames from 'classnames';
 import elevation from '../mixins/elevation';
-import { Portal } from '../components/Portal';
+import { Portal } from '../components/Portal/index.js';
 
 const drawerSizing = css`
   width: 240px;
 `;
 
 // eslint-disable-next-line no-unused-expressions
-injectGlobal`
+export const DrawerGlobalStyles = createGlobalStyle`
   body {
     &.shift {
       &.right {
         &:after {
           content: "";
-          ${drawerSizing}
+          width: 240px;
           display: inline-table;
           box-sizing: border-box;
         }
@@ -23,7 +23,7 @@ injectGlobal`
       &.left {
         &:before {
           content: "";
-          ${drawerSizing}
+          width: 240px;
           display: inline-table;
           box-sizing: border-box;
         }
@@ -115,5 +115,3 @@ Drawer.defaultProps = {
   attachment: 'left',
   handleRequestClose: () => {},
 };
-
-export default Drawer;

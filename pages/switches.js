@@ -1,8 +1,8 @@
 import React from 'react';
-import { List, ListItem, Switch, ThemeProvider } from '../src';
+import { List, ListItem, Switch, MaterialThemeProvider } from '../.build/styled-material-components.esm.js';
 
 const Switches = () => (
-  <ThemeProvider>
+  <MaterialThemeProvider>
     <List>
       <h1 style={{ marginLeft: 25 }}>Switches</h1>
       <ListItem>
@@ -26,7 +26,7 @@ const Switches = () => (
         <label htmlFor="switch5">Disabled and Off</label>
       </ListItem>
     </List>
-  </ThemeProvider>
+  </MaterialThemeProvider>
 );
 
 export default Switches;

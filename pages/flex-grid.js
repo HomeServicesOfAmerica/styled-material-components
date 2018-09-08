@@ -1,20 +1,22 @@
 import React from 'react';
-import { Row, Column, ThemeProvider } from '../src';
+import styled from 'styled-components';
+import { Row, Column, MaterialThemeProvider } from '../.build/styled-material-components.esm.js';
 
-const BlueColumn = Column.extend`
+const BlueColumn = styled(Column)`
   background-color: teal;
   height: 24px;
   color: white;
   align-items: center;
   justify-content: center;
+  margin-right: 5px;
+  margin-bottom: 10px;
 `;
 
-const CustomRow = Row.extend`
-  margin-top: 0;
+const CustomRow = styled(Row)`
 `;
 
 export default () => (
-  <ThemeProvider>
+  <MaterialThemeProvider>
     <h1>FlexGrid Layouts</h1>
     <section>
       <h2>Responsive</h2>
@@ -259,5 +261,5 @@ export default () => (
         </BlueColumn>
       </CustomRow>
     </section>
-  </ThemeProvider>
+  </MaterialThemeProvider>
 );

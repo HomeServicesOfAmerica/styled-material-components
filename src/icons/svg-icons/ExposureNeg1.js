@@ -1,11 +1,12 @@
 import React from 'react';
 import { Icon } from '../icons';
+import styled from 'styled-components';
 
 const ExposureNeg1Path = () => [
   <path d="M4 11v2h8v-2H4zm15 7h-2V7.38L14 8.4V6.7L18.7 5h.3v13z" key='path0' />,
 ];
 
-const ExposureNeg1Icon = Icon.extend.attrs({
+const ExposureNeg1Icon = styled(Icon).attrs({
   children: ExposureNeg1Path,
 })``;
 

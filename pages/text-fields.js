@@ -1,14 +1,14 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
-import { ThemeProvider, TextField, Button } from '../src';
+import { MaterialThemeProvider, TextField, Button } from '../.build/styled-material-components.esm.js';
 
 const validateLength = str => str.length > 7;
 
-const TextFieldWithBottomMargin = TextField.extend`
+const TextFieldWithBottomMargin = styled(TextField)`
   margin-bottom: 20px;
 `;
 
-const TextFieldWithStyledPrefixAndSuffix = TextFieldWithBottomMargin.extend`
+const TextFieldWithStyledPrefixAndSuffix = styled(TextFieldWithBottomMargin)`
   > .smc-textfield-suffix {
     color: purple;
   }
@@ -27,7 +27,7 @@ class TextFieldPage extends PureComponent {
 
   render() {
     return (
-      <ThemeProvider>
+      <MaterialThemeProvider>
         <div className={this.props.className}>
           <h1>Text Fields</h1>
 
@@ -157,7 +157,7 @@ class TextFieldPage extends PureComponent {
             options={'invalid option'}
           />
         </div>
-      </ThemeProvider>
+      </MaterialThemeProvider>
     );
   }
 }
@@ -167,4 +167,6 @@ const StyledTextFieldPage = styled(TextFieldPage) `
   width: 80%;
 `;
 
-export default StyledTextFieldPage;
+export default () => (
+  <StyledTextFieldPage />
+);

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Portal } from './Portal';
-import { Icon } from '../icons';
+import { Portal } from './Portal/index.js';
+import { Icon } from '../icons/index.js';
 
 const MOBILE_MARGIN = 16;
 const DESKTOP_MARGIN = 7;
@@ -62,7 +62,7 @@ export const TooltipContents = styled.div`
   justify-content: center;
 `;
 
-export const TooltipIcon = Icon.extend`
+export const TooltipIcon = styled(Icon)`
   fill: rgba(0, 0, 0, .54);
 `;
 
@@ -81,6 +81,8 @@ export class Tooltip extends React.Component {
     window.addEventListener('scroll', this.getTooltipLinkPosition);
     window.addEventListener('resize', this.getTooltipLinkPosition);
     window.addEventListener('resize', this.calculatePortalContents);
+    this.getTooltipLinkPosition();
+    this.calculatePortalContents();
   }
 
   componentWillUnmount() {
@@ -89,22 +91,13 @@ export class Tooltip extends React.Component {
     window.removeEventListener('resize', this.calculatePortalContents);
   }
 
-  getTooltipLink = (el) => {
-    if (this.tooltipLink) return;
-    this.tooltipLink = el;
-    this.getTooltipLinkPosition();
-  }
-
-  getTooltipContents = (el) => {
-    if (this.portalContents) return;
-    this.portalContents = el;
-    this.calculatePortalContents();
-  }
-
+  portalContents = React.createRef();
+  tooltipLink = React.createRef();
+  
   getTooltipLinkPosition = () => {
-    if (!this.tooltipLink) return;
+    if (!this.tooltipLink.current) return;
     const { pageYOffset, pageXOffset } = window;
-    const { left, width, bottom } = this.tooltipLink.getBoundingClientRect();
+    const { left, width, bottom } = this.tooltipLink.current.getBoundingClientRect();
     this.setState({
       linkBottom: bottom + pageYOffset,
       linkLeft: left + pageXOffset,
@@ -113,8 +106,8 @@ export class Tooltip extends React.Component {
   }
 
   calculatePortalContents = () => {
-    if (!this.portalContents) return;
-    const { height, width } = this.portalContents.getBoundingClientRect();
+    if (!this.portalContents.current) return;
+    const { height, width } = this.portalContents.current.getBoundingClientRect();
     this.setState({
       portalContentsHeight: height,
       portalContentsWidth: width,
@@ -181,7 +174,7 @@ export class Tooltip extends React.Component {
           tabIndex="0"
           onFocus={this.showTooltip}
           onBlur={this.hideTooltip}
-          innerRef={this.getTooltipLink}
+          ref={this.tooltipLink}
           onClick={this.handleClick}
           onMouseEnter={this.handleMouseEnter}
           onMouseLeave={this.handleMouseLeave}
@@ -201,7 +194,7 @@ export class Tooltip extends React.Component {
           renderContents={() => (
             <TooltipContents
               contentWidth={this.props.contentWidth}
-              innerRef={this.getTooltipContents}
+              ref={this.portalContents}
               childStringLength={typeof this.props.children === 'string' ? this.props.children.length : null}
               mobile={mobile}
             >

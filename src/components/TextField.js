@@ -25,7 +25,8 @@ class TextFieldComponent extends PureComponent {
     }
   }
 
-  textArea = null;
+  textArea = React.createRef();
+  input = React.createRef();
 
   onChange = (e) => {
     if (this.props.onChange) {
@@ -36,7 +37,7 @@ class TextFieldComponent extends PureComponent {
       const text = e.target.value;
       const isInvalid = this.props.validator && !this.props.validator(text);
       const isEmptyButRequired = this.props.required ? !e.target.value : false;
-      const newHeight = this.props.textarea ? this.textArea.scrollHeight : '';
+      const newHeight = this.props.textarea ? this.textArea.current.scrollHeight : '';
 
       this.setState({
         text,
@@ -186,9 +187,7 @@ class TextFieldComponent extends PureComponent {
               onBlur={this.onBlur}
               name={this.props.name}
               className={'smc-text-field-area'}
-              innerRef={(ref) => {
-                this.textArea = ref;
-              }}
+              ref={this.textArea}
             />
           )
           : (
@@ -204,8 +203,8 @@ class TextFieldComponent extends PureComponent {
               onChange={this.onChange}
               onFocus={this.onFocus}
               onBlur={this.onBlur}
-              name={this.props.name}
-              {...(this.props.inputRef ? { innerRef: this.props.inputRef } : {})}
+              name={this.props.name}j
+              ref={this.props.inputRef || this.input}
               className={'smc-text-field-input'}
             />
 
@@ -373,14 +372,16 @@ const inputStyles = `
  * Since these styles depend on props, they can't live in the template literal
  * above
  */
-const Input = styled.input`${inputStyles}`.extend`
+const Input = styled.input`
+  ${inputStyles}
   width: calc(100% - ${({ hasSuffix }) => hasSuffix ? 1 : 0}em);
   color: ${primaryTextColor};
   padding-left: ${props => (props.hasPrefix ? '1em' : '0')};
   ${props => props.inputStyle};
 `;
 
-const Area = styled.textarea`${inputStyles}`.extend`
+const Area = styled.textarea`
+  ${inputStyles}
   width: calc(80% - ${({ hasSuffix }) => hasSuffix ? 1 : 0}em);
   height:  ${props => props.height - 4}px;
   color: ${primaryTextColor};

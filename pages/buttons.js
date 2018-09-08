@@ -10,13 +10,17 @@ import {
   ListItemText,
   ListSubheader,
   Snackbar,
-  ThemeProvider,
+  MaterialThemeProvider,
   withRipple,
-} from '../src';
-import { AddIcon, MicIcon, GradeIcon, PowerSettingsNewIcon } from '../src/icons';
+  AddIcon,
+  MicIcon,
+  GradeIcon,
+  PowerSettingsNewIcon,
+} from '../.build/styled-material-components.esm';
 
 const RippleButton = withRipple(Button);
 const RippleFab = withRipple(FloatingActionButton);
+
 
 class ButtonsPage extends React.PureComponent {
   state = {
@@ -33,7 +37,7 @@ class ButtonsPage extends React.PureComponent {
 
   render() {
     return (
-      <ThemeProvider>
+      <MaterialThemeProvider>
         <div className={this.props.className}>
           <h1>Flat Buttons</h1>
           <GridList>
@@ -183,7 +187,7 @@ class ButtonsPage extends React.PureComponent {
           autoHideDuration={1000}
           onRequestClose={this.handleClose}
         />
-      </ThemeProvider>
+      </MaterialThemeProvider>
     );
   }
 }
@@ -196,4 +200,6 @@ const StyledButtonsPage = styled(ButtonsPage)`
   }
 `;
 
-export default StyledButtonsPage;
+export default () => (
+  <StyledButtonsPage />
+);

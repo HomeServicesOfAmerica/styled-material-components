@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ThemeProvider, Button, MenuItem, Menu, Switch } from '../src';
+import { MaterialThemeProvider, Button, MenuItem, Menu, Switch } from '../.build/styled-material-components.esm.js';
 import styled from 'styled-components';
 
 const Controls = styled.div`
@@ -82,7 +82,7 @@ class MenusPage extends Component {
     ];
 
     return (
-      <ThemeProvider>
+      <MaterialThemeProvider>
         <PageWithBottomPadding>
           <h1>Menus</h1>
           <h2>Standalone Menu</h2>
@@ -171,7 +171,7 @@ class MenusPage extends Component {
             </MenuItem>
           </Menu>
         </PageWithBottomPadding>
-      </ThemeProvider>
+      </MaterialThemeProvider>
     );
   }
 }

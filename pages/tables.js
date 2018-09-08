@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
-import { Table, ThemeProvider } from '../src';
-
-import naturalSort from '../src/components/Table/naturalSort';
+import styled from 'styled-components';
+import { Table, MaterialThemeProvider, naturalSort } from '../.build/styled-material-components.esm.js';
 
 const fields = [
   {
@@ -68,7 +67,7 @@ const data = [
   },
 ];
 
-const StyledTable = Table.extend`
+const StyledTable = styled(Table)`
   .smc-table-datum-price {
     color: red;
   }
@@ -143,8 +142,8 @@ class ControlledTable extends PureComponent {
   }
 }
 
-const Tables = () => (
-  <ThemeProvider>
+export default () => (
+  <MaterialThemeProvider>
     <div>
       <h1>Tables</h1>
       <h4>
@@ -383,8 +382,7 @@ const Tables = () => (
       <h2>Assume Direct Control (but give up sort)</h2>
       <ControlledTable dontSort />
     </div>
-  </ThemeProvider>
+  </MaterialThemeProvider>
 
 );
 
-export default Tables;

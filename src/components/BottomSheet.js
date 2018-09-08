@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import classNames from 'classnames';
 import elevation from '../mixins/elevation';
-import { Portal } from '../components/Portal';
+import { Portal } from '../components/Portal/index.js';
 
 const bottomSheetSizing = css`
   height: 0;

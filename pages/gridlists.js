@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { GridList, GridTile, ThemeProvider } from '../src';
+import { GridList, GridTile, MaterialThemeProvider } from '../.build/styled-material-components.esm.js';
 
 const Img = styled.img`
   object-fit: cover;
@@ -36,7 +36,7 @@ const tilesData = [
 ];
 
 const GridListsPage = ({ className }) => (
-  <ThemeProvider>
+  <MaterialThemeProvider>
     <div className={className}>
       <h1>Grid list</h1>
       <h3>Row</h3>
@@ -66,7 +66,7 @@ const GridListsPage = ({ className }) => (
       </div>
 
     </div>
-  </ThemeProvider>
+  </MaterialThemeProvider>
 );
 
 const StyledGridListsPage = styled(GridListsPage)`
@@ -75,4 +75,6 @@ const StyledGridListsPage = styled(GridListsPage)`
   height: 100%;
 `;
 
-export default StyledGridListsPage;
+export default () => (
+  <StyledGridListsPage />
+);

@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-// import MaterialThemeProvider from '../src/theme/ThemeProvider';
 import {
-  ThemeProvider,
+  // MaterialThemeProvicer,
+  MaterialThemeProvider,
   Toolbar,
   ToolbarTitle,
   Drawer,
   Button,
   CloseIcon,
   MenuIcon,
+  elevation,
   Row,
   Column,
   /*
@@ -16,9 +17,8 @@ import {
   Navigation,
   NavigationItem
   */
-} from '../../src';
+} from '../../.build/styled-material-components.esm.js';
 
-import elevation from '../../src/mixins/elevation';
 
 const PageContainer = styled.div`
   width: 100vw;
@@ -68,7 +68,7 @@ export default class ToolbarPage extends Component {
 
   render() {
     return (
-      <ThemeProvider>
+      <MaterialThemeProvider>
         <PageContainer>
           <Content>
             <h1>Toolbars</h1>
@@ -84,7 +84,7 @@ export default class ToolbarPage extends Component {
             </Row>
           </Content>
         </PageContainer>
-      </ThemeProvider>
+      </MaterialThemeProvider>
     );
   }
 }

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import React, { Component, Fragment } from 'react';
 import MenuItem from './Menu/MenuItem';
 import Menu from './Menu/Menu';
-import { ArrowDropDownIcon } from '../icons';
+import { ArrowDropDownIcon } from '../icons/index.js';
 
 const Dropdown = styled.select`
   border-color: transparent;

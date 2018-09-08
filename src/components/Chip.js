@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import styled, { css } from 'styled-components';
 import typography from '../mixins/typography';
 import elevation, { elevationTransition } from '../mixins/elevation';
-import { CancelIcon } from '../icons';
+import { CancelIcon } from '../icons/index.js';
 
 const clickableStyles = css`
   :hover {

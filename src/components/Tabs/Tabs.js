@@ -11,8 +11,8 @@ export const TabsInkBar = styled.div`
   transition-property: left, width;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   background-color: ${props => props.inkbarColor || props.theme.accent};
-  left: ${props => props.left}px;
-  width: ${props => props.width}px;
+  left: ${props => props.left || 0}px;
+  width: ${props => props.width || 0}px;
 `;
 
 export const TabBarContainer = styled.nav`
@@ -55,13 +55,12 @@ class TabBarComponent extends React.PureComponent {
     window.removeEventListener('resize', this.resizeInkbar);
   }
 
-  nav = null;
+  nav = React.createRef();
   mounted = false;
 
   resizeInkbar = debounce(() => {
-    const { left: navLeft } = this.nav.getBoundingClientRect();
-    const { left, width } = this.nav.children[this.props.selectedIndex].getBoundingClientRect();
-
+    const { left: navLeft } = this.nav.current.getBoundingClientRect();
+    const { left, width } = this.nav.current.children[this.props.selectedIndex].getBoundingClientRect();
     this.setState({
       inkbarPosition: {
         left: left - navLeft,
@@ -81,12 +80,12 @@ class TabBarComponent extends React.PureComponent {
       })
     );
 
+    console.log(this.state.inkbarPosition);
+
     return (
       <TabBarContainer
         data-smc="TabBar"
-        innerRef={(node) => {
-          this.nav = node;
-        }}
+        ref={this.nav}
       >
         {tabs}
         {showInkbar &&

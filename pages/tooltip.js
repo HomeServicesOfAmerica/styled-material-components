@@ -1,12 +1,12 @@
 import styled from 'styled-components';
-import { ThemeProvider, Tooltip } from '../src';
+import { MaterialThemeProvider, Tooltip } from '../.build/styled-material-components.esm.js';
 
 const SpacerToCheckScrollBehavior = styled.div`
   height: 400px;
 `;
 
 const TooltipPageComponent = ({ className }) => (
-  <ThemeProvider>
+  <MaterialThemeProvider>
     <div className={className}>
       <h2>Tooltips</h2>
       <h6>See spec at https://material.io/guidelines/components/tooltips.html#</h6>
@@ -62,9 +62,13 @@ const TooltipPageComponent = ({ className }) => (
       </Tooltip>
       <SpacerToCheckScrollBehavior />
     </div>
-  </ThemeProvider>
+  </MaterialThemeProvider>
 );
 
-export default styled(TooltipPageComponent)`
+const StyledTooltipPage = styled(TooltipPageComponent)`
   margin-left: 20%;
 `;
+
+export default () => (
+  <StyledTooltipPage />
+);

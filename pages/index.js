@@ -1,10 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
-import MaterialThemeProvider from '../src/theme/ThemeProvider';
-
-import List from '../src/components/List/List';
-import ListItem from '../src/components/List/ListItem';
+import { List, ListItem, MaterialThemeProvider } from '../.build/styled-material-components.esm.js';
 
 const HomePage = ({ className }) => (
   <MaterialThemeProvider>
@@ -88,4 +85,4 @@ const StyledHomePage = styled(HomePage)`
   }
 `;
 
-export default StyledHomePage;
+export default () => ( <StyledHomePage /> );

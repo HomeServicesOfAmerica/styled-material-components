@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import classNames from 'classnames';
 import elevation from '../../mixins/elevation';
-import { Portal } from '../Portal';
+import { Portal } from '../Portal/index.js';
 
 /*
  * The dialog is controlled by this.props.open, *but* the dialog also closes when

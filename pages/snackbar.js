@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
-import { ThemeProvider, Button, Snackbar } from '../src';
+import { MaterialThemeProvider, Button, Snackbar } from '../.build/styled-material-components.esm.js';
 
 class SnackbarPage extends PureComponent {
   state = {
@@ -20,7 +20,7 @@ class SnackbarPage extends PureComponent {
 
   render() {
     return (
-      <ThemeProvider>
+      <MaterialThemeProvider>
         <div className={this.props.className}>
           <h1>Snackbar</h1>
           <ul>
@@ -55,7 +55,7 @@ class SnackbarPage extends PureComponent {
             message="This snackbar will display multiple lines on a mobile device, provided that the snackbar message is of a certain length. Multi-line snackbars are triggered with the 'multiline' prop."
           />
         </div>
-      </ThemeProvider>
+      </MaterialThemeProvider>
     );
   }
 }
@@ -64,8 +64,10 @@ const StyledSnackbarPage = styled(SnackbarPage)`
   margin: 0 10%;
 `;
 
-const StyledButton = Button.extend`
+const StyledButton = styled(Button)`
   margin: 0 24px 24px 0;
 `;
 
-export default StyledSnackbarPage;
+export default () => (
+  <StyledSnackbarPage />
+);

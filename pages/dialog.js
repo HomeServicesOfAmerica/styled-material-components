@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Dialog, DialogTitle, DialogBody, DialogFooter, ThemeProvider } from '../src';
+import { Button, Dialog, DialogTitle, DialogBody, DialogFooter, MaterialThemeProvider } from '../.build/styled-material-components.esm.js';
 
 const ExampleDialog = ({ title, closeDialog, ...dialogProps }) => (
   <Dialog {...dialogProps}>
@@ -35,7 +35,7 @@ export default class dialogsPage extends Component {
 
   render() {
     return (
-      <ThemeProvider>
+      <MaterialThemeProvider>
         <div style={{ height: '200vh' }}>
           <h3>Added height on this page for scrolling, should be disabled when modal is open.</h3>
           <ExampleDialog
@@ -98,7 +98,7 @@ export default class dialogsPage extends Component {
             Open a full screen dialog from the left
           </Button>
         </div>
-      </ThemeProvider>
+      </MaterialThemeProvider>
     );
   }
 }

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { ThemeProvider, BottomSheet, Button } from '../src';
+import { MaterialThemeProvider, BottomSheet, Button } from '../.build/styled-material-components.esm.js';
 
 const PageContainer = styled.div`
   padding: 10px;
 `;
 
-export default class PortalPage extends Component {
+export default class BottomSheetsPage extends Component {
   state = {
     modal: false,
     persistent: false
@@ -22,7 +22,7 @@ export default class PortalPage extends Component {
 
   render() {
     return (
-      <ThemeProvider>
+      <MaterialThemeProvider>
         <PageContainer>
           <h1>Modal Bottomsheet!</h1>
           <BottomSheet
@@ -44,7 +44,7 @@ export default class PortalPage extends Component {
           </BottomSheet>
           <Button raised primary onClick={this.togglePersistent}>Toggle Persistent</Button>
         </PageContainer>
-      </ThemeProvider>
+      </MaterialThemeProvider>
     );
   }
 }

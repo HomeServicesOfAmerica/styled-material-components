@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import Button from '../src/components/Button';
 import {
-  ThemeProvider,
+  Button,
+  MaterialThemeProvider,
   Card,
   CardPrimary,
   CardTitle,
@@ -11,9 +11,9 @@ import {
   CardActions,
   CardHorizontalBlock,
   CardMediaItem,
-} from '../src';
+} from '../.build/styled-material-components.esm.js';
 
-const DemoCard = Card.extend`
+const DemoCard = styled(Card)`
   max-width: 21.875rem;
   margin-bottom: 48px;
 
@@ -22,8 +22,8 @@ const DemoCard = Card.extend`
   }
 `;
 
-const CardsPage = ({ className }) => (
-  <ThemeProvider>
+export default ({ className }) => (
+  <MaterialThemeProvider>
     <div className={className}>
       <h1>Card</h1>
       <h5>This card will elevate more on hover</h5>
@@ -148,11 +148,5 @@ const CardsPage = ({ className }) => (
         </CardHorizontalBlock>
       </DemoCard>
     </div>
-  </ThemeProvider>
+  </MaterialThemeProvider>
 );
-
-const StyledCardsPage = styled(CardsPage)`
-
-`;
-
-export default StyledCardsPage;

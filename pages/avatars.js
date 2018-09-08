@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import {
   Avatar,
-  ThemeProvider,
-} from '../src';
+  MaterialThemeProvider,
+} from '../.build/styled-material-components.esm.js';
 
-const StyledAvatar = Avatar.extend`
+const StyledAvatar = styled(Avatar)`
   color: tomato;
   font-size: 24px;
   background: linear-gradient(to right, #71B280, #134E5E);
@@ -20,7 +20,7 @@ const CodeBlock = styled.div`
 `;
 
 const AvatarsPage = () => (
-  <ThemeProvider>
+  <MaterialThemeProvider>
     <h1>Avatars</h1>
         Avatars can accept first and last name and return initials
     <CodeBlock> {'<Avatar name="Bruce Wayne" />'}</CodeBlock>
@@ -44,7 +44,7 @@ const AvatarsPage = () => (
         Or accept an image src
     <CodeBlock> {'<Avatar size={128} src="https://bit.ly/2GErNQL" />'}</CodeBlock>
     <Avatar size={128} src='https://bit.ly/2GErNQL' />
-  </ThemeProvider>
+  </MaterialThemeProvider>
 );
 
 const StyledAvatarsPage = styled(AvatarsPage)`
@@ -52,4 +52,6 @@ const StyledAvatarsPage = styled(AvatarsPage)`
 
 `;
 
-export default StyledAvatarsPage;
+export default () => (
+  <StyledAvatarsPage />
+);

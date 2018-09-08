@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ThemeProvider, List, ListItem, ListItemText, ListSubheader } from '../src';
+import { MaterialThemeProvider, List, ListItem, ListItemText, ListSubheader } from '../.build/styled-material-components.esm.js';
 
 const ListsPage = ({ className }) => (
-  <ThemeProvider>
+  <MaterialThemeProvider>
     <div className={className}>
       <h1>List with Avatar</h1>
       <div className="list">
@@ -151,7 +151,7 @@ const ListsPage = ({ className }) => (
         </List>
       </div>
     </div>
-  </ThemeProvider>
+  </MaterialThemeProvider>
 );
 
 const StyledListsPage = styled(ListsPage)`

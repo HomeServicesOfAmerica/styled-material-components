@@ -1,6 +1,6 @@
 import { PureComponent } from 'react';
 import styled from 'styled-components';
-import { ThemeProvider, Slider, Button } from '../src';
+import { MaterialThemeProvider, Slider, Button } from '../.build/styled-material-components.esm.js';
 
 class ControlledSlider extends PureComponent {
   state = {
@@ -23,13 +23,13 @@ class ControlledSlider extends PureComponent {
   }
 }
 
-const SliderNoFill = Slider.extend`
+const SliderNoFill = styled(Slider)`
   & .styled-material-thumb {
     background: #fff;
   }
 `;
 
-class SlidersPageComponent extends PureComponent {
+export default class SlidersPageComponent extends PureComponent {
   state = {
     disabled: false,
   };
@@ -41,7 +41,7 @@ class SlidersPageComponent extends PureComponent {
   render() {
     const { disabled } = this.state;
     return (
-      <ThemeProvider>
+      <MaterialThemeProvider>
         <div className={this.props.className}>
           <div>
             <h1>Sliders</h1>
@@ -102,12 +102,7 @@ class SlidersPageComponent extends PureComponent {
             </Button>
           </div>
         </div>
-      </ThemeProvider>
+      </MaterialThemeProvider>
     )
   }
 }
-
-const SlidersPage = styled(SlidersPageComponent)`
-`;
-
-export default SlidersPage;

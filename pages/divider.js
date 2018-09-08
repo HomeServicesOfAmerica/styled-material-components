@@ -1,12 +1,11 @@
 import React from 'react';
-import styled from 'styled-components';
 import Link from 'next/link';
-import { ThemeProvider, Divider } from '../src';
+import { MaterialThemeProvider, Divider } from '../.build/styled-material-components.esm.js';
 
-const DividerPageComponent = ({
+export default ({
   className,
 }) => (
-  <ThemeProvider>
+  <MaterialThemeProvider>
     <div className={className}>
       <h1>Divider</h1>
       <section>
@@ -32,9 +31,5 @@ const DividerPageComponent = ({
         </p>
       </section>
     </div>
-  </ThemeProvider>
+  </MaterialThemeProvider>
 );
-
-export default styled(DividerPageComponent)`
-
-`;

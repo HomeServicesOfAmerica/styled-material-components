@@ -1,11 +1,12 @@
 import React from 'react';
 import { Icon } from '../icons';
+import styled from 'styled-components';
 
 const IsoPath = () => [
   <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM5.5 7.5h2v-2H9v2h2V9H9v2H7.5V9h-2V7.5zM19 19H5L19 5v14zm-2-2v-1.5h-5V17h5z" key='path0' />,
 ];
 
-const IsoIcon = Icon.extend.attrs({
+const IsoIcon = styled(Icon).attrs({
   children: IsoPath,
 })``;
 

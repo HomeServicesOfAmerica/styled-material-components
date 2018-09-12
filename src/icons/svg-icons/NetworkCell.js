@@ -1,6 +1,7 @@
 import React from 'react';
-import { Icon } from '../icons';
+
 import styled from 'styled-components';
+import { Icon } from '../icons';
 
 const NetworkCellPath = () => [
   <path fillOpacity=".3" d="M2 22h20V2z" key='path0' />,

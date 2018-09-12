@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { MaterialThemeProvider, Tooltip } from '../.build/styled-material-components.esm.js';
+import { MaterialThemeProvider, Tooltip } from '../dist/styled-material-components.esm.js';
 
 const SpacerToCheckScrollBehavior = styled.div`
   height: 400px;

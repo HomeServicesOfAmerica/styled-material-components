@@ -81,7 +81,7 @@ import {
   ShareIcon,
   WhatshotIcon,
   StarIcon,
-} from '../../.build/styled-material-components.esm.js';
+} from '../../dist/styled-material-components.esm.js';
 
 export const iconList = [
   <NetworkCellIcon fill={'skyblue'} size={40} />,

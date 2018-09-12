@@ -1,6 +1,7 @@
 import React from 'react';
-import { Icon } from '../icons';
 import styled from 'styled-components';
+import { Icon } from '../icons';
+
 
 const AirplanemodeActivePath = () => [
   <path d="M10.18 9" key='path0' />,

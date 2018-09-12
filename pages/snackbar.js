@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
-import { MaterialThemeProvider, Button, Snackbar } from '../.build/styled-material-components.esm.js';
+import { MaterialThemeProvider, Button, Snackbar } from '../dist/styled-material-components.esm.js';
 
 class SnackbarPage extends PureComponent {
   state = {

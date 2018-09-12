@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
-import { MaterialThemeProvider, Checkbox, Box, CheckMark, List, ListItem } from '../.build/styled-material-components.esm.js';
+import { MaterialThemeProvider, Checkbox, Box, CheckMark, List, ListItem } from '../dist/styled-material-components.esm.js';
 
 // TODO: Things are being applied in different orders, and sometimes
 // the styles are being applied, and other times they are not. The custom

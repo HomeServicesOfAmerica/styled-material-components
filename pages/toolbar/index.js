@@ -1,15 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import {
-  // MaterialThemeProvicer,
   MaterialThemeProvider,
-  Toolbar,
-  ToolbarTitle,
-  Drawer,
-  Button,
-  CloseIcon,
-  MenuIcon,
-  elevation,
+  elevationMixin,
   Row,
   Column,
   /*
@@ -17,7 +10,7 @@ import {
   Navigation,
   NavigationItem
   */
-} from '../../.build/styled-material-components.esm.js';
+} from '../../dist/styled-material-components.esm.js';
 
 
 const PageContainer = styled.div`
@@ -34,7 +27,7 @@ const ScrollableFrame = styled.iframe`
   overflow-x: hidden;
   outline: none;
   border: none;
-  ${elevation(2)}
+  ${elevationMixin(2)}
 `;
 
 export default class ToolbarPage extends Component {

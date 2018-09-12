@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { MaterialThemeProvider, Divider } from '../.build/styled-material-components.esm.js';
+import { MaterialThemeProvider, Divider } from '../dist/styled-material-components.esm.js';
 
 export default ({
   className,

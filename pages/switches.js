@@ -1,5 +1,5 @@
 import React from 'react';
-import { List, ListItem, Switch, MaterialThemeProvider } from '../.build/styled-material-components.esm.js';
+import { List, ListItem, Switch, MaterialThemeProvider } from '../dist/styled-material-components.esm.js';
 
 const Switches = () => (
   <MaterialThemeProvider>

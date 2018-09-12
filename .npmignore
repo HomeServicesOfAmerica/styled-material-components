@@ -2,4 +2,6 @@ docs
 pages
 .next
 node_modules
+.rollup.config.js
+yarn.lock
 src

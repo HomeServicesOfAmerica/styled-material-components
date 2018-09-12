@@ -11,7 +11,7 @@ import {
   CardActions,
   CardHorizontalBlock,
   CardMediaItem,
-} from '../.build/styled-material-components.esm.js';
+} from '../dist/styled-material-components.esm.js';
 
 const DemoCard = styled(Card)`
   max-width: 21.875rem;

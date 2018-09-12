@@ -1,6 +1,7 @@
 import React from 'react';
-import { Icon } from '../icons';
+
 import styled from 'styled-components';
+import { Icon } from '../icons';
 
 const SignalCellularConnectedNoInternet0BarPath = () => [
   <path fillOpacity=".3" d="M22 8V2L2 22h16V8z" key='path0' />,

@@ -42,7 +42,7 @@ class TextFieldComponent extends PureComponent {
       this.setState({
         text,
         error: this.props.error || isInvalid || isEmptyButRequired,
-        height: !this.props.multiline || this.textArea.value === '' ? '100%' : newHeight,
+        height: !this.props.multiline || this.textArea.current.value === '' ? '100%' : newHeight,
       });
     }
   };

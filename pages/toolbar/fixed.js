@@ -9,7 +9,7 @@ import {
   FileDownloadIcon,
   MenuIcon,
   PrintIcon,
-} from '../../.build/styled-material-components.esm.js';
+} from '../../dist/styled-material-components.esm.js';
 import { generateParagraphs } from '../../utilities';
 
 const PageContainer = styled.div`

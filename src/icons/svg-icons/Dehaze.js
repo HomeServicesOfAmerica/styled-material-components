@@ -1,6 +1,7 @@
 import React from 'react';
-import { Icon } from '../icons';
+
 import styled from 'styled-components';
+import { Icon } from '../icons';
 
 const DehazePath = () => [
   <path d="M2 15.5v2h20v-2H2zm0-5v2h20v-2H2zm0-5v2h20v-2H2z" key='path0' />,

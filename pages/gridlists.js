@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { GridList, GridTile, MaterialThemeProvider } from '../.build/styled-material-components.esm.js';
+import { GridList, GridTile, MaterialThemeProvider } from '../dist/styled-material-components.esm.js';
 
 const Img = styled.img`
   object-fit: cover;

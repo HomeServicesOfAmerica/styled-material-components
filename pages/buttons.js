@@ -16,7 +16,7 @@ import {
   MicIcon,
   GradeIcon,
   PowerSettingsNewIcon,
-} from '../.build/styled-material-components.esm';
+} from '../dist/styled-material-components.esm';
 
 const RippleButton = withRipple(Button);
 const RippleFab = withRipple(FloatingActionButton);

@@ -1,6 +1,7 @@
 import React from 'react';
-import { Icon } from '../icons';
+
 import styled from 'styled-components';
+import { Icon } from '../icons';
 
 const FormatColorTextPath = () => [
   <path fillOpacity=".36" d="M0 20h24v4H0z" key='path0' />,

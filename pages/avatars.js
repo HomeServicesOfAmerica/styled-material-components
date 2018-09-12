@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import {
   Avatar,
   MaterialThemeProvider,
-} from '../.build/styled-material-components.esm.js';
+} from '../dist/styled-material-components.esm.js';
 
 const StyledAvatar = styled(Avatar)`
   color: tomato;

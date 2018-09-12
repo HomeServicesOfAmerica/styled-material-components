@@ -60,7 +60,8 @@ class TabBarComponent extends React.PureComponent {
 
   resizeInkbar = debounce(() => {
     const { left: navLeft } = this.nav.current.getBoundingClientRect();
-    const { left, width } = this.nav.current.children[this.props.selectedIndex].getBoundingClientRect();
+    const { left, width } = this.nav.current
+      .children[this.props.selectedIndex].getBoundingClientRect();
     this.setState({
       inkbarPosition: {
         left: left - navLeft,
@@ -79,8 +80,6 @@ class TabBarComponent extends React.PureComponent {
         onClick,
       })
     );
-
-    console.log(this.state.inkbarPosition);
 
     return (
       <TabBarContainer

@@ -6,7 +6,7 @@ import { Portal } from '../components/Portal/index.js';
 
 const bottomSheetSizing = css`
   height: 0;
-  bottom: 5;
+  bottom: 0;
 `;
 
 const BaseBottomSheet = (props) => {
@@ -41,7 +41,9 @@ const StyledBottomSheet = styled(BaseBottomSheet)`
 
   &.bottom {
     transform: translateY(100%);
-    ${props => !props.modal && `border-top: 1px solid rgba(0,0,0,0.35);`}
+    &.open {
+      ${props => !props.modal && `border-top: 1px solid rgba(0,0,0,0.35);`}
+    }
   }
 
   &.open {

@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
-import { Table, MaterialThemeProvider, naturalSort } from '../.build/styled-material-components.esm.js';
+import { Table, MaterialThemeProvider, naturalSort } from '../dist/styled-material-components.esm.js';
 
 const fields = [
   {

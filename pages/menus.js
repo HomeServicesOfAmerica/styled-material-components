@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { MaterialThemeProvider, Button, MenuItem, Menu, Switch } from '../.build/styled-material-components.esm.js';
+import { MaterialThemeProvider, Button, MenuItem, Menu, Switch } from '../dist/styled-material-components.esm.js';
 import styled from 'styled-components';
 
 const Controls = styled.div`
@@ -14,7 +14,7 @@ const StandAloneMenu = styled(Menu)`
 `;
 
 const PageWithBottomPadding = styled.div`
-  margin-bottom: 200px;
+  margin-bottom: 500px;
 `;
 
 const PositionedButton = styled(Button)`
@@ -40,6 +40,7 @@ class MenusPage extends Component {
   handleClick = (event) => {
     // Have to add persist to event, and extract what we want
     // to pass it to setState that uses a function instead of
+  
     // an object
     event.persist();
     const currentTarget = event.currentTarget;

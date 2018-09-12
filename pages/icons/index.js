@@ -14,7 +14,7 @@ import {
   AddIcon,
   FileDownloadIcon,
   FileUploadIcon,
-} from '../../.build/styled-material-components.esm.js';
+} from '../../dist/styled-material-components.esm.js';
 
 import { iconList } from './assets';
 

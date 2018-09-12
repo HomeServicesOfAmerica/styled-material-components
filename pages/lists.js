@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { MaterialThemeProvider, List, ListItem, ListItemText, ListSubheader } from '../.build/styled-material-components.esm.js';
+import { MaterialThemeProvider, List, ListItem, ListItemText, ListSubheader } from '../dist/styled-material-components.esm.js';
 
 const ListsPage = ({ className }) => (
   <MaterialThemeProvider>
@@ -163,4 +163,4 @@ const StyledListsPage = styled(ListsPage)`
   }
 `;
 
-export default StyledListsPage;
+export default () => (<StyledListsPage />);

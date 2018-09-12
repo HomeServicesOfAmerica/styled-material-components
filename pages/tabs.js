@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { TabBar, TabContent, TabsInkBar, Tab, Tabs, MaterialThemeProvider, Icon } from '../.build/styled-material-components.esm.js';
+import { TabBar, TabContent, TabsInkBar, Tab, Tabs, MaterialThemeProvider, Icon } from '../dist/styled-material-components.esm.js';
 
 // TODO: (future) scrollable tabs
 

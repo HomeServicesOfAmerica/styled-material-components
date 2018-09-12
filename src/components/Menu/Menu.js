@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { map } from 'ramda';
 
 import elevation from '../../mixins/elevation';
 import MenuList from './MenuList';
@@ -7,25 +8,21 @@ import MenuItem from './MenuItem';
 import { isDescendant } from '../../helpers';
 
 class MenuComponent extends Component {
-  state = {
-    renderReady: false,
-  };
-
   componentDidMount() {
     document.addEventListener('mousedown', this.handleOutsideClick);
     document.addEventListener('touchstart', this.handleOutsideClick);
-    window.addEventListener('resize', this.recalculatePosition);
   }
 
   componentWillUnmount() {
     document.removeEventListener('mousedown', this.handleOutsideClick);
     document.removeEventListener('touchstart', this.handleOutsideClick);
-    window.removeEventListener('resize', this.recalculatePosition);
   }
+
+  menu = React.createRef();
 
   handleOutsideClick = (event) => {
     if (
-      this.menu.contains(event.target) ||
+      this.menu.current.contains(event.target) ||
       this.props.anchorEl === event.target ||
       isDescendant(this.props.anchorEl, event.target)
     ) return;
@@ -35,66 +32,64 @@ class MenuComponent extends Component {
   recalculatePosition = () => {
     const {
       props: { anchorEl, attachBottom, openUp, openLeft, noFit },
-      menu,
     } = this;
 
-    if (!anchorEl || !menu) return;
-    // menu is the ref for the menu element
-    const {
-      height: menuHeight,
-      width: menuWidth,
-    } = menu.getBoundingClientRect();
-    // anchorEl is the anchor element
-    const {
-      x: anchorX,
-      y: anchorY,
-      height: anchorHeight,
-      width: anchorWidth,
-    } = anchorEl.getBoundingClientRect();
-    // offsetParent is the nearest absolute/fixed position ancestor
-    const {
-      x: offsetX,
-      y: offsetY,
-    } = anchorEl.offsetParent.getBoundingClientRect();
-    // to adjust attachment, move down or to the right by the height / width of the anchor
-    const bottomAttachmentAdjustment = attachBottom ? anchorHeight : 0;
-    // to adjust opening direction, move down or to the right by the difference in height / width
-    // between the anchor and menu
-    const openUpAdjustment = anchorHeight - menuHeight - bottomAttachmentAdjustment;
-    const openLeftAdjustment = anchorWidth - menuWidth;
-    // to account for being over one side of the page, we reverse the open direction
-    // calculate new position with adjustments
-    /* eslint-disable no-mixed-operators */
-    let newTop = anchorY - offsetY + bottomAttachmentAdjustment;
-    let newLeft = anchorX - offsetX;
-    // check for overflow and adjust opening directions
-    const overBottom = !noFit && newTop + menuHeight > window.innerHeight;
-    const overRight = !noFit && newLeft + menuWidth > window.innerWidth;
-    if (overBottom || openUp) newTop += openUpAdjustment;
-    if (overRight || openLeft) newLeft += openLeftAdjustment;
-    const overTop = !noFit && newTop - (openUp ? menuHeight : 0) < 0;
-    const overLeft = !noFit && newLeft - (openLeft ? menuWidth : 0) < 0;
-    if (overTop) newTop -= openUpAdjustment;
-    if (overLeft) newLeft -= openLeftAdjustment;
-    // apply new styles inline to menu element
-    this.menu.style.top = `${newTop}px`;
-    this.menu.style.left = `${newLeft}px`;
-    if (this.state.renderReady === false) this.setState({ renderReady: true });
+    const position = { top: 0, left: 0 };
+
+    if (!anchorEl || !this.menu.current) return { top: '0px', left: '0px' };
+
+    const anchorHeight = anchorEl.offsetHeight;
+    const anchorWidth = anchorEl.offsetWidth;
+    const menuHeight = this.menu.current.offsetHeight;
+    const menuWidth = this.menu.current.offsetWidth;
+
+    position.top = anchorEl.offsetTop;
+    position.left = anchorEl.offsetLeft;
+
+    if (openLeft) {
+      position.left -= menuWidth + 5;
+    }
+    if (attachBottom) position.top += anchorEl.offsetHeight + 5;
+    if (openUp) position.top -= menuHeight;
+
+    // Check to see if we should auto position the menu
+    if (!noFit) {
+      // For this we need the x, y position of the anchor
+      const { x, y } = anchorEl.getBoundingClientRect();
+      if (!openLeft && x + menuWidth >= (window.innerWidth - 15)) {
+        position.left = anchorEl.offsetLeft - menuWidth - 5;
+      }
+      if (openLeft && x - menuWidth <= 0) {
+        position.left = anchorEl.offsetLeft + anchorWidth + 5;
+      }
+      if (!openUp && y + menuHeight > window.innerHeight) {
+        position.top = anchorEl.offsetTop - menuHeight;
+        if (attachBottom) position.top -= anchorHeight;
+      }
+      if (openUp && y - menuHeight <= 0) {
+        position.top = anchorEl.offsetTop;
+        if (attachBottom) position.top += anchorHeight;
+      }
+    }
+    return map(v => `${v}px`, position);
   };
 
   render() {
     const { className, children, menuItems, open, onClose } = this.props;
-    const renderMenuItems = open && menuItems && menuItems.length > 0;
-    const renderChildren = open && !menuItems;
+    const renderMenuItems = menuItems && menuItems.length > 0;
+    const renderChildren = !menuItems;
+
+    let position = { top: '0px', left: '0px' };
+
+    if (open && this.menu.current && (renderMenuItems || renderChildren)) {
+      position = this.recalculatePosition();
+    }
 
     return (
       <div
-        style={{ display: this.state.renderReady ? 'block' : 'none' }}
         className={`${className} smc-Menu`}
-        ref={(ref) => {
-          this.menu = ref;
-          this.recalculatePosition();
-        }}
+        style={position}
+        ref={this.menu}
       >
         {renderChildren && (
           <MenuList onKeyDown={this.handleKeyDown} onClose={onClose}>
@@ -122,6 +117,10 @@ const Menu = styled(MenuComponent)`
   border-radius: 2px;
   overflow: hidden;
   display: inline-block;
+  visibility: ${props => (props.open ? 'visible' : 'collapse')};
+  & ${MenuItem} {
+    opacity: ${props => (props.open ? 1 : 0)};
+  }
   min-width: 72px;
   max-width: 280px;
   z-index: 5;

@@ -82,7 +82,6 @@ export class Tooltip extends React.Component {
     window.addEventListener('resize', this.getTooltipLinkPosition);
     window.addEventListener('resize', this.calculatePortalContents);
     this.getTooltipLinkPosition();
-    this.calculatePortalContents();
   }
 
   componentWillUnmount() {
@@ -190,6 +189,7 @@ export class Tooltip extends React.Component {
           left={left}
           height={portalContentsHeight}
           width={portalContentsWidth}
+          onMount={this.calculatePortalContents}
           mobile={mobile}
           renderContents={() => (
             <TooltipContents

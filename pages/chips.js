@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
-import { MaterialThemeProvider, Chip, ChipAvatar, ChipLabel, ChipDeleteIcon, ArrowDropDownIcon } from '../.build/styled-material-components.esm.js';
+import { MaterialThemeProvider, Chip, ChipAvatar, ChipLabel, ChipDeleteIcon, ArrowDropDownIcon } from '../dist/styled-material-components.esm.js';
 
 const demo = (area) => {
   // eslint-disable-next-line

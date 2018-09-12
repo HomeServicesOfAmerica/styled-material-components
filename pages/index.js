@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
-import { List, ListItem, MaterialThemeProvider } from '../.build/styled-material-components.esm.js';
+import { List, ListItem, MaterialThemeProvider } from '../dist/styled-material-components.esm.js';
 
 const HomePage = ({ className }) => (
   <MaterialThemeProvider>

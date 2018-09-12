@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Dialog, DialogTitle, DialogBody, DialogFooter, MaterialThemeProvider } from '../.build/styled-material-components.esm.js';
+import { Button, Dialog, DialogTitle, DialogBody, DialogFooter, MaterialThemeProvider } from '../dist/styled-material-components.esm.js';
 
 const ExampleDialog = ({ title, closeDialog, ...dialogProps }) => (
   <Dialog {...dialogProps}>

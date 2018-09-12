@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { Drawer, DrawerGlobalStyles, MaterialThemeProvider, Button } from '../.build/styled-material-components.esm.js';
+import { Drawer, DrawerGlobalStyles, MaterialThemeProvider, Button } from '../dist/styled-material-components.esm.js';
 
 const PageContainer = styled.div`
   padding: 10px;

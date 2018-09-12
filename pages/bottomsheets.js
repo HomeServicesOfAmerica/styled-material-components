@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { MaterialThemeProvider, BottomSheet, Button } from '../.build/styled-material-components.esm.js';
+import { MaterialThemeProvider, BottomSheet, Button } from '../dist/styled-material-components.esm.js';
 
 const PageContainer = styled.div`
   padding: 10px;

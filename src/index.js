@@ -9,6 +9,7 @@ export { Portal, Overlay } from './components/Portal/index.js';
 export * from './components/Slider/index.js';
 export * from './components/Switch';
 export * from './components/Table/index.js';
+export { default as naturalSort } from './components/Table/naturalSort';
 export * from './components/Tabs/index.js';
 
 export { Avatar } from './components/Avatar';
@@ -39,5 +40,5 @@ export { default as elevationMixin } from './mixins/elevation';
 export * from './mixins/transition';
 export { default as typography } from './mixins/typography';
 
-export { default as MaterialThemeProvider } from './theme/ThemeProvider';
+export { SMCGlobalStyles, MaterialThemeProvider } from './theme/ThemeProvider';
 export * from './theme/defaultTheme';

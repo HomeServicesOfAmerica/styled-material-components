@@ -1,6 +1,7 @@
 import React from 'react';
-import { Icon } from '../icons';
+
 import styled from 'styled-components';
+import { Icon } from '../icons';
 
 const SentimentNeutralPath = () => [
   <path d="M9 14h6v1.5H9z" key='path0' />,

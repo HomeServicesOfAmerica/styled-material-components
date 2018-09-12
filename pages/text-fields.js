@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
-import { MaterialThemeProvider, TextField, Button } from '../.build/styled-material-components.esm.js';
+import { MaterialThemeProvider, TextField, Button } from '../dist/styled-material-components.esm.js';
 
 const validateLength = str => str.length > 7;
 

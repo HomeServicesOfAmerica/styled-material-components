@@ -10,10 +10,12 @@ class SliderThumbComponent extends PureComponent {
     dragging: false,
   };
 
+  thumb = React.createRef();
+
   handleClick = (event) => {
     event.stopPropagation();
     if (this.props.disabled) return;
-    this.thumb && this.thumb.focus();
+    this.thumb.current && this.thumb.current.focus();
   }
 
   onMouseDown = () => {
@@ -45,10 +47,6 @@ class SliderThumbComponent extends PureComponent {
 
   enableKeys = cb => this.setState({ navigatingWithKeys: true }, cb);
 
-  getThumb = (ref) => {
-    this.thumb = ref;
-  }
-
   handleBlur = () => {
     this.setState({ navigatingWithKeys: false });
   }
@@ -57,7 +55,7 @@ class SliderThumbComponent extends PureComponent {
     const { atMin, disabled } = this.props;
     const { navigatingWithKeys, dragging } = this.state;
     return (
-      <div ref={this.getThumb} className={this.props.className}>
+      <div ref={this.thumb} className={this.props.className}>
         <SliderDisabledWrapper disabled={disabled} dragging={dragging}>
           <Thumb
             tabIndex="1"

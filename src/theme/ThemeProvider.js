@@ -5,7 +5,7 @@ import { ScreenSizeContext } from '../contexts/ScreenSizeContext';
 import { defaultTheme } from './defaultTheme';
 
 /* eslint-disable no-unused-expressions */
-export const StyledMaterialComponentsGlobals = createGlobalStyle`
+export const SMCGlobalStyles = createGlobalStyle`
   body {
     background-color: #f4f4f4;
     margin: 0;
@@ -18,15 +18,10 @@ export const StyledMaterialComponentsGlobals = createGlobalStyle`
 `;
 /* eslint-enable */
 
-const MaterialThemeProvider = ({ children, theme = {}, includeSMCGlobals = true }) => (
+export const MaterialThemeProvider = ({ children, theme = {} }) => (
   <ThemeProvider theme={merge(defaultTheme, theme)}>
-    <>
-      {includeSMCGlobals && <StyledMaterialComponentsGlobals />}
-      <ScreenSizeContext>
-        {children}
-      </ScreenSizeContext>
-    </>
+    <ScreenSizeContext>
+      {children}
+    </ScreenSizeContext>
   </ThemeProvider>
 );
-
-export default MaterialThemeProvider;

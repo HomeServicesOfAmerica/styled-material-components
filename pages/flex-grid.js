@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Row, Column, MaterialThemeProvider } from '../.build/styled-material-components.esm.js';
+import { Row, Column, MaterialThemeProvider } from '../dist/styled-material-components.esm.js';
 
 const BlueColumn = styled(Column)`
   background-color: teal;

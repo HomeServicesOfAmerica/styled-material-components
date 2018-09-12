@@ -43,6 +43,8 @@ class FooterComponent extends PureComponent {
     }
   }
 
+  menuExpander = React.createRef();
+
   // rather than on render
   rowSelection = this.props.rowsDropDown ?
     this.props.rowsDropDown.map(
@@ -71,6 +73,8 @@ class FooterComponent extends PureComponent {
   handleClick = () => {
     this.setState({ menuOpen: !this.state.menuOpen });
   };
+
+  handleClose = () => this.setState({ menuOpen: false });
 
   handleSelect = (selectedItem) => {
     this.props.handleRowsPerPageChange(selectedItem);
@@ -106,8 +110,10 @@ class FooterComponent extends PureComponent {
             <StandAloneMenu
               open={this.state.menuOpen}
               menuItems={this.rowSelection}
+              onClose={this.handleClose}
+              anchorEl={this.menuExpander.current}
             />
-            <div onClick={this.handleClick} className="rowsPerPage">
+            <div ref={this.menuExpander} onClick={this.handleClick} className="rowsPerPage">
               {`${rowsPerPage}`}
             </div>
             <FooterIcon

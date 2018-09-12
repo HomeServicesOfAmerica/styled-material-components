@@ -4,8 +4,10 @@ import styled from 'styled-components';
 
 class MenuListComponent extends React.Component {
   componentDidMount() {
-    findDOMNode(this.menuList).firstChild.focus();
+    findDOMNode(this.menuList.current).firstChild.focus();
   }
+
+  menuList = React.createRef();
 
   handleKeyDown = (event) => {
     const currItem = document.activeElement;
@@ -34,9 +36,7 @@ class MenuListComponent extends React.Component {
       <ul
         role="menu"
         className={`${this.props.className} smc-menu-list`}
-        ref={(ref) => {
-          this.menuList = ref;
-        }}
+        ref={this.menuList}
         onKeyDown={this.handleKeyDown}>
         {this.props.children}
       </ul>

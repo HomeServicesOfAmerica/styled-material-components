@@ -1,6 +1,6 @@
 import { PureComponent } from 'react';
 import styled from 'styled-components';
-import { MaterialThemeProvider, Slider, Button } from '../.build/styled-material-components.esm.js';
+import { MaterialThemeProvider, Slider, Button } from '../dist/styled-material-components.esm.js';
 
 class ControlledSlider extends PureComponent {
   state = {

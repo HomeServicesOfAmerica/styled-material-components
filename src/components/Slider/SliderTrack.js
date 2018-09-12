@@ -30,22 +30,20 @@ class SliderTrackComponent extends PureComponent {
 
   componentDidMount = () => {
     window.addEventListener('resize', this.getTrackWidth);
+    if (this.track.current) this.getTrackWidth();
   }
 
   componentWillUnmount = () => {
     window.removeEventListener('resize', this.getTrackWidth);
   }
 
-  setTrack = (el) => {
-    this.track = el;
-    this.getTrackWidth();
-  }
+  track = React.createRef();
 
   getTrackWidth = () => {
-    if (!this.track) return;
+    if (!this.track.current) return;
     const { max, min } = this.props;
     /* eslint-disable react/no-find-dom-node */
-    const { width, left } = ReactDOM.findDOMNode(this.track).getBoundingClientRect();
+    const { width, left } = ReactDOM.findDOMNode(this.track.current).getBoundingClientRect();
     /* eslint-enable */
     const pixelsPerValue = getPixelPerValue(min, max, width);
     const valuePerPixel = getValuePerPixel(min, max, width);
@@ -109,7 +107,7 @@ class SliderTrackComponent extends PureComponent {
     return (
       <div
         onClick={this.handleClick}
-        ref={this.setTrack}
+        ref={this.track}
         className={`${this.props.className} smc-slider-track-wrapper`}
       >
         <Trackline

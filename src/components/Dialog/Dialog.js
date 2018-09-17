@@ -12,11 +12,22 @@ import { Portal } from '../Portal/index.js';
 class DialogComponent extends React.Component {
   componentDidMount() {
     document.addEventListener('keydown', this.handleKeyDown);
+    document.addEventListener('mousedown', this.handleOutsideClick);
+    document.addEventListener('touchstart', this.handleOutsideClick);
   }
 
   componentWillUnmount() {
     document.removeEventListener('keydown', this.handleKeyDown);
+    document.removeEventListener('mousedown', this.handleOutsideClick);
+    document.removeEventListener('touchstart', this.handleOutsideClick);
   }
+
+  dialog = React.createRef();
+
+  handleOutsideClick = (event) => {
+    if (this.dialog.current && this.dialog.current.contains(event.target)) return;
+    this.props.closeOnOutsideClick && this.props.closeOnOutsideClick();
+  };
 
   handleKeyDown = (event) => {
     if (event.keyCode === 27) {
@@ -64,7 +75,7 @@ const notFullScreenStyles = css`
   ${elevation(24)};
 `;
 
-export default styled(DialogComponent) `
+export default styled(DialogComponent)`
   width: 100%;
   height: 100%;
   display: flex;

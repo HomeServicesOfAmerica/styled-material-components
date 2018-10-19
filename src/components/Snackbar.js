@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import { compose } from 'recompose';
 import { withScreenSize } from '../contexts/ScreenSizeContext';
 
@@ -49,7 +49,7 @@ const Message = styled.div`
 `;
 
 const SnackbarWrapper = styled.div`
-  animation: ${props => (props.animation ? `${props.animation} .3s linear` : 0)};
+  animation: ${props => (css`${props.animation}` ? css`${props.animation} .3s linear` : 0)};
   bottom: ${(props) => {
     if (props.open && !props.animateOut) {
       return '0px';

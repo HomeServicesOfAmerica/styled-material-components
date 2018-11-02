@@ -1,7 +1,7 @@
 import platform from 'platform';
 import { css } from 'styled-components';
 
-const isMobile = platform.os.family.match(/^(Android|iOS|Windows Phone)$/);
+const isMobile = (platform.os.family || '').match(/^(Android|iOS|Windows Phone)$/);
 
 export const durations = {
   complex: css`

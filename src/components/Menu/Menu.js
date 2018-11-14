@@ -25,13 +25,15 @@ class MenuComponent extends Component {
       this.menu.current.contains(event.target) ||
       this.props.anchorEl === event.target ||
       isDescendant(this.props.anchorEl, event.target)
-    ) return;
+    ) {
+      return;
+    }
     this.props.onClose && this.props.onClose(event);
   };
 
   recalculatePosition = () => {
     const {
-      props: { anchorEl, attachBottom, openUp, openLeft, noFit },
+      props: { anchorEl, attachBottom, openUp, openLeft, noFit, fullWidth },
     } = this;
 
     const position = { top: 0, left: 0 };
@@ -49,14 +51,14 @@ class MenuComponent extends Component {
     if (openLeft) {
       position.left -= menuWidth + 5;
     }
-    if (attachBottom) position.top += anchorEl.offsetHeight + 5;
+    if (attachBottom) position.top += anchorEl.offsetHeight;
     if (openUp) position.top -= menuHeight;
 
     // Check to see if we should auto position the menu
     if (!noFit) {
       // For this we need the x, y position of the anchor
       const { x, y } = anchorEl.getBoundingClientRect();
-      if (!openLeft && x + menuWidth >= (window.innerWidth - 15)) {
+      if (!openLeft && x + menuWidth >= window.innerWidth - 15) {
         position.left = anchorEl.offsetLeft - menuWidth - 5;
       }
       if (openLeft && x - menuWidth <= 0) {
@@ -64,11 +66,14 @@ class MenuComponent extends Component {
       }
       if (!openUp && y + menuHeight > window.innerHeight) {
         position.top = anchorEl.offsetTop - menuHeight;
-        if (attachBottom) position.top -= anchorHeight;
+        if (attachBottom) position.top -= anchorHeight + 5;
       }
       if (openUp && y - menuHeight <= 0) {
         position.top = anchorEl.offsetTop;
         if (attachBottom) position.top += anchorHeight;
+      }
+      if (fullWidth) {
+        position.width = anchorWidth;
       }
     }
     return map(v => `${v}px`, position);
@@ -86,11 +91,7 @@ class MenuComponent extends Component {
     }
 
     return (
-      <div
-        className={`${className} smc-Menu`}
-        style={position}
-        ref={this.menu}
-      >
+      <div className={`${className} smc-Menu`} style={position} ref={this.menu}>
         {renderChildren && (
           <MenuList onKeyDown={this.handleKeyDown} onClose={onClose}>
             {children}
@@ -122,11 +123,10 @@ const Menu = styled(MenuComponent)`
     opacity: ${props => (props.open ? 1 : 0)};
   }
   min-width: 72px;
-  max-width: 280px;
+  max-width: ${({ fullWidth }) => (!fullWidth ? '280px' : null)};
   z-index: 5;
   background: #fff;
   ${elevation(3)};
 `;
 
 export default Menu;
-

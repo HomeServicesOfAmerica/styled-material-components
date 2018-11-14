@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import { MaterialThemeProvider, Button, MenuItem, Menu, Switch } from '../dist/styled-material-components.esm.js';
+import {
+  MaterialThemeProvider,
+  Button,
+  MenuItem,
+  Menu,
+  Switch,
+} from '../dist/styled-material-components.esm.js';
 import styled from 'styled-components';
 
 const Controls = styled.div`
@@ -35,35 +41,30 @@ class MenusPage extends Component {
     attachBottom: false,
     openUp: false,
     openLeft: false,
+    fullWidth: false,
   };
 
   handleClick = (event) => {
     // Have to add persist to event, and extract what we want
     // to pass it to setState that uses a function instead of
-  
+
     // an object
     event.persist();
     const currentTarget = event.currentTarget;
 
-    this.setState(
-      ({ open }) => {
-        return {
-          open: !open,
-          anchorEl: currentTarget,
-        };
-      },
-    );
+    this.setState(({ open }) => ({
+      open: !open,
+      anchorEl: currentTarget,
+    }));
   };
 
   handleSelect = (selectedItem) => {
     // const item = selectedItem;
     // this.setState({ open: false, value: item || this.state.value });
-    this.setState(
-      ({ value }) => ({
-        open: false,
-        value: selectedItem || value,
-      }),
-    );
+    this.setState(({ value }) => ({
+      open: false,
+      value: selectedItem || value,
+    }));
   };
 
   handleClose = () => {
@@ -71,7 +72,7 @@ class MenusPage extends Component {
   };
   handleButtonMove = (e) => {
     this.setState({ buttonPosition: e.target.name });
-  }
+  };
   render() {
     const { anchorEl } = this.state;
 
@@ -87,15 +88,27 @@ class MenusPage extends Component {
         <PageWithBottomPadding>
           <h1>Menus</h1>
           <h2>Standalone Menu</h2>
-          <p>Menus can accept MenuSelect and MenuOption SMC components as children,
-             or can accept an array of objects as seen here - </p>
+          <p>
+            Menus can accept MenuSelect and MenuOption SMC components as children, or can accept an
+            array of objects as seen here -{' '}
+          </p>
           <StandAloneMenu open menuItems={menuItems} />
           <h2>Button Menu</h2>
-          <p>This component is accessible (navigable by clicks or keyboard events)
-            and has an ARIA role defined as menu for screenreaders </p>
+          <p>
+            This component is accessible (navigable by clicks or keyboard events) and has an ARIA
+            role defined as menu for screenreaders{' '}
+          </p>
           <p>Each Option can receive a handleSelect prop that accepts a callback</p>
-          <p>{ 'Use the switches below to toggle props that control where the menu attaches to the button, and to which direction the menu opens' }</p>
-          <p>{ "Menus will open to the available space. You can experiment with this by toggling the button's position and/or resizing the window. This behavior can be disabled by passing in a prop of noFit" }</p>
+          <p>
+            {
+              'Use the switches below to toggle props that control where the menu attaches to the button, and to which direction the menu opens'
+            }
+          </p>
+          <p>
+            {
+              "Menus will open to the available space. You can experiment with this by toggling the button's position and/or resizing the window. This behavior can be disabled by passing in a prop of noFit"
+            }
+          </p>
           <Controls>
             <ul>
               <li>
@@ -130,19 +143,35 @@ class MenusPage extends Component {
               </li>
               <li>
                 <label htmlFor="attachBottom">Toggle bottom attachment</label>
-                <Switch id="attachBottom" onChange={() => this.setState(ps => ({ attachBottom: !ps.attachBottom }))} />
+                <Switch
+                  id="attachBottom"
+                  onChange={() => this.setState(ps => ({ attachBottom: !ps.attachBottom }))}
+                />
               </li>
               <li>
                 <label htmlFor="openUp">Toggle menu opens upwards</label>
-                <Switch id="openUp" onChange={() => this.setState(ps => ({ openUp: !ps.openUp }))} />
+                <Switch
+                  id="openUp"
+                  onChange={() => this.setState(ps => ({ openUp: !ps.openUp }))}
+                />
               </li>
               <li>
                 <label htmlFor="openLeft">Toggle menu opens to the left</label>
-                <Switch id="openLeft" onChange={() => this.setState(ps => ({ openLeft: !ps.openLeft }))} />
+                <Switch
+                  id="openLeft"
+                  onChange={() => this.setState(ps => ({ openLeft: !ps.openLeft }))}
+                />
               </li>
               <li>
                 <label htmlFor="noFit">Toggle menu noFit</label>
                 <Switch id="noFit" onChange={() => this.setState(ps => ({ noFit: !ps.noFit }))} />
+              </li>
+              <li>
+                <label htmlFor="fullWidth">Toggle fullWidth prop</label>
+                <Switch
+                  id="fullWidth"
+                  onChange={() => this.setState(ps => ({ fullWidth: !ps.fullWidth }))}
+                />
               </li>
             </ul>
           </Controls>
@@ -151,7 +180,7 @@ class MenusPage extends Component {
             raised
             onClick={this.handleClick}
           >
-            {this.state.value || 'open'}
+            {this.state.value || 'Show the Menu'}
           </PositionedButton>
           <Menu
             openUp={this.state.openUp}
@@ -162,20 +191,16 @@ class MenusPage extends Component {
             anchorEl={anchorEl}
             value={this.state.value}
             onClose={() => this.handleClose()}
+            fullWidth={this.state.fullWidth}
           >
             <MenuItem onClick={() => this.handleSelect('Ron')}>Ron</MenuItem>
-            <MenuItem onClick={() => this.handleSelect('Harry')}>
-              Harry
-            </MenuItem>
-            <MenuItem onClick={() => this.handleSelect('Hermione')}>
-              Hermione
-            </MenuItem>
+            <MenuItem onClick={() => this.handleSelect('Harry')}>Harry</MenuItem>
+            <MenuItem onClick={() => this.handleSelect('Hermione')}>Hermione</MenuItem>
           </Menu>
         </PageWithBottomPadding>
       </MaterialThemeProvider>
     );
   }
 }
-
 
 export default MenusPage;

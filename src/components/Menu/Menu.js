@@ -53,7 +53,9 @@ class MenuComponent extends Component {
     }
     if (attachBottom) position.top += anchorEl.offsetHeight;
     if (openUp) position.top -= menuHeight;
-
+    if (fullWidth) {
+      position.width = anchorWidth;
+    }
     // Check to see if we should auto position the menu
     if (!noFit) {
       // For this we need the x, y position of the anchor
@@ -71,9 +73,6 @@ class MenuComponent extends Component {
       if (openUp && y - menuHeight <= 0) {
         position.top = anchorEl.offsetTop;
         if (attachBottom) position.top += anchorHeight;
-      }
-      if (fullWidth) {
-        position.width = anchorWidth;
       }
     }
     return map(v => `${v}px`, position);

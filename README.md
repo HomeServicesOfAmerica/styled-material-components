@@ -23,6 +23,7 @@
 * Run:
 ```
 yarn install
+yarn build
 yarn run dev
 ```
 * Open http://localhost:8081 in your browser
@@ -40,7 +41,7 @@ All components in this library are either:
 Similar to the Styled Components ThemeProvider (its a thin wrapper around it) except that it provides a default theme that matches material design's default theme. You can provide a custom theme here with any option from src/theme/defaultTheme.js overwritten. You can nest ThemeProviers just like with StyledComponents to overwrite portions of the theme for sections of your application
 
 ### Global Style Helpers (^0.1.1-beta)
-Prior to version 0.1.1-beta we injected global styles behind the scenes. In our use case this lead to us having to override these often. Styled-components v4 created a new createGlobalStyle builder that exports components. So now you can import these global styles manually and add them to your code where and if you want. 
+Prior to version 0.1.1-beta we injected global styles behind the scenes. In our use case this lead to us having to override these often. Styled-components v4 created a new createGlobalStyle builder that exports components. So now you can import these global styles manually and add them to your code where and if you want.
 
 1) SMCGlobalStyles (includes the app wide styles that are typical in most material apps)
 2) DrawerGlobalStyles (includes some global styles that push content around on the screen when the presence of a drawer is detected)

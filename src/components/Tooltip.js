@@ -34,9 +34,7 @@ export const TooltipPortal = styled(Portal) `
   }
 `;
 
-export const TooltipLink = styled.a.attrs({
-  children: props => props.children,
-}) `
+export const TooltipLink = styled.a`
   display: inline-block;
 `;
 export const TooltipContents = styled.div`

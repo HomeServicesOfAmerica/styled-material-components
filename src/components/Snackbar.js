@@ -103,9 +103,9 @@ class SnackbarComponent extends PureComponent {
   }
 }
 
-const Snackbar = styled(SnackbarComponent).attrs({
-  mobile: ({ screenSizeState }) => ['xs', 'sm'].includes(screenSizeState.screenSize),
-})`
+const Snackbar = styled(SnackbarComponent).attrs(props => ({
+  mobile: ['xs', 'sm'].includes(props.screenSizeState.screenSize),
+}))`
   display: ${props => (props.open && !props.animateOut ? 'flex' : 'none')};
   position: fixed;
   left: ${props => (props.mobile ? 0 : '50%')};

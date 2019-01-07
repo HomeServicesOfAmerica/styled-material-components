@@ -11,15 +11,15 @@ const formatProps = ({ name, children }) => {
   }
 
   const nameArr = name.split(' ');
-  const initials = nameArr.length === 1 ? nameArr[0][0] : nameArr[0][0] + nameArr[1][0];
+  const initials =
+    nameArr.length === 1 ? nameArr[0][0] : nameArr[0][0] + nameArr[1][0];
 
   return initials.toUpperCase();
 };
 
-export const Avatar = styled(Circular).attrs({
-  children: props =>
-    (props.src ? <Image src={props.src} /> : formatProps(props)),
-}) `
+export const Avatar = styled(Circular).attrs(props => ({
+  children: props.src ? <Image src={props.src} /> : formatProps(props),
+}))`
   // This is just here because we have to have some sort of styles applied at this level.
   text-align: left;
 `;

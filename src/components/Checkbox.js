@@ -27,10 +27,10 @@ const Box = styled.div`
   justify-content: center;
 `;
 
-const Input = styled.input.attrs({
+const Input = styled.input.attrs(props => ({
   type: 'checkbox',
-  disabled: props => props.disabled,
-})`
+  disabled: props.disabled,
+}))`
   position: absolute;
   opacity: 0;
   left: 0;

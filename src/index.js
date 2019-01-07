@@ -17,14 +17,12 @@ export { default as BottomSheet } from './components/BottomSheet';
 export { default as Button } from './components/Button';
 export * from './components/Checkbox';
 export * from './components/Chip';
-export * from './components/Circular';
 export { Divider } from './components/Divider';
 export * from './components/Drawer';
 export { default as DropdownMenu } from './components/DropdownMenu';
 export {
   default as FloatingActionButton,
 } from './components/FloatingActionButton';
-export * from './components/Image';
 export { default as Snackbar } from './components/Snackbar';
 export { default as TextField } from './components/TextField';
 export * from './components/Tooltip';

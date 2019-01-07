@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import SliderThumb from './SliderThumb';
 import Trackline from './Trackline';
@@ -42,9 +41,7 @@ class SliderTrackComponent extends PureComponent {
   getTrackWidth = () => {
     if (!this.track.current) return;
     const { max, min } = this.props;
-    /* eslint-disable react/no-find-dom-node */
-    const { width, left } = ReactDOM.findDOMNode(this.track.current).getBoundingClientRect();
-    /* eslint-enable */
+    const { width, left } = this.track.current && this.track.current.getBoundingClientRect();
     const pixelsPerValue = getPixelPerValue(min, max, width);
     const valuePerPixel = getValuePerPixel(min, max, width);
     this.setState({

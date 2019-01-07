@@ -59,9 +59,9 @@ export const InkBar = styled.div.attrs({
   will-change: left;
 `;
 
-export const NavigationItem = styled.div.attrs({
-  'data-smc': props => `AppbarNavigationItem-${props.navKey}`,
-})`
+export const NavigationItem = styled.div.attrs(props => ({
+  'data-smc': `AppbarNavigationItem-${props.navKey}`,
+}))`
   margin: 0 10px;
   display: flex;
   align-items: center;

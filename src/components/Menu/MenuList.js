@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 class MenuListComponent extends React.Component {
   componentDidMount() {
-    findDOMNode(this.menuList.current).firstChild.focus();
+    
   }
 
   menuList = React.createRef();

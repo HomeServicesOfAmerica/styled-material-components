@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 class MenuListComponent extends React.Component {
-  
   menuList = React.createRef();
 
   handleKeyDown = (event) => {

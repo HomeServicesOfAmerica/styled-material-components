@@ -1,6 +1,6 @@
 {
   "name": "styled-material-components",
-  "version": "0.1.8",
+  "version": "0.1.10",
   "description": "coming soon",
   "main": "dist/styled-material-components.cjs.js",
   "module": "dist/styled-material-components.esm.js",
@@ -74,6 +74,7 @@
     "now": "^11.2.1",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
+    "recursive-readdir-filter": "^0.0.3",
     "rollup": "^0.65.2",
     "rollup-plugin-babel": "^4.0.3",
     "rollup-plugin-commonjs": "^9.1.6",

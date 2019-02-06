@@ -7161,6 +7161,11 @@ recursive-copy@2.0.6:
     promise "^7.0.1"
     slash "^1.0.0"
 
+recursive-readdir-filter@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/recursive-readdir-filter/-/recursive-readdir-filter-0.0.3.tgz#c5a2d238b3f55aa4a0e0adbb33127773ad14f13b"
+  integrity sha1-xaLSOLP1WqSg4K27MxJ3c60U8Ts=
+
 redent@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/redent/-/redent-2.0.0.tgz#c1b2007b42d57eb1389079b3c8333639d5e1ccaa"

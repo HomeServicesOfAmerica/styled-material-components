@@ -41,16 +41,20 @@ const Input = styled.input.attrs(props => ({
   margin: 0;
 `;
 
-const CheckMark = styled.svg.attrs({
-  viewBox: '0 0 24 24',
-  children: <path d="M1.73,12.91 8.1,19.28 22.79,4.59" />,
-})`
-  fill: none;
-  stroke: ${props => props.theme.white};
-  width: 100%;
-  height: 100%;
-  stroke-width: 3.12px;
-`;
+const CheckMark = () => (
+  <svg
+    viewBox="0 0 24 24"
+    css={`
+      fill: none;
+      stroke: ${props => props.theme.white};
+      width: 100%;
+      height: 100%;
+      stroke-width: 3.12px;
+    `}
+  >
+    <path d="M1.73,12.91 8.1,19.28 22.79,4.59" />
+  </svg>
+);
 
 const IndeterminateMark = styled.div`
   transition: 0.3s;

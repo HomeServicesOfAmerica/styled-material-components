@@ -1,15 +1,9 @@
 import React from 'react';
-
 import styled from 'styled-components';
 import { Icon } from '../icons';
 
-const HotelPath = () => [
-  <path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z" key='path0' />,
-];
-
-const HotelIcon = styled(Icon).attrs({
-  children: HotelPath,
-})``;
-
-export default HotelPath;
-export { HotelIcon };
+export const HotelIcon = styled(props => (
+  <Icon {...props}>
+    <path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z" key='path0' />
+  </Icon>
+))``;

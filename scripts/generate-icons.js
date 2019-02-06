@@ -89,16 +89,14 @@ const convertName = (name, type) => {
 // is called by `WriteComponent`. defines the format of the component files
 const componentTemplate = (fileName, svgPaths) =>
   `import React from 'react';
+import styled from 'styled-components';
 import { Icon } from '../icons';
 
-const ${fileName}Path = () => [${svgPaths.map(svgPath => `\n  ${svgPath}`)},\n];
-
-const ${fileName}Icon = Icon.extend.attrs({
-  children: ${fileName}Path,
-})\`\`;
-
-export default ${fileName}Path;
-export { ${fileName}Icon };
+export const ${fileName}Icon = styled(props => (
+  <Icon {...props}>
+    ${svgPaths.map((svgPath, i) => `${i !== 0 ? '\n    ' : ''}${svgPath}`)}
+  </Icon>
+))\`\`;
 `;
 
 // writes a javascript file for a standalone Icon

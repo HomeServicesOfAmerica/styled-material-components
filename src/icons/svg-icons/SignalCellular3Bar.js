@@ -1,16 +1,10 @@
 import React from 'react';
-
 import styled from 'styled-components';
 import { Icon } from '../icons';
 
-const SignalCellular3BarPath = () => [
-  <path fillOpacity=".3" d="M2 22h20V2z" key='path0' />,
-  <path d="M17 7L2 22h15z" key='path1' />,
-];
-
-const SignalCellular3BarIcon = styled(Icon).attrs({
-  children: SignalCellular3BarPath,
-})``;
-
-export default SignalCellular3BarPath;
-export { SignalCellular3BarIcon };
+export const SignalCellular3BarIcon = styled(props => (
+  <Icon {...props}>
+    <path fillOpacity=".3" d="M2 22h20V2z" key='path0' />,
+    <path d="M17 7L2 22h15z" key='path1' />
+  </Icon>
+))``;

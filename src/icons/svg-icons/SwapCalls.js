@@ -1,15 +1,9 @@
 import React from 'react';
-
 import styled from 'styled-components';
 import { Icon } from '../icons';
 
-const SwapCallsPath = () => [
-  <path d="M18 4l-4 4h3v7c0 1.1-.9 2-2 2s-2-.9-2-2V8c0-2.21-1.79-4-4-4S5 5.79 5 8v7H2l4 4 4-4H7V8c0-1.1.9-2 2-2s2 .9 2 2v7c0 2.21 1.79 4 4 4s4-1.79 4-4V8h3l-4-4z" key='path0' />,
-];
-
-const SwapCallsIcon = styled(Icon).attrs({
-  children: SwapCallsPath,
-})``;
-
-export default SwapCallsPath;
-export { SwapCallsIcon };
+export const SwapCallsIcon = styled(props => (
+  <Icon {...props}>
+    <path d="M18 4l-4 4h3v7c0 1.1-.9 2-2 2s-2-.9-2-2V8c0-2.21-1.79-4-4-4S5 5.79 5 8v7H2l4 4 4-4H7V8c0-1.1.9-2 2-2s2 .9 2 2v7c0 2.21 1.79 4 4 4s4-1.79 4-4V8h3l-4-4z" key='path0' />
+  </Icon>
+))``;

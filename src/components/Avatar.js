@@ -1,15 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export const Avatar = styled(({ className, src, name }) => {
-  const initials = name && `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`;
-  return (
-    <div className={className}>
-      {src && <img src={src} />}
-      {!src && name && initials.toUpperCase()}
-    </div>
-  );
-})`
+const formatInitials = (name) => {
+  if (!name) return '';
+  if (name.length <= 2) return name;
+  const pieces = name.split(' ');
+  const initials = pieces.length === 1 ? pieces[0][0] : pieces[0][0] + pieces[1][0];
+  return initials.toUpperCase();
+};
+
+export const Avatar = styled(({ className, src, name }) => (
+  <div className={className}>
+    {src && <img src={src} />}
+    {!src && formatInitials(name)}
+  </div>
+))`
   position: relative;
   display: flex;
   justify-content: center;

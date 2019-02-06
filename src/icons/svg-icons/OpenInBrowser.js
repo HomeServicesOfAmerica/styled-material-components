@@ -1,15 +1,9 @@
 import React from 'react';
-
 import styled from 'styled-components';
 import { Icon } from '../icons';
 
-const OpenInBrowserPath = () => [
-  <path d="M19 4H5c-1.11 0-2 .9-2 2v12c0 1.1.89 2 2 2h4v-2H5V8h14v10h-4v2h4c1.1 0 2-.9 2-2V6c0-1.1-.89-2-2-2zm-7 6l-4 4h3v6h2v-6h3l-4-4z" key='path0' />,
-];
-
-const OpenInBrowserIcon = styled(Icon).attrs({
-  children: OpenInBrowserPath,
-})``;
-
-export default OpenInBrowserPath;
-export { OpenInBrowserIcon };
+export const OpenInBrowserIcon = styled(props => (
+  <Icon {...props}>
+    <path d="M19 4H5c-1.11 0-2 .9-2 2v12c0 1.1.89 2 2 2h4v-2H5V8h14v10h-4v2h4c1.1 0 2-.9 2-2V6c0-1.1-.89-2-2-2zm-7 6l-4 4h3v6h2v-6h3l-4-4z" key='path0' />
+  </Icon>
+))``;

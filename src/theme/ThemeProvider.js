@@ -1,7 +1,7 @@
 import React from 'react';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import merge from 'lodash.merge';
-import { ScreenSizeContext } from '../contexts/ScreenSizeContext';
+import { ScreenSizeProvider } from '../contexts/ScreenSizeContext';
 import { defaultTheme } from './defaultTheme';
 
 /* eslint-disable no-unused-expressions */
@@ -20,8 +20,8 @@ export const SMCGlobalStyles = createGlobalStyle`
 
 export const MaterialThemeProvider = ({ children, theme = {} }) => (
   <ThemeProvider theme={merge(defaultTheme, theme)}>
-    <ScreenSizeContext>
+    <ScreenSizeProvider>
       {children}
-    </ScreenSizeContext>
+    </ScreenSizeProvider>
   </ThemeProvider>
 );

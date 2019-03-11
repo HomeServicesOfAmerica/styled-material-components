@@ -11,7 +11,7 @@ import { withTheme } from 'styled-components';
 import respondable from 'respondable';
 import platform from 'platform';
 
-const Context = createContext({ size: 'server' });
+export const ScreenSizeContext = createContext({ size: 'server' });
 
 /**
  * ScreenSizeConsumer
@@ -20,9 +20,9 @@ const Context = createContext({ size: 'server' });
  * that is a function. This function is called at render with the value
  * defined in the Context.Provider as an argument.
  */
-export const ScreenSizeConsumer = Context.Consumer;
+export const ScreenSizeConsumer = ScreenSizeContext.Consumer;
 
-class ScreenSizeContextBase extends Component {
+class ScreenSizeProviderBase extends Component {
   state = {
     screenSize: 'server',
     platformData: {},
@@ -117,15 +117,15 @@ class ScreenSizeContextBase extends Component {
 
   render() {
     return (
-      <Context.Provider value={this.state}>
+      <ScreenSizeContext.Provider value={this.state}>
         {this.props.children}
-      </Context.Provider>
+      </ScreenSizeContext.Provider>
     );
   }
 }
 
 // withTheme gives us access to the theme without it being a Styled Component
-export const ScreenSizeContext = withTheme(ScreenSizeContextBase);
+export const ScreenSizeProvider = withTheme(ScreenSizeProviderBase);
 
 export function withScreenSize(WrappedComponent) {
   const ScreenSizeAwareComponent = props => (

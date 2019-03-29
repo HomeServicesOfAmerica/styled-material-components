@@ -20,12 +20,11 @@ export * from './components/Chip';
 export { Divider } from './components/Divider';
 export * from './components/Drawer';
 export { default as DropdownMenu } from './components/DropdownMenu';
-export {
-  default as FloatingActionButton,
-} from './components/FloatingActionButton';
+export { default as FloatingActionButton } from './components/FloatingActionButton';
 export { default as Snackbar } from './components/Snackbar';
 export { default as TextField } from './components/TextField';
 export * from './components/Tooltip';
+export * from './components/Radio';
 
 export * from './contexts/ScreenSizeContext';
 

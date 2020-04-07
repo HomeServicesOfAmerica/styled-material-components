@@ -1,3 +1,6 @@
+# No Longer Maintained
+Our humble recommendation is to use material-ui, which now interops with styled-components fairly well.
+
 # [Styled Material Components](https://styled-material-components.com/)
 
 [Styled Components](https://www.styled-components.com) inspired library that implements Material Design for stress free React Application scaffolding.
